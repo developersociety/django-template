@@ -161,6 +161,10 @@ def setup_project(hostname, project):
 
     startproject.run_from_argv(['django-admin.py', 'startproject', project, 'app', '--template=%s' % (project_template,)])
 
+    # Make manage.py executable
+    st = os.stat('app/manage.py')
+    os.chmod('app/manage.py', st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+
     return database_password
 
 
