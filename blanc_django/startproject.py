@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from fabric.api import *
+from fabric.contrib.console import confirm
 import blanc_django
 import os
 import stat
@@ -12,6 +13,8 @@ DJANGO_REQUIREMENTS = [
     'psycopg2==2.5.1',
     'Pillow==2.1.0',
 ]
+
+GIT_REPO_TEMPLATE = "git@smirkenorff.blanctools.com:{project}.git"
 
 UWSGI_TEMPLATE = """
 [uwsgi]
@@ -71,6 +74,19 @@ def ask_project():
     return prompt('Project name?')
 
 
+def ask_gitrepo():
+    return confirm('Start a git repository?')
+
+
+def ask_gitremote(project):
+    want_remote = confirm('Add a git remote repository?')
+
+    if want_remote:
+        return prompt('Git repository URL?', default=GIT_REPO_TEMPLATE.format(project=project))
+    else:
+        return None
+
+
 def setup_requirements():
     os.makedirs('conf')
 
@@ -115,6 +131,17 @@ def setup_gitignore(project):
         }).lstrip())
 
 
+def setup_gitrepo():
+    local('git init')
+    local('git add .gitignore')
+    local('git add app conf cron htdocs')
+    local('git commit -m "Initial commit"')
+
+
+def setup_gitremote(remote):
+    local('git remote add -m master origin %s' % (remote,))
+
+
 def setup_project(hostname, project):
     os.makedirs('app')
 
@@ -144,10 +171,24 @@ def show_instructions(*args, **kwargs):
 def main():
     hostname = ask_hostname()
     project = ask_project()
+    gitrepo = ask_gitrepo()
+
+    # Only ask about the remote if the user wants a repo
+    if gitrepo:
+        gitremote = ask_gitremote(project)
+
     setup_requirements()
     setup_uwsgi_ini(hostname, project)
     setup_cron(hostname)
     setup_robots()
     setup_gitignore(project)
     database_password = setup_project(hostname, project)
+
+    # Only setup a git repo if needed:
+    if gitrepo:
+        setup_gitrepo()
+
+        if gitremote is not None:
+            setup_gitremote(gitremote)
+
     show_instructions(hostname=hostname, project=project, database_password=database_password)
