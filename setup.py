@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='blanc-django',
-    version='0.1.2',
+    version='0.1.3',
     description='Blanc setup for Django',
     long_description=open('README.rst').read(),
     url='http://www.blanctools.com/',
