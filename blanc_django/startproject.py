@@ -7,7 +7,7 @@ import stat
 
 
 DJANGO_REQUIREMENTS = [
-    'Django==1.5.5',
+    'Django==1.6',
     'pytz==2013.8',
     'pylibmc==1.2.3',
     'psycopg2==2.5.1',
