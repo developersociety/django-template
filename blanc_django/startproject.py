@@ -8,10 +8,10 @@ import stat
 
 DJANGO_REQUIREMENTS = [
     'Django==1.6.1',
-    'pytz==2013.8',
+    'pytz==2013.9',
     'pylibmc==1.2.3',
     'psycopg2==2.5.1',
-    'Pillow==2.2.1',
+    'Pillow==2.3.0',
 ]
 
 GIT_REPO_TEMPLATE = "git@smirkenorff.blanctools.com:{project}.git"
