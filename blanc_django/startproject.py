@@ -25,11 +25,13 @@ module={project}.wsgi
 processes=1
 master=true
 idle=300
-die-on-idle=true
+cheap=1
+lazy=1
 offload-threads=1
 check-static=/var/www/{hostname}/htdocs
 #static-expires-uri=^/static/ 31536000
 log-syslog=uwsgi-{project}
+subscribe-to=127.0.0.1:3001:{hostname}
 """
 
 CRON_TEMPLATE = """
