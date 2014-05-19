@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 from fabric.api import *
-from fabric.contrib.console import confirm
 import blanc_django
 import os
 import stat
@@ -76,17 +75,8 @@ def ask_project():
     return prompt('Project name?')
 
 
-def ask_gitrepo():
-    return confirm('Start a git repository?')
-
-
 def ask_gitremote(project):
-    want_remote = confirm('Add a git remote repository?')
-
-    if want_remote:
-        return prompt('Git repository URL?', default=GIT_REPO_TEMPLATE.format(project=project))
-    else:
-        return None
+    return prompt('Git repository URL?', default=GIT_REPO_TEMPLATE.format(project=project))
 
 
 def setup_requirements():
@@ -177,11 +167,7 @@ def show_instructions(*args, **kwargs):
 def main():
     hostname = ask_hostname()
     project = ask_project()
-    gitrepo = ask_gitrepo()
-
-    # Only ask about the remote if the user wants a repo
-    if gitrepo:
-        gitremote = ask_gitremote(project)
+    gitremote = ask_gitremote(project)
 
     setup_requirements()
     setup_uwsgi_ini(hostname, project)
@@ -190,11 +176,8 @@ def main():
     setup_gitignore(project)
     database_password = setup_project(hostname, project)
 
-    # Only setup a git repo if needed:
-    if gitrepo:
-        setup_gitrepo()
-
-        if gitremote is not None:
-            setup_gitremote(gitremote)
+    # Setup git
+    setup_gitrepo()
+    setup_gitremote(gitremote)
 
     show_instructions(hostname=hostname, project=project, database_password=database_password)
