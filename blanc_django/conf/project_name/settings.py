@@ -16,13 +16,13 @@ BASE_DIR = '/var/www/{{ hostname }}'
 # Production / development switches
 # https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/checklist/
 
-DEBUG = True
+DEBUG = 'DEBUG' in os.environ
 
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = ['{{ hostname }}']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
 
-SECRET_KEY = '{{ secret_key }}'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 # Email
@@ -70,34 +70,32 @@ WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#databases
 
+import dj_database_url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '{{ project_name }}_django',
-        'USER': '{{ project_name }}_django',
-        'PASSWORD': '{{ database_password }}',
-        'HOST': '2a01:7e00::2:9e09',
-        'PORT': '5439',
-    }
+    'default': dj_database_url.config(),
 }
 
 
 # Caches
 # https://docs.djangoproject.com/en/{{ docs_version }}/topics/cache/
 
-CACHES = {
-    'default': {
+CACHES = {}
+if os.environ.get('MEMCACHED_SERVERS'):
+    CACHES['default'] = {
         'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
-        'LOCATION': '[2a01:7e00::2:9ef1]:11211',
-        'KEY_PREFIX': '{{ project_name }}',
-    },
-    'staticfiles': {
+        'LOCATION': os.environ['MEMCACHED_SERVERS'].split(' '),
+        'KEY_PREFIX': os.environ.get('MEMCACHED_PREFIX'),
+    }
+    CACHES['staticfiles'] = {
         'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
-        'LOCATION': '[2a01:7e00::2:9ef1]:11211',
-        'KEY_PREFIX': '{{ project_name }}',
+        'LOCATION': os.environ['MEMCACHED_SERVERS'].split(' '),
+        'KEY_PREFIX': os.environ.get('MEMCACHED_PREFIX'),
         'TIMEOUT': 604800,  # 1 week
     }
-}
+else:
+    CACHES['default'] = {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
 
 
 # Internationalization

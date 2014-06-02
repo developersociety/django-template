@@ -11,27 +11,10 @@ DJANGO_REQUIREMENTS = [
     'pylibmc==1.3.0',
     'psycopg2==2.5.3',
     'Pillow==2.4.0',
+    'dj-database-url==0.3.0',
 ]
 
 GIT_REPO_TEMPLATE = "git@smirkenorff.blanctools.com:{project}.git"
-
-UWSGI_TEMPLATE = """
-[uwsgi]
-socket=127.0.0.1:0
-home=/var/www/{hostname}/pyenv
-pythonpath=/var/www/{hostname}/app
-module={project}.wsgi
-processes=1
-master=true
-idle=300
-cheap=1
-lazy=1
-offload-threads=1
-check-static=/var/www/{hostname}/htdocs
-#static-expires-uri=^/static/ 31536000
-log-syslog=uwsgi-{project}
-subscribe-to=127.0.0.1:3001:{hostname}
-"""
 
 CRON_TEMPLATE = """
 #!/bin/sh
@@ -62,6 +45,21 @@ CREATE DATABASE {project}_django WITH OWNER={project}_django ENCODING='utf8';
 or GeoDjango (avoid unless needed):
 CREATE ROLE {project}_django WITH LOGIN ENCRYPTED PASSWORD '{database_password}';
 CREATE DATABASE {project}_django WITH OWNER={project}_django ENCODING='utf8' TEMPLATE=template_postgis;
+
+
+And here is something for Ansible:
+
+  {project}:
+    uid: REPLACEME
+    directory: /var/www/{hostname}
+    server: runicaath
+    wsgi: {project}.wsgi
+    hosts:
+      - {hostname}
+    env:
+      DATABASE_URL: "postgres://{project}_django:{database_password}@[2a01:7e00::2:9e09]:5439/{project}_django"
+      SECRET_KEY: "{secret_key}"
+      DEBUG: True
 """
 
 VALIDATE_HOSTNAME = '^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$'
@@ -87,14 +85,6 @@ def setup_requirements():
             f.write(i + '\n')
 
     local('pip install -r conf/requirements.txt')
-
-
-def setup_uwsgi_ini(hostname, project):
-    with open('conf/uwsgi.ini', 'w') as f:
-        f.write(UWSGI_TEMPLATE.format(**{
-            'hostname': hostname,
-            'project': project,
-        }).lstrip())
 
 
 def setup_cron(hostname):
@@ -161,6 +151,9 @@ def setup_project(hostname, project):
 
 
 def show_instructions(*args, **kwargs):
+    from django.utils.crypto import get_random_string
+    chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
+    kwargs['secret_key'] = get_random_string(50, chars)
     print SUCCESS_MESSAGE.format(**kwargs)
 
 
@@ -170,7 +163,6 @@ def main():
     gitremote = ask_gitremote(project)
 
     setup_requirements()
-    setup_uwsgi_ini(hostname, project)
     setup_cron(hostname)
     setup_robots()
     setup_gitignore(project)
