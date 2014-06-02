@@ -12,7 +12,7 @@ setup(
     maintainer_email='alex@blanc.ltd.uk',
     platforms=['any'],
     install_requires=[
-        'Fabric==1.8.0',
+        'Fabric>=1.8.0',
     ],
     packages=find_packages(),
     package_data={'blanc_django': [
