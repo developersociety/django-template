@@ -87,12 +87,6 @@ if os.environ.get('MEMCACHED_SERVERS'):
         'LOCATION': os.environ['MEMCACHED_SERVERS'].split(' '),
         'KEY_PREFIX': os.environ.get('MEMCACHED_PREFIX'),
     }
-    CACHES['staticfiles'] = {
-        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
-        'LOCATION': os.environ['MEMCACHED_SERVERS'].split(' '),
-        'KEY_PREFIX': os.environ.get('MEMCACHED_PREFIX'),
-        'TIMEOUT': 604800,  # 1 week
-    }
 else:
     CACHES['default'] = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
@@ -120,7 +114,7 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'htdocs/static')
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
