@@ -51,6 +51,13 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blanc_basic_assets',
+    'blanc_basic_news',
+    'mptt',
+    'django_mptt_admin',
+    'blanc_basic_pages',
+    'blanc_basic_events',
+    'easy_thumbnails',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,6 +68,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'blanc_basic_pages.middleware.PageFallbackMiddleware',
 )
 
 ROOT_URLCONF = '{{ project_name }}.urls'
@@ -118,6 +126,7 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'theme/static'),
 )
 
 
@@ -134,6 +143,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'htdocs/media')
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, '{{ project_name }}/templates'),
+    os.path.join(BASE_DIR, 'theme/templates'),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -201,9 +211,26 @@ LOGGING = {
 
 # Any other application config goes below here
 
-# Sites framework
-SITE_ID = 1
+# Thumbnail generation
+THUMBNAIL_SUBDIR = 'thumbs'
+THUMBNAIL_PRESERVE_EXTENSIONS = ('png',)
+THUMBNAIL_QUALITY = 100
 
+## Pages
+# PAGE_TEMPLATES = (
+#     ('', 'Default'),
+# )
+# PAGE_SHOW_LOGIN = False
+
+## News
+NEWS_TITLE = 'Django Church'
+#NEWS_PER_PAGE = 10
+#NEWS_FEED_LIMIT = 10
+
+# Calendar
+EVENTS_CALENDAR_NAME = 'Django Church'
+# EVENTS_CALENDAR_DESCRIPTION = 'Events Calendar'
+# EVENTS_START_SUNDAY = True
 
 # Local settings override
 try:

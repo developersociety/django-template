@@ -4,3 +4,21 @@ pylibmc==1.3.0
 psycopg2==2.5.3
 Pillow==2.4.0
 dj-database-url==0.3.0
+
+# Assets
+blanc-basic-assets==0.3
+easy-thumbnails==2.0.1
+
+# News
+blanc-basic-news==0.3
+
+# Pages
+django-mptt==0.6.1
+django-mptt-admin==0.1.8
+six==1.6.1
+blanc-basic-pages==0.3
+
+# Events
+icalendar==3.6.2
+python-dateutil==2.2
+blanc-basic-events==0.3

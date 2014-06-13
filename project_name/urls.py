@@ -10,6 +10,12 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+
+    # News
+    url(r'^news/', include('blanc_basic_news.urls', namespace='blanc_basic_news')),
+
+    # Events
+    url(r'^events/', include('blanc_basic_events.urls', namespace='blanc_basic_events')),
 )
 
 # Serving static/media under debug
