@@ -51,6 +51,16 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mptt',
+    'django_mptt_admin',
+    'blanc_pages',
+    '{{ project_name }}.pages',
+    'redactorjs_staticfiles',
+    'blanc_pages_redactor_block',
+    'blanc_basic_assets',
+    'blanc_pages_image_block',
+    'easy_thumbnails',
+    'blanc_pages_form_block',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,6 +71,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'blanc_pages.middleware.BlancpageFallbackMiddleware',
 )
 
 ROOT_URLCONF = '{{ project_name }}.urls'
@@ -203,6 +214,20 @@ LOGGING = {
 
 # Sites framework
 SITE_ID = 1
+
+# Blanc Pages
+# BLANC_PAGES_MODEL = 'pages.CustomPage'
+BLANC_PAGES_DEFAULT_TEMPLATE = 'blanc_pages/default.html'
+BLANC_PAGES_DEFAULT_BLOCKS = (
+    ('blanc_pages_redactor_block.RedactorBlock', 'Text'),
+    ('blanc_pages_image_block.ImageBlock', 'Image'),
+    ('pages.HTML', 'HTML'),
+)
+
+# Thumbnail generation
+THUMBNAIL_SUBDIR = 'thumbs'
+THUMBNAIL_PRESERVE_EXTENSIONS = ('png',)
+THUMBNAIL_QUALITY = 100
 
 
 # Local settings override

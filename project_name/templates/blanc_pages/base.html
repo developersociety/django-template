@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load blancpages %}
+
+
+{% block title %}{{ blanc_page.page.title }} - {{ block.super }}{% endblock %}
+
+
+{% block starthead %}
+{% blancpage_head %}
+{% endblock starthead %}
+
+
+{% block startbody %}
+{% blancpage_startbody %}
+{% endblock startbody %}
