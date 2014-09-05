@@ -1,0 +1,30 @@
+{% extends "admin/change_form.html" %}
+{% load admin_static %}
+
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'redactor/redactor.css' %}" />
+<style type="text/css">
+#content-main .field-content label {
+    float: none;
+    padding-bottom: 10px;
+}
+</style>
+{% endblock extrastyle %}
+
+
+{% block content %}
+{{ block.super }}
+
+<script src="{% static 'admin/js/jquery.min.js' %}"></script>
+<script src="{% static 'redactor/redactor.min.js' %}"></script>
+<script type="text/javascript">
+$().ready(function() {
+    $("#id_content").redactor({
+        iframe: true,
+        css: "{% static 'redactor/redactor-iframe.css' %}"
+    });
+});
+</script>
+{% endblock content %}
