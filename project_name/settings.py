@@ -232,6 +232,6 @@ THUMBNAIL_QUALITY = 100
 
 # Local settings override
 try:
-    from local_settings import *
+    from .local_settings import *  # noqa
 except ImportError:
     pass
