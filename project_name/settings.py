@@ -234,6 +234,6 @@ EVENTS_CALENDAR_NAME = 'Django Church'
 
 # Local settings override
 try:
-    from local_settings import *
+    from .local_settings import *  # noqa
 except ImportError:
     pass
