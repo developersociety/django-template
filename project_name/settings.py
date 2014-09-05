@@ -207,6 +207,6 @@ SITE_ID = 1
 
 # Local settings override
 try:
-    from local_settings import *
+    from .local_settings import *  # noqa
 except ImportError:
     pass
