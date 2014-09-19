@@ -19,5 +19,5 @@ django-mptt-admin==0.1.9
 # Blocks
 blanc-pages-redactor-block==0.6
 django-redactorjs-staticfiles==9.2.6
-blanc-pages-form-block==0.3
+blanc-pages-form-block==0.3.1
 blanc-pages-image-block==0.2.1
