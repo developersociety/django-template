@@ -9,12 +9,12 @@ dj-database-url==0.3.0
 blanc-basic-assets==0.3
 
 # Thumbnailing
-easy-thumbnails==2.1
+easy-thumbnails==2.2
 
 # Pages
 blanc-pages==0.6
 django-mptt==0.6.1
-django-mptt-admin==0.1.9
+django-mptt-admin==0.1.10
 
 # Blocks
 blanc-pages-redactor-block==0.6
