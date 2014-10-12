@@ -18,6 +18,14 @@ urlpatterns = [
     url(r'^events/', include('blanc_basic_events.urls', namespace='blanc_basic_events')),
 ]
 
+# Make it easier to see a 404 page under debug
+if settings.DEBUG:
+    from django.views.defaults import page_not_found
+
+    urlpatterns += [
+        url(r'^404/$', page_not_found),
+    ]
+
 # Serving static/media under debug
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
