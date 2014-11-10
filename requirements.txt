@@ -16,9 +16,9 @@ blanc-basic-news==0.3
 django-mptt==0.6.1
 django-mptt-admin==0.1.10
 six==1.8.0
-blanc-basic-pages==0.3
+blanc-basic-pages==0.3.2
 
 # Events
 icalendar==3.8.4
 python-dateutil==2.2
-blanc-basic-events==0.3
+blanc-basic-events==0.3.2
