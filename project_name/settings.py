@@ -58,6 +58,7 @@ INSTALLED_APPS = (
     'blanc_basic_pages',
     'blanc_basic_events',
     'easy_thumbnails',
+    'djangochurch_data',
 )
 
 MIDDLEWARE_CLASSES = (

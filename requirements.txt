@@ -22,3 +22,6 @@ blanc-basic-pages==0.3.2
 icalendar==3.8.4
 python-dateutil==2.2
 blanc-basic-events==0.3.2
+
+# Data
+djangochurch-data==0.1
