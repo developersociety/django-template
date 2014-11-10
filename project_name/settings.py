@@ -216,16 +216,16 @@ THUMBNAIL_SUBDIR = 'thumbs'
 THUMBNAIL_PRESERVE_EXTENSIONS = ('png',)
 THUMBNAIL_QUALITY = 100
 
-## Pages
+# Pages
 # PAGE_TEMPLATES = (
 #     ('', 'Default'),
 # )
 # PAGE_SHOW_LOGIN = False
 
-## News
+# News
 NEWS_TITLE = 'Django Church'
-#NEWS_PER_PAGE = 10
-#NEWS_FEED_LIMIT = 10
+# NEWS_PER_PAGE = 10
+# NEWS_FEED_LIMIT = 10
 
 # Calendar
 EVENTS_CALENDAR_NAME = 'Django Church'
