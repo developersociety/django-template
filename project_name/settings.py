@@ -48,9 +48,33 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.humanize',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'handbook.auth',
+    'adminsortable',
+    'handbook.utils',
+    'handbook.files',
+    'handbook.places',
+    'easy_thumbnails',
+    'handbook.groups',
+    'handbook.threads',
+    'blanc_basic_assets',
+    'mptt',
+    'django_mptt_admin',
+    'blanc_pages',
+    'handbook.pages',
+    'blanc_pages_image_block',
+    'redactorjs_staticfiles',
+    'blanc_pages_redactor_block',
+    'handbook.links',
+    'latest_tweets',
+    'haystack',
+    'handbook.search',
+    'crispy_forms',
+    'handbook.blocks',
+    'handbook.events',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -75,6 +99,8 @@ import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(),
 }
+
+ATOMIC_REQUESTS = True
 
 
 # Caches
@@ -118,6 +144,7 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'handbook/static'),
 )
 
 
@@ -128,12 +155,15 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'htdocs/media')
 
+PRIVATE_MEDIA_ROOT = os.path.join(BASE_DIR, 'private_media')
+
 
 # Templates
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#templates
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, '{{ project_name }}/templates'),
+    os.path.join(BASE_DIR, 'handbook/templates'),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -204,6 +234,42 @@ LOGGING = {
 # Sites framework
 SITE_ID = 1
 
+# Auth
+AUTH_USER_MODEL = 'handbook_auth.HandbookUser'
+
+# Default home page
+LOGIN_REDIRECT_URL = 'dashboard:home'
+
+# Blanc Pages
+BLANC_PAGES_MODEL = 'handbook_pages.HandbookPage'
+BLANC_PAGES_DEFAULT_TEMPLATE = 'blanc_pages/portal_grid.html'
+BLANC_PAGES_DEFAULT_BLOCKS = (
+    ('blanc_pages_redactor_block.RedactorBlock', 'Text'),
+    ('blanc_pages_image_block.ImageBlock', 'Image'),
+)
+
+# Thumbnail generation
+THUMBNAIL_SUBDIR = 'thumbs'
+THUMBNAIL_PRESERVE_EXTENSIONS = ('png',)
+THUMBNAIL_QUALITY = 100
+
+# Twitter
+TWITTER_CONSUMER_KEY = os.environ.get('TWITTER_CONSUMER_KEY')
+TWITTER_CONSUMER_SECRET = os.environ.get('TWITTER_CONSUMER_SECRET')
+TWITTER_OAUTH_TOKEN = os.environ.get('TWITTER_OAUTH_TOKEN')
+TWITTER_OAUTH_SECRET = os.environ.get('TWITTER_OAUTH_SECRET')
+
+# Search
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': os.environ.get('SEARCH_URL'),
+        'INDEX_NAME': os.environ.get('SEARCH_INDEX'),
+    },
+}
+
+# File downloads
+SENDFILE_BACKEND = 'sendfile.backends.simple'
 
 # Local settings override
 try:

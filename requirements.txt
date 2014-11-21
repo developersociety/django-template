@@ -4,3 +4,59 @@ pylibmc==1.3.0
 psycopg2==2.5.4
 Pillow==2.6.1
 dj-database-url==0.3.0
+
+# Formset views
+django-braces==1.4.0
+django-extra-views==0.6.5
+six==1.8.0
+
+# Sortable admin
+django-admin-sortable==1.7.7
+
+# Filtering
+django-filter==0.8
+
+# Thumbnailing
+easy-thumbnails==2.2
+
+# Assets
+blanc-basic-assets==0.3
+
+# Pages
+blanc-pages==0.6.2
+django-mptt==0.6.1
+django-mptt-admin==0.1.10
+
+# RedactorJS
+django-redactorjs-staticfiles==9.2.6
+
+# Blocks
+blanc-pages-image-block==0.2.1
+blanc-pages-redactor-block==0.6
+
+# Latest tweets
+django-latest-tweets==0.1.1
+twitter==1.15.0
+
+# Search
+-e git+https://github.com/Xaroth/django-haystack.git@381e958d420b481ecf906dd9f93f253fbde6eae9#egg=django-haystack
+elasticsearch==1.2.0
+urllib3==1.9.1
+
+# Forms
+django-crispy-forms==1.4.0
+
+# Video embed
+oEmbed==0.1.2
+
+# HTML cleaning
+bleach==1.4
+html5lib==0.999
+
+# Events
+requests==2.4.3
+icalendar==3.8.4
+
+# Sendfile
+django-sendfile==0.3.6
+Unidecode==0.04.16
