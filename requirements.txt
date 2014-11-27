@@ -12,7 +12,7 @@ blanc-basic-assets==0.3
 easy-thumbnails==2.2
 
 # Pages
-blanc-pages==0.6
+blanc-pages==0.6.2
 django-mptt==0.6.1
 django-mptt-admin==0.1.10
 
