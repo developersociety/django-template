@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'blanc_basic_assets',
     'blanc_basic_news',
     'mptt',
@@ -211,6 +212,9 @@ LOGGING = {
 
 
 # Any other application config goes below here
+
+# Sites framework
+SITE_ID = 1
 
 # Thumbnail generation
 THUMBNAIL_SUBDIR = 'thumbs'
