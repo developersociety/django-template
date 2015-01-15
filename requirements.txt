@@ -1,6 +1,6 @@
-Django==1.7.1
+Django==1.7.3
 pytz==2014.10
 pylibmc==1.4.1
 psycopg2==2.5.4
-Pillow==2.6.1
+Pillow==2.7.0
 dj-database-url==0.3.0
