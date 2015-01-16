@@ -7,6 +7,8 @@ dj-database-url==0.3.0
 
 # Assets
 blanc-basic-assets==0.3
+
+# Thumbnailing
 easy-thumbnails==2.2
 
 # News
@@ -14,13 +16,13 @@ blanc-basic-news==0.3
 
 # Pages
 django-mptt==0.6.1
-django-mptt-admin==0.1.10
-six==1.8.0
+django-mptt-admin==0.2.0
+six==1.9.0
 blanc-basic-pages==0.3.2
 
 # Events
 icalendar==3.8.4
-python-dateutil==2.2
+python-dateutil==2.4.0
 blanc-basic-events==0.3.2
 
 # Data
