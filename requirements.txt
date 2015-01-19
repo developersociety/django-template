@@ -5,6 +5,11 @@ psycopg2==2.5.4
 Pillow==2.7.0
 dj-database-url==0.3.0
 
+# Storage
+apache-libcloud==0.16.0
+dj-libcloud==0.2.0
+blanc-contentfiles==0.1
+
 # Assets
 blanc-basic-assets==0.3
 

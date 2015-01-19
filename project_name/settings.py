@@ -139,6 +139,9 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'htdocs/media')
 
+DEFAULT_FILE_STORAGE = os.environ.get(
+    'DEFAULT_FILE_STORAGE', 'django.core.files.storage.FileSystemStorage')
+
 
 # Templates
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#templates
@@ -220,6 +223,12 @@ SITE_ID = 1
 THUMBNAIL_SUBDIR = 'thumbs'
 THUMBNAIL_PRESERVE_EXTENSIONS = ('png',)
 THUMBNAIL_QUALITY = 100
+THUMBNAIL_DEFAULT_STORAGE = os.environ.get('DEFAULT_FILE_STORAGE')
+THUMBNAIL_CACHE_DIMENSIONS = True
+
+# Cloud storage
+from contentfiles.config import libcloud_providers
+LIBCLOUD_PROVIDERS = libcloud_providers('{{ project_name }}')
 
 # Pages
 # PAGE_TEMPLATES = (
