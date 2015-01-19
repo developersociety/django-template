@@ -155,6 +155,9 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'htdocs/media')
 
+DEFAULT_FILE_STORAGE = os.environ.get(
+    'DEFAULT_FILE_STORAGE', 'django.core.files.storage.FileSystemStorage')
+
 PRIVATE_MEDIA_ROOT = os.path.join(BASE_DIR, 'private_media')
 
 
@@ -233,6 +236,10 @@ LOGGING = {
 
 # Sites framework
 SITE_ID = 1
+
+# Cloud storage
+from contentfiles.config import libcloud_providers
+LIBCLOUD_PROVIDERS = libcloud_providers('{{ project_name }}')
 
 # Auth
 AUTH_USER_MODEL = 'handbook_auth.HandbookUser'

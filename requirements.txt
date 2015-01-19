@@ -5,6 +5,11 @@ psycopg2==2.5.4
 Pillow==2.7.0
 dj-database-url==0.3.0
 
+# Storage
+apache-libcloud==0.16.0
+dj-libcloud==0.2.0
+blanc-contentfiles==0.1
+
 # Formset views
 django-braces==1.4.0
 django-extra-views==0.6.5
