@@ -128,6 +128,9 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'htdocs/media')
 
+DEFAULT_FILE_STORAGE = os.environ.get(
+    'DEFAULT_FILE_STORAGE', 'django.core.files.storage.FileSystemStorage')
+
 
 # Templates
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#templates
@@ -203,6 +206,10 @@ LOGGING = {
 
 # Sites framework
 SITE_ID = 1
+
+# Cloud storage
+from contentfiles.config import libcloud_providers
+LIBCLOUD_PROVIDERS = libcloud_providers('{{ project_name }}')
 
 
 # Local settings override
