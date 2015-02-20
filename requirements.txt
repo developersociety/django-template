@@ -1,12 +1,12 @@
 Django==1.7.3
 pytz==2014.10
 pylibmc==1.4.1
-psycopg2==2.5.4
+psycopg2==2.6
 Pillow==2.7.0
 dj-database-url==0.3.0
 
 # Storage
-apache-libcloud==0.16.0
+apache-libcloud==0.17.0
 dj-libcloud==0.2.0
 blanc-contentfiles==0.1
 
