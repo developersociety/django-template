@@ -1,0 +1,65 @@
+{% extends 'news/base.html' %}
+{% load static from staticfiles %}
+{% load thumbnail %}
+
+{% block bodyclass %}newspage{% endblock %}
+
+
+{% block intro %}
+<div class="content">
+    <div id="blanc_page_column_intro">
+        <div class="blanc_page_blocktype_imageblock blanc_page_block_first blanc_page_block blanc_page_block_odd">
+            <img src="{% static 'img/news-default.png' %}" height="454" width="1069" alt="">
+        </div>
+    </div>
+</div>
+{% endblock intro %}
+
+{% block main %}
+<div class="content">
+    {% if object_list %}
+        <div class="blanc_page_blocktype_latestnewsblock">
+            {% block news_title %}<h3><a href="{% url 'blanc_basic_news:post-list' %}">Latest News</a></h3>{% endblock %}
+
+            <ul class="news">
+                {% for i in object_list %}
+                    <li class="post {% if forloop.counter|divisibleby:3 %}third{% endif %}">
+                        <h4><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></h4>
+
+                        {% if i.image %}
+                            {% thumbnail i.image.file 273x150 crop as thumb %}
+                            <a href="{{ i.get_absolute_url }}"><img class="thumb" src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" alt="{{ i }}"></a>
+                        {% endif %}
+
+                        {% if i.teaser %}
+                            {{ i.teaser|linebreaks }}
+                        {% else %}
+                            <p>{{ i.content|striptags|truncatewords:20 }}</p>
+                        {% endif %}
+
+                        <a class="button" href="{{ i.get_absolute_url }}">Read more</a>
+                    </li>
+
+                    {% if not forloop.last and forloop.counter|divisibleby:3 %}
+                        </ul><hr class="pushdown"><ul class="news">
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        {% if is_paginated %}
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                    <a class="prev button" href="?page={{ page_obj.previous_page_number }}">Newer Articles</a>
+                {% endif %}
+                {% if page_obj.has_next %}
+                    <a class="next button" href="?page={{ page_obj.next_page_number }}">Older Articles</a>
+                {% endif %}
+            </div>
+        {% endif %}
+
+    {% else %}
+        <p>No news found</p>
+    {% endif %}
+</div>
+{% endblock main %}

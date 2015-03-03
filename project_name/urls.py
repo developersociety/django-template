@@ -14,6 +14,9 @@ urlpatterns = [
 
     # Blanc pages block admin
     url(r'^blockadmin/', include(block_admin.site.urls)),
+
+    # News
+    url(r'^news/', include('blanc_basic_news.urls', namespace='blanc_basic_news')),
 ]
 
 # Make it easier to see a 404 page under debug

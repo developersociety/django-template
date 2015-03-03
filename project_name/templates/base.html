@@ -4,14 +4,52 @@
     {% block starthead %}{% endblock %}
     <title>{% block title %}Website{% endblock %}</title>
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {# NOTE: Remove IE conditional comments if you're using Modernizr for more than the html5shiv #}
-    <!--[if lt IE 9]>
-        <script src="{% static 'js/modernizr.js' %}"></script>
-    <![endif]-->
+    <!--[if lt IE 9]><script src="{% static 'js/modernizr.js' %}"></script><![endif]-->
 </head>
-<body>
+<body class="{% block bodyclass %}{% endblock %}">
     {% block startbody %}{% endblock %}
-    {% block main %}{% endblock %}
+
+    <header class="head">
+        <div class="wrap">
+            <h1><a href="/">Website</a></h1>
+            <label class="menu-icon" for="toggle-nav">Menu</label>
+            <input type="checkbox" id="toggle-nav" class="hidden" />
+            <nav class="nav">
+                {% block nav %}
+                {% include 'includes/nav.html' only %}
+                {% endblock nav %}
+            </nav>
+        </div>
+    </header>
+
+    {% block intro %}{% endblock %}
+
+    <article class="main-article">
+        {% block main %}{% endblock %}
+    </article>
+
+    <footer class="foot">
+        <div class="wrap">
+            <p class="address">
+                <strong>Address</strong>
+                Address goes here<br />
+                Postcode | <a href="#">map</a>
+            </p>
+            <p class="contact">
+                <strong>Contact</strong>
+                Tel: <a href="tel:0123456789">0123456789</a><br />
+                Fax: 0123456789
+            </p>
+            <p class="legal">
+                <strong>Terms &amp; Conditions</strong>
+                Legalese goes here
+            </p>
+        </div>
+    </footer>
+
+<script src="{% static 'admin/js/jquery.min.js' %}"></script>
+<script src="{% static 'js/site-min.js' %}"></script>
 </body>
 </html>

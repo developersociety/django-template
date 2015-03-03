@@ -1,0 +1,33 @@
+{% extends 'news/base.html' %}
+{% load thumbnail %}
+
+
+{% block title %}{{ object.title }} - {{ block.super }}{% endblock %}
+
+{% block bodyclass %}newspage{% endblock %}
+
+{% block intro %}
+<div class="intro">
+    <div id="blanc_page_column_intro">
+        <div class="blanc_page_blocktype_imageblock blanc_page_block_first blanc_page_block blanc_page_block_odd">
+            {% if object.image.file %}
+                {% thumbnail object.image.file 1069x454 as thumb %}
+                <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" alt="{{ object.title }}" />
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock intro %}
+
+{% block main %}
+<div class="content">
+    <article class="blanc_page_blocktype_redactorblock">
+        <h3><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h3>
+
+        {{ object.content|safe }}
+    </article>
+    <div class="pagination">
+        <a href="{% url 'blanc_basic_news:post-list' %}" class="button">Back to news</a>
+    </a>
+</div>
+{% endblock main %}

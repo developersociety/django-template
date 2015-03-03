@@ -1,0 +1,14 @@
+{% load blancpages_navigation %}
+
+{% get_pages_at_level current_page as pages %}
+
+
+{% spaceless %}
+{% if pages %}
+    <ul>
+        {% for page, page_active in pages %}
+            <li><a href="{{ page.get_absolute_url }}"{% if page_active %} class="active"{% endif %}>{{ page.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endspaceless %}

@@ -1,0 +1,6 @@
+{% extends 'news/base_post_list.html' %}
+
+
+{% block title %}{{ category }} - {{ block.super }}{% endblock %}
+
+{% block news_title %}<h3><a href="{{ category.get_absolute_url }}">{{ category }}</a></h3>{% endblock %}

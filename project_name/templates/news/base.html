@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+
+{% block bodyclass %}news{% endblock %}
+
+
+{% block nav %}
+{% include 'includes/nav.html' with current_page='blanc_basic_news:post-list' only %}
+{% endblock nav %}

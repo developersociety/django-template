@@ -62,6 +62,10 @@ INSTALLED_APPS = (
     'blanc_pages_image_block',
     'easy_thumbnails',
     'blanc_pages_form_block',
+    'blanc_basic_news',
+    '{{ project_name }}.carouselblock',
+    '{{ project_name }}.latestnewsblock',
+    '{{ project_name }}.twocolumnblock',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -245,6 +249,10 @@ THUMBNAIL_CACHE_DIMENSIONS = True
 # Cloud storage
 from contentfiles.config import libcloud_providers
 LIBCLOUD_PROVIDERS = libcloud_providers('{{ project_name }}')
+
+# News
+NEWS_TITLE = 'News'
+NEWS_PER_PAGE = 6
 
 
 # Local settings override

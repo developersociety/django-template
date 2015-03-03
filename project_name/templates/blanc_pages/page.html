@@ -9,6 +9,9 @@
 {% endblock intro %}
 
 {% block main %}
+<div class="subnav">
+    {% include 'includes/subnav.html' with current_page=blanc_page.page only %}
+</div>
 <div class="content">
     {% blancpage_render_column blanc_page "Content" %}
 </div>

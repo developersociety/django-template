@@ -1,0 +1,6 @@
+{% extends 'news/base_post_list.html' %}
+
+
+{% block title %}{{ month|date:"F Y" }} News - {{ block.super }}{% endblock %}
+
+{% block news_title %}<h3><a href="{% url 'blanc_basic_news:post-list-month' year=month.year month=month|date:'m' %}">{{ month|date:"F Y" }}</a></h3>{% endblock %}

@@ -13,3 +13,11 @@
 {% block startbody %}
 {% blancpage_startbody %}
 {% endblock startbody %}
+
+
+{% block bodyclass %}{{ block.super }} {% if blanc_page.show_controls %}blanc-page-controls{% endif %}{% endblock %}
+
+
+{% block nav %}
+{% include 'includes/nav.html' with current_page=blanc_page.page only %}
+{% endblock nav %}

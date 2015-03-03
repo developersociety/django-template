@@ -1,1 +1,600 @@
 @import (inline) "normalize.css";
+
+////////////////////////////////////////////////////////////////////////////////
+// Theme colours
+
+@page: #ffffff;
+@text: #666666;
+@back: #2b2e33;
+@base: #f0f1f3;
+@bold: #323232;
+@side: #c8c9cb;
+@line: #b6bbbf;
+@link: #006e8f;
+@foot: #999999;
+
+////////////////////////////////////////////////////////////////////////////////
+
+body {
+    -webkit-font-smoothing: antialiased;
+    font-size: 100%;
+    line-height: 1.5;
+    color: @text;
+    background: @back url(../img/back.png) top left repeat-x;
+    &.blanc-page-controls {
+        background: @back url(../img/back.png) 0 60px repeat-x;
+        .head { margin-top: 50px; }
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+a { color: @link; }
+
+.head {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    .wrap {
+        max-width: 1037px;
+        margin: 45px auto 0 auto;
+        padding: 0 1em;
+    }
+    h1 {
+        float: left;
+        margin: 0;
+        a {
+            display: block;
+            width: 180px;
+            height: 180px;
+            background: url(../img/logo.png) center center no-repeat;
+            background-size: 100%;
+            overflow: hidden;
+            text-indent: -1000em;
+        }
+    }
+}
+
+#toggle-nav:checked + .nav {
+    display: block;
+}
+
+.menu-icon {
+    display: none;
+    float: right;
+    font-size: 11/16em;
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    @media all and (max-width: 579px) {
+        display: block;
+    }
+}
+
+.nav {
+    @media all and (max-width: 579px) {
+        display: none;
+    }
+    float: right;
+    font-size: 11/16em;
+    margin-right: 0/11em;
+    ul {
+        margin: 0;
+        float: right;
+        padding: 0;
+    }
+    li {
+        display: block;
+        float: left;
+        margin-left: 30/11em;
+    }
+    a {
+        display: block;
+        color: white;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: bold;
+        &:hover, &.active {
+            border-bottom: 2px solid rgba(255,255,255,0.5);
+        }
+    }
+}
+
+.button {
+        font-size: 11/16em;
+        padding: 13/11em 16/11em 1em;
+        background: @back;
+        color: @page;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-radius: 35/11em;
+        text-decoration: none;
+        &:hover {
+            background: @link;
+        }
+}
+
+.intro {
+    min-height: 250px;
+    overflow: auto;
+    z-index: 1;
+}
+
+#blanc_page_column_intro {
+    background: white;
+    .blanc_page_blocktype_imageblock:first-child {
+        //margin-top: -250px;
+    }
+}
+
+.subnav {
+    padding: 20px 0;
+    ul {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+    li {
+     display: inline;
+    }
+    a {
+        .button;
+        margin: 0 5px;
+    }
+}
+
+.main-article {
+    background: white;
+}
+
+.blanc_page_blocktype_imageblock {
+    img {
+        width: 100%;
+        height: auto;
+        line-height: 1;
+        display: block;
+    }
+}
+
+.blanc_page_blocktype_redactorblock {
+    max-width: 1029px;
+    padding: 1.25em;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.blanc_page_blocktype_redactorblock, .blanc_page_blocktype_twocolumntextblock {
+    h1, h2, h3, h4, h5, h6 {
+        margin: 2em 0 0.25em 0;
+        a {
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    h1, h2 {
+        font-size: 1.875em;
+        font-weight: bold;
+        color: @bold;
+    }
+    h2 { font-weight: normal; }
+    h3, h4 {
+        font-size: 1.375em;
+        font-weight: bold;
+        color: @bold;
+    }
+    h4 {
+        font-weight: normal;
+    }
+    h5, h6 {
+        font-size: 1.125em;
+        font-weight: bold;
+        color: @bold;
+    }
+    h6 {
+        font-weight: normal;
+    }
+    strong {
+        color: @back;
+    }
+    table {
+        width: 100%;
+        border-top: 1px solid @line;
+        margin-bottom: 4em;
+        font-size: 14px;
+        tr {
+            border-bottom: 1px solid @line;
+            td {
+                padding: 0.5em;
+                &:first-child { padding-left: 0; border: none; }
+                &:last-child { padding-right: 0; }
+            }
+        }
+    }
+    ul {
+        padding-left: 1em;
+    }
+    blockquote {
+        font-size: 1.25em;
+        padding-left: 2em;
+        color: @link;
+        border-left: 1px solid @line;
+        margin-left: 0;
+        &:before, &:after {
+            content: '“';
+            font-weight: bold;
+            margin-left: -0.5em;
+        }
+        &:after {
+            content: '”';
+            margin-left: 0;
+        }
+    }
+    hr {
+        margin: 1em 0;
+        border: none;
+        border-top: 1px solid @line;
+        height: 1px;
+        background: none;
+    }
+}
+
+// Carousel
+.transition(@transition) {
+    -webkit-transition: @transition;
+    transition: @transition;
+}
+
+.carousel {
+    position: relative;
+    padding: 75px 0;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border-top: 1px solid @line;
+    border-bottom: 1px solid @line;
+    background: @base;
+
+    > .item {
+        display: none;
+        position: relative;
+        background: @base;
+        .transition(.6s ease-in-out left);
+
+        .item-content {
+            display: table;
+            width: 100%;
+            max-width: 1069px;
+            margin: 0 auto;
+
+            .image, .text {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+                width: 50%;
+            }
+            img {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+            .wrap {
+                display: inline-block;
+                margin: 40px 0;
+                padding: 1em 3.5em 1em 1em;
+                max-width: 360px;
+                text-align: left;
+                strong {
+                    font-size: 20/16em;
+                    color: @bold;
+                }
+                a {
+                    .button;
+                    margin-top: 1em;
+                    display: block;
+                    float: left;
+                }
+            }
+        }
+    }
+
+    > .active, > .next, > .prev { display: block; }
+
+    > .active {
+        left: 0;
+    }
+    > .next, > .prev {
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    > .next {
+        left: 100%;
+    }
+    > .prev {
+        left: -100%;
+    }
+    > .next.left, > .prev.right {
+        left: 0;
+    }
+    > .active.left {
+        left: -100%;
+    }
+
+    > .active.right {
+        left: 100%;
+    }
+}
+
+.carousel-control {
+    position: absolute;
+    top: 75px;
+    bottom: 75px;
+    width: 40px;
+    background: @side;
+
+    span {
+        position: absolute;
+        top: 50%;
+        margin-top: -20px;
+        display: block;
+        overflow: hidden;
+        text-indent: -100em;
+        width: 40px;
+        height: 40px;
+        background: url(../img/carousel-left.png);
+    }
+
+    &.right {
+        right: 0;
+        span { background: url(../img/carousel-right.png); }
+    }
+
+    &:active, &:focus {
+        outline: none;
+    }
+}
+
+.carousel-indicators {
+    a:active, a:focus {
+        outline: none;
+    }
+}
+
+.blanc_page_blocktype_latestnewsblock {
+    max-width: 1069px;
+    padding: 1.25em;
+    margin: 0 auto;
+    overflow: hidden;
+
+    h3 {
+        margin: 20px 0 0 20px;
+        line-height: 1;
+        font-size: 1.875em;
+        a {
+            color: @bold;
+            text-decoration: none;
+            &:hover { color: @back; }
+        }
+    }
+    h4 {
+        margin: 0 0 0.25em 0;
+        font-size: 1.375em;
+        line-height: 1;
+        a {
+            text-decoration: none;
+        }
+    }
+    .thumb {
+        width: 100%;
+        height: auto;
+    }
+    .news {
+        display: table;
+        width: 100%;
+        margin: 25px 0 75px 0;
+        padding: 0;
+        .post {
+            border-left: 1px solid @line;
+            border-right: 1px solid @line;
+            &.third { border: none; }
+        }
+        :first-child{ border: none; }
+    }
+    .post {
+        position: relative;
+        display: table-cell;
+        width: 100/3%;
+        padding: 0 1.25em 10px 1.25em;
+        vertical-align: top;
+    }
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #d3d7da;
+    height: 1px;
+    background: none;
+    &.pushdown { margin-bottom: 75px; }
+}
+
+.pagination {
+    margin-top: 0;
+    border-top: 1px solid #d3d7da;
+    padding: 25px 1.25em 70px 1.25em;
+    max-width: 1069px;
+    margin-left: auto;
+    margin-right: auto;
+    clear: both;
+    .prev { float: left; }
+    .next { float: right; }
+}
+
+.blanc_page_blocktype_twocolumntextblock {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 30px;
+    padding: 0;
+    width: 100%;
+    max-width: 1089px;
+    margin: 1.25em auto;
+    overflow: hidden;
+
+    @media all and (max-width:480px) {
+        display: block;
+        width: auto;
+        margin: 0 1.25em;
+    }
+
+    .twocolumn-one, .twocolumn-two {
+        display: table-cell;
+        width: 50%;
+        margin: 0;
+        vertical-align: top;
+        @media all and (max-width:480px) {
+            display: block;
+            width: auto;
+        }
+    }
+    .twocolumn-one {
+        @media all and (max-width:480px) {
+            margin-bottom: 1em;
+        }
+    }
+}
+
+.foot {
+    overflow: hidden;
+    background: @back;
+    padding: 4em 1.25em;
+    color: @foot;
+    .wrap {
+        display: table;
+        width: 100%;
+        max-width: 1069px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    p {
+        display: table-cell;
+        width: 100/3%;
+        padding: 0 20px;
+        vertical-align: top;
+        font-size: 12px;
+        line-height: 2;
+    }
+    strong { display: block; }
+    a {
+        color: @foot;
+        text-decoration: none;
+        &:hover { color: @page; }
+    }
+}
+
+@media all and (max-width: 719px) {
+    .carousel-inner>.item .item-content .image, .carousel-inner>.item .item-content .text {
+        display: block;
+        width: auto;
+    }
+    .blanc_page_blocktype_latestnewsblock {
+        padding: 0;
+    }
+    .blanc_page_blocktype_latestnewsblock .news {
+        margin-bottom: 0;
+    }
+    .blanc_page_blocktype_latestnewsblock .news .post {
+        width: auto;
+        display: block;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+        border-bottom: 1px solid @line;
+        &:first-child:after, &:last-child:after { display: none; }
+    }
+    .carousel-inner>.item .item-content .wrap { margin: 40px; }
+    .foot p {
+        width: auto;
+        display: block;
+        padding: 0;
+    }
+    .head h1 {
+        float: none;
+        a {
+            margin: 0 auto;
+        }
+    }
+    .nav {
+        margin-right: 0;
+        position: absolute;
+        top: 20px;
+        left: 0;
+        right: 20px;
+    }
+}
+
+@media all and (max-width: 579px) {
+    .head {
+        background: @back;
+        overflow: hidden;
+        position: relative;
+        .wrap { margin: 0; }
+        h1 {
+            float: left;
+            margin: 10px 0;
+            a {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        .menu-icon {
+            position: absolute;
+            top: 50px;
+            font-size: 16px;
+            right: 20px;
+            padding-left: 1.5em;
+            &:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0.3em;
+                width: 1em;
+                height: 0.16em;
+                background: white;
+                box-shadow:
+                    0 0.3em 0 0 white,
+                    0 0.6em 0 0 white;
+            }
+        }
+    }
+    .nav {
+        clear: both;
+        border-top: 1px solid @line;
+        margin: 0 -20px;
+        position: static;
+        float: none;
+        ul { float: none; padding: 0; }
+        li {
+            display: block;
+            float: none;
+            margin: 0;
+            padding: 5px 20px;
+            font-size: 16px;
+            border-bottom: 1px solid @line;
+        }
+        a { text-transform: none;
+            &:hover, &.active { border: none !important; }
+        }
+    }
+    .intro { min-height: 0; }
+    .blanc_page_blocktype_latestnewsblock .news { margin: 0; .third { margin-bottom: 0; }}
+}

@@ -1,0 +1,29 @@
+{% load news_tags %}
+
+
+{% if object.category %}
+    {% get_latest_news 3 object.category.slug as latest_news %}
+{% else %}
+    {% get_latest_news 3 as latest_news %}
+{% endif %}
+
+{% if latest_news %}
+    <div class="{{ css_classes }}">
+        {% url 'blanc_basic_news:post-list' as news_home %}
+
+        <h3><a href="{{ object.category.get_absolute_url|default:news_home }}">{{ object.category|default:"Latest News" }}</a></h3>
+
+        <ul class="news">
+            {% for i in latest_news %}
+                <li class="post {% if forloop.last %}third{% endif %}">
+                    <h4><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></h4>
+                    {# {{ i.date|date:"jS F Y" }} #}
+
+                    <p>{{ i.content|striptags|truncatewords:15 }}</p>
+
+                    <a class="button" href="{{ i.get_absolute_url }}">Read more</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
