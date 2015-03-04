@@ -17,9 +17,12 @@
             {% for i in latest_news %}
                 <li class="post {% if forloop.last %}third{% endif %}">
                     <h4><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></h4>
-                    {# {{ i.date|date:"jS F Y" }} #}
 
-                    <p>{{ i.content|striptags|truncatewords:15 }}</p>
+                    {% if i.teaser %}
+                        {{ i.teaser|linebreaks }}
+                    {% else %}
+                        <p>{{ i.content|striptags|truncatewords:20 }}</p>
+                    {% endif %}
 
                     <a class="button" href="{{ i.get_absolute_url }}">Read more</a>
                 </li>
