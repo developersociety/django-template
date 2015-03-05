@@ -70,7 +70,6 @@ INSTALLED_APPS = (
     'redactorjs_staticfiles',
     'blanc_pages_redactor_block',
     'handbook.links',
-    'latest_tweets',
     'haystack',
     'handbook.search',
     'crispy_forms',
@@ -267,12 +266,6 @@ BLANC_PAGES_DEFAULT_BLOCKS = (
 THUMBNAIL_SUBDIR = 'thumbs'
 THUMBNAIL_PRESERVE_EXTENSIONS = ('png',)
 THUMBNAIL_QUALITY = 100
-
-# Twitter
-TWITTER_CONSUMER_KEY = os.environ.get('TWITTER_CONSUMER_KEY')
-TWITTER_CONSUMER_SECRET = os.environ.get('TWITTER_CONSUMER_SECRET')
-TWITTER_OAUTH_TOKEN = os.environ.get('TWITTER_OAUTH_TOKEN')
-TWITTER_OAUTH_SECRET = os.environ.get('TWITTER_OAUTH_SECRET')
 
 # Search
 HAYSTACK_CONNECTIONS = {

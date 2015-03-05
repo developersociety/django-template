@@ -40,10 +40,6 @@ django-redactorjs-staticfiles==9.2.6
 blanc-pages-image-block==0.2.1
 blanc-pages-redactor-block==0.6
 
-# Latest tweets
-django-latest-tweets==0.1.1
-twitter==1.15.0
-
 # Search
 -e git+https://github.com/Xaroth/django-haystack.git@381e958d420b481ecf906dd9f93f253fbde6eae9#egg=django-haystack
 elasticsearch==1.2.0
