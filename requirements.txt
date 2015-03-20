@@ -28,7 +28,7 @@ blanc-basic-pages==0.3.2
 
 # Events
 icalendar==3.8.4
-python-dateutil==2.4.0
+python-dateutil==2.4.1
 blanc-basic-events==0.3.2
 
 # Data
