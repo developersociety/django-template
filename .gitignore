@@ -8,3 +8,6 @@
 
 # Python
 *.py[co]
+
+# Coverage  
+.coverage
