@@ -2,3 +2,9 @@
 /htdocs/media
 /htdocs/static
 /pyenv
+
+# Static
+/static/*
+
+# Python
+*.py[co]
