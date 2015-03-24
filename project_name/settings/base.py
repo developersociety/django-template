@@ -11,12 +11,8 @@ https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
-
-sys.path.insert(0, os.path.join(BASE_DIR, '../apps'))
 
 
 DEBUG = False
@@ -87,17 +83,10 @@ MIDDLEWARE_CLASSES = (
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+import dj_database_url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django_sekeleton',
-        'USER': '',
-        'PASSWORD': os.environ.get('DJANGO_DATABASE_PASSWORD', ''),
-        'PORT': '5432',
-        'ATOMIC_REQUESTS': True
-    },
+    'default': dj_database_url.config(),
 }
-
 
 ROOT_URLCONF = '{{ project_name }}.urls'
 
