@@ -2,3 +2,6 @@
 
 from .base import *  # NOQA @UnusedWildImport
 
+
+SECRET_KEY = "{{ project_name }}"
+

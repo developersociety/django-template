@@ -35,3 +35,6 @@ MIDDLEWARE_CLASSES.append(
 
 COVERAGE_EXCLUDES_FOLDERS = ['/var/envs/{{ project_name }}/lib/python2']
 
+
+SECRET_KEY = "{{ project_name }}"
+
