@@ -14,7 +14,7 @@ env.home = '/var/www/{{ project_name }}'
 
 
 @roles('web')
-def deploy(mode=None):
+def deploy():
     """Deploy to remote server."""
 
     with cd(env.home):
