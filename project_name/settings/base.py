@@ -1,15 +1,13 @@
 """
-Django settings for django_skeleton project.
+Django settings for {{ project_name }}.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
+https://docs.djangoproject.com/en/{{ docs_version }}/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
+https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 """
 
-# Production / development switches
-# https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -44,13 +42,13 @@ ADMINS = (
 MANAGERS = ADMINS
 
 
-SERVER_EMAIL = 'django_skeleton@blanctools.com'
+SERVER_EMAIL = '{{ project_name }}@blanctools.com'
 
 
-DEFAULT_FROM_EMAIL = 'django_skeleton@blanctools.com'
+DEFAULT_FROM_EMAIL = '{{ project_name }}@blanctools.com'
 
 
-EMAIL_SUBJECT_PREFIX = '[django_skeleton] '
+EMAIL_SUBJECT_PREFIX = '[{{ project_name }}] '
 
 
 # Application semantics
@@ -101,23 +99,12 @@ DATABASES = {
 }
 
 
-ROOT_URLCONF = 'django_skeleton.urls'
+ROOT_URLCONF = '{{ project_name }}.urls'
 
 
-WSGI_APPLICATION = 'django_skeleton.wsgi.application'
+WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
 
 
-# TODO: Use local caching if we need something more robust we can use REDIS there is nice python
-# library so we define just on CACHE and then use REDIS for most robust stuff.
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-#         'LOCATION': ['127.0.0.1:11211'],
-#     }
-# }
-
-# Caches
-# https://docs.djangoproject.com/en/1.7/topics/cache/
 CACHES = {}
 if os.environ.get('MEMCACHED_SERVERS'):
     CACHES['default'] = {
@@ -133,15 +120,10 @@ else:
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
-
 LANGUAGE_CODE = 'en'
-
 TIME_ZONE = 'Europe/London'
-
 USE_I18N = False
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -149,15 +131,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
-
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
-
-
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'django_skeleton/static'),
+    os.path.join(BASE_DIR, '{{ project_name }}/static'),
 )
 
 
@@ -259,5 +236,5 @@ SITE_ID = 1
 
 # Cloud storage
 from contentfiles.config import libcloud_providers
-LIBCLOUD_PROVIDERS = libcloud_providers('django_skeleton')
+LIBCLOUD_PROVIDERS = libcloud_providers('{{ project_name }}')
 

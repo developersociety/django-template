@@ -22,4 +22,5 @@ MIDDLEWARE_CLASSES.append(
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
-COVERAGE_EXCLUDES_FOLDERS = ['/var/envs/django_skeleton/lib/python2']
+COVERAGE_EXCLUDES_FOLDERS = ['/var/envs/{{ project_name }}/lib/python2']
+
