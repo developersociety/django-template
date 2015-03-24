@@ -14,11 +14,14 @@ env.home = '/var/www/{{ project_name }}'
 
 
 @roles('web')
-def deploy():
+def deploy(force_reload=None):
     """Deploy to remote server."""
 
     with cd(env.home):
         run('git fetch')
         run('git pull origin master')
-        run('killall -QUIT uwsgi')
+        if force_reload:
+            run('killall -TERM uwsgi')
+        else:
+            run('killall -HUP uwsgi')
 
