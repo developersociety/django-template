@@ -6,7 +6,7 @@ from .base import *  # NOQA @UnusedWildImport
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '{{ project_name }}',
+        'NAME': '{{ project_name }}_django',
         'USER': '',
         'PASSWORD': os.environ.get('DJANGO_DATABASE_PASSWORD', ''),
         'PORT': '5432',
