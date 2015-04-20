@@ -14,10 +14,10 @@ blanc-contentfiles==0.1
 # Formset views
 django-braces==1.4.0
 django-extra-views==0.6.5
-six==1.8.0
+six==1.9.0
 
 # Sortable admin
-django-admin-sortable==1.7.7
+django-admin-sortable==1.8.3
 
 # Filtering
 django-filter==0.8
@@ -30,8 +30,8 @@ blanc-basic-assets==0.3
 
 # Pages
 blanc-pages==0.6.2
-django-mptt==0.6.1
-django-mptt-admin==0.1.10
+django-mptt==0.7.2
+django-mptt-admin==0.2.1
 
 # RedactorJS
 django-redactorjs-staticfiles==9.2.6
@@ -42,8 +42,8 @@ blanc-pages-redactor-block==0.6
 
 # Search
 django-haystack==2.3.1
-elasticsearch==1.2.0
-urllib3==1.9.1
+elasticsearch==1.4.0
+urllib3==1.10.2
 
 # Forms
 django-crispy-forms==1.4.0
@@ -56,7 +56,7 @@ bleach==1.4
 html5lib==0.999
 
 # Events
-requests==2.4.3
+requests==2.6.0
 icalendar==3.8.4
 
 # Sendfile
