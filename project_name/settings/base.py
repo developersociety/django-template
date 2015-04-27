@@ -1,5 +1,5 @@
 """
-Django settings for {{ project_name }}.
+Django settings for {{ project_name }} project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/{{ docs_version }}/topics/settings/
@@ -8,27 +8,25 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 """
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
-DEBUG = False
+# Production / development switches
+# https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/checklist/
 
+DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
-
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
-
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 # Email
-# https://docs.djangoproject.com/en/1.7/ref/settings/#email
+# https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#email
 
 ADMINS = (
     ('Blanc Ltd', 'studio@blanc.ltd.uk'),
@@ -36,17 +34,14 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-
 SERVER_EMAIL = '{{ project_name }}@blanctools.com'
 
-
 DEFAULT_FROM_EMAIL = '{{ project_name }}@blanctools.com'
-
 
 EMAIL_SUBJECT_PREFIX = '[{{ project_name }}] '
 
 
-# Application semantics
+# Application definition
 DEFAULT_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,18 +51,14 @@ DEFAULT_APPS = [
     'django.contrib.staticfiles',
 ]
 
-
 THIRD_PARTY_APPS = [
     'raven.contrib.django.raven_compat',
 ]
 
-
 PROJECT_APPS = [
 ]
 
-
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
-
 
 MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -79,19 +70,22 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+ROOT_URLCONF = '{{ project_name }}.urls'
+
+WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
+
 
 # Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+# https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#databases
+
 import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(),
 }
 
-ROOT_URLCONF = '{{ project_name }}.urls'
 
-
-WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
-
+# Caches
+# https://docs.djangoproject.com/en/{{ docs_version }}/topics/cache/
 
 CACHES = {}
 if os.environ.get('MEMCACHED_SERVERS'):
@@ -107,31 +101,37 @@ else:
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
+# https://docs.djangoproject.com/en/{{ docs_version }}/topics/i18n/
+
 LANGUAGE_CODE = 'en'
+
 TIME_ZONE = 'Europe/London'
+
 USE_I18N = False
+
 USE_L10N = True
+
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
+# https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'htdocs/static')
+
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
 
 # File uploads
-# https://docs.djangoproject.com/en/1.7/ref/settings/#file-uploads
+# https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#file-uploads
 
 MEDIA_URL = '/media/'
-
-
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'htdocs/media')
 
@@ -141,11 +141,11 @@ DEFAULT_FILE_STORAGE = os.environ.get(
 
 
 # Templates
-# https://docs.djangoproject.com/en/1.7/ref/settings/#templates
+# https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#templates
+
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
-
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -160,7 +160,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 
 # Logging
-# https://docs.djangoproject.com/en/1.7/topics/logging/#configuring-logging
+# https://docs.djangoproject.com/en/{{ docs_version }}/topics/logging/#configuring-logging
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
@@ -221,8 +222,6 @@ LOGGING = {
 # Sites framework
 SITE_ID = 1
 
-
 # Cloud storage
 from contentfiles.config import libcloud_providers
 LIBCLOUD_PROVIDERS = libcloud_providers('{{ project_name }}')
-
