@@ -2,11 +2,8 @@
 /htdocs/static
 /pyenv
 
-# Static
-/static/*
-
 # Python
 *.py[co]
 
-# Coverage  
+# Coverage
 .coverage
