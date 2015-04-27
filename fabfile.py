@@ -1,48 +1,115 @@
 # -*- coding: utf-8 -*-
 
-from fabric.api import env, run, cd, roles, local
+from fabric.api import env, run, cd, roles, local, parallel, task
+from fabric.contrib.files import exists
+import random
 
-env.use_ssh_config = True
-
+# Changable settings
 env.roledefs = {
     'web': [
-        '{{ project_name }}@runicaath.blanctools.com'
-    ]
+        '{{ project_name }}@scorch.blanctools.com',
+        '{{ project_name }}@smaug.blanctools.com',
+    ],
+    'cron': [
+        '{{ project_name }}@scorch.blanctools.com',
+    ],
 }
 
-env.home = '/var/www/{{ project_name }}'
+env.home = env.get('home', '/var/www/{{ project_name }}')
+env.repo = env.get('repo', '{{ project_name }}')
+env.database = env.get('database', '{{ project_name }}_django')
 
-env.requirements = '{}/{}'.format(env.home, 'requirements')
+CRONTAB = """
+MAILTO=admin@blanc.ltd.uk
 
-DATABASE_NAME = '{{ project_name }}_django'
+{daily}         /usr/local/bin/django-cron python manage.py clearsessions
+"""
+
+# Avoid tweaking these
+env.use_ssh_config = True
+GIT_REMOTE = 'git@github.com:blancltd/{env.repo}.git'
 DATABASE_SERVER = 'golestandt.blanctools.com'
 
 
+@task
+@roles('cron')
+def cron(remove=None):
+    """
+    Crontab setup.
+
+    Can also be removed if needed.
+
+    fab cron
+    fab cron:remove=True
+    """
+    # Allow quick removal if needed
+    if remove:
+        run('crontab -r')
+        return
+
+    # Deterministic based on hostname
+    random.seed(env.host_string)
+
+    # Several templates - can add more if needed
+    daily = "{} {} * * *".format(random.randint(0, 59), random.randint(0, 23))
+    hourly = "{} * * * *".format(random.randint(0, 59))
+    random_15 = random.randint(0, 14)
+    every_15 = "{}-{}/15 * * * *".format(random_15, 60 - 15 + random_15)
+    random_10 = random.randint(0, 9)
+    every_10 = "{}-{}/10 * * * *".format(random_10, 60 - 10 + random_10)
+    random_5 = random.randint(0, 4)
+    every_5 = "{}-{}/5 * * * *".format(random_5, 60 - 5 + random_5)
+
+    cron = CRONTAB.format(
+        daily=daily, hourly=hourly, every_15=every_15, every_10=every_10, every_5=every_5)
+
+    run("echo '{}' | crontab -".format(cron))
+
+
+@task
+@roles('web')
+@parallel
+def setup(branch='master'):
+    """
+    Initial site setup.
+
+    Only intended to be run once, but can be used to switch branch.
+
+    fab setup
+    fab setup:branchname
+    """
+    with cd(env.home):
+        if not exists('.git'):
+            git_repo = GIT_REMOTE.format(env=env)
+            run('git clone --quiet --recursive {} .'.format(git_repo))
+        else:
+            run('git fetch')
+
+        run('git checkout {}'.format(branch))
+
+
+@task
 @roles('web')
 def deploy(force_reload=None):
     """
-    Deploy to remote server steps includes pull repo, migrate, install requirements,
-    collect static.
+    Deploy to remote server.
 
-    How to use it:
+    Steps includes pull repo, migrate, install requirements, collect static.
 
-    fab deploy or fab deploy:force_reload=True
+    fab deploy
+    fab deploy:True
+    fab deploy:force_reload=True
     """
-
     with cd(env.home):
-        run('git fetch')
-        run('git pull origin master')
+        run('git pull')
 
-        with cd(env.requirements):
-            run('pip intall -r production.txt')
+        run('pip install --quiet --requirement requirements/production.txt')
 
-        # Migarte database changes.
-        run('python manage.py migrate ' '--settings={{ project_name }}.settings.production')
-        # Collectstatic.
-        run(
-            'python manage.py collectstatic --noinput '
-            '--settings={{ project_name }}.settings.production'
-        )
+        # Migrate database changes
+        run('python manage.py migrate')
+
+        # Static files
+        run('python manage.py collectstatic --verbosity=0 --noinput')
 
         if force_reload:
             run('killall -TERM uwsgi')
@@ -50,35 +117,32 @@ def deploy(force_reload=None):
             run('killall -HUP uwsgi')
 
 
-def get_backup(hostname=None, replace_hostname='127.0.0.1'):
+@task
+def get_backup(hostname=None, replace_hostname='127.0.0.1', replace_port=8000):
     """
     Get remote backup and restore database locally.
 
-    How to run with arguments:
-
-    fab get_backup:hostname=example.com,replace_hostname=192.1.1.1
-
+    fab get_backup
+    fab get_backup:www.example.com
+    fab get_backup:www.example.com,192.1.1.1
+    fab get_backup:hostname=www.example.com,replace_hostname=192.1.1.1,replace_port=8000
     """
-
-    # Drop database if exists.
-    local('dropdb --if-exists {}'.format(DATABASE_NAME))
-    # Create new database.
-    local('createdb {}'.format(DATABASE_NAME))
+    # Recreate database
+    local('dropdb --if-exists {}'.format(env.database))
+    local('createdb {}'.format(env.database))
 
     # Connect to the server and dump database.
-    command = 'ssh -C {} sudo -u postgres pg_dump --no-owner {} |'.format(
-        DATABASE_SERVER, DATABASE_NAME
-    )
+    commands = ['ssh -C {} sudo -u postgres pg_dump --no-owner {}'.format(
+        DATABASE_SERVER, env.database
+    )]
 
     if hostname:
         # If hostname is passed replace with replace_hostname.
-        command = '{} sed -e "s|{}|{}:8000|g" |'.format(
-            command, hostname, replace_hostname
-        )
+        commands.append('sed -e "s|{}|{}:{}|g" |'.format(
+            hostname, replace_hostname, replace_port
+        ))
 
     # Restore database.
-    command = "{} psql --single-transaction {}".format(command, DATABASE_NAME)
+    commands.append('psql --single-transaction {}'.format(env.database))
 
-    local(command)
-
-
+    local(' | '.join(commands))
