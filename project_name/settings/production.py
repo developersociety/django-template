@@ -2,6 +2,7 @@
 
 from .base import *  # NOQA @UnusedWildImport
 
+
 DEBUG = False
 
-TEMPALTE_DEBUG = DEBUG
+TEMPLATE_DEBUG = DEBUG

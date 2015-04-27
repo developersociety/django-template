@@ -16,7 +16,7 @@ DATABASES = {
 DEBUG = True
 
 
-TEMPALTE_DEBUG = DEBUG
+TEMPLATE_DEBUG = DEBUG
 
 
 INTERNAL_IPS = (
@@ -37,4 +37,3 @@ COVERAGE_EXCLUDES_FOLDERS = ['/var/envs/{{ project_name }}/lib/python2']
 
 
 SECRET_KEY = "{{ project_name }}"
-
