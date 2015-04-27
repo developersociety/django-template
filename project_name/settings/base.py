@@ -31,8 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # https://docs.djangoproject.com/en/1.7/ref/settings/#email
 
 ADMINS = (
-    ('Alex Tomkins', 'alex@blanc.ltd.uk'),
-    ('Steve Hawkes', 'steve@blanc.ltd.uk'),
+    ('Blanc Ltd', 'studio@blanc.ltd.uk'),
 )
 
 MANAGERS = ADMINS
