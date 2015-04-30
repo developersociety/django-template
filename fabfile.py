@@ -69,14 +69,14 @@ def cron(remove=None):
 @task
 @roles('web')
 @parallel
-def setup(branch='master'):
+def clone_repo(branch='master'):
     """
     Initial site setup.
 
     Only intended to be run once, but can be used to switch branch.
 
-    fab setup
-    fab setup:branchname
+    fab clone_repo
+    fab clone_repo:branchname
     """
     with cd(env.home):
         if not exists('.git'):
