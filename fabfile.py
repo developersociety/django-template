@@ -105,6 +105,9 @@ def deploy(force_reload=None):
 
         run('pip install --quiet --requirement requirements/production.txt')
 
+        # Clean up any potential cruft
+        run('find . -name "*.pyc" -delete')
+
         # Migrate database changes
         run('python manage.py migrate')
 
