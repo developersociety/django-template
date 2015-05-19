@@ -150,7 +150,7 @@ DEFAULT_FILE_STORAGE = os.environ.get(
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#templates
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
+    os.path.join(BASE_DIR, '../templates'),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
