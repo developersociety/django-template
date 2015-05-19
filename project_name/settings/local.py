@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import os
+
 from .base import *  # NOQA @UnusedWildImport
 
 
@@ -11,7 +13,7 @@ TEMPLATE_DEBUG = DEBUG
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '{{ project_name }}_django',
+        'NAME': os.environ.get('DJANGO_DATABASE_NAME'),
         'USER': '',
         'PASSWORD': '',
         'PORT': '',
