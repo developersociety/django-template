@@ -20,8 +20,6 @@ DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
-
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
