@@ -15,7 +15,7 @@ import os
 from contentfiles.config import libcloud_providers
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 
 # Production / development switches
@@ -143,7 +143,7 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, '../htdocs/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'htdocs/media')
 
 DEFAULT_FILE_STORAGE = os.environ.get(
     'DEFAULT_FILE_STORAGE', 'django.core.files.storage.FileSystemStorage'
@@ -154,7 +154,7 @@ DEFAULT_FILE_STORAGE = os.environ.get(
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#templates
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, '../templates'),
+    os.path.join(BASE_DIR, 'templates'),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
