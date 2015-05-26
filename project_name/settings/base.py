@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 Django settings for {{ project_name }} project.
 
@@ -9,6 +11,8 @@ https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 """
 
 import os
+
+from contentfiles.config import libcloud_providers
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -229,5 +233,5 @@ LOGGING = {
 SITE_ID = 1
 
 # Cloud storage
-from contentfiles.config import libcloud_providers
 LIBCLOUD_PROVIDERS = libcloud_providers('{{ project_name }}')
+
