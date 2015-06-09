@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from fabric.api import env, run, cd, roles, local, parallel, task
-from fabric.contrib.files import exists
 import random
+
+from fabric.api import cd, env, local, parallel, roles, run, task
+from fabric.contrib.files import exists
 
 # Changable settings
 env.roledefs = {
@@ -51,17 +52,18 @@ def cron(remove=None):
     random.seed(env.host_string)
 
     # Several templates - can add more if needed
-    daily = "{} {} * * *".format(random.randint(0, 59), random.randint(0, 23))
-    hourly = "{} * * * *".format(random.randint(0, 59))
-    random_15 = random.randint(0, 14)
-    every_15 = "{}-{}/15 * * * *".format(random_15, 60 - 15 + random_15)
-    random_10 = random.randint(0, 9)
-    every_10 = "{}-{}/10 * * * *".format(random_10, 60 - 10 + random_10)
-    random_5 = random.randint(0, 4)
-    every_5 = "{}-{}/5 * * * *".format(random_5, 60 - 5 + random_5)
+    def every_x(minutes=60, hour='*', day='*', month='*', day_of_week='*'):
+        # Add some randomness to minutes
+        start = random.randint(0, minutes - 1)
+        minute = ','.join(str(x) for x in range(start, 60, minutes))
 
-    cron = CRONTAB.format(
-        daily=daily, hourly=hourly, every_15=every_15, every_10=every_10, every_5=every_5)
+        return '{minute} {hour} {day} {month} {day_of_week}'.format(
+            minute=minute, hour=hour, day=day, month=month, day_of_week=day_of_week)
+
+    daily = every_x(hour=random.randint(0, 23))
+    hourly = every_x()
+
+    cron = CRONTAB.format(daily=daily, hourly=hourly)
 
     run("echo '{}' | crontab -".format(cron))
 
