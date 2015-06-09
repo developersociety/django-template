@@ -10,3 +10,6 @@ raven==5.2.0
 apache-libcloud==0.17.0
 dj-libcloud==0.2.0
 blanc-contentfiles==0.1
+
+# Admin theme
+blanc-admin-theme==1.0.1
