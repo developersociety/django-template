@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 """
 
 import os
+import sys
 
 from contentfiles.config import libcloud_providers
 
@@ -42,6 +43,11 @@ SERVER_EMAIL = '{{ project_name }}@blanctools.com'
 DEFAULT_FROM_EMAIL = '{{ project_name }}@blanctools.com'
 
 EMAIL_SUBJECT_PREFIX = '[{{ project_name }}] '
+
+
+# Project root apps
+PROJECT_APPS_ROOT = os.path.join(BASE_DIR, 'apps')
+sys.path.append(PROJECT_APPS_ROOT)
 
 
 # Application definition
