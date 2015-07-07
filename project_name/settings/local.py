@@ -49,9 +49,9 @@ INSTALLED_APPS.append(
     'debug_toolbar',
 )
 
-MIDDLEWARE_CLASSES.append(
+MIDDLEWARE_CLASSES = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-)
+] + MIDDLEWARE_CLASSES
 
 COVERAGE_EXCLUDES_FOLDERS = ['/var/envs/{{ project_name }}/lib/python2']
 
