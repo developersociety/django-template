@@ -62,10 +62,20 @@ DEFAULT_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    'blanc_pages',
+    'blanc_basic_assets',
+    'blanc_pages_form_block',
+    'blanc_pages_image_block',
+    'blanc_pages_redactor_block',
+    'django_mptt_admin',
+    'mptt',
     'raven.contrib.django.raven_compat',
+    'redactorjs_staticfiles',
+    'sorl.thumbnail',
 ]
 
 PROJECT_APPS = [
+    'pages',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -79,6 +89,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'blanc_pages.middleware.BlancpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = '{{ project_name }}.urls'
@@ -249,3 +260,17 @@ SITE_ID = 1
 
 # Cloud storage
 LIBCLOUD_PROVIDERS = libcloud_providers('{{ project_name }}')
+
+# Blanc Pages
+# BLANC_PAGES_MODEL = 'pages.CustomPage'
+BLANC_PAGES_DEFAULT_TEMPLATE = 'blanc_pages/default.html'
+BLANC_PAGES_DEFAULT_BLOCKS = (
+    ('blanc_pages_redactor_block.RedactorBlock', 'Text'),
+    ('blanc_pages_image_block.ImageBlock', 'Image'),
+    ('pages.HTML', 'HTML'),
+)
+
+# Thumbnail generation
+THUMBNAIL_PREFIX = 'thumbs/'
+THUMBNAIL_PRESERVE_FORMAT = True
+THUMBNAIL_QUALITY = 100

@@ -1,6 +1,7 @@
 {% load static from staticfiles %}<!DOCTYPE html>
 <html lang="en">
 <head>
+    {% block starthead %}{% endblock %}
     <title>{% block title %}Website{% endblock %}</title>
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
 
@@ -10,5 +11,7 @@
     <![endif]-->
 </head>
 <body>
+    {% block startbody %}{% endblock %}
+    {% block main %}{% endblock %}
 </body>
 </html>

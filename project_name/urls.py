@@ -1,3 +1,4 @@
+from blanc_pages import block_admin
 from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
@@ -10,6 +11,9 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+
+    # Blanc pages block admin
+    url(r'^blockadmin/', include(block_admin.site.urls)),
 ]
 
 # Make it easier to see a 404 page under debug
