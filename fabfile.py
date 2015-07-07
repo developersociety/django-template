@@ -18,6 +18,7 @@ env.roledefs = {
 
 env.home = env.get('home', '/var/www/{{ project_name }}')
 env.repo = env.get('repo', '{{ project_name }}')
+env.media = env.get('media', '{{ project_name }}')
 env.database = env.get('database', '{{ project_name }}_django')
 
 CRONTAB = """
@@ -151,3 +152,18 @@ def get_backup(hostname=None, replace_hostname='127.0.0.1', replace_port=8000):
     commands.append('psql --single-transaction {}'.format(env.database))
 
     local(' | '.join(commands))
+
+
+@task
+def get_media(directory=''):
+    """
+    Download remote media files.
+
+    fab get_media
+    fab get_media:assets
+    """
+    # Recreate database
+    local((
+        'aws s3 sync '
+        's3://contentfiles-media-eu-west-1/{media}/{directory} '
+        'htdocs/media/{directory}').format(media=env.media, directory=directory))
