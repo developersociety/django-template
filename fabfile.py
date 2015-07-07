@@ -162,7 +162,7 @@ def get_media(directory=''):
     fab get_media
     fab get_media:assets
     """
-    # Recreate database
+    # Sync files from our S3 bucket/directory
     local((
         'aws s3 sync '
         's3://contentfiles-media-eu-west-1/{media}/{directory} '
