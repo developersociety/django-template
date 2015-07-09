@@ -157,7 +157,7 @@ def get_backup(hostname=None, replace_hostname='127.0.0.1', replace_port=8000):
 @task
 def get_media(directory=''):
     """
-    Download remote media files.
+    Download remote media files. It's uses credentials from ~/.aws/config
 
     fab get_media
     fab get_media:assets
