@@ -5,9 +5,7 @@ module.exports = function(grunt, data) {
     },
     build: {
       files: [{
-        src: [
-          staticDir + '/css/!(default.min.css)*.css',
-        ],
+        src: data.defaultCss,
         dest: defaultCssMin,
       }],
     },
