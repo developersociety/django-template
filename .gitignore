@@ -7,3 +7,6 @@
 
 # Coverage
 .coverage
+
+node_modules
+static/css
