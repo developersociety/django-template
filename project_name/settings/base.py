@@ -52,7 +52,11 @@ sys.path.append(PROJECT_APPS_ROOT)
 
 # Application definition
 DEFAULT_APPS = [
-    'blanc_admin_theme',  # must be before django.contrib.admin
+
+    # These apps should come first to load correctly.
+    'blanc_admin_theme',
+    'core',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -66,7 +70,6 @@ THIRD_PARTY_APPS = [
 ]
 
 PROJECT_APPS = [
-    'core',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
