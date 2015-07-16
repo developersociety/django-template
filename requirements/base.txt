@@ -1,10 +1,10 @@
-Django==1.8.2
+Django==1.8.3
 pytz==2015.4
 pylibmc==1.5.0
 psycopg2==2.6.1
 Pillow==2.9.0
 dj-database-url==0.3.0
-raven==5.4.0
+raven==5.4.4
 
 # Storage
 apache-libcloud==0.17.0
