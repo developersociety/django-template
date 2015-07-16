@@ -1,0 +1,5 @@
+[run]
+omit =../*migrations*
+
+[xml]
+output=reports/coverage.xml

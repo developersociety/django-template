@@ -1,4 +1,9 @@
-*.pyc
 /htdocs/media
 /htdocs/static
 /pyenv
+
+# Python
+*.py[co]
+
+# Coverage
+.coverage

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 Django settings for {{ project_name }} project.
 
@@ -8,19 +10,21 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+import sys
+
+from contentfiles.config import libcloud_providers
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 
 # Production / development switches
 # https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/checklist/
 
-DEBUG = 'DEBUG' in os.environ
+DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
-
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
@@ -29,8 +33,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#email
 
 ADMINS = (
-    ('Alex Tomkins', 'alex@blanc.ltd.uk'),
-    ('Steve Hawkes', 'steve@blanc.ltd.uk'),
+    ('Blanc Ltd', 'studio@blanc.ltd.uk'),
 )
 
 MANAGERS = ADMINS
@@ -42,19 +45,32 @@ DEFAULT_FROM_EMAIL = '{{ project_name }}@blanctools.com'
 EMAIL_SUBJECT_PREFIX = '[{{ project_name }}] '
 
 
-# Application definition
+# Project root apps
+PROJECT_APPS_ROOT = os.path.join(BASE_DIR, 'apps')
+sys.path.append(PROJECT_APPS_ROOT)
 
-INSTALLED_APPS = (
+
+# Application definition
+DEFAULT_APPS = [
+    'blanc_admin_theme',  # must be before django.contrib.admin
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'raven.contrib.django.raven_compat',
-)
+]
 
-MIDDLEWARE_CLASSES = (
+THIRD_PARTY_APPS = [
+    'raven.contrib.django.raven_compat',
+]
+
+PROJECT_APPS = [
+]
+
+INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
+
+MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -62,7 +78,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+    'django.middleware.security.SecurityMiddleware',
+]
 
 ROOT_URLCONF = '{{ project_name }}.urls'
 
@@ -97,7 +114,14 @@ else:
 # Internationalization
 # https://docs.djangoproject.com/en/{{ docs_version }}/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+
+# Datetime config.
+DATE_FORMAT = 'd M Y'
+TIME_FORMAT = 'H:i'
+DATETIME_FORMAT = 'd M Y H:i'
+
+
+LANGUAGE_CODE = 'en-gb'
 
 TIME_ZONE = 'Europe/London'
 
@@ -130,26 +154,34 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'htdocs/media')
 
 DEFAULT_FILE_STORAGE = os.environ.get(
-    'DEFAULT_FILE_STORAGE', 'django.core.files.storage.FileSystemStorage')
+    'DEFAULT_FILE_STORAGE', 'django.core.files.storage.FileSystemStorage'
+)
 
 
 # Templates
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#templates
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, '{{ project_name }}/templates'),
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-    'django.core.context_processors.request',
-    'django.contrib.messages.context_processors.messages',
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.template.context_processors.request',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 
 # Logging
@@ -216,12 +248,4 @@ LOGGING = {
 SITE_ID = 1
 
 # Cloud storage
-from contentfiles.config import libcloud_providers
 LIBCLOUD_PROVIDERS = libcloud_providers('{{ project_name }}')
-
-
-# Local settings override
-try:
-    from .local_settings import *  # noqa
-except ImportError:
-    pass
