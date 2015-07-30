@@ -22,7 +22,7 @@ env.media = env.get('media', '{{ project_name }}')
 env.database = env.get('database', '{{ project_name }}_django')
 
 CRONTAB = """
-MAILTO=admin@blanc.ltd.uk
+MAILTO=""
 
 {daily}         /usr/local/bin/django-cron python manage.py clearsessions
 """
