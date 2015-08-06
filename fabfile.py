@@ -2,7 +2,7 @@
 
 import random
 
-from fabric.api import cd, env, execute, local, parallel, roles, run, task
+from fabric.api import cd, env, execute, local, parallel, roles, run, runs_once, task
 from fabric.contrib.files import exists
 
 # Changable settings
@@ -10,9 +10,6 @@ env.roledefs = {
     'web': [
         '{{ project_name }}@scorch.blanctools.com',
         '{{ project_name }}@smaug.blanctools.com',
-    ],
-    'db': [
-        '{{ project_name }}@scorch.blanctools.com',
     ],
     'cron': [
         '{{ project_name }}@scorch.blanctools.com',
@@ -109,7 +106,8 @@ def update():
 
 
 @task
-@roles('db')
+@runs_once
+@roles('web')
 def migrate():
     """ Migrate database changes. """
     with cd(env.home):
