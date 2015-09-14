@@ -1,15 +1,15 @@
-Django==1.8.3
+Django==1.8.4
 pytz==2015.4
 pylibmc==1.5.0
 psycopg2==2.6.1
 Pillow==2.9.0
 dj-database-url==0.3.0
-raven==5.5.0
+raven==5.6.0
 
 # Storage
-apache-libcloud==0.17.0
+apache-libcloud==0.18.0
 dj-libcloud==0.2.0
-blanc-contentfiles==0.1.1
+blanc-contentfiles==0.1.3
 
 # Admin theme
 blanc-admin-theme==1.0.1
