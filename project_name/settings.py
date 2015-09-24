@@ -234,8 +234,7 @@ THUMBNAIL_DEFAULT_STORAGE = os.environ.get('DEFAULT_FILE_STORAGE')
 THUMBNAIL_CACHE_DIMENSIONS = True
 
 # Cloud storage
-from contentfiles.config import libcloud_providers
-LIBCLOUD_PROVIDERS = libcloud_providers('{{ project_name }}')
+CONTENTFILES_PREFIX = '{{ project_name }}'
 
 # Pages
 # PAGE_TEMPLATES = (
