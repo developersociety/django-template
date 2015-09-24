@@ -1,10 +1,10 @@
-Django==1.7.9
-pytz==2015.4
+Django==1.7.10
+pytz==2015.6
 pylibmc==1.5.0
 psycopg2==2.6.1
 Pillow==2.9.0
 dj-database-url==0.3.0
-raven==5.5.0
+raven==5.7.2
 
 # Storage
 apache-libcloud==0.17.0
@@ -22,12 +22,12 @@ blanc-basic-news==0.3
 
 # Pages
 django-mptt==0.7.4
-django-mptt-admin==0.2.1
+django-mptt-admin==0.3.0
 six==1.9.0
 blanc-basic-pages==0.3.2
 
 # Events
-icalendar==3.9.0
+icalendar==3.9.1
 python-dateutil==2.4.2
 blanc-basic-events==0.3.2
 
