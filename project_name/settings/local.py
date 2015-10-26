@@ -49,9 +49,21 @@ INSTALLED_APPS.append(
     'debug_toolbar',
 )
 
+
+# Add flat theme if module is installed.
+try:
+    import_module('flat')
+except ImportError:
+    pass
+else:
+    INSTALLED_APPS.insert(0, 'flat')
+
+
 MIDDLEWARE_CLASSES = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ] + MIDDLEWARE_CLASSES
+
+
 
 COVERAGE_EXCLUDES_FOLDERS = ['/var/envs/{{ project_name }}/lib/python2']
 
