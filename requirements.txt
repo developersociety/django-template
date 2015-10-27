@@ -9,7 +9,7 @@ raven==5.7.2
 # Storage
 django-storages-redux==1.3
 boto==2.38.0
-blanc-contentfiles==0.2
+blanc-contentfiles==0.2.1
 
 # Assets
 blanc-basic-assets==0.3
