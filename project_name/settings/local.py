@@ -2,6 +2,8 @@
 
 import os
 
+from django.utils.importlib import import_module
+
 from .base import *  # NOQA @UnusedWildImport
 
 
@@ -65,9 +67,10 @@ MIDDLEWARE_CLASSES = [
 ] + MIDDLEWARE_CLASSES
 
 
-
 COVERAGE_EXCLUDES_FOLDERS = ['/var/envs/{{ project_name }}/lib/python2']
 
+
 SECRET_KEY = "{{ project_name }}"
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
