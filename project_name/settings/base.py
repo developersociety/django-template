@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 import os
 import sys
 
-from contentfiles.config import libcloud_providers
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
@@ -248,4 +246,4 @@ LOGGING = {
 SITE_ID = 1
 
 # Cloud storage
-LIBCLOUD_PROVIDERS = libcloud_providers('{{ project_name }}')
+CONTENTFILES_PREFIX = '{{ project_name }}'
