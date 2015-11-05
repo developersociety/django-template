@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from importlib import import_module
 import os
-
-from django.utils.importlib import import_module
 
 from .base import *  # NOQA @UnusedWildImport
 
