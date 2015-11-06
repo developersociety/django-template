@@ -7,7 +7,30 @@ from .base import *  # NOQA @UnusedWildImport
 
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+# Enable debugging for templates
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'theme/templates'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.template.context_processors.request',
+                'django.contrib.messages.context_processors.messages',
+            ],
+            'debug': True,
+        },
+    },
+]
 
 DATABASES = {
     'default': {
@@ -25,6 +48,7 @@ INTERNAL_IPS = (
 
 INSTALLED_APPS += [
     'debug_toolbar',
+    'django_extensions',
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -1,4 +1,4 @@
-Django==1.7.10
+Django==1.8.6
 pytz==2015.7
 pylibmc==1.5.0
 psycopg2==2.6.1
@@ -15,7 +15,7 @@ blanc-contentfiles==0.2.1
 blanc-basic-assets==0.3
 
 # Thumbnailing
-easy-thumbnails==2.2
+sorl-thumbnail==12.3
 
 # News
 blanc-basic-news==0.3.1
@@ -29,7 +29,7 @@ blanc-basic-pages==0.3.3
 # Events
 icalendar==3.9.1
 python-dateutil==2.4.2
-blanc-basic-events==0.3.2
+blanc-basic-events==0.3.3
 
 # Data
-djangochurch-data==0.1
+djangochurch-data==0.1.1

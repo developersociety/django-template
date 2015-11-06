@@ -16,9 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 # Production / development switches
 # https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/checklist/
 
-DEBUG = 'DEBUG' in os.environ
-
-TEMPLATE_DEBUG = DEBUG
+DEBUG = False
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
 
@@ -43,7 +41,7 @@ EMAIL_SUBJECT_PREFIX = '[{{ project_name }}] '
 
 # Application definition
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,11 +56,11 @@ INSTALLED_APPS = (
     'django_mptt_admin',
     'blanc_basic_pages',
     'blanc_basic_events',
-    'easy_thumbnails',
+    'sorl.thumbnail',
     'djangochurch_data',
-)
+]
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -71,7 +69,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'blanc_basic_pages.middleware.PageFallbackMiddleware',
-)
+]
 
 ROOT_URLCONF = '{{ project_name }}.urls'
 
@@ -106,7 +104,12 @@ else:
 # Internationalization
 # https://docs.djangoproject.com/en/{{ docs_version }}/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+# Datetime config.
+DATE_FORMAT = 'd M Y'
+TIME_FORMAT = 'H:i'
+DATETIME_FORMAT = 'd M Y H:i'
+
+LANGUAGE_CODE = 'en-gb'
 
 TIME_ZONE = 'Europe/London'
 
@@ -146,21 +149,28 @@ DEFAULT_FILE_STORAGE = os.environ.get(
 # Templates
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#templates
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, '{{ project_name }}/templates'),
-    os.path.join(BASE_DIR, 'theme/templates'),
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-    'django.core.context_processors.request',
-    'django.contrib.messages.context_processors.messages',
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'theme/templates'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.template.context_processors.request',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 
 # Logging
@@ -227,11 +237,9 @@ LOGGING = {
 SITE_ID = 1
 
 # Thumbnail generation
-THUMBNAIL_SUBDIR = 'thumbs'
-THUMBNAIL_PRESERVE_EXTENSIONS = ('png',)
+THUMBNAIL_PREFIX = 'thumbs/'
+THUMBNAIL_PRESERVE_FORMAT = True
 THUMBNAIL_QUALITY = 100
-THUMBNAIL_DEFAULT_STORAGE = os.environ.get('DEFAULT_FILE_STORAGE')
-THUMBNAIL_CACHE_DIMENSIONS = True
 
 # Cloud storage
 CONTENTFILES_PREFIX = '{{ project_name }}'
