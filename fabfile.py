@@ -99,7 +99,7 @@ def update():
     with cd(env.home):
         run('git pull')
 
-        run('pip install --quiet --requirement requirements.txt')
+        run('pip install --quiet --requirement requirements/production.txt')
 
         # Clean up any potential cruft
         run('find . -name "*.pyc" -delete')
