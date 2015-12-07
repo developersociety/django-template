@@ -56,6 +56,6 @@ MIDDLEWARE_CLASSES = [
 
 COVERAGE_EXCLUDES_FOLDERS = ['/var/envs/{{ project_name }}/lib/python2']
 
-SECRET_KEY = "{{ project_name }}"
+SECRET_KEY = '{{ project_name }}'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
