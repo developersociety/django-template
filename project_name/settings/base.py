@@ -104,11 +104,6 @@ else:
 # Internationalization
 # https://docs.djangoproject.com/en/{{ docs_version }}/topics/i18n/
 
-# Datetime config.
-DATE_FORMAT = 'd M Y'
-TIME_FORMAT = 'H:i'
-DATETIME_FORMAT = 'd M Y H:i'
-
 LANGUAGE_CODE = 'en-gb'
 
 TIME_ZONE = 'Europe/London'
