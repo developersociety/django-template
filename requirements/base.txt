@@ -12,7 +12,7 @@ boto==2.38.0
 blanc-contentfiles==0.2.1
 
 # Assets
-blanc-basic-assets==0.3
+blanc-basic-assets==0.3.2
 
 # Thumbnailing
 sorl-thumbnail==12.3
@@ -22,7 +22,7 @@ blanc-basic-news==0.3.1
 
 # Pages
 django-mptt==0.7.4
-django-mptt-admin==0.3.0
+django-mptt-admin==0.3.1
 six==1.10.0
 blanc-basic-pages==0.3.3
 
