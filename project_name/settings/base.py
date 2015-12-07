@@ -22,8 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 DEBUG = False
 
-TEMPLATE_DEBUG = DEBUG
-
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
