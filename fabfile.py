@@ -120,6 +120,9 @@ def migrate():
 def static():
     """ Update static files. """
     with cd(env.home):
+        # Generate CSS
+        run('node_modules/.bin/grunt less:development autoprefixer cssmin')
+
         # Collect static files
         run('python manage.py collectstatic --verbosity=0 --noinput')
 
