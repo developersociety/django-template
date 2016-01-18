@@ -48,7 +48,10 @@ sys.path.append(PROJECT_APPS_ROOT)
 
 # Application definition
 DEFAULT_APPS = [
-    'blanc_admin_theme',  # must be before django.contrib.admin
+    # must be before django.contrib.admin
+    'blanc_admin_theme',
+    'core',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,6 +62,9 @@ DEFAULT_APPS = [
 
 THIRD_PARTY_APPS = [
     'raven.contrib.django.raven_compat',
+    'blanc_pages',
+    'blanc_pages.assets',
+    'mptt',
 ]
 
 PROJECT_APPS = [
@@ -67,14 +73,16 @@ PROJECT_APPS = [
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
 MIDDLEWARE_CLASSES = [
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'blanc_pages.middleware.ExceptionMiddleware',
+    'blanc_pages.pages.middleware.PageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = '{{ project_name }}.urls'
