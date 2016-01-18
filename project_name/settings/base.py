@@ -51,7 +51,6 @@ DEFAULT_APPS = [
     # must be before django.contrib.admin
     'blanc_admin_theme',
     'core',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
