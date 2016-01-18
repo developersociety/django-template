@@ -7,3 +7,7 @@
 
 # Coverage
 .coverage
+
+# Grunt
+/node_modules
+npm-debug.log
