@@ -1,0 +1,5 @@
+default:
+    - 'watch' # Run predefined tasks whenever watched file patterns are added, changed or deleted.
+    - 'less' # Compile LESS files to CSS.
+    - 'autoprefixer' # Autoprefixer parses CSS and adds vendor-prefixed CSS properties.
+    - 'cssmin' # Minify CSS.
