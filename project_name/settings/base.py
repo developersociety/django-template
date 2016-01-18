@@ -63,6 +63,8 @@ THIRD_PARTY_APPS = [
     'raven.contrib.django.raven_compat',
     'blanc_pages',
     'blanc_pages.assets',
+    'blanc_pages.blocks.html',
+    'blanc_pages.blocks.image',
     'mptt',
 ]
 
