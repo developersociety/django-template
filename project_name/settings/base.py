@@ -238,6 +238,7 @@ THUMBNAIL_QUALITY = 100
 
 # Cloud storage
 CONTENTFILES_PREFIX = '{{ project_name }}'
+CONTENTFILES_SSL = True
 
 # Pages
 # PAGE_TEMPLATES = (
