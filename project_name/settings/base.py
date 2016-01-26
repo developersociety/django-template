@@ -238,3 +238,4 @@ SITE_ID = 1
 
 # Cloud storage
 CONTENTFILES_PREFIX = '{{ project_name }}'
+CONTENTFILES_SSL = True
