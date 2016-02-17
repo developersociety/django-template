@@ -7,3 +7,5 @@
 
 # Coverage
 .coverage
+
+*.dump
