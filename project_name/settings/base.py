@@ -48,8 +48,7 @@ sys.path.append(PROJECT_APPS_ROOT)
 
 # Application definition
 DEFAULT_APPS = [
-    # must be before django.contrib.admin
-    'blanc_admin_theme',
+    'blanc_admin_theme',  # Must be before django.contrib.admin
     'core',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -61,17 +60,16 @@ DEFAULT_APPS = [
 
 THIRD_PARTY_APPS = [
     'raven.contrib.django.raven_compat',
-    'blanc_pages',
-    'blanc_pages.assets',
-    'blanc_pages.blocks.html',
-    'blanc_pages.blocks.image',
     'mptt',
 ]
+
 
 PROJECT_APPS = [
 ]
 
+
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
+
 
 MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -247,3 +245,4 @@ SITE_ID = 1
 
 # Cloud storage
 CONTENTFILES_PREFIX = '{{ project_name }}'
+CONTENTFILES_SSL = True

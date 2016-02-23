@@ -38,4 +38,3 @@ class Command(StaticfilesRunserverCommand):
             os.kill(pid, signal.SIGTERM)
 
         atexit.register(kill_grunt_process, self.grunt_process.pid)
-

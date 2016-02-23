@@ -7,7 +7,6 @@ module.exports = function(grunt) {
     defaultCss = cssDir + '/styles.css';
     defaultCssMin = cssDir + '/styles.min.css';
     defaultLess = lessDir + '/styles.less';
-    
     defaultCssMapName = 'styles.css.map';
 
 require('load-grunt-config')(grunt, {
