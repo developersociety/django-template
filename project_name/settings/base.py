@@ -83,9 +83,8 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'blanc_pages.middleware.ExceptionMiddleware',
-    'blanc_pages.pages.middleware.PageFallbackMiddleware',
 ]
+
 
 ROOT_URLCONF = '{{ project_name }}.urls'
 
