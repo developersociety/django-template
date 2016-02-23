@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 import os
 import sys
 
-from contentfiles.config import libcloud_providers
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
@@ -23,8 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 # https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/checklist/
 
 DEBUG = False
-
-TEMPLATE_DEBUG = DEBUG
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
@@ -117,13 +113,6 @@ else:
 
 # Internationalization
 # https://docs.djangoproject.com/en/{{ docs_version }}/topics/i18n/
-
-
-# Datetime config.
-DATE_FORMAT = 'd M Y'
-TIME_FORMAT = 'H:i'
-DATETIME_FORMAT = 'd M Y H:i'
-
 
 LANGUAGE_CODE = 'en-gb'
 
@@ -252,4 +241,5 @@ LOGGING = {
 SITE_ID = 1
 
 # Cloud storage
-LIBCLOUD_PROVIDERS = libcloud_providers('{{ project_name }}')
+CONTENTFILES_PREFIX = '{{ project_name }}'
+CONTENTFILES_SSL = True

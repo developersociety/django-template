@@ -2,7 +2,7 @@
 
 import random
 
-from fabric.api import cd, env, local, parallel, roles, run, task
+from fabric.api import cd, env, execute, local, parallel, roles, run, runs_once, task
 from fabric.contrib.files import exists
 
 # Changable settings
@@ -22,7 +22,7 @@ env.media = env.get('media', '{{ project_name }}')
 env.database = env.get('database', '{{ project_name }}_django')
 
 CRONTAB = """
-MAILTO=admin@blanc.ltd.uk
+MAILTO=""
 
 {daily}         /usr/local/bin/django-cron python manage.py clearsessions
 """
@@ -93,16 +93,9 @@ def clone_repo(branch='master'):
 
 @task
 @roles('web')
-def deploy(force_reload=None):
-    """
-    Deploy to remote server.
-
-    Steps includes pull repo, migrate, install requirements, collect static.
-
-    fab deploy
-    fab deploy:True
-    fab deploy:force_reload=True
-    """
+@parallel
+def update():
+    """ Pull latest git repository changes and install requirements. """
     with cd(env.home):
         run('git pull')
 
@@ -111,16 +104,58 @@ def deploy(force_reload=None):
         # Clean up any potential cruft
         run('find . -name "*.pyc" -delete')
 
-        # Migrate database changes
+
+@task
+@runs_once
+@roles('web')
+def migrate():
+    """ Migrate database changes. """
+    with cd(env.home):
         run('python manage.py migrate')
 
-        # Static files
+
+@task
+@roles('web')
+@parallel
+def static():
+    """ Update static files. """
+    with cd(env.home):
+        # Collect static files
         run('python manage.py collectstatic --verbosity=0 --noinput')
 
-        if force_reload:
-            run('killall -TERM uwsgi')
-        else:
-            run('killall -HUP uwsgi')
+
+@task(name='reload')
+@roles('web')
+@parallel
+def reload_uwsgi(force_reload=None):
+    """
+    Reload uWSGI.
+
+    fab reload
+    fab reload:True
+    fab reload:force_reload=True
+    """
+    if force_reload:
+        run('killall -TERM uwsgi')
+    else:
+        run('killall -HUP uwsgi')
+
+
+@task
+def deploy(force_reload=None):
+    """
+    Deploy to remote server.
+
+    Steps includes pull repo, migrate, collect static, install requirements.
+
+    fab deploy
+    fab deploy:True
+    fab deploy:force_reload=True
+    """
+    execute(update)
+    execute(migrate)
+    execute(static)
+    execute(reload_uwsgi, force_reload=force_reload)
 
 
 @task
@@ -157,7 +192,7 @@ def get_backup(hostname=None, replace_hostname='127.0.0.1', replace_port=8000):
 @task
 def get_media(directory=''):
     """
-    Download remote media files. It's uses credentials from ~/.aws/config
+    Download remote media files. It uses credentials from ~/.aws/config.
 
     fab get_media
     fab get_media:assets
