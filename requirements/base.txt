@@ -13,3 +13,6 @@ blanc-contentfiles==0.2.1
 
 # Admin theme
 blanc-admin-theme==1.0.1
+
+# Glitter
+django-glitter==0.1.2

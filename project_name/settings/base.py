@@ -60,7 +60,10 @@ DEFAULT_APPS = [
 
 THIRD_PARTY_APPS = [
     'raven.contrib.django.raven_compat',
+    'glitter',
     'mptt',
+    'django_mptt_admin',
+    'sorl.thumbnail',
 ]
 
 
