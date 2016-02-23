@@ -16,4 +16,6 @@ To run locally:
 
     ./manage.py syncdb
     
-#. Change ``README.rst``
+#. Change file::
+    
+    vim README.rst
