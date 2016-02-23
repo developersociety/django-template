@@ -1,12 +1,17 @@
-========================
-blancltd django-template
-========================
+Blanc LTD django-template
+=========================
 
+To run locally:
 
-Instructions
-------------
+#. Create a Django project directory structure::
 
-1.  ``django-admin startproject --template=https://github.com/blancltd/django-template/archive/master.zip project_name``
+    django-admin startproject --template=https://github.com/blancltd/django-template/archive/master.zip project_name
 
+#. Install dependencies::
 
-2.  Run ``npm install`` inside the project root dir.
+    pip install -r requirements/local.txt
+    npm install
+
+#. Create tables::
+
+    ./manage.py syncdb
