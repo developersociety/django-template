@@ -1,5 +1,5 @@
-Blanc LTD django-template
-=========================
+django-template
+===============
 
 To run locally:
 
@@ -15,3 +15,5 @@ To run locally:
 #. Create tables::
 
     ./manage.py syncdb
+    
+#. Change ``README.rst``
