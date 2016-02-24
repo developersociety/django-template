@@ -61,9 +61,18 @@ DEFAULT_APPS = [
 THIRD_PARTY_APPS = [
     'raven.contrib.django.raven_compat',
     'glitter',
+    'glitter.pages',
+    'glitter.assets',
+    'glitter.blocks.banner',
+    'glitter.blocks.form',
+    'glitter.blocks.html',
+    'glitter.blocks.image',
+    'glitter.blocks.redactor',
+    'glitter.blocks.video',
     'mptt',
     'django_mptt_admin',
     'sorl.thumbnail',
+
 ]
 
 
@@ -83,6 +92,8 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'glitter.pages.middleware.PageFallbackMiddleware',
+    'glitter.middleware.ExceptionMiddleware',
 ]
 
 

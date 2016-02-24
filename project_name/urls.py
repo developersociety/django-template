@@ -1,15 +1,17 @@
+# -*- coding: utf-8 -*-
+
 from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-urlpatterns = [
-    # Examples:
-    # url(r'^$', '{{ project_name }}.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+from glitter import block_admin
 
+
+urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^blockadmin/', include(block_admin.site.urls)),
 ]
 
 # Make it easier to see a 404 page under debug
