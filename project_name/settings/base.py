@@ -48,7 +48,6 @@ sys.path.append(PROJECT_APPS_ROOT)
 
 # Application definition
 DEFAULT_APPS = [
-
     # These apps should come first to load correctly.
     'blanc_admin_theme',
     'core',
@@ -59,6 +58,7 @@ DEFAULT_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 ]
 
 THIRD_PARTY_APPS = [
@@ -79,6 +79,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
 ]
 
 ROOT_URLCONF = '{{ project_name }}.urls'
