@@ -8,6 +8,10 @@
 # Coverage
 .coverage
 
-node_modules
+# Grunt
+/node_modules
+npm-debug.log
 static/css
+
+# Database
 *.dump
