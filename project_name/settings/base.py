@@ -48,14 +48,17 @@ sys.path.append(PROJECT_APPS_ROOT)
 
 # Application definition
 DEFAULT_APPS = [
-    'blanc_admin_theme',  # Must be before django.contrib.admin
+    # These apps should come first to load correctly.
+    'blanc_admin_theme',
     'core',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 ]
 
 THIRD_PARTY_APPS = [
@@ -72,7 +75,6 @@ THIRD_PARTY_APPS = [
     'mptt',
     'django_mptt_admin',
     'sorl.thumbnail',
-
 ]
 
 
@@ -93,6 +95,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
     'glitter.pages.middleware.PageFallbackMiddleware',
     'glitter.middleware.ExceptionMiddleware',
 ]
