@@ -259,3 +259,10 @@ SITE_ID = 1
 # Cloud storage
 CONTENTFILES_PREFIX = '{{ project_name }}'
 CONTENTFILES_SSL = True
+
+# Glitter
+GLITTER_DEFAULT_BLOCKS = (
+    ('glitter_redactor.Redactor', 'Text'),
+    ('glitter_image.ImageBlock', 'Image'),
+    ('glitter_html.HTML', 'HTML'),
+)
