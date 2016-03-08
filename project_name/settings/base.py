@@ -77,29 +77,24 @@ THIRD_PARTY_APPS = [
     'sorl.thumbnail',
 ]
 
-
 PROJECT_APPS = [
-    'apps',
 ]
-
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
-
 MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sites.middleware.CurrentSiteMiddleware',
     'glitter.pages.middleware.PageFallbackMiddleware',
     'glitter.middleware.ExceptionMiddleware',
 ]
-
 
 ROOT_URLCONF = '{{ project_name }}.urls'
 
