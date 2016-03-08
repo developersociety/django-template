@@ -99,7 +99,9 @@ def update():
     with cd(env.home):
         run('git pull')
 
+        # Install python/node packages
         run('pip install --quiet --requirement requirements/production.txt')
+        run('npm install')
 
         # Clean up any potential cruft
         run('find . -name "*.pyc" -delete')
