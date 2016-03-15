@@ -260,6 +260,11 @@ SITE_ID = 1
 CONTENTFILES_PREFIX = '{{ project_name }}'
 CONTENTFILES_SSL = True
 
+# Thumbnail generation
+THUMBNAIL_PREFIX = 'thumbs/'
+THUMBNAIL_PRESERVE_FORMAT = True
+THUMBNAIL_QUALITY = 100
+
 # Glitter
 GLITTER_DEFAULT_BLOCKS = (
     ('glitter_redactor.Redactor', 'Text'),
