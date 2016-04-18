@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
 import os
 
@@ -6,6 +7,8 @@ from .base import *  # NOQA @UnusedWildImport
 
 
 DEBUG = True
+THUMBNAIL_DEBUG = True
+
 
 # Enable debugging for templates
 TEMPLATES = [
