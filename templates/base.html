@@ -5,9 +5,11 @@
 
 <html lang="en">
     <head>
-        <title>{% block title %}Website{% endblock %}</title>
+        {% glitter_head %}
+
+        <title>{% block title %}{{ request.site.name }}{% endblock %}</title>
         <link href="{% static 'css/styles.min.css' %}" rel="stylesheet" />
-    
+
         {# NOTE: Remove IE conditional comments if you're using Modernizr for more than the html5shiv #}
         <!--[if lt IE 9]>
             <script src="{% static 'js/modernizr.js' %}"></script>
@@ -15,5 +17,7 @@
     </head>
     <body>
         {% glitter_startbody %}
+
+        {% block main %}{% endblock %}
     </body>
 </html>

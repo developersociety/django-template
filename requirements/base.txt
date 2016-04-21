@@ -1,18 +1,24 @@
-Django==1.8.9
-pytz==2015.7
-pylibmc==1.5.0
+Django==1.8.12
+pytz==2016.3
+pylibmc==1.5.1
 psycopg2==2.6.1
-Pillow==3.1.1
-dj-database-url==0.4.0
-raven==5.10.2
+Pillow==3.2.0
+dj-database-url==0.4.1
+raven==5.12.0
 
 # Storage
-django-storages==1.4
+django-storages==1.4.1
 boto==2.39.0
-blanc-contentfiles==0.2.1
+blanc-contentfiles==0.2.2
 
 # Admin theme
 blanc-admin-theme==1.0.1
 
+# Thumbnailing
+sorl-thumbnail==12.3
+
 # Glitter
-django-glitter==0.1.3
+django-glitter==0.1.5
+django-mptt==0.8.3
+django-mptt-admin==0.3.6
+six==1.10.0

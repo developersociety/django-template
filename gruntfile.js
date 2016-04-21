@@ -9,14 +9,14 @@ module.exports = function(grunt) {
     defaultLess = lessDir + '/styles.less';
     defaultCssMapName = 'styles.css.map';
 
-require('load-grunt-config')(grunt, {
-  data: {
-    cssDir: cssDir,
-    defaultCss: defaultCss,
-    defaultCssMin: defaultCssMin,
-    defaultLess: defaultLess,
-    lessDir: lessDir,
-    staticDir: staticDir,
-  }
-});
+    require('load-grunt-config')(grunt, {
+        data: {
+            cssDir: cssDir,
+            defaultCss: defaultCss,
+            defaultCssMin: defaultCssMin,
+            defaultLess: defaultLess,
+            lessDir: lessDir,
+            staticDir: staticDir,
+        }
+    });
 };

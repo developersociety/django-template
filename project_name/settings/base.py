@@ -48,14 +48,17 @@ sys.path.append(PROJECT_APPS_ROOT)
 
 # Application definition
 DEFAULT_APPS = [
-    'blanc_admin_theme',  # Must be before django.contrib.admin
+    # These apps should come first to load correctly.
+    'blanc_admin_theme',
     'core',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 ]
 
 THIRD_PARTY_APPS = [
@@ -72,31 +75,27 @@ THIRD_PARTY_APPS = [
     'mptt',
     'django_mptt_admin',
     'sorl.thumbnail',
-
 ]
-
 
 PROJECT_APPS = [
-    'apps',
+    'pages',
 ]
-
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
-
 MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
     'glitter.pages.middleware.PageFallbackMiddleware',
     'glitter.middleware.ExceptionMiddleware',
 ]
-
 
 ROOT_URLCONF = '{{ project_name }}.urls'
 
@@ -260,3 +259,15 @@ SITE_ID = 1
 # Cloud storage
 CONTENTFILES_PREFIX = '{{ project_name }}'
 CONTENTFILES_SSL = True
+
+# Thumbnail generation
+THUMBNAIL_PREFIX = 'thumbs/'
+THUMBNAIL_PRESERVE_FORMAT = True
+THUMBNAIL_QUALITY = 100
+
+# Glitter
+GLITTER_DEFAULT_BLOCKS = (
+    ('glitter_redactor.Redactor', 'Text'),
+    ('glitter_image.ImageBlock', 'Image'),
+    ('glitter_html.HTML', 'HTML'),
+)
