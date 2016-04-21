@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
 """
 Django settings for {{ project_name }} project.
@@ -22,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 DEBUG = False
 
+
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
@@ -31,22 +33,18 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 ADMINS = (
     ('Blanc Ltd', 'studio@blanc.ltd.uk'),
 )
-
 MANAGERS = ADMINS
 
+
 SERVER_EMAIL = '{{ project_name }}@blanctools.com'
-
 DEFAULT_FROM_EMAIL = '{{ project_name }}@blanctools.com'
-
 EMAIL_SUBJECT_PREFIX = '[{{ project_name }}] '
 
 
-# Project root apps
 PROJECT_APPS_ROOT = os.path.join(BASE_DIR, 'apps')
 sys.path.append(PROJECT_APPS_ROOT)
 
 
-# Application definition
 DEFAULT_APPS = [
     # These apps should come first to load correctly.
     'blanc_admin_theme',
@@ -61,14 +59,18 @@ DEFAULT_APPS = [
     'django.contrib.sites',
 ]
 
+
 THIRD_PARTY_APPS = [
     'raven.contrib.django.raven_compat',
 ]
 
+
 PROJECT_APPS = [
 ]
 
+
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
+
 
 MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
