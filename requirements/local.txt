@@ -5,3 +5,4 @@ Fabric==1.11.1
 django-extensions==1.6.1
 coverage==4.0.3
 awscli==1.10.20
+ipdb==0.9.3
