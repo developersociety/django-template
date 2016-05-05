@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 
 from .base import *  # NOQA @UnusedWildImport
+
+
+SESSION_COOKIE_SECURE = True
 
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
