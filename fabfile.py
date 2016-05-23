@@ -20,6 +20,7 @@ env.home = env.get('home', '/var/www/{{ project_name }}')
 env.repo = env.get('repo', '{{ project_name }}')
 env.media = env.get('media', '{{ project_name }}')
 env.database = env.get('database', '{{ project_name }}_django')
+env.database_ssh = env.get('database_ssh', 'golestandt.blanctools.com')
 
 CRONTAB = """
 MAILTO=""
@@ -30,7 +31,6 @@ MAILTO=""
 # Avoid tweaking these
 env.use_ssh_config = True
 GIT_REMOTE = 'git@github.com:blancltd/{env.repo}.git'
-DATABASE_SERVER = 'golestandt.blanctools.com'
 
 
 @task
@@ -179,7 +179,7 @@ def get_backup(hostname=None, replace_hostname='127.0.0.1', replace_port=8000):
 
     # Connect to the server and dump database.
     commands = ['ssh -C {} sudo -u postgres pg_dump --no-owner {}'.format(
-        DATABASE_SERVER, env.database
+        env.database_ssh, env.database
     )]
 
     if hostname:
