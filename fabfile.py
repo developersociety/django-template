@@ -11,6 +11,9 @@ env.roledefs = {
         '{{ project_name }}@scorch.blanctools.com',
         '{{ project_name }}@smaug.blanctools.com',
     ],
+    'demo': [
+        '{{ project_name }}@trogdor.blanctools.com',
+    ],
     'cron': [
         '{{ project_name }}@scorch.blanctools.com',
     ],
@@ -31,6 +34,13 @@ MAILTO=""
 # Avoid tweaking these
 env.use_ssh_config = True
 GIT_REMOTE = 'git@github.com:blancltd/{env.repo}.git'
+
+
+@task
+def demo():
+    env.roledefs['web'] = env.roledefs['demo']
+    env.roledefs['cron'] = env.roledefs['demo']
+    env.database_ssh = 'trogdor.blanctools.com'
 
 
 @task
