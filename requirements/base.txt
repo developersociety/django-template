@@ -1,15 +1,15 @@
-Django==1.8.12
-pytz==2016.3
+Django==1.8.13
+pytz==2016.4
 pylibmc==1.5.1
 psycopg2==2.6.1
 Pillow==3.2.0
 dj-database-url==0.4.1
-raven==5.12.0
+raven==5.18.0
 
 # Storage
 django-storages==1.4.1
-boto==2.39.0
-blanc-contentfiles==0.2.2
+boto==2.40.0
+blanc-contentfiles==0.2.3
 
 # Admin theme
 blanc-admin-theme==1.0.1
