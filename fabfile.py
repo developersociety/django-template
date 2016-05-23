@@ -183,10 +183,13 @@ def get_backup(hostname=None, replace_hostname='127.0.0.1', replace_port=8000):
     )]
 
     if hostname:
-        # If hostname is passed replace with replace_hostname.
-        commands.append('sed -e "s|{}|{}:{}|g"'.format(
-            hostname, replace_hostname, replace_port
-        ))
+        if replace_port:
+            replace_host = '{}:{}'.format(replace_hostname, replace_port)
+        else:
+            replace_host = replace_hostname
+
+        # If hostname is passed replace with replace_host.
+        commands.append('sed -e "s|{}|{}|g"'.format(hostname, replace_host))
 
     # Restore database.
     commands.append('psql --single-transaction {}'.format(env.database))
