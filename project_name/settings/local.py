@@ -10,6 +10,7 @@ from .base import *  # NOQA @UnusedWildImport
 if os.environ.get('SPECTRUM'):
     from spectrum.django import fire_hose
     LOGGING = fire_hose()
+    LOGGING['handlers']['console']['level'] = 'INFO'
     LOGGING['disable_existing_loggers'] = True
 
 
