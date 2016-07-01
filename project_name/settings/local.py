@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from importlib import import_module
 import os
+from importlib import import_module
 
 from .base import *  # NOQA @UnusedWildImport
+
+
+if os.environ.get('SPECTRUM'):
+    from spectrum.django import fire_hose
+    LOGGING = fire_hose()
+    LOGGING['disable_existing_loggers'] = True
 
 
 DEBUG = True
