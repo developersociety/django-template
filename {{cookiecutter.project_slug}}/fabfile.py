@@ -111,7 +111,7 @@ def update():
 
         # Install python/node packages
         run('pip install --quiet --requirement requirements/production.txt')
-        run('npm install')
+        run('npm install --no-progress')
 
         # Clean up any potential cruft
         run('find . -name "*.pyc" -delete')
