@@ -112,7 +112,7 @@ def update():
         run('npm install')
 
         # Clean up any potential cruft
-        run('find . -name "*.pyc" -delete')
+        run('find -name "__pycache__" -prune -exec rm -rf {} \;')
 
 
 @task
