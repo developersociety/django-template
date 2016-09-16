@@ -6,3 +6,4 @@ django-extensions==1.6.7
 coverage==4.0.3
 awscli==1.10.32
 ipdb==0.10.0
+spectrum-python==0.9.8

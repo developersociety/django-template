@@ -52,3 +52,10 @@ SECRET_KEY = '{{ cookiecutter.project_slug }}'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# Only enable spectrum logging if requested, as the spectrum app needs to be loaded
+if os.environ.get('SPECTRUM'):
+    from spectrum.django import fire_hose, FIRE_HOSE_WS
+    LOGGING = fire_hose(base_config=FIRE_HOSE_WS)
+    LOGGING['root']['handlers'] = ['root']
