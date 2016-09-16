@@ -11,6 +11,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "production": "grunt less:development autoprefixer cssmin",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

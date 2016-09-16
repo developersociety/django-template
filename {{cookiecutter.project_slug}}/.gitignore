@@ -5,8 +5,9 @@
 # Python
 *.py[co]
 
-# Coverage
+# Testing
 .coverage
+.tox
 
 # Grunt
 /node_modules
