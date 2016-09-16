@@ -5,6 +5,7 @@
     "grunt-cli": "^0.1.13"
   },
   "scripts": {
+    "start": "grunt",
     "grunt": "grunt"
   },
   "devDependencies": {
