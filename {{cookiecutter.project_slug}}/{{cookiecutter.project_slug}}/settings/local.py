@@ -14,7 +14,7 @@ TEMPLATES[0]['OPTIONS']['debug'] = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DJANGO_DATABASE_NAME', '{{ project_name }}_django'),
+        'NAME': os.environ.get('DJANGO_DATABASE_NAME', '{{ cookiecutter.project_slug }}_django'),
         'USER': '',
         'PASSWORD': '',
         'PORT': '',
@@ -45,10 +45,10 @@ MIDDLEWARE_CLASSES = [
 ] + MIDDLEWARE_CLASSES
 
 
-COVERAGE_EXCLUDES_FOLDERS = ['/var/envs/{{ project_name }}/lib/python2']
+COVERAGE_EXCLUDES_FOLDERS = ['/var/envs/{{ cookiecutter.project_slug }}/lib/python2']
 
 
-SECRET_KEY = '{{ project_name }}'
+SECRET_KEY = '{{ cookiecutter.project_slug }}'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -1,21 +1,20 @@
-django-template
-===============
+=====================
+Blanc Django Template
+=====================
 
-To run locally:
+Installation
+------------
 
-#. Create a Django project directory structure::
+Install cookiecutter_:
 
-    django-admin startproject --template=https://github.com/blancltd/django-template/archive/master.zip project_name
+.. _cookiecutter: https://github.com/audreyr/cookiecutter
 
-#. Install dependencies::
+.. code-block:: console
 
-    pip install -r requirements/local.txt
-    npm install
+    $ pip install --user cookiecutter
 
-#. Create tables::
+Create a site using this template:
 
-    ./manage.py syncdb
-    
-#. Change file::
-    
-    vim README.rst
+.. code-block:: console
+
+    $ cookiecutter gh:blancltd/django-template

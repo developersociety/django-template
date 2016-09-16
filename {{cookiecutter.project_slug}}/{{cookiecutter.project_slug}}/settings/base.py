@@ -2,13 +2,13 @@
 from __future__ import unicode_literals
 
 """
-Django settings for {{ project_name }} project.
+Django settings for {{ cookiecutter.project_slug }} project.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/{{ docs_version }}/topics/settings/
+https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
+https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/
 """
 
 import os
@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 
 # Production / development switches
-# https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/checklist/
+# https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/howto/deployment/checklist/
 
 DEBUG = False
 
@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 # Email
-# https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#email
+# https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#email
 
 ADMINS = (
     ('Blanc Ltd', 'studio@blanc.ltd.uk'),
@@ -36,9 +36,9 @@ ADMINS = (
 MANAGERS = ADMINS
 
 
-SERVER_EMAIL = '{{ project_name }}@blanctools.com'
-DEFAULT_FROM_EMAIL = '{{ project_name }}@blanctools.com'
-EMAIL_SUBJECT_PREFIX = '[{{ project_name }}] '
+SERVER_EMAIL = '{{ cookiecutter.project_slug }}@blanctools.com'
+DEFAULT_FROM_EMAIL = '{{ cookiecutter.project_slug }}@blanctools.com'
+EMAIL_SUBJECT_PREFIX = '[{{ cookiecutter.project_slug }}] '
 
 
 PROJECT_APPS_ROOT = os.path.join(BASE_DIR, 'apps')
@@ -84,13 +84,13 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sites.middleware.CurrentSiteMiddleware',
 ]
 
-ROOT_URLCONF = '{{ project_name }}.urls'
+ROOT_URLCONF = '{{ cookiecutter.project_slug }}.urls'
 
-WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
+WSGI_APPLICATION = '{{ cookiecutter.project_slug }}.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#databases
+# https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#databases
 
 import dj_database_url
 DATABASES = {
@@ -99,7 +99,7 @@ DATABASES = {
 
 
 # Caches
-# https://docs.djangoproject.com/en/{{ docs_version }}/topics/cache/
+# https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/cache/
 
 CACHES = {}
 if os.environ.get('MEMCACHED_SERVERS'):
@@ -115,7 +115,7 @@ else:
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/{{ docs_version }}/topics/i18n/
+# https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/i18n/
 
 LANGUAGE_CODE = 'en-gb'
 
@@ -129,7 +129,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
+# https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/howto/static-files/
 
 STATIC_URL = '/static/'
 
@@ -143,7 +143,7 @@ STATICFILES_DIRS = (
 
 
 # File uploads
-# https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#file-uploads
+# https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#file-uploads
 
 MEDIA_URL = '/media/'
 
@@ -155,7 +155,7 @@ DEFAULT_FILE_STORAGE = os.environ.get(
 
 
 # Templates
-# https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#templates
+# https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#templates
 
 TEMPLATES = [
     {
@@ -181,7 +181,7 @@ TEMPLATES = [
 
 
 # Logging
-# https://docs.djangoproject.com/en/{{ docs_version }}/topics/logging/#configuring-logging
+# https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/logging/#configuring-logging
 
 LOGGING = {
     'version': 1,
@@ -244,5 +244,5 @@ LOGGING = {
 SITE_ID = 1
 
 # Cloud storage
-CONTENTFILES_PREFIX = '{{ project_name }}'
+CONTENTFILES_PREFIX = '{{ cookiecutter.project_slug }}'
 CONTENTFILES_SSL = True

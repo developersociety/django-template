@@ -8,21 +8,21 @@ from fabric.contrib.files import exists
 # Changable settings
 env.roledefs = {
     'web': [
-        '{{ project_name }}@scorch.blanctools.com',
-        '{{ project_name }}@smaug.blanctools.com',
+        '{{ cookiecutter.project_slug }}@scorch.blanctools.com',
+        '{{ cookiecutter.project_slug }}@smaug.blanctools.com',
     ],
     'demo': [
-        '{{ project_name }}@trogdor.blanctools.com',
+        '{{ cookiecutter.project_slug }}@trogdor.blanctools.com',
     ],
     'cron': [
-        '{{ project_name }}@scorch.blanctools.com',
+        '{{ cookiecutter.project_slug }}@scorch.blanctools.com',
     ],
 }
 
-env.home = env.get('home', '/var/www/{{ project_name }}')
-env.repo = env.get('repo', '{{ project_name }}')
-env.media = env.get('media', '{{ project_name }}')
-env.database = env.get('database', '{{ project_name }}_django')
+env.home = env.get('home', '/var/www/{{ cookiecutter.project_slug }}')
+env.repo = env.get('repo', '{{ cookiecutter.project_slug }}')
+env.media = env.get('media', '{{ cookiecutter.project_slug }}')
+env.database = env.get('database', '{{ cookiecutter.project_slug }}_django')
 env.database_ssh = env.get('database_ssh', 'golestandt.blanctools.com')
 
 CRONTAB = """

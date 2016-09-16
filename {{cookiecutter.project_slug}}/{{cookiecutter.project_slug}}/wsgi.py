@@ -1,10 +1,10 @@
 """
-WSGI config for {{ project_name }} project.
+WSGI config for {{ cookiecutter.project_slug }} project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/wsgi/
+https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/howto/deployment/wsgi/
 """
 
 import sys
