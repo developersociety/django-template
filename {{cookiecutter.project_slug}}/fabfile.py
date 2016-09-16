@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import random
 
 from fabric.api import cd, env, execute, local, parallel, roles, run, runs_once, task
