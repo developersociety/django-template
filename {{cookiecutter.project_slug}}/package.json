@@ -1,17 +1,13 @@
 {
-  "name": "blanc.ltd.uk",
-  "version": "0.0.1",
+  "private": true,
   "dependencies": {
     "grunt": "~0.4.1",
     "grunt-cli": "^0.1.13"
   },
-  "description": "blanc.ltd.uk =============",
-  "main": "gruntfile.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "grunt",
+    "grunt": "grunt",
+    "production": "grunt less:development autoprefixer cssmin"
   },
   "devDependencies": {
     "load-grunt-config": "~0.17.2",

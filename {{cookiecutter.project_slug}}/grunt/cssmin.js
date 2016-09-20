@@ -6,7 +6,7 @@ module.exports = function(grunt, data) {
     build: {
       files: [{
         src: data.defaultCss,
-        dest: defaultCssMin,
+        dest: data.defaultCssMin,
       }],
     },
   };

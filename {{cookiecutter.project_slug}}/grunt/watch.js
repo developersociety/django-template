@@ -1,6 +1,5 @@
 module.exports = function(grunt, data) {
   return {
-
     // reloads browser on save
     options: {
       livereload: true,
@@ -13,6 +12,5 @@ module.exports = function(grunt, data) {
         livereload: true,
       }
     },
-
   };
 };
