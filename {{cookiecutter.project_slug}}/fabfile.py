@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import random
 
 from fabric.api import cd, env, execute, local, parallel, roles, run, runs_once, task
@@ -111,10 +109,10 @@ def update():
 
         # Install python/node packages
         run('pip install --quiet --requirement requirements/production.txt')
-        run('npm install')
+        run('npm install --no-progress')
 
         # Clean up any potential cruft
-        run('find . -name "*.pyc" -delete')
+        run('find -name "__pycache__" -prune -exec rm -rf {} \;')
 
 
 @task
@@ -133,7 +131,7 @@ def static():
     """ Update static files. """
     with cd(env.home):
         # Generate CSS
-        run('node_modules/.bin/grunt less:development autoprefixer cssmin')
+        run('npm run production')
 
         # Collect static files
         run('python manage.py collectstatic --verbosity=0 --noinput')

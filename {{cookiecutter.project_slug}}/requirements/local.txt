@@ -1,9 +1,8 @@
 -r base.txt
 
-django-debug-toolbar==1.4
-Fabric==1.11.1
-django-extensions==1.6.7
-coverage==4.0.3
-awscli==1.10.32
-ipdb==0.10.0
+django-debug-toolbar==1.5
+django-extensions==1.7.4
+awscli==1.10.65
+ipdb==0.10.1
+tox==2.3.1
 spectrum-python==0.9.8
