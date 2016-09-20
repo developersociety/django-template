@@ -1,4 +1,4 @@
-module.exports = function(grun, data){
+module.exports = function(grunt, data){
   return {
     development: {
       options: {
@@ -13,4 +13,3 @@ module.exports = function(grun, data){
     },
   };
 };
-
