@@ -13,6 +13,14 @@ Install cookiecutter_:
 
     $ pip install --user cookiecutter
 
+
+Debian/Ubuntu Linux
+
+.. code-block:: console
+
+    $ sudo apt install cookiecutter 
+
+
 Create a site using this template:
 
 .. code-block:: console
