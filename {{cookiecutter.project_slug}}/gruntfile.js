@@ -1,13 +1,12 @@
 module.exports = function(grunt) {
-    staticDir = './static';
+    var staticDir = './static';
 
-    cssDir = staticDir + '/css';
-    lessDir = staticDir + '/less';
+    var cssDir = staticDir + '/css';
+    var lessDir = staticDir + '/less';
 
-    defaultCss = cssDir + '/styles.css';
-    defaultCssMin = cssDir + '/styles.min.css';
-    defaultLess = lessDir + '/styles.less';
-    defaultCssMapName = 'styles.css.map';
+    var defaultCss = cssDir + '/styles.css';
+    var defaultCssMin = cssDir + '/styles.min.css';
+    var defaultLess = lessDir + '/styles.less';
 
     require('load-grunt-config')(grunt, {
         data: {
