@@ -6,3 +6,5 @@ awscli==1.10.65
 ipdb==0.10.1
 tox==2.3.1
 spectrum-python==0.9.8
+flake8==3.0.4
+isort==4.2.5
