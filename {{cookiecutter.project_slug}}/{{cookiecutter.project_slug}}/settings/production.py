@@ -1,4 +1,4 @@
-from .base import *  # NOQA @UnusedWildImport
+from .base import *  # noqa
 
 
 SESSION_COOKIE_SECURE = True

@@ -1,7 +1,7 @@
-from importlib import import_module
 import os
+from importlib import import_module
 
-from .base import *  # NOQA @UnusedWildImport
+from .base import *  # noqa
 
 
 DEBUG = True

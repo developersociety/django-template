@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings
 import os
 import sys
 
+import dj_database_url
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
@@ -89,7 +92,6 @@ WSGI_APPLICATION = '{{ cookiecutter.project_slug }}.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#databases
 
-import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(),
 }
