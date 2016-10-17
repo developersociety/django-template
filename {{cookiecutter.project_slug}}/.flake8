@@ -2,3 +2,5 @@
 max-line-length = 99
 exclude = apps/*/migrations
 ignore = F405
+# F405 - ignore wildcard variable warnings, as F403 (don't use wildcard imports) should show the
+# problem anyway. But if we really need wildcard imports - we don't want to noqa every variable.
