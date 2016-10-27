@@ -5,9 +5,9 @@
     "grunt-cli": "^0.1.13"
   },
   "scripts": {
-    "start": "grunt",
     "grunt": "grunt",
-    "production": "grunt less:development autoprefixer cssmin"
+    "production": "grunt",
+    "start": "grunt development"
   },
   "devDependencies": {
     "load-grunt-config": "~0.17.2",

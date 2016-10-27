@@ -7,7 +7,7 @@ module.exports = function(grunt, data) {
 
     less: {
       files: [data.lessDir + '/**/*.less',],
-      tasks: ['less:development', 'autoprefixer', 'cssmin',],
+      tasks: ['default'],
       options: {
         livereload: true,
       }
