@@ -2,6 +2,8 @@
 Blanc Django Template
 =====================
 
+It only supports python3.
+
 Installation
 ------------
 
