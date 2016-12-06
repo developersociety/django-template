@@ -69,10 +69,9 @@ def cron(remove=None):
         return '{minute} {hour} {day} {month} {day_of_week}'.format(
             minute=minute, hour=hour, day=day, month=month, day_of_week=day_of_week)
 
-    daily = every_x(hour=random.randint(0, 23))
-    hourly = every_x()
-
-    cron = CRONTAB.format(daily=daily, hourly=hourly)
+    cron = CRONTAB.format(
+        daily=every_x(hour=random.randint(0, 23)),
+    )
 
     run("echo '{}' | crontab -".format(cron))
 
