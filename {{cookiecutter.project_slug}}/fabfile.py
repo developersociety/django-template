@@ -13,7 +13,7 @@ env.roledefs = {
         '{{ cookiecutter.project_slug }}@trogdor.blanctools.com',
     ],
     'cron': [
-        '{{ cookiecutter.project_slug }}@scorch.blanctools.com',
+        '{{ cookiecutter.project_slug }}@{{ ["scorch", "smaug"]|random() }}.blanctools.com',
     ],
 }
 
