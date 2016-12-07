@@ -10,12 +10,14 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 ]
 
-# Make it easier to see a 404 page under debug
+# Make it easier to see a 404 page under debug, and enable debug toolbar
 if settings.DEBUG:
     from django.views.defaults import page_not_found
+    import debug_toolbar
 
     urlpatterns += [
         url(r'^404/$', page_not_found),
+        url(r'^__debug__/', include(debug_toolbar.urls)),
     ]
 
 # Serving static/media under debug

@@ -23,7 +23,6 @@ INTERNAL_IPS = (
 )
 
 INSTALLED_APPS += [
-    'debug_toolbar',
     'django_extensions',
 ]
 
@@ -37,12 +36,25 @@ else:
     INSTALLED_APPS.insert(0, 'flat')
 
 
+# Django debug toolbar - always show locally unless DEBUG_TOOLBAR is turned off
+# eg. DEBUG_TOOLBAR=0 ./manage.py runserver
+def show_toolbar(request):
+    if request.is_ajax():
+        return False
+
+    return os.environ.get('DEBUG_TOOLBAR', '1') == '1'
+
+INSTALLED_APPS += [
+    'debug_toolbar',
+]
+
 MIDDLEWARE_CLASSES = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ] + MIDDLEWARE_CLASSES
 
-
-COVERAGE_EXCLUDES_FOLDERS = ['/var/envs/{{ cookiecutter.project_slug }}/lib/python2']
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': '{}.show_toolbar'.format(__name__),
+}
 
 
 SECRET_KEY = '{{ cookiecutter.project_slug }}'
