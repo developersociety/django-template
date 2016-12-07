@@ -1,5 +1,5 @@
 -r base.txt
 
-django-extensions==1.7.4
-flake8==3.0.4
+django-extensions==1.7.5
+flake8==3.2.1
 isort==4.2.5
