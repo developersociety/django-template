@@ -44,6 +44,7 @@ def show_toolbar(request):
 
     return os.environ.get('DEBUG_TOOLBAR', '1') == '1'
 
+
 INSTALLED_APPS += [
     'debug_toolbar',
 ]
