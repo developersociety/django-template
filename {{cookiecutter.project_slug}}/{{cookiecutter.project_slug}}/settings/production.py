@@ -1,9 +1,6 @@
 from .base import *  # noqa
 
 
-SESSION_COOKIE_SECURE = True
-
-
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
 
 DEBUG = False
@@ -35,3 +32,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
+# SSL required for session/CSRF cookies
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True

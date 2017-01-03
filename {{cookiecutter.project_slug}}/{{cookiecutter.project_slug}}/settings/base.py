@@ -237,11 +237,14 @@ LOGGING = {
 }
 
 
-# Any other application config goes below here
-
 # Sites framework
 SITE_ID = 1
+
 
 # Cloud storage
 CONTENTFILES_PREFIX = '{{ cookiecutter.project_slug }}'
 CONTENTFILES_SSL = True
+
+
+# Improved cookie security
+CSRF_COOKIE_HTTPONLY = True
