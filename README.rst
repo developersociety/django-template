@@ -22,8 +22,8 @@ Debian/Ubuntu Linux
 
     $ sudo apt install cookiecutter 
 
-Clone repository
-----------------
+Usage
+-----
 
 Create a site using this template:
 
