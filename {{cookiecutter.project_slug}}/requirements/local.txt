@@ -2,7 +2,7 @@
 
 django-debug-toolbar==1.6
 django-extensions==1.7.5
-awscli==1.11.26
+awscli==1.11.38
 ipdb==0.10.1
 tox==2.5.0
 spectrum-python==0.9.8
