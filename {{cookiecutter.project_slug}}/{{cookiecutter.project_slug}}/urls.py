@@ -1,3 +1,4 @@
+from django.apps import apps
 from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
@@ -10,13 +11,19 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 ]
 
-# Make it easier to see a 404 page under debug, and enable debug toolbar
+# Make it easier to see a 404 page under debug
 if settings.DEBUG:
     from django.views.defaults import page_not_found
-    import debug_toolbar
 
     urlpatterns += [
         url(r'^404/$', page_not_found),
+    ]
+
+# Only enable debug toolbar if it's an installed app
+if apps.is_installed('debug_toolbar'):
+    import debug_toolbar
+
+    urlpatterns += [
         url(r'^__debug__/', include(debug_toolbar.urls)),
     ]
 
