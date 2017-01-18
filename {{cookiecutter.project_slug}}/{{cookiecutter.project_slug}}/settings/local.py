@@ -58,6 +58,10 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 
+# Use vanilla StaticFilesStorage to allow tests to run outside of tox easily
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+
 SECRET_KEY = '{{ cookiecutter.project_slug }}'
 
 
