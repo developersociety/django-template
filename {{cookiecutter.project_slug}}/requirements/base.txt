@@ -3,12 +3,12 @@ pytz==2016.10
 pylibmc==1.5.1
 psycopg2==2.6.2
 Pillow==3.4.2
-dj-database-url==0.4.1
+dj-database-url==0.4.2
 raven==5.32.0
 
 # Storage
-django-storages==1.5.1
-boto==2.43.0
+django-storages==1.5.2
+boto==2.45.0
 blanc-contentfiles==0.2.3
 
 # Admin theme
