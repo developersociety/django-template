@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Object not found!</title>
     <style type="text/css">
-        body { color: #000000; background-color: #ffffff; }
-        p { margin-left: 3em; }
-        .server-info { font-size: smaller; font-style: italic; }
+      body { color: #000000; background-color: #ffffff; }
+      p { margin-left: 3em; }
+      .server-info { font-size: smaller; font-style: italic; }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Object not found!</h1>
 
     <p>The requested URL was not found on this server.<p>
@@ -18,10 +18,10 @@
     <h2>Error 404</h2>
 
     <p>
-        <span class="server-info">
+      <span class="server-info">
         {{ request.get_host }}<br />
         {% now "r" %}
-        </span>
+      </span>
     </p>
-</body>
+  </body>
 </html>

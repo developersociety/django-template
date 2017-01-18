@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Server error!</title>
     <style type="text/css">
-        body { color: #000000; background-color: #ffffff; }
-        p { margin-left: 3em; }
-        .server-info { font-size: smaller; font-style: italic; }
+      body { color: #000000; background-color: #ffffff; }
+      p { margin-left: 3em; }
+      .server-info { font-size: smaller; font-style: italic; }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Server error!</h1>
 
     <p>The server encountered an internal error and was unable to complete your request.</p>
@@ -16,22 +16,22 @@
     <h2>Error 500</h2>
 
     <p>
-        <span class="server-info">
+      <span class="server-info">
         {{ request.get_host }}<br />
         {% now "r" %}
-        </span>
+      </span>
     </p>
 
     {% if request.sentry.id %}
-        {% load raven %}
-        <script src="https://cdn.ravenjs.com/3.7.0/raven.min.js"></script>
-        <script>
-            /* global Raven */
-            Raven.showReportDialog({
-                eventId: '{{ request.sentry.id }}',
-                dsn: '{% sentry_public_dsn %}'
-            });
-        </script>
+      {% load raven %}
+      <script src="https://cdn.ravenjs.com/3.9.1/raven.min.js"></script>
+      <script>
+        /* global Raven */
+        Raven.showReportDialog({
+          eventId: '{{ request.sentry.id }}',
+          dsn: '{% sentry_public_dsn %}'
+        });
+      </script>
     {% endif %}
-</body>
+  </body>
 </html>
