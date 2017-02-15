@@ -168,6 +168,7 @@ def deploy(force_reload=None):
     execute(migrate)
     execute(static)
     execute(reload_uwsgi, force_reload=force_reload)
+    execute(cron)
 
 
 @task
