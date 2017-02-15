@@ -2,9 +2,11 @@ Django==1.8.17
 pytz==2016.10
 pylibmc==1.5.1
 psycopg2==2.6.2
-Pillow==3.4.2
+Pillow==4.0.0
+olefile==0.44
 dj-database-url==0.4.2
 raven==5.32.0
+contextlib2==0.5.4
 
 # Storage
 django-storages==1.5.2
