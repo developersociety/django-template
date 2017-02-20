@@ -1,5 +1,6 @@
 [run]
-omit =../*migrations*
+branch = True
+omit = *migrations*
 
 [xml]
-output=reports/coverage.xml
+output = reports/coverage.xml

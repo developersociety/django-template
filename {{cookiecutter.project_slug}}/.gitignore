@@ -8,6 +8,8 @@
 # Testing
 .coverage
 .tox
+htmlcov
+reports
 
 # Grunt
 /node_modules

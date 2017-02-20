@@ -8,3 +8,5 @@ tox==2.6.0
 spectrum-python==0.9.8
 flake8==3.3.0
 isort==4.2.5
+unittest-xml-reporting==2.1.0
+coverage==4.3.4

@@ -3,3 +3,5 @@
 django-extensions==1.7.6
 flake8==3.3.0
 isort==4.2.5
+unittest-xml-reporting==2.1.0
+coverage==4.3.4
