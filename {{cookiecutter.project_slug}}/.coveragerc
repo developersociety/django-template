@@ -1,6 +1,6 @@
 [run]
 branch = True
-omit = *migrations*
+omit = *migrations*, *tests/*, */tests.py
 
 [xml]
 output = reports/coverage.xml
