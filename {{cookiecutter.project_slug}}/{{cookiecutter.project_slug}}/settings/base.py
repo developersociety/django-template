@@ -61,11 +61,30 @@ DEFAULT_APPS = [
 
 
 THIRD_PARTY_APPS = [
+{%- if cookiecutter.glitter == 'y' %}
+    'django_mptt_admin',
+    'glitter',
+    'glitter.assets',
+    'glitter.blocks.banner',
+    'glitter.blocks.form',
+    'glitter.blocks.html',
+    'glitter.blocks.image',
+    'glitter.blocks.redactor',
+    'glitter.blocks.video',
+    'glitter.pages',
+    'mptt',
+{%- endif %}
     'raven.contrib.django.raven_compat',
+{%- if cookiecutter.glitter == 'y' %}
+    'sorl.thumbnail',
+{%- endif %}
 ]
 
 
 PROJECT_APPS = [
+{%- if cookiecutter.glitter == 'y' %}
+    'pages',
+{%- endif %}
 ]
 
 
@@ -82,6 +101,10 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sites.middleware.CurrentSiteMiddleware',
+{%- if cookiecutter.glitter == 'y' %}
+    'glitter.pages.middleware.PageFallbackMiddleware',
+    'glitter.middleware.ExceptionMiddleware',
+{%- endif %}
 ]
 
 ROOT_URLCONF = '{{ cookiecutter.project_slug }}.urls'
@@ -248,3 +271,17 @@ CONTENTFILES_SSL = True
 
 # Improved cookie security
 CSRF_COOKIE_HTTPONLY = True
+{%- if cookiecutter.glitter == 'y' %}
+
+# Thumbnail generation
+THUMBNAIL_PREFIX = 'thumbs/'
+THUMBNAIL_PRESERVE_FORMAT = True
+THUMBNAIL_QUALITY = 100
+
+# Glitter
+GLITTER_DEFAULT_BLOCKS = [
+    ('glitter_redactor.Redactor', 'Text'),
+    ('glitter_image.ImageBlock', 'Image'),
+    ('glitter_html.HTML', 'HTML'),
+]
+{%- endif %}

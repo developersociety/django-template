@@ -15,3 +15,13 @@ blanc-contentfiles==0.2.3
 
 # Admin theme
 blanc-admin-theme==1.0.2
+{%- if cookiecutter.glitter == 'y' %}
+
+# Thumbnailing
+sorl-thumbnail==12.3
+
+# Glitter
+django-glitter==0.1.8
+django-mptt==0.8.7
+django-mptt-admin==0.4.4
+{%- endif %}

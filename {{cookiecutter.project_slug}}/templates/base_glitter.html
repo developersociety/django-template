@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+{% load glitter %}
+{% load staticfiles %}
+
+<html lang="en">
+  <head>
+    {% glitter_head %}
+
+    <title>{% block title %}{{ request.site.name }}{% endblock %}</title>
+    <link href="{% static 'css/styles.min.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    {% glitter_startbody %}
+
+    {% block main %}{% endblock %}
+  </body>
+</html>

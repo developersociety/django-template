@@ -6,9 +6,16 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.http import HttpResponseServerError
 from django.template import Context, TemplateDoesNotExist, loader
+{%- if cookiecutter.glitter == 'y' %}
+
+from glitter import block_admin
+{%- endif %}
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+{%- if cookiecutter.glitter == 'y' %}
+    url(r'^blockadmin/', include(block_admin.site.urls)),
+{%- endif %}
 ]
 
 # Make it easier to see a 404 page under debug
