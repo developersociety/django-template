@@ -24,4 +24,5 @@ sorl-thumbnail==12.3
 django-glitter==0.1.8
 django-mptt==0.8.7
 django-mptt-admin==0.4.4
+six==1.10.0
 {%- endif %}
