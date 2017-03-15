@@ -65,12 +65,9 @@ THIRD_PARTY_APPS = [
     'django_mptt_admin',
     'glitter',
     'glitter.assets',
-    'glitter.blocks.banner',
-    'glitter.blocks.form',
     'glitter.blocks.html',
     'glitter.blocks.image',
     'glitter.blocks.redactor',
-    'glitter.blocks.video',
     'glitter.pages',
     'mptt',
 {%- endif %}
