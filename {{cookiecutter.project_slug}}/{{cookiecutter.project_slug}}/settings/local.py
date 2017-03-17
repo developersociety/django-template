@@ -36,26 +36,16 @@ else:
     INSTALLED_APPS.insert(0, 'flat')
 
 
-# Django debug toolbar - always show locally unless DEBUG_TOOLBAR is turned off
+# Django debug toolbar - show locally unless DEBUG_TOOLBAR is turned off with environment vars
 # eg. DEBUG_TOOLBAR=0 ./manage.py runserver
-def show_toolbar(request):
-    if request.is_ajax():
-        return False
+if os.environ.get('DEBUG_TOOLBAR', '1') == '1':
+    INSTALLED_APPS += [
+        'debug_toolbar',
+    ]
 
-    return os.environ.get('DEBUG_TOOLBAR', '1') == '1'
-
-
-INSTALLED_APPS += [
-    'debug_toolbar',
-]
-
-MIDDLEWARE_CLASSES = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-] + MIDDLEWARE_CLASSES
-
-DEBUG_TOOLBAR_CONFIG = {
-    'SHOW_TOOLBAR_CALLBACK': '{}.show_toolbar'.format(__name__),
-}
+    MIDDLEWARE_CLASSES = [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ] + MIDDLEWARE_CLASSES
 
 
 # Use vanilla StaticFilesStorage to allow tests to run outside of tox easily
