@@ -36,18 +36,6 @@ else:
     INSTALLED_APPS.insert(0, 'flat')
 
 
-# Django debug toolbar - show locally unless DEBUG_TOOLBAR is turned off with environment vars
-# eg. DEBUG_TOOLBAR=0 ./manage.py runserver
-if os.environ.get('DEBUG_TOOLBAR', '1') == '1':
-    INSTALLED_APPS += [
-        'debug_toolbar',
-    ]
-
-    MIDDLEWARE_CLASSES = [
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
-    ] + MIDDLEWARE_CLASSES
-
-
 # Use vanilla StaticFilesStorage to allow tests to run outside of tox easily
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
@@ -56,6 +44,18 @@ SECRET_KEY = '{{ cookiecutter.project_slug }}'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# Django debug toolbar - show locally unless DISABLE_TOOLBAR is enabled with environment vars
+# eg. DISABLE_TOOLBAR=0 ./manage.py runserver
+if not os.environ.get('DISABLE_TOOLBAR'):
+    INSTALLED_APPS += [
+        'debug_toolbar',
+    ]
+
+    MIDDLEWARE_CLASSES = [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ] + MIDDLEWARE_CLASSES
 
 
 # Only enable spectrum logging if requested, as the spectrum app needs to be loaded
