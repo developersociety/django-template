@@ -47,7 +47,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Django debug toolbar - show locally unless DISABLE_TOOLBAR is enabled with environment vars
-# eg. DISABLE_TOOLBAR=0 ./manage.py runserver
+# eg. DISABLE_TOOLBAR=1 ./manage.py runserver
 if not os.environ.get('DISABLE_TOOLBAR'):
     INSTALLED_APPS += [
         'debug_toolbar',
