@@ -1,3 +1,5 @@
+import raven
+
 from .base import *  # noqa
 
 
@@ -19,3 +21,9 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 # SSL required for session/CSRF cookies
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+
+
+# Add more raven data to help diagnose bugs
+RAVEN_CONFIG = {
+    'release': raven.fetch_git_sha(BASE_DIR),
+}
