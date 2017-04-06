@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.http import HttpResponseServerError
-from django.template import Context, TemplateDoesNotExist, loader
+from django.template import TemplateDoesNotExist, loader
 {%- if cookiecutter.glitter == 'y' %}
 
 from glitter.blockadmin import blocks
@@ -48,6 +48,6 @@ def handler500(request, template_name='500.html'):
         template = loader.get_template(template_name)
     except TemplateDoesNotExist:
         return HttpResponseServerError('<h1>Server Error (500)</h1>', content_type='text/html')
-    return HttpResponseServerError(template.render(Context({
+    return HttpResponseServerError(template.render({
         'request': request,
-    })))
+    }))
