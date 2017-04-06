@@ -54,9 +54,9 @@ if not os.environ.get('DISABLE_TOOLBAR'):
         'debug_toolbar',
     ]
 
-    MIDDLEWARE_CLASSES = [
+    MIDDLEWARE = [
         'debug_toolbar.middleware.DebugToolbarMiddleware',
-    ] + MIDDLEWARE_CLASSES
+    ] + MIDDLEWARE
 
 # Only enable spectrum logging if requested, as the spectrum app needs to be loaded
 if os.environ.get('SPECTRUM'):
