@@ -1,15 +1,16 @@
-from .base import *  # NOQA @UnusedWildImport
+import dj_database_url
 
+from .base import *  # noqa
 
+# Tests are performed on a test_ database, however to avoid any connections/queries going to
+# another database we also set this as the 'default' as well
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DJANGO_DATABASE_NAME', '{{ cookiecutter.project_slug }}_django'),
-        'USER': '',
-        'PASSWORD': '',
-        'PORT': '',
-    },
+    'default': dj_database_url.config(default='postgres:///test_{{ cookiecutter.project_slug }}_django'),
 }
+DATABASES['default']['TEST'] = {
+    'NAME': DATABASES['default']['NAME'],
+}
+
 
 SECRET_KEY = '{{ cookiecutter.project_slug }}'
 
