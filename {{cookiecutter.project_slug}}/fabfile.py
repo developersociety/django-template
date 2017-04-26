@@ -6,14 +6,14 @@ from fabric.contrib.files import exists
 # Changable settings
 env.roledefs = {
     'web': [
-        '{{ cookiecutter.project_slug }}@scorch.blanctools.com',
-        '{{ cookiecutter.project_slug }}@smaug.blanctools.com',
+        '{{ cookiecutter.project_slug }}@scorch.devsoc.org',
+        '{{ cookiecutter.project_slug }}@smaug.devsoc.org',
     ],
     'demo': [
-        '{{ cookiecutter.project_slug }}@trogdor.blanctools.com',
+        '{{ cookiecutter.project_slug }}@trogdor.devsoc.org',
     ],
     'cron': [
-        '{{ cookiecutter.project_slug }}@{{ ["scorch", "smaug"]|random() }}.blanctools.com',
+        '{{ cookiecutter.project_slug }}@{{ ["scorch", "smaug"]|random() }}.devsoc.org',
     ],
 }
 
@@ -21,7 +21,7 @@ env.home = env.get('home', '/var/www/{{ cookiecutter.project_slug }}')
 env.repo = env.get('repo', '{{ cookiecutter.project_slug }}')
 env.media = env.get('media', '{{ cookiecutter.project_slug }}')
 env.database = env.get('database', '{{ cookiecutter.project_slug }}_django')
-env.database_ssh = env.get('database_ssh', 'golestandt.blanctools.com')
+env.database_ssh = env.get('database_ssh', 'golestandt.devsoc.org')
 
 CRONTAB = """
 MAILTO=""
@@ -31,14 +31,14 @@ MAILTO=""
 
 # Avoid tweaking these
 env.use_ssh_config = True
-GIT_REMOTE = 'git@github.com:blancltd/{env.repo}.git'
+GIT_REMOTE = 'git@github.com:developersociety/{env.repo}.git'
 
 
 @task
 def demo():
     env.roledefs['web'] = env.roledefs['demo']
     env.roledefs['cron'] = env.roledefs['demo']
-    env.database_ssh = 'trogdor.blanctools.com'
+    env.database_ssh = 'trogdor.devsoc.org'
 
 
 @task

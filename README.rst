@@ -1,6 +1,6 @@
-=====================
-Blanc Django Template
-=====================
+=====================================
+The Developer Society Django Template
+=====================================
 
 It only supports python3.
 
@@ -20,7 +20,7 @@ Debian/Ubuntu Linux
 
 .. code-block:: console
 
-    $ sudo apt install cookiecutter 
+    $ sudo apt install cookiecutter
 
 Usage
 -----
@@ -29,4 +29,4 @@ Create a site using this template:
 
 .. code-block:: console
 
-    $ cookiecutter gh:blancltd/django-template
+    $ cookiecutter gh:developersociety/django-template

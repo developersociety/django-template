@@ -26,11 +26,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # Email
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#email
 
-ADMINS = (('Blanc Ltd', 'studio@blanc.ltd.uk'), )
+ADMINS = (('Developer Society', 'studio@dev.ngo'), )
 MANAGERS = ADMINS
 
-SERVER_EMAIL = '{{ cookiecutter.project_slug }}@blanctools.com'
-DEFAULT_FROM_EMAIL = '{{ cookiecutter.project_slug }}@blanctools.com'
+SERVER_EMAIL = '{{ cookiecutter.project_slug }}@dev.ngo'
+DEFAULT_FROM_EMAIL = '{{ cookiecutter.project_slug }}@dev.ngo'
 EMAIL_SUBJECT_PREFIX = '[{{ cookiecutter.project_slug }}] '
 
 PROJECT_APPS_ROOT = os.path.join(BASE_DIR, 'apps')
