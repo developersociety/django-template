@@ -8,4 +8,5 @@ https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/howto/deploy
 """
 
 from django.core.wsgi import get_wsgi_application
+
 application = get_wsgi_application()

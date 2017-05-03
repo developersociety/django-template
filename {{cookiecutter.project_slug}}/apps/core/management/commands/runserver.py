@@ -8,6 +8,7 @@ from django.contrib.staticfiles.management.commands.runserver import \
 
 
 class Command(StaticfilesRunserverCommand):
+
     def add_arguments(self, parser):
         super().add_arguments(parser)
 
@@ -42,9 +43,7 @@ class Command(StaticfilesRunserverCommand):
             stderr=self.stderr,
         )
 
-        self.stdout.write(
-            '>>> Grunt process on pid {0}'.format(self.grunt_process.pid)
-        )
+        self.stdout.write('>>> Grunt process on pid {0}'.format(self.grunt_process.pid))
 
         def kill_grunt_process(pid):
             self.stdout.write('>>> Closing grunt process')
