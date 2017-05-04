@@ -5,29 +5,12 @@
 Development setup
 =================
 
-Install npm required packages:
+Presuming you're using the Virtualenv Wrapper and Dev Tools:
 
 .. code:: console
 
-    $ npm install
-
-Install the requirements:
-
-.. code:: console
-
-    $ pip install -r requirements/local.txt
-
-Create database:
-
-.. code:: console
-
-    $ createdb {{ cookiecutter.project_slug }}_django
-
-Run migrations:
-
-.. code:: console
-
-    $ python manage.py migrate
+    $ blanc-clone {{ cookiecutter.project_slug }}
+    $ make reset
 
 You can now run the development server:
 
