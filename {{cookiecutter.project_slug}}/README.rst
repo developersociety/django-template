@@ -5,11 +5,14 @@
 Development setup
 =================
 
-Presuming you're using the Virtualenv Wrapper and Dev Tools:
+It's recommended you use `virtualenvwrapper <https://virtualenvwrapper.readthedocs.io/en/latest/>`_
+and `The Developer Society Dev Tools <https://github.com/developersociety/tools>`_.
+
+Presuming you are using those tools, getting started on this project is pretty straightforward:
 
 .. code:: console
 
-    $ blanc-clone {{ cookiecutter.project_slug }}
+    $ dev-clone {{ cookiecutter.project_slug }}
     $ make reset
 
 You can now run the development server:

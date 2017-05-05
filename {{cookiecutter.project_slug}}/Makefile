@@ -10,9 +10,9 @@ SHELL=/bin/bash
 
 
 
-# ---------------------------------
-# Common targets for Blanc projects
-# ---------------------------------
+# -------------------------------
+# Common targets for Dev projects
+# -------------------------------
 #
 # Edit these targets so they work as expected on the current project.
 #
