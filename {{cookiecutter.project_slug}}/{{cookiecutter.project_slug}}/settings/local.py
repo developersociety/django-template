@@ -3,10 +3,8 @@ from importlib import import_module
 
 from .base import *  # noqa
 
-
 DEBUG = True
 TEMPLATES[0]['OPTIONS']['debug'] = True
-
 
 DATABASES = {
     'default': {
@@ -18,14 +16,11 @@ DATABASES = {
     },
 }
 
-INTERNAL_IPS = (
-    '127.0.0.1',
-)
+INTERNAL_IPS = ('127.0.0.1', )
 
 INSTALLED_APPS += [
     'django_extensions',
 ]
-
 
 # Add flat theme if module is installed.
 try:
@@ -35,16 +30,12 @@ except ImportError:
 else:
     INSTALLED_APPS.insert(0, 'flat')
 
-
 # Use vanilla StaticFilesStorage to allow tests to run outside of tox easily
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
-
 SECRET_KEY = '{{ cookiecutter.project_slug }}'
 
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 
 # Django debug toolbar - show locally unless DISABLE_TOOLBAR is enabled with environment vars
 # eg. DISABLE_TOOLBAR=1 ./manage.py runserver
@@ -56,7 +47,6 @@ if not os.environ.get('DISABLE_TOOLBAR'):
     MIDDLEWARE_CLASSES = [
         'debug_toolbar.middleware.DebugToolbarMiddleware',
     ] + MIDDLEWARE_CLASSES
-
 
 # Only enable spectrum logging if requested, as the spectrum app needs to be loaded
 if os.environ.get('SPECTRUM'):

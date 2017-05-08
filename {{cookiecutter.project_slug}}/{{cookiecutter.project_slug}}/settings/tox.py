@@ -11,7 +11,6 @@ DATABASES['default']['TEST'] = {
     'NAME': DATABASES['default']['NAME'],
 }
 
-
 SECRET_KEY = '{{ cookiecutter.project_slug }}'
 
 STATIC_ROOT = os.environ['STATIC_ROOT']
@@ -19,7 +18,6 @@ STATIC_ROOT = os.environ['STATIC_ROOT']
 INSTALLED_APPS += [
     'django_extensions',
 ]
-
 
 # Test Runner
 # - Use XMLTestRunner for tox to output per test XML files

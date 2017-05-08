@@ -13,43 +13,33 @@ import sys
 
 import dj_database_url
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-
 
 # Production / development switches
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/howto/deployment/checklist/
 
 DEBUG = False
 
-
 SECRET_KEY = os.environ.get('SECRET_KEY')
-
 
 # Email
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#email
 
-ADMINS = (
-    ('Blanc Ltd', 'studio@blanc.ltd.uk'),
-)
+ADMINS = (('Blanc Ltd', 'studio@blanc.ltd.uk'), )
 MANAGERS = ADMINS
-
 
 SERVER_EMAIL = '{{ cookiecutter.project_slug }}@blanctools.com'
 DEFAULT_FROM_EMAIL = '{{ cookiecutter.project_slug }}@blanctools.com'
 EMAIL_SUBJECT_PREFIX = '[{{ cookiecutter.project_slug }}] '
 
-
 PROJECT_APPS_ROOT = os.path.join(BASE_DIR, 'apps')
 sys.path.append(PROJECT_APPS_ROOT)
-
 
 DEFAULT_APPS = [
     # These apps should come first to load correctly.
     'blanc_admin_theme',
     'core',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,7 +48,6 @@ DEFAULT_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 ]
-
 
 THIRD_PARTY_APPS = [
 {%- if cookiecutter.glitter == 'y' %}
@@ -77,16 +66,15 @@ THIRD_PARTY_APPS = [
 {%- endif %}
 ]
 
-
-PROJECT_APPS = [
 {%- if cookiecutter.glitter == 'y' %}
+PROJECT_APPS = [
     'pages',
-{%- endif %}
 ]
-
+{%- else %}
+PROJECT_APPS = []
+{%- endif %}
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
-
 
 MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -108,14 +96,12 @@ ROOT_URLCONF = '{{ cookiecutter.project_slug }}.urls'
 
 WSGI_APPLICATION = '{{ cookiecutter.project_slug }}.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#databases
 
 DATABASES = {
     'default': dj_database_url.config(),
 }
-
 
 # Caches
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/cache/
@@ -132,7 +118,6 @@ else:
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/i18n/
 
@@ -146,7 +131,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/howto/static-files/
 
@@ -156,10 +140,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'htdocs/static')
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
 # File uploads
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#file-uploads
@@ -171,7 +152,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'htdocs/media')
 DEFAULT_FILE_STORAGE = os.environ.get(
     'DEFAULT_FILE_STORAGE', 'django.core.files.storage.FileSystemStorage'
 )
-
 
 # Templates
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#templates
@@ -197,7 +177,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 # Logging
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/logging/#configuring-logging
@@ -253,18 +232,15 @@ LOGGING = {
             'handlers': ['console'],
             'propagate': False,
         },
-    }
+    },
 }
-
 
 # Sites framework
 SITE_ID = 1
 
-
 # Cloud storage
 CONTENTFILES_PREFIX = '{{ cookiecutter.project_slug }}'
 CONTENTFILES_SSL = True
-
 
 # Improved cookie security
 CSRF_COOKIE_HTTPONLY = True

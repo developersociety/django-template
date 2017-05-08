@@ -5,29 +5,15 @@
 Development setup
 =================
 
-Install npm required packages:
+It's recommended you use `virtualenvwrapper <https://virtualenvwrapper.readthedocs.io/en/latest/>`_
+and `The Developer Society Dev Tools <https://github.com/developersociety/tools>`_.
+
+Presuming you are using those tools, getting started on this project is pretty straightforward:
 
 .. code:: console
 
-    $ npm install
-
-Install the requirements:
-
-.. code:: console
-
-    $ pip install -r requirements/local.txt
-
-Create database:
-
-.. code:: console
-
-    $ createdb {{ cookiecutter.project_slug }}_django
-
-Run migrations:
-
-.. code:: console
-
-    $ python manage.py migrate
+    $ dev-clone {{ cookiecutter.project_slug }}
+    $ make reset
 
 You can now run the development server:
 
