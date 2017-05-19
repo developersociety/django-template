@@ -127,10 +127,7 @@ coverage-clean:
 # Django
 django-check: django-check-missing-migrations django-check-validate-templates
 
-django-drop-test-database:
-	./manage.py drop_test_database --noinput
-
-django-test: django-collectstatic django-drop-test-database
+django-test: django-collectstatic
 	coverage run --include="{{ cookiecutter.project_slug }}/*,apps/*" ./manage.py test --noinput . apps
 
 django-check-missing-migrations:
