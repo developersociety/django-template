@@ -29,13 +29,13 @@ reset: ## Reset your local environment. Useful after switching branches, etc.
 reset: venv-check venv-wipe install-local fab-get-data django-migrate django-dev-createsuperuser
 
 check: ## Check for any obvious errors in the project's setup.
-check: django-check npm-check
+check: pipdeptree-check npm-check django-check
 
 format: ## Run this project's code formatters.
 format: yapf-format isort-format
 
 lint: ## Lint the project.
-lint: yapf-lint isort-lint flake8-lint jshint-lint
+lint: npm-install yapf-lint isort-lint flake8-lint jshint-lint
 
 test: ## Run unit and integration tests.
 test: django-test
@@ -176,6 +176,11 @@ yapf-lint:
 
 yapf-format:
 	yapf -r -i -p --exclude="*/migrations/*.py" --style .style.yapf {{ cookiecutter.project_slug }} apps
+
+
+#pipdeptree
+pipdeptree-check:
+	pipdeptree --warn fail > /dev/null
 
 
 # Help
