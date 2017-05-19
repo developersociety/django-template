@@ -131,7 +131,7 @@ django-test: django-collectstatic
 	coverage run --include="{{ cookiecutter.project_slug }}/*,apps/*" ./manage.py test --noinput . apps
 
 django-check-missing-migrations:
-	! ./manage.py makemigrations --dry-run --exit
+	./manage.py makemigrations --settings={{ cookiecutter.project_slug }}.settings.migrations --check --dry-run
 
 django-collectstatic:
 	./manage.py collectstatic --verbosity 0 --noinput
