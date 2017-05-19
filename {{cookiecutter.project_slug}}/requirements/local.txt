@@ -1,13 +1,7 @@
--r base.txt
+-r testing.txt
 
 django-debug-toolbar==1.6
-django-extensions==1.7.6
 awscli==1.11.48
 ipdb==0.10.2
 tox==2.6.0
 spectrum-python==0.9.8
-flake8==3.3.0
-isort==4.2.5
-unittest-xml-reporting==2.1.0
-coverage==4.3.4
-yapf==0.16.1
