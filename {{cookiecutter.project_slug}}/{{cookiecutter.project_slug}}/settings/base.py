@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # Email
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#email
 
-ADMINS = (('Developer Society', 'studio@dev.ngo'), )
+ADMINS = (('Developer Society', 'studio@dev.ngo'),)
 MANAGERS = ADMINS
 
 SERVER_EMAIL = '{{ cookiecutter.project_slug }}@devsoc.org'
@@ -140,7 +140,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'htdocs/static')
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # File uploads
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#file-uploads
