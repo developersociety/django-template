@@ -21,6 +21,14 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
+# Improve password security to a reasonable bare minimum
+AUTH_PASSWORD_VALIDATORS = [
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+]
+
 # Add more raven data to help diagnose bugs
 RAVEN_CONFIG = {
     'release': raven.fetch_git_sha(BASE_DIR),
