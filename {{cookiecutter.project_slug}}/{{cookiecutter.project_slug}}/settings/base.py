@@ -194,6 +194,12 @@ LOGGING = {
             '()': 'django.utils.log.RequireDebugTrue',
         },
     },
+    'formatters': {
+        'django.server': {
+            '()': 'django.utils.log.ServerFormatter',
+            'format': '[%(server_time)s] %(message)s',
+        }
+    },
     'root': {
         'level': 'WARNING',
         'handlers': ['sentry'],
@@ -202,6 +208,11 @@ LOGGING = {
         'console': {
             'level': 'INFO',
             'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        },
+        'django.server': {
+            'level': 'INFO',
+            'formatter': 'django.server',
             'class': 'logging.StreamHandler',
         },
         'null': {
@@ -215,23 +226,29 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
+            'level': 'INFO',
         },
         'django.db.backends': {
-            'level': 'ERROR',
             'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django.server': {
+            'handlers': ['django.server'],
+            'level': 'INFO',
             'propagate': False,
         },
         'py.warnings': {
             'handlers': ['console'],
         },
         'raven': {
-            'level': 'DEBUG',
             'handlers': ['console'],
+            'level': 'DEBUG',
             'propagate': False,
         },
         'sentry.errors': {
-            'level': 'DEBUG',
             'handlers': ['console'],
+            'level': 'DEBUG',
             'propagate': False,
         },
     },
