@@ -3,8 +3,9 @@ import os
 import signal
 import subprocess
 
-from django.contrib.staticfiles.management.commands.runserver import \
+from django.contrib.staticfiles.management.commands.runserver import (
     Command as StaticfilesRunserverCommand
+)
 
 
 class Command(StaticfilesRunserverCommand):

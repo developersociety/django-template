@@ -5,12 +5,12 @@ psycopg2==2.7.1
 Pillow==4.1.1
 olefile==0.44
 dj-database-url==0.4.1
-raven==6.0.0
+raven==6.1.0
 contextlib2==0.5.5
 
 # Storage
 django-storages==1.5.2
-boto==2.46.1
+boto==2.47.0
 blanc-contentfiles==0.2.3
 
 # Admin theme
