@@ -63,10 +63,10 @@ THIRD_PARTY_APPS = [
     'raven.contrib.django.raven_compat',
 {%- if cookiecutter.glitter == 'y' %}
     'sorl.thumbnail',
+    'taggit',
 {%- endif %}
 ]
-
-{%- if cookiecutter.glitter == 'y' %}
+{% if cookiecutter.glitter == 'y' %}
 PROJECT_APPS = [
     'pages',
 ]
