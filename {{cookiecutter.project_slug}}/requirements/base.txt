@@ -23,7 +23,7 @@ sorl-thumbnail==12.3
 # Glitter
 django-glitter==0.2
 django-mptt==0.8.7
-django-mptt-admin==0.4.5
+django-mptt-admin==0.4.6
 django-taggit==0.22.1
 python-dateutil==2.6.0
 six==1.10.0
