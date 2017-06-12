@@ -8,13 +8,13 @@ from django.http import HttpResponseServerError
 from django.template import Context, TemplateDoesNotExist, loader
 {%- if cookiecutter.glitter == 'y' %}
 
-from glitter import block_admin
+from glitter.blockadmin import blocks
 {%- endif %}
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 {%- if cookiecutter.glitter == 'y' %}
-    url(r'^blockadmin/', include(block_admin.site.urls)),
+    url(r'^blockadmin/', include(blocks.site.urls)),
 {%- endif %}
 ]
 
