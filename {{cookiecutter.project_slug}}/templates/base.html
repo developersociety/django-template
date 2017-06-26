@@ -5,7 +5,11 @@
 <html lang="en">
   <head>
     <title>{% block title %}{{ request.site.name }}{% endblock %}</title>
-    <link href="{% static 'css/styles.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+    {% if BROWSERSYNC_URL %}
+      <script src="{{ BROWSERSYNC_URL }}" async></script>
+    {% endif %}
   </head>
   <body>
   </body>

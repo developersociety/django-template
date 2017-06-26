@@ -1,8 +1,0 @@
-default:
-  - less
-  - autoprefixer
-  - cssmin
-
-development:
-  - default
-  - watch

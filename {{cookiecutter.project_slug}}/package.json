@@ -1,21 +1,24 @@
 {
   "private": true,
   "dependencies": {
-    "grunt": "~0.4.1",
-    "grunt-cli": "^0.1.13"
+    "autoprefixer": "^7.1.1",
+    "browser-sync": "^2.18.12",
+    "cssnano": "^3.10.0",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^7.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-util": "^3.0.8",
+    "jshint": "2.9.4",
+    "normalize-scss": "^7.0.0",
+    "postcss-import": "^10.0.0",
+    "pump": "^1.0.2"
   },
   "scripts": {
-    "grunt": "grunt",
-    "production": "grunt",
-    "start": "grunt development",
-    "jshint": "jshint"
+    "gulp": "gulp",
+    "jshint": "jshint",
+    "start": "gulp serve",
+    "production": "gulp --production"
   },
-  "devDependencies": {
-    "load-grunt-config": "~0.17.2",
-    "grunt-contrib-less": "~1.0.1",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-autoprefixer": "~3.0.3",
-    "grunt-contrib-cssmin": "~0.12.3",
-    "jshint": "2.9.4"
-  }
+  "devDependencies": {}
 }

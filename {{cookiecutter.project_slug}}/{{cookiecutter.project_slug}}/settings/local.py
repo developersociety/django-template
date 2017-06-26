@@ -22,6 +22,11 @@ INSTALLED_APPS += [
     'django_extensions',
 ]
 
+# Gulp runserver
+TEMPLATES[0]['OPTIONS']['context_processors'].append(
+    'core.context_processors.browsersync',
+)
+
 # Add flat theme if module is installed.
 try:
     import_module('flat')
