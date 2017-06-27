@@ -16,7 +16,8 @@ DATABASES = {
     },
 }
 
-INTERNAL_IPS = ('127.0.0.1',)
+INTERNAL_IPS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS += [
     'django_extensions',
