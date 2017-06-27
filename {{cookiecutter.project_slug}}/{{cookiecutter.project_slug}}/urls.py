@@ -11,6 +11,9 @@ from django.template import Context, TemplateDoesNotExist, loader
 from glitter.blockadmin import blocks
 {%- endif %}
 
+admin.site.site_title = '{{ cookiecutter.project_name }}'
+admin.site.site_header = '{{ cookiecutter.project_name }}'
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 {%- if cookiecutter.glitter == 'y' %}
