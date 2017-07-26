@@ -21,7 +21,7 @@ blanc-admin-theme==1.0.2
 sorl-thumbnail==12.3
 
 # Glitter
-django-glitter==0.2.1
+django-glitter==0.2.2
 django-mptt==0.8.7
 django-mptt-admin==0.4.6
 django-taggit==0.22.1
