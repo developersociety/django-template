@@ -18,6 +18,3 @@ static/css
 
 # Database
 *.dump
-
-# Ignore Ctags
-tags
