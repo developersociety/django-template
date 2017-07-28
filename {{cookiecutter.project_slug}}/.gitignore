@@ -11,9 +11,10 @@
 htmlcov
 reports
 
-# Grunt
+# NodeJS
 /node_modules
 npm-debug.log
+npm-debug.log.*
 static/css
 
 # Database
