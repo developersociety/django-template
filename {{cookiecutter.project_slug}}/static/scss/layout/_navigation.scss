@@ -39,6 +39,11 @@
 .nav__brand,
 .footer__brand {
     flex-shrink: 0;
+    display: inline-block;
+}
+
+.footer__brand {
+    margin-bottom: $width-gap;
 }
 
 .nav__toggle {
