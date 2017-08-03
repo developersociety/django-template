@@ -36,3 +36,7 @@
         margin: 0 $width-column-gap/2;
     }
 }
+
+main > .container:first-of-type {
+    margin-top: $width-column-gap;
+}
