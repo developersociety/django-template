@@ -16,7 +16,32 @@
   </head>
   <body>
     {% glitter_startbody %}
+    {% include 'includes/sprite.html' %}
 
-    {% block main %}{% endblock %}
+    <header class="page-header">
+      {% include 'includes/nav.html' %}
+    </header>
+
+    <main>
+      {% block main %}{% endblock %}
+    </main>
+
+    <footer class="page-footer inverted">
+      <div class="container">
+        <div class="row">
+          <div class="page-footer__legal column-8">
+            <div class="footer__brand">
+              <a href="/" class="page__logo"></a>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ullam quae minima?</p>
+            <p class="footer__copyright">&copy; {% now "Y" %}. Website by <a href="http://dev.ngo">The Developer's Society</a></p>
+          </div>
+
+          <div class="page-footer__social column-4">
+            {% include 'includes/social.html' %}
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

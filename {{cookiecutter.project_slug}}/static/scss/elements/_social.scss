@@ -1,0 +1,8 @@
+.social {
+    @extend %reset-list;
+
+    display: flex;
+    flex-flow: row nowrap;
+
+    > li + li { margin-left: $width-gap; }
+}
