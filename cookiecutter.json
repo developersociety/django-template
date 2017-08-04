@@ -2,6 +2,7 @@
     "project_name": "Project Name",
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '').replace('-', '').replace('_', '') }}",
     "django_version": ["1.8"],
+    "geodjango": "n",
     "glitter": "n",
     "_copy_without_render": [
         "static",

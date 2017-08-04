@@ -5,7 +5,11 @@ from .base import *  # noqa
 # Tests are performed on a test_ database, however to avoid any connections/queries going to
 # another database we also set this as the 'default' as well
 DATABASES = {
+{%- if cookiecutter.geodjango == 'y' %}
+    'default': dj_database_url.config(default='postgis:///test_{{ cookiecutter.project_slug }}_django'),
+{%- else %}
     'default': dj_database_url.config(default='postgres:///test_{{ cookiecutter.project_slug }}_django'),
+{%- endif %}
 }
 DATABASES['default']['TEST'] = {
     'NAME': DATABASES['default']['NAME'],
