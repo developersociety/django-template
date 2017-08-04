@@ -169,7 +169,7 @@ npm-run-production:
 
 # JSHint
 jshint-lint:
-	npm run jshint -- static/
+	npm run jshint -- --exclude="static/vendor/" static/
 
 
 # YAPF
