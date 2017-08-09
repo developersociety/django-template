@@ -9,7 +9,7 @@ raven==6.1.0
 contextlib2==0.5.5
 
 # Storage
-django-storages==1.6.3
+django-storages==1.6.5
 boto==2.48.0
 blanc-contentfiles==0.2.3
 
