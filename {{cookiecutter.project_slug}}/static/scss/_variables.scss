@@ -1,0 +1,49 @@
+// Base sizes
+$base-font-size: 1rem !default;
+$base-line-height: 1.5 !default;
+$base-font: 'Open Sans';
+
+
+// Colors
+$color-text: #000000 !default;
+$color-background: #1a191b !default;
+$color-footer: #1a191b !default;
+
+$color-inverted-background: #000000 !default;
+$color-inverted-text: #ffffff !default;
+
+$color-primary: #323134 !default;
+$color-secondary: #bcbcbc !default;
+$color-accent: #bcbcbc !default;
+$color-line: #bcbcbc !default;
+
+
+// Size
+$width-gap: 1.5rem;
+$width-line: 0.125rem;
+$width-container: 60rem !default;
+$width-column-gap: 1.5rem;
+$width-radius: 0.125rem;
+
+$width-logo: 12.5rem;
+$height-logo-ratio: 60%;
+
+// Style
+$style-button: none;
+
+// Icon
+$icon-width: 1.5em;
+$icon-height: $icon-width;
+
+
+// Headlines
+
+///     FONT SIZE  |  LINE H  |  MARGIN T  |  MARGIN B
+$headline-scale: (
+    h1: (3.375rem,    1.1,       1.6785em,    0.3em),
+    h2: (2.25rem,     1.2,       0.9em,       0.45em),
+    h3: (1.5rem,      1.5,       1.33em,      0.66em),
+    h4: (1.25rem,     1.1,       1.2em,       0.8em),
+    h5: (1.1rem,      1.1,       1.125em,     0.9em),
+    h6: (1rem,        1,         1.5em,       0.5em)
+) !default;

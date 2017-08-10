@@ -1,0 +1,28 @@
+.glitter_page_blocktype_textimageblock {
+    @media all and (min-width: 741px) {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+
+        img {
+            width: calc(50% - $width-gap/2);
+            height: auto;
+            margin-right: $width-gap;
+        }
+
+        &.right {
+
+            .text-image-content {
+                order: -1;
+                margin-right: $width-gap;
+            }
+
+            img { margin-right: 0; }
+        }
+    }
+    @media all and (max-width: 740px) {
+        flex-flow: row wrap;
+
+        img { margin-bottom: $width-gap; }
+    }
+}

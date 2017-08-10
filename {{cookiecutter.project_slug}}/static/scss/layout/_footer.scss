@@ -1,0 +1,27 @@
+.page-footer {
+    background: $color-footer;
+    box-shadow: 0px 100vh 0px 100vh $color-footer;
+    padding: $width-gap 0;
+    margin-top: 2 * $width-gap;
+
+    .social { margin: 1.5rem 0 0 0; }
+
+
+    @media all and (min-width: 768px) {
+        .social { margin: 0 0 0 auto; }
+    }
+}
+
+.page-footer__legal {
+    font-size: 0.875rem;
+}
+
+.page-footer__social {
+    @media all and (min-width: 768px) {
+        display: flex;
+    }
+}
+
+.footer__copyright {
+    opacity: 0.25;
+}

@@ -1,0 +1,37 @@
+body {
+    font-family: $base-font, sans-serif;
+}
+
+//// HEADLINES
+
+// loop through heading size variable and assign sizes
+@each $heading, $font-properties in $headline-scale {
+  #{$heading}, .#{$heading} {
+    font-size: nth($font-properties, 1);
+    line-height: nth($font-properties, 2);
+    margin-top: nth($font-properties, 3) * 1;
+    margin-bottom: nth($font-properties, 4) * 1;
+  }
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    font-weight: normal;
+}
+
+
+//// COMMON
+
+a {
+    color: inherit;
+}
+
+hr {
+    border: none;
+    height: $width-gap * 0.125;
+    background: $color-text;
+}

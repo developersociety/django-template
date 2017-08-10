@@ -1,0 +1,52 @@
+.page__wrapper form {
+
+    input:not([type=checkbox]):not([type=radio]):not([type=submit]),
+    textarea,
+    select,
+    button {
+        appearance: none;
+        width: 100%;
+        padding: $width-gap / 2;
+        border: $width-line solid $color-line;
+        border-radius: $width-radius;
+        background: #fff;
+        vertical-align: top;
+        font-size: inherit;
+        font-family: inherit;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    input[type=submit], button {
+        appearance: none;
+        display: inline-block;
+        border: none;
+        padding: $width-gap / 2;
+        text-decoration: $style-button;
+        background: $color-primary;
+        color: #fff;
+
+        &:hover { background: lighten($color-primary, 2.5%); }
+    }
+
+    .help-inline,
+    .help-block {
+        display: block;
+        vertical-align: top;
+        padding: $width-gap / 3;
+        background: $color-primary;
+        color: #fff;
+        font-size: 0.875rem;
+    }
+
+    .help-block {
+        background: $color-background;
+    }
+
+    .errorlist {
+        @extend %reset-list;
+
+        margin-bottom: $width-gap;
+        color: $color-primary;
+        font-weight: bold;
+    }
+}
