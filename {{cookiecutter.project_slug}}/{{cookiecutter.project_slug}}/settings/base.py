@@ -47,6 +47,9 @@ DEFAULT_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+{%- if cookiecutter.geodjango == 'y' %}
+    'django.contrib.gis',
+{%- endif %}
 ]
 
 THIRD_PARTY_APPS = [
@@ -257,4 +260,10 @@ GLITTER_DEFAULT_BLOCKS = [
     ('glitter_image.ImageBlock', 'Image'),
     ('glitter_html.HTML', 'HTML'),
 ]
+{%- endif %}
+{%- if cookiecutter.geodjango == 'y' %}
+
+# GeoDjango fixes
+GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH')
+GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH')
 {%- endif %}

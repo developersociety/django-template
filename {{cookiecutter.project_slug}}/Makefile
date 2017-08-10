@@ -28,6 +28,9 @@ clean: coverage-clean
 reset: ## Reset your local environment. Useful after switching branches, etc.
 reset: venv-check venv-wipe install-local fab-get-data django-migrate django-dev-createsuperuser
 
+clear: ## Like reset but without the wiping of the installs.
+clear: fab-get-data django-migrate django-dev-createsuperuser
+
 check: ## Check for any obvious errors in the project's setup.
 check: pipdeptree-check npm-check django-check
 
@@ -166,7 +169,7 @@ npm-run-production:
 
 # JSHint
 jshint-lint:
-	npm run jshint -- static/
+	npm run jshint -- --exclude="static/vendor/" static/
 
 
 # YAPF
