@@ -1,7 +1,7 @@
 Django==1.8.18
 pytz==2017.2
 pylibmc==1.5.2
-psycopg2==2.7.1
+psycopg2==2.7.3.1
 Pillow==4.2.1
 olefile==0.44
 dj-database-url==0.4.1
@@ -9,9 +9,9 @@ raven==6.1.0
 contextlib2==0.5.5
 
 # Storage
-django-storages==1.6.3
+django-storages==1.6.5
 boto==2.48.0
-blanc-contentfiles==0.2.3
+blanc-contentfiles==0.2.4
 
 # Admin theme
 blanc-admin-theme==1.0.2
@@ -25,6 +25,6 @@ django-glitter==0.2.3
 django-mptt==0.8.7
 django-mptt-admin==0.4.6
 django-taggit==0.22.1
-python-dateutil==2.6.0
+python-dateutil==2.6.1
 six==1.10.0
 {%- endif %}
