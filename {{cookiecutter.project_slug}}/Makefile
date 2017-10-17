@@ -142,7 +142,7 @@ django-collectstatic:
 django-check-validate-templates:
 	./manage.py validate_templates --verbosity 0
 
-django-dev-createsuperuser: DJANGO_DEV_USERNAME ?= _dev
+django-dev-createsuperuser: DJANGO_DEV_USERNAME ?= _dev@dev.ngo
 django-dev-createsuperuser: DJANGO_DEV_PASSWORD ?= password
 django-dev-createsuperuser: DJANGO_DEV_EMAIL ?= _dev@dev.ngo
 django-dev-createsuperuser:
