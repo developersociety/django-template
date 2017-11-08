@@ -1,9 +1,9 @@
 -r base.txt
 
-django-extensions==1.9.1
-flake8==3.4.1
+django-extensions==1.9.7
+flake8==3.5.0
 isort==4.2.15
 unittest-xml-reporting==2.1.0
-coverage==4.4.1
+coverage==4.4.2
 yapf==0.16.1
 pipdeptree==0.10.1

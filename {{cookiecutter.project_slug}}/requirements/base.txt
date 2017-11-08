@@ -1,11 +1,11 @@
 Django==1.8.18
-pytz==2017.2
+pytz==2017.3
 pylibmc==1.5.2
-psycopg2==2.7.3.1
+psycopg2==2.7.3.2
 Pillow==4.1.1
 olefile==0.44
 dj-database-url==0.4.1
-raven==6.2.1
+raven==6.3.0
 
 # Storage
 django-storages==1.6.5
@@ -22,7 +22,7 @@ sorl-thumbnail==12.3
 # Glitter
 django-glitter==0.2.4
 django-mptt==0.8.7
-django-mptt-admin==0.4.6
+django-mptt-admin==0.4.7
 django-taggit==0.22.1
 python-dateutil==2.6.1
 six==1.11.0
