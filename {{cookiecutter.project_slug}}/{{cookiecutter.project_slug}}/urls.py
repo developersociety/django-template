@@ -26,7 +26,7 @@ if settings.DEBUG:
     from django.views.defaults import page_not_found
 
     urlpatterns += [
-        url(r'^404/$', page_not_found),
+        url(r'^404/$', page_not_found, {'exception': None}),
     ]
 
 # Only enable debug toolbar if it's an installed app
