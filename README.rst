@@ -29,4 +29,4 @@ Create a site using this template:
 
 .. code-block:: console
 
-    $ cookiecutter gh:developersociety/django-template
+    $ cookiecutter --checkout django-1.8 gh:developersociety/django-template
