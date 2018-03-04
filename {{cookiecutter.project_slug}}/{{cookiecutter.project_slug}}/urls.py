@@ -6,18 +6,25 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.http import HttpResponseServerError
 from django.template import TemplateDoesNotExist, loader
-{%- if cookiecutter.glitter == 'y' %}
+{%- if cookiecutter.wagtail == 'y' %}
 
-from glitter.blockadmin import blocks
+from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.core import urls as wagtail_urls
+from wagtail.documents import urls as wagtaildocs_urls
+
+# from search import views as search_views
 {%- endif %}
 
 admin.site.site_title = '{{ cookiecutter.project_name }}'
 admin.site.site_header = '{{ cookiecutter.project_name }}'
 
 urlpatterns = [
+{%- if cookiecutter.wagtail == 'y' %}
+    url(r'^django-admin/', admin.site.urls),
+    url(r'^admin/', include(wagtailadmin_urls)),
+    url(r'^documents/', include(wagtaildocs_urls)),
+{%- else %}
     url(r'^admin/', admin.site.urls),
-{%- if cookiecutter.glitter == 'y' %}
-    url(r'^blockadmin/', include(blocks.site.urls)),
 {%- endif %}
 ]
 
@@ -40,6 +47,14 @@ if apps.is_installed('debug_toolbar'):
 # Serving static/media under debug
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+{%- if cookiecutter.wagtail == 'y' %}
+
+# Wagtail catch-all
+urlpatterns += [
+    url(r'', include(wagtail_urls)),
+]
+
+{%- endif %}
 
 
 def handler500(request, template_name='500.html'):

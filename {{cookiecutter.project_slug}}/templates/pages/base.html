@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+  {% if self.seo_title %}
+    {{ self.seo_title }}
+  {% else %}
+    {{ self.title }} - {{ block.super }}
+  {% endif %}
+{% endblock title %}

@@ -25,6 +25,9 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS += [
     'django_extensions',
+{%- if cookiecutter.wagtail == 'y' %}
+    'wagtail.contrib.styleguide',
+{%- endif %}
 ]
 
 # Gulp runserver

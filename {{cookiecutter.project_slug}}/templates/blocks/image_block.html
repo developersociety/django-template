@@ -1,0 +1,11 @@
+{% load wagtailimages_tags %}
+
+<figure>
+  {% image self.image fill-600x600 %}
+
+  {% if self.caption %}
+    <figcaption>
+      {{ self.caption }}
+    </figcaption>
+  {% endif %}
+</figure>

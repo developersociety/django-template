@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
-{% load glitter %}
 {% load staticfiles %}
+{% load wagtailuserbar %}
 
 <html lang="en">
   <head>
-    {% glitter_head %}
-
-    <title>{% block title %}{{ request.site.name }}{% endblock %}</title>
+    <title>
+      {% block title %}{{ request.site.site_name }}{% endblock %}
+    </title>
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 
     {% if BROWSERSYNC_URL %}
@@ -15,7 +15,7 @@
     {% endif %}
   </head>
   <body>
-    {% glitter_startbody %}
+    {% wagtailuserbar %}
     {% include 'includes/sprite.html' %}
 
     <header class="page-header">
@@ -34,7 +34,9 @@
               <a href="/" class="page__logo"></a>
             </div>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ullam quae minima?</p>
-            <p class="footer__copyright">&copy; {% now 'Y' %}. Website by <a href="https://www.dev.ngo">The Developer Society</a></p>
+            <p class="footer__copyright">
+              &copy; {% now 'Y' %}. Website by <a href="https://www.dev.ngo/">The Developer Society</a>
+            </p>
           </div>
 
           <div class="page-footer__social column-4">

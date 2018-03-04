@@ -53,23 +53,31 @@ DEFAULT_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-{%- if cookiecutter.glitter == 'y' %}
-    'django_mptt_admin',
-    'glitter',
-    'glitter.assets',
-    'glitter.blocks.html',
-    'glitter.blocks.image',
-    'glitter.blocks.redactor',
-    'glitter.pages',
-    'mptt',
+{%- if cookiecutter.wagtail == 'y' %}
+    'modelcluster',
 {%- endif %}
     'raven.contrib.django.apps.RavenConfig',
-{%- if cookiecutter.glitter == 'y' %}
-    'sorl.thumbnail',
+{%- if cookiecutter.wagtail == 'y' %}
+    'rest_framework',
     'taggit',
+    'wagtail.admin',
+    'wagtail.contrib.forms',
+    'wagtail.contrib.modeladmin',
+    'wagtail.contrib.redirects',
+    'wagtail.contrib.routable_page',
+    'wagtail.contrib.search_promotions',
+    'wagtail.core',
+    'wagtail.documents',
+    'wagtail.embeds',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.sites',
+    'wagtail.snippets',
+    'wagtail.users',
+    'wagtailfontawesome',
 {%- endif %}
 ]
-{% if cookiecutter.glitter == 'y' %}
+{% if cookiecutter.wagtail == 'y' %}
 PROJECT_APPS = [
     'pages',
 ]
@@ -88,9 +96,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sites.middleware.CurrentSiteMiddleware',
-{%- if cookiecutter.glitter == 'y' %}
-    'glitter.pages.middleware.PageFallbackMiddleware',
-    'glitter.middleware.ExceptionMiddleware',
+{%- if cookiecutter.wagtail == 'y' %}
+    'wagtail.core.middleware.SiteMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 {%- endif %}
 ]
 
@@ -264,19 +272,17 @@ CONTENTFILES_SSL = True
 
 # Improved cookie security
 CSRF_COOKIE_HTTPONLY = True
-{%- if cookiecutter.glitter == 'y' %}
+{%- if cookiecutter.wagtail == 'y' %}
 
-# Thumbnail generation
-THUMBNAIL_PREFIX = 'thumbs/'
-THUMBNAIL_PRESERVE_FORMAT = True
-THUMBNAIL_QUALITY = 100
-
-# Glitter
-GLITTER_DEFAULT_BLOCKS = [
-    ('glitter_redactor.Redactor', 'Text'),
-    ('glitter_image.ImageBlock', 'Image'),
-    ('glitter_html.HTML', 'HTML'),
-]
+# Wagtail
+WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
+WAGTAIL_ENABLE_UPDATE_CHECK = False
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.db',
+        'INDEX': '{{ cookiecutter.project_slug }}',
+    },
+}
 {%- endif %}
 {%- if cookiecutter.geodjango == 'y' %}
 
