@@ -40,3 +40,8 @@ warnings.filterwarnings(
     category=RemovedInDjango21Warning,
     module=r'^django\.template\.loader_tags$',
 )
+
+# Always run tests with the fastest password hasher
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.CryptPasswordHasher',
+]

@@ -63,3 +63,9 @@ if os.environ.get('SPECTRUM'):
     from spectrum.django import fire_hose, FIRE_HOSE_WS
     LOGGING = fire_hose(base_config=FIRE_HOSE_WS)
     LOGGING['root']['handlers'] = ['root']
+
+# Allow login with remote passwords, but downgrade/swap to crypt for password hashing speed
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.CryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+]
