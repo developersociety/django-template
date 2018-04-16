@@ -6,4 +6,4 @@ isort==4.2.15
 unittest-xml-reporting==2.1.1
 coverage==4.5.1
 yapf==0.16.1
-pipdeptree==0.10.1
+pipdeptree==0.12.1
