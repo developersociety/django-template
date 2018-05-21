@@ -40,15 +40,15 @@ DEFAULT_APPS = [
     # These apps should come first to load correctly.
     'blanc_admin_theme',
     'core',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.sites',
+    'django.contrib.admin.apps.AdminConfig',
+    'django.contrib.auth.apps.AuthConfig',
+    'django.contrib.contenttypes.apps.ContentTypesConfig',
+    'django.contrib.sessions.apps.SessionsConfig',
+    'django.contrib.messages.apps.MessagesConfig',
+    'django.contrib.staticfiles.apps.StaticFilesConfig',
+    'django.contrib.sites.apps.SitesConfig',
 {%- if cookiecutter.geodjango == 'y' %}
-    'django.contrib.gis',
+    'django.contrib.gis.apps.GISConfig',
 {%- endif %}
 ]
 
@@ -63,7 +63,7 @@ THIRD_PARTY_APPS = [
     'glitter.pages',
     'mptt',
 {%- endif %}
-    'raven.contrib.django.raven_compat',
+    'raven.contrib.django.apps.RavenConfig',
 {%- if cookiecutter.glitter == 'y' %}
     'sorl.thumbnail',
     'taggit',
