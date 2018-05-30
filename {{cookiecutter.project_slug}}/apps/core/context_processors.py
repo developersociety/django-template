@@ -44,5 +44,5 @@ def browsersync(request):
 
 def demo(request):
     return {
-        'DEMO_SITE': settings.DEMO_SITE
+        'DEMO_SITE': settings.DEMO_SITE,
     }
