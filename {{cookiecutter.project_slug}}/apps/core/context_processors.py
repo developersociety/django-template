@@ -2,6 +2,8 @@ import functools
 import os
 import time
 
+from django.conf import settings
+
 BROWSERSYNC_URL = 'http://{host}:{port}/browser-sync/browser-sync-client.js?t={time}'
 
 
