@@ -21,6 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 DEBUG = False
 
+DEMO_SITE = 'DEMO_SITE' in os.environ
+
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Email
@@ -175,6 +177,7 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.template.context_processors.request',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processors.demo',
             ],
         },
     },

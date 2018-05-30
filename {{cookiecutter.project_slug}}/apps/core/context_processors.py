@@ -40,3 +40,8 @@ def browsersync(request):
     return {
         'BROWSERSYNC_URL': url,
     }
+
+def demo(request):
+    return {
+        'DEMO_SITE': settings.DEMO_SITE
+    }
