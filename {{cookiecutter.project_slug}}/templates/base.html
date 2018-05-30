@@ -14,6 +14,12 @@
   <body>
     {% include 'includes/sprite.html' %}
 
+    {% if DEMO_SITE %}
+      <div class="demo-announcement">
+        <div class="container">This site is in development. Any changes made here will not be transfered to the production build</div>
+      </div>
+    {% endif %}
+
     <header class="page-header">
       {% include 'includes/nav.html' %}
     </header>
