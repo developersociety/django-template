@@ -21,8 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 DEBUG = False
 
-DEMO_SITE = 'DEMO_SITE' in os.environ
-
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Email
@@ -286,3 +284,5 @@ GLITTER_DEFAULT_BLOCKS = [
 GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH')
 GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH')
 {%- endif %}
+
+DEMO_SITE = 'DEMO_SITE' in os.environ
