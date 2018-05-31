@@ -128,7 +128,7 @@ coverage-clean:
 django-check: django-check-missing-migrations django-check-validate-templates
 
 django-test: django-collectstatic
-	coverage run --include="{{ cookiecutter.project_slug }}/*,apps/*" ./manage.py test --noinput . apps
+	coverage run --include="apps/*" ./manage.py test --noinput . apps
 
 django-check-missing-migrations:
 	./manage.py makemigrations --settings={{ cookiecutter.project_slug }}.settings.migrations --check --dry-run
