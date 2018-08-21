@@ -18,6 +18,7 @@ env.roledefs = {
 }
 
 env.home = env.get('home', '/var/www/{{ cookiecutter.project_slug }}')
+env.appname = env.get('appname', '{{ cookiecutter.project_slug }}')
 env.repo = env.get('repo', '{{ cookiecutter.project_slug }}')
 env.media = env.get('media', '{{ cookiecutter.project_slug }}')
 env.media_bucket = env.get('media_bucket', 'contentfiles-media-eu-west-1')
@@ -150,9 +151,9 @@ def reload_uwsgi(force_reload=None):
     fab reload:force_reload=True
     """
     if force_reload:
-        run('killall -TERM uwsgi')
+        run('uwsgi --stop /run/uwsgi/{}/uwsgi.pid'.format(env.appname))
     else:
-        run('killall -HUP uwsgi')
+        run('uwsgi --reload /run/uwsgi/{}/uwsgi.pid'.format(env.appname))
 
 
 @task
