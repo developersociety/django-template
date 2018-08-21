@@ -1,9 +1,9 @@
 /* global require */
 
 var gulp = require('gulp');
-var util = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var pump = require('pump');
+var argv = require('yargs-parser')(process.argv.slice(2));
 
 // CSS processors
 var sass = require('gulp-sass');
@@ -26,7 +26,7 @@ gulp.task('sass', function(cb) {
         autoprefixer(),
     ];
 
-    if (util.env.production === true) {
+    if (argv.production === true) {
         processors.push(cssnano());
     }
 
@@ -53,11 +53,10 @@ gulp.task('serve', ['default'], function() {
     var django_port = parseInt(process.env.DJANGO_PORT || 8000);
     var browsersync_port = django_port + 1;
     var browsersyncui_port = django_port + 2;
-    var weinre_port = django_port + 3;
 
     // Tweak log level if needed
     var loglevel = 'info';
-    if (util.env.silent === true) {
+    if (argv.silent === true) {
         loglevel = 'silent';
     }
 
@@ -65,10 +64,7 @@ gulp.task('serve', ['default'], function() {
         host: django_ip,
         port: browsersync_port,
         ui: {
-            port: browsersyncui_port,
-            weinre: {
-                port: weinre_port
-            },
+            port: browsersyncui_port
         },
         browser: [],
         logSnippet: false,
