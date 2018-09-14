@@ -38,7 +38,6 @@ sys.path.append(PROJECT_APPS_ROOT)
 
 DEFAULT_APPS = [
     # These apps should come first to load correctly.
-    'blanc_admin_theme',
     'core',
     'django.contrib.admin.apps.AdminConfig',
     'django.contrib.auth.apps.AuthConfig',

@@ -11,9 +11,6 @@ raven==6.9.0
 django-storages==1.7.1
 boto==2.49.0
 blanc-contentfiles==0.2.4
-
-# Admin theme
-blanc-admin-theme==1.0.2
 {%- if cookiecutter.wagtail == 'y' %}
 
 # Wagtail (core wagtail)
