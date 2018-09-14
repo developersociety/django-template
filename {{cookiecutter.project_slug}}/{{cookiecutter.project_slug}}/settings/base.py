@@ -284,8 +284,9 @@ WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 WAGTAILSEARCH_BACKENDS = {
     'default': {
-        'BACKEND': 'wagtail.search.backends.db',
-        'INDEX': '{{ cookiecutter.project_slug }}',
+        'BACKEND': 'wagtail.search.backends.elasticsearch6',
+        'URLS': [os.environ.get('SEARCH_URL', 'http://127.0.0.1:9200')],
+        'INDEX': os.environ.get('SEARCH_INDEX', '{{ cookiecutter.project_slug }}'),
     },
 }
 {%- endif %}
