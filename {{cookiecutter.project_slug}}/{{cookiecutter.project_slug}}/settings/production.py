@@ -33,3 +33,6 @@ AUTH_PASSWORD_VALIDATORS = [
 RAVEN_CONFIG = {
     'release': raven.fetch_git_sha(BASE_DIR),
 }
+
+# Cache backed sessions for optimum performance
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
