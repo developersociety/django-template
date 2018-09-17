@@ -12,6 +12,10 @@ DEBUG = False
 if os.environ.get('DATABASE_CONN_MAX_AGE'):
     DATABASES['default']['CONN_MAX_AGE'] = int(os.environ.get('DATABASE_CONN_MAX_AGE'))
 
+# Avoid server side cursors with pgbouncer
+if os.environ.get('DATABASE_PGBOUNCER'):
+    DATABASES['default']['DISABLE_SERVER_SIDE_CURSORS'] = True
+
 # Use cached templates in production
 TEMPLATES[0]['APP_DIRS'] = False
 TEMPLATES[0]['OPTIONS']['loaders'] = [
