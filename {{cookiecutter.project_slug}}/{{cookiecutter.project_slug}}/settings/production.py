@@ -1,3 +1,5 @@
+import os
+
 import raven
 
 from .base import *  # noqa
@@ -5,6 +7,10 @@ from .base import *  # noqa
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
 
 DEBUG = False
+
+# Persistent database connections
+if os.environ.get('DATABASE_CONN_MAX_AGE'):
+    DATABASES['default']['CONN_MAX_AGE'] = int(os.environ.get('DATABASE_CONN_MAX_AGE'))
 
 # Use cached templates in production
 TEMPLATES[0]['APP_DIRS'] = False
