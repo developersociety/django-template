@@ -12,6 +12,11 @@ django-storages==1.7.1
 boto==2.49.0
 blanc-contentfiles==0.2.4
 
+# APM
+elastic-apm==3.0.1
+urllib3==1.23
+certifi==2018.8.24
+
 # Admin theme
 blanc-admin-theme==1.0.2
 {%- if cookiecutter.wagtail == 'y' %}
@@ -34,8 +39,6 @@ Willow==1.1
 requests==2.19.1
 idna==2.7
 chardet==3.0.4
-certifi==2018.8.24
-urllib3==1.23
 
 # Wagtail extras
 wagtailfontawesome==1.1.3

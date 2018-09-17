@@ -247,6 +247,11 @@ LOGGING = {
             'level': 'INFO',
             'propagate': False,
         },
+        'elasticapm.errors': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
         'py.warnings': {
             'handlers': ['console'],
         },

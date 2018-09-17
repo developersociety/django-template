@@ -1,3 +1,5 @@
+import os
+
 import raven
 
 from .base import *  # noqa
@@ -33,3 +35,13 @@ AUTH_PASSWORD_VALIDATORS = [
 RAVEN_CONFIG = {
     'release': raven.fetch_git_sha(BASE_DIR),
 }
+
+# Elastic APM
+if os.environ.get('ELASTIC_APM_SERVER_URL'):
+    INSTALLED_APPS += [
+        'elasticapm.contrib.django.apps.ElasticAPMConfig',
+    ]
+
+    MIDDLEWARE = [
+        'elasticapm.contrib.django.middleware.TracingMiddleware',
+    ] + MIDDLEWARE
