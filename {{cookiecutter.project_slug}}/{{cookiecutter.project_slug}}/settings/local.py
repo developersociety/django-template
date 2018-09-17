@@ -72,3 +72,16 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.CryptPasswordHasher',
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
 ]
+
+# Wagtail search - use Postgres unless DISABLE_ELASTICSEARCH is enabled with environment vars
+# eg. DISABLE_ELASTICSEARCH=1 ./manage.py runserver
+if not os.environ.get('DISABLE_ELASTICSEARCH'):
+    INSTALLED_APPS += [
+        'wagtail.contrib.postgres_search',
+    ]
+
+    WAGTAILSEARCH_BACKENDS = {
+        'default': {
+            'BACKEND': 'wagtail.contrib.postgres_search.backend',
+        },
+    }

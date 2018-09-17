@@ -6,6 +6,6 @@
     "wagtail": "n",
     "_copy_without_render": [
         "static",
-        "templates"
+        "templates/*.html"
     ]
 }
