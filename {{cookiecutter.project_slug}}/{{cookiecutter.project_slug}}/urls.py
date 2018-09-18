@@ -6,9 +6,11 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.http import HttpResponseServerError
 from django.template import TemplateDoesNotExist, loader
+from django.views.generic import TemplateView
 {%- if cookiecutter.wagtail == 'y' %}
 
 from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
@@ -23,9 +25,14 @@ urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
+    url(r'^sitemap\.xml$', sitemap, name='sitemap'),
 {%- else %}
     url(r'^admin/', admin.site.urls),
 {%- endif %}
+    url(
+        r'^robots\.txt$',
+        TemplateView.as_view(template_name='robots.txt', content_type='text/plain'),
+    ),
 ]
 
 # Make it easier to see a 404 page under debug

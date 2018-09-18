@@ -8,6 +8,14 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
 
 DEBUG = False
 
+# Persistent database connections
+if os.environ.get('DATABASE_CONN_MAX_AGE'):
+    DATABASES['default']['CONN_MAX_AGE'] = int(os.environ.get('DATABASE_CONN_MAX_AGE'))
+
+# Avoid server side cursors with pgbouncer
+if os.environ.get('DATABASE_PGBOUNCER'):
+    DATABASES['default']['DISABLE_SERVER_SIDE_CURSORS'] = True
+
 # Use cached templates in production
 TEMPLATES[0]['APP_DIRS'] = False
 TEMPLATES[0]['OPTIONS']['loaders'] = [
@@ -45,3 +53,6 @@ if os.environ.get('ELASTIC_APM_SERVER_URL'):
     MIDDLEWARE = [
         'elasticapm.contrib.django.middleware.TracingMiddleware',
     ] + MIDDLEWARE
+
+# Cache backed sessions for optimum performance
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'

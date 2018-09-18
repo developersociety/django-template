@@ -16,9 +16,6 @@ blanc-contentfiles==0.2.4
 elastic-apm==3.0.1
 urllib3==1.23
 certifi==2018.8.24
-
-# Admin theme
-blanc-admin-theme==1.0.2
 {%- if cookiecutter.wagtail == 'y' %}
 
 # Wagtail (core wagtail)
@@ -42,4 +39,7 @@ chardet==3.0.4
 
 # Wagtail extras
 wagtailfontawesome==1.1.3
+
+# Wagtail search
+elasticsearch==6.3.0
 {%- endif %}

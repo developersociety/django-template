@@ -38,7 +38,6 @@ sys.path.append(PROJECT_APPS_ROOT)
 
 DEFAULT_APPS = [
     # These apps should come first to load correctly.
-    'blanc_admin_theme',
     'core',
     'django.contrib.admin.apps.AdminConfig',
     'django.contrib.auth.apps.AuthConfig',
@@ -46,7 +45,11 @@ DEFAULT_APPS = [
     'django.contrib.sessions.apps.SessionsConfig',
     'django.contrib.messages.apps.MessagesConfig',
     'django.contrib.staticfiles.apps.StaticFilesConfig',
+{%- if cookiecutter.wagtail == 'y' %}
+    'django.contrib.sitemaps.apps.SiteMapsConfig',
+{%- else %}
     'django.contrib.sites.apps.SitesConfig',
+{%- endif %}
 {%- if cookiecutter.geodjango == 'y' %}
     'django.contrib.gis.apps.GISConfig',
 {%- endif %}
@@ -66,6 +69,7 @@ THIRD_PARTY_APPS = [
     'wagtail.contrib.redirects',
     'wagtail.contrib.routable_page',
     'wagtail.contrib.search_promotions',
+    'wagtail.contrib.settings',
     'wagtail.core',
     'wagtail.documents',
     'wagtail.embeds',
@@ -95,10 +99,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sites.middleware.CurrentSiteMiddleware',
 {%- if cookiecutter.wagtail == 'y' %}
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+{%- else %}
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
 {%- endif %}
 ]
 
@@ -184,6 +189,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.demo',
+{%- if cookiecutter.wagtail == 'y' %}
+                'wagtail.contrib.settings.context_processors.settings',
+{%- endif %}
             ],
         },
     },
@@ -284,8 +292,9 @@ WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 WAGTAILSEARCH_BACKENDS = {
     'default': {
-        'BACKEND': 'wagtail.search.backends.db',
-        'INDEX': '{{ cookiecutter.project_slug }}',
+        'BACKEND': 'wagtail.search.backends.elasticsearch6',
+        'URLS': [os.environ.get('SEARCH_URL', 'http://127.0.0.1:9200')],
+        'INDEX': os.environ.get('SEARCH_INDEX', '{{ cookiecutter.project_slug }}'),
     },
 }
 {%- endif %}

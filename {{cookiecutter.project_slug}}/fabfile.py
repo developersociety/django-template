@@ -157,6 +157,19 @@ def reload_uwsgi(force_reload=None):
 
 
 @task
+@roles('web')
+@runs_once
+def sentry_release():
+    """ Register new release with Sentry. """
+    with cd(env.home):
+        version = run('sentry-cli releases propose-version')
+        run('sentry-cli releases new --project {project} {version}'.format(
+            project=env.repo, version=version
+        ))
+        run('sentry-cli releases set-commits --auto {version}'.format(version=version))
+
+
+@task
 def deploy(force_reload=None):
     """
     Deploy to remote server.
@@ -172,6 +185,7 @@ def deploy(force_reload=None):
     execute(static)
     execute(reload_uwsgi, force_reload=force_reload)
     execute(cron)
+    execute(sentry_release)
 
 
 @task
