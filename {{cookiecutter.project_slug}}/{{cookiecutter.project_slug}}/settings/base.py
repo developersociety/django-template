@@ -69,6 +69,7 @@ THIRD_PARTY_APPS = [
     'wagtail.contrib.redirects',
     'wagtail.contrib.routable_page',
     'wagtail.contrib.search_promotions',
+    'wagtail.contrib.settings',
     'wagtail.core',
     'wagtail.documents',
     'wagtail.embeds',
@@ -188,6 +189,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.demo',
+{%- if cookiecutter.wagtail == 'y' %}
+                'wagtail.contrib.settings.context_processors.settings',
+{%- endif %}
             ],
         },
     },
