@@ -9,6 +9,7 @@ if [ "$WAGTAIL" == "y" ]; then
 else
     # No wagtail - remove any wagtail related files
     rm -rf apps/pages
+    rm -rf apps/settings
     rm -rf templates/blocks
     rm -rf templates/pages
     rm -rf templates/wagtail

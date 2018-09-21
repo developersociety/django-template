@@ -13,6 +13,8 @@
     {% if BROWSERSYNC_URL %}
       <script src="{{ BROWSERSYNC_URL }}" async></script>
     {% endif %}
+
+    {{ settings.settings.HeaderHTML.html|safe }}
   </head>
   <body>
     {% wagtailuserbar %}
@@ -45,5 +47,7 @@
         </div>
       </div>
     </footer>
+
+    {{ settings.settings.FooterHTML.html|safe }}
   </body>
 </html>

@@ -84,6 +84,7 @@ THIRD_PARTY_APPS = [
 {% if cookiecutter.wagtail == 'y' %}
 PROJECT_APPS = [
     'pages',
+    'settings.apps.SettingsConfig',
 ]
 {%- else %}
 PROJECT_APPS = []
