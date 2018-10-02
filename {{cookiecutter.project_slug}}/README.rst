@@ -13,6 +13,7 @@ Presuming you are using those tools, getting started on this project is pretty s
 .. code:: console
 
     $ dev-clone {{ cookiecutter.project_slug }}
+    $ workon {{ cookiecutter.project_slug }}
     $ make reset
 
 You can now run the development server:
