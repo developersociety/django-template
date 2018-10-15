@@ -1,18 +1,18 @@
 {
   "private": true,
   "dependencies": {
-    "autoprefixer": "^9.1.2",
-    "browser-sync": "^2.24.6",
-    "cssnano": "^4.0.5",
-    "gulp": "^3.9.1",
-    "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.0.1",
-    "gulp-sourcemaps": "^2.6.4",
-    "jshint": "^2.9.6",
-    "normalize-scss": "^7.0.0",
-    "postcss-import": "^12.0.0",
-    "pump": "^3.0.0",
-    "yargs-parser": "^10.1.0"
+    "autoprefixer": "9.2.0",
+    "browser-sync": "2.26.3",
+    "cssnano": "4.1.4",
+    "gulp": "3.9.1",
+    "gulp-postcss": "8.0.0",
+    "gulp-sass": "4.0.1",
+    "gulp-sourcemaps": "2.6.4",
+    "jshint": "2.9.6",
+    "normalize-scss": "7.0.1",
+    "postcss-import": "12.0.0",
+    "pump": "3.0.0",
+    "yargs-parser": "11.0.0"
   },
   "scripts": {
     "gulp": "gulp",
