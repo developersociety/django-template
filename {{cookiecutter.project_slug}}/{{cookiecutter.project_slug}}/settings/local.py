@@ -1,5 +1,4 @@
 import os
-from importlib import import_module
 
 from .base import *  # noqa
 
@@ -34,14 +33,6 @@ INSTALLED_APPS += [
 TEMPLATES[0]['OPTIONS']['context_processors'].append(
     'core.context_processors.browsersync',
 )
-
-# Add flat theme if module is installed.
-try:
-    import_module('flat')
-except ImportError:
-    pass
-else:
-    INSTALLED_APPS.insert(0, 'flat')
 
 # Use vanilla StaticFilesStorage to allow tests to run outside of tox easily
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
