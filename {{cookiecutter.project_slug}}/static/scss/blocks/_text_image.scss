@@ -11,18 +11,21 @@
         }
 
         &.right {
-
             .text-image-content {
                 order: -1;
                 margin-right: $width-gap;
             }
 
-            img { margin-right: 0; }
+            img {
+                margin-right: 0;
+            }
         }
     }
     @media all and (max-width: 740px) {
         flex-flow: row wrap;
 
-        img { margin-bottom: $width-gap; }
+        img {
+            margin-bottom: $width-gap;
+        }
     }
 }

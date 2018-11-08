@@ -4,11 +4,14 @@
     padding: $width-gap 0;
     margin-top: 2 * $width-gap;
 
-    .social { margin: 1.5rem 0 0 0; }
-
+    .social {
+        margin: 1.5rem 0 0 0;
+    }
 
     @media all and (min-width: 768px) {
-        .social { margin: 0 0 0 auto; }
+        .social {
+            margin: 0 0 0 auto;
+        }
     }
 }
 

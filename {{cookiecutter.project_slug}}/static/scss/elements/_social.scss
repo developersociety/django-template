@@ -4,5 +4,7 @@
     display: flex;
     flex-flow: row nowrap;
 
-    > li + li { margin-left: $width-gap; }
+    > li + li {
+        margin-left: $width-gap;
+    }
 }

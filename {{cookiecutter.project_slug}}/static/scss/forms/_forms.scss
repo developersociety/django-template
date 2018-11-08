@@ -1,6 +1,5 @@
 .page__wrapper form {
-
-    input:not([type=checkbox]):not([type=radio]):not([type=submit]),
+    input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
     textarea,
     select,
     button {
@@ -16,7 +15,8 @@
         -webkit-font-smoothing: antialiased;
     }
 
-    input[type=submit], button {
+    input[type="submit"],
+    button {
         appearance: none;
         display: inline-block;
         border: none;
@@ -25,7 +25,9 @@
         background: $color-primary;
         color: #fff;
 
-        &:hover { background: lighten($color-primary, 2.5%); }
+        &:hover {
+            background: lighten($color-primary, 2.5%);
+        }
     }
 
     .help-inline,

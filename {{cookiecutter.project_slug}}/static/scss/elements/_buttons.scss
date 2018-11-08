@@ -6,12 +6,16 @@
     background: $color-primary;
     color: #fff;
 
-    &:hover { background: lighten($color-primary, 2.5%); }
+    &:hover {
+        background: lighten($color-primary, 2.5%);
+    }
 
     &.secondary {
         background: $color-secondary;
         color: #fff;
 
-        &:hover { background: lighten($color-secondary, 2.5%); }
+        &:hover {
+            background: lighten($color-secondary, 2.5%);
+        }
     }
 }
