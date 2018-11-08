@@ -133,7 +133,7 @@ def static():
     """ Update static files. """
     with cd(env.home):
         # Generate CSS
-        run('npm run production')
+        run('npm run production --silent')
 
         # Collect static files
         run('python manage.py collectstatic --verbosity=0 --noinput')
