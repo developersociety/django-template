@@ -14,17 +14,17 @@ blanc-contentfiles==0.2.4
 
 # APM
 elastic-apm==3.0.2
-urllib3==1.24
+urllib3==1.24.1
 certifi==2018.10.15
 {%- if cookiecutter.wagtail == 'y' %}
 
 # Wagtail (core wagtail)
-wagtail==2.2.2
+wagtail==2.3
 beautifulsoup4==4.6.0
 django-modelcluster==4.2
 django-taggit==0.23.0
 django-treebeard==4.3
-djangorestframework==3.8.2
+djangorestframework==3.9
 draftjs-exporter==2.1.2
 html5lib==1.0.1
 l18n==2016.6.4
@@ -33,7 +33,7 @@ webencodings==0.5.1
 Willow==1.1
 
 # Requests (wagtail)
-requests==2.20.0
+requests==2.20.1
 idna==2.7
 chardet==3.0.4
 
