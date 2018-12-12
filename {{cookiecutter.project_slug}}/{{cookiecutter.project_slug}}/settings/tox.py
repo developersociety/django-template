@@ -45,3 +45,12 @@ warnings.filterwarnings(
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.CryptPasswordHasher',
 ]
+{%- if cookiecutter.wagtail == 'y' %}
+
+# Avoid wagtail search updates during testing
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.db',
+    },
+}
+{%- endif %}
