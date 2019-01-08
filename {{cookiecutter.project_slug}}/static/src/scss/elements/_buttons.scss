@@ -1,0 +1,30 @@
+.button,
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    background: $color-primary;
+    color: #ffffff;
+    padding: $width-gap/2 $width-gap;
+
+    &:hover {
+        background: lighten($color-primary, 2.5%);
+    }
+
+    &.secondary {
+        background: $color-secondary;
+        color: #ffffff;
+
+        &:hover {
+            background: lighten($color-secondary, 2.5%);
+        }
+    }
+
+    &.tertiary {
+        background: $color-tertiary;
+        color: #ffffff;
+
+        &:hover {
+            background: lighten($color-tertiary, 2.5%);
+        }
+    }
+}

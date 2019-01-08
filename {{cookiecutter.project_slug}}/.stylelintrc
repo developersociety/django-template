@@ -1,0 +1,20 @@
+{
+  "plugins": [
+    "stylelint-selector-bem-pattern"
+  ],
+  "extends": "stylelint-config-standard",
+  "ignoreFiles": [
+    "./static/src/scss/normalize/**"
+  ],
+  "rules": {
+    "indentation": 4,
+    "color-hex-length": "long",
+    "no-empty-source": null,
+    "at-rule-no-unknown": null,
+    "plugin/selector-bem-pattern": {
+      "preset": "bem",
+      "utilitySelectors": "^\\.(u|l)-[a-z]+$",
+      "ignoreSelectors": []
+    }
+  }
+}

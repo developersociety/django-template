@@ -1,0 +1,30 @@
+.two-column-block {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    max-width: $width-container;
+    padding: 0 $width-gap;
+    margin: auto;
+
+    .block {
+        padding: 0;
+    }
+
+    .two-column__left {
+        margin-bottom: $width-gap * 2;
+    }
+
+    @include desktop {
+        flex-flow: row nowrap;
+
+        .two-column__left,
+        .two-column__right {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .two-column__right {
+            margin-left: $width-gap;
+        }
+    }
+}

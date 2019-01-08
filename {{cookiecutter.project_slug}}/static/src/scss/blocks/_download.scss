@@ -1,0 +1,25 @@
+.file-download-block {
+    width: 100%;
+    max-width: $width-text-padded;
+    margin: auto;
+    padding: 0 $width-gap;
+
+    &.file-download-panel {
+        display: flex;
+        flex-flow: row wrap;
+        max-width: $width-text-wide;
+        align-items: center;
+        padding: $width-gap/2 $width-gap;
+        background: $color-secondary;
+
+        .file-download-block__content {
+            flex: 1;
+            min-width: $width-gap * 15;
+            margin: $width-gap/2 $width-gap $width-gap/2 0;
+        }
+
+        .button {
+            margin: $width-gap/2 0;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+.embed-block {
+    .responsive-object {
+        position: relative;
+
+        iframe {
+            position: absolute;
+            width: 100% !important;
+            height: 100% !important;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    }
+
+    &.align-block-center {
+        max-width: $width-text-padded;
+        margin: auto;
+    }
+
+    @include desktop {
+        &.align-block-center {
+            width: 100%;
+            max-width: calc(#{$width-text + $width-gap * 2});
+        }
+    }
+}

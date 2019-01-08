@@ -1,0 +1,13 @@
+// Desktop devices
+@mixin desktop {
+    @media (min-width: #{$desktop-breakpoint}) {
+        @content;
+    }
+}
+
+// Mobile devices
+@mixin mobile {
+    @media (max-width: #{$mobile-breakpoint}) {
+        @content;
+    }
+}

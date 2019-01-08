@@ -1,0 +1,26 @@
+body {
+    font-family: $base-font, sans-serif;
+}
+
+//// COMMON
+a {
+    color: inherit;
+}
+
+hr {
+    border: none;
+    height: $width-gap * 0.125;
+    background: $color-text;
+}
+
+//// Headlines
+
+// loop through heading size variable and assign sizes
+@each $heading, $font-properties in $headline-scale {
+    #{$heading} {
+        font-size: nth($font-properties, 1);
+        line-height: nth($font-properties, 2);
+        margin-top: nth($font-properties, 3) * 1;
+        margin-bottom: nth($font-properties, 4) * 1;
+    }
+}

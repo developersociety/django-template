@@ -1,0 +1,29 @@
+@import '~normalize-scss/sass/normalize/import-now';
+
+// Global variables
+@import 'variables';
+
+// Execute global styles before import to ensure they can be overriden
+* {
+    box-sizing: border-box;
+}
+
+:first-child {
+    margin-top: 0;
+}
+
+:last-child {
+    margin-bottom: 0;
+}
+
+// Begin main styles import
+@import 'utility/utilities';
+@import 'typography';
+@import 'accessibility';
+
+// Layout and element styles
+@import 'layout/layout';
+@import 'elements/elements';
+@import 'forms/forms';
+@import 'blocks/blocks';
+@import 'contact/contact';

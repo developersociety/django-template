@@ -1,0 +1,125 @@
+.boolean_field .field-content {
+    @media screen and (min-width: 50em) {
+        padding-top: 20px;
+    }
+}
+
+.block-header {
+    overflow: hidden;
+    width: calc(100% + 100px);
+    margin: -1.5em 0 1.5em -50px;
+    padding: 1em 50px;
+    border-top: 1px solid #e6e6e6;
+    position: relative;
+}
+
+.advanced-features {
+    background: #f1f1f1;
+    color: #ffffff;
+    width: calc(100% + 100px);
+    margin: 0 0 0 -50px;
+    padding: 1em 50px;
+}
+
+.advanced-features-toggle {
+    width: calc(100% + 100px);
+    margin: 1em 0 0 -50px;
+    padding: 1em 50px;
+    box-sizing: border-box;
+    cursor: pointer;
+    user-select: none;
+    background: #e6e6e6;
+
+    h1 {
+        color: #00585a;
+    }
+
+    > * {
+        pointer-events: none;
+    }
+
+    .button {
+        line-height: 2.9em;
+    }
+}
+
+.sequence-type-stream {
+    .sequence-member {
+        background: #fafafa;
+        border-top: 1px solid #e6e6e6;
+        border-bottom: 2px solid #e6e6e6;
+
+        .sequence-member-inner {
+            padding: 1.5em 50px 0;
+        }
+    }
+}
+
+.list-block,
+.columns-block {
+    margin-top: -1em;
+    padding-bottom: 20px;
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 1px;
+        right: 0;
+        bottom: 1px;
+        left: 0;
+        border-width: 0 16px 16px;
+        border-style: solid;
+        border-color: #007d7e;
+        pointer-events: none;
+    }
+
+    .list-block-child {
+        .block-header {
+            background: #e6e6e6;
+
+            h1 {
+                color: #00585a;
+            }
+        }
+    }
+
+    .sequence-type-list {
+        .sequence-container-inner {
+            width: 100% !important;
+        }
+
+        .sequence-member {
+            background: none;
+
+            .list-controls {
+                top: 1.2875em;
+            }
+        }
+    }
+}
+
+.columns-block {
+    > li {
+        > label {
+            display: block;
+            background: black;
+            color: #ffffff;
+        }
+
+        > div::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: -7px;
+            right: -34px;
+            bottom: -7px;
+            left: -34px;
+            background: #4d4d4d;
+        }
+
+        .block-header {
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+form {
+    input:not([type='checkbox']):not([type='radio']):not([type='submit']),
+    textarea,
+    select,
+    button {
+        appearance: none;
+        width: 100%;
+        border: 2px solid $color-line;
+        border-radius: 0;
+        background: #ffffff;
+        vertical-align: top;
+        font-size: inherit;
+        font-family: inherit;
+        line-height: 1.5;
+        padding: $width-gap/2 $width-gap * 0.75;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    input[type='submit'],
+    button {
+        display: inline-block;
+        appearance: none;
+        border: none;
+
+        &:hover {
+            background: lighten($color-primary, 2.5%);
+        }
+    }
+
+    .helptext,
+    .help-inline,
+    .help-block {
+        display: block;
+        vertical-align: top;
+        font-size: 0.875rem;
+        margin-top: $width-gap/4;
+    }
+
+    label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: bold;
+        margin-bottom: $width-gap/4;
+    }
+
+    .button-row {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: $width-gap;
+    }
+}

@@ -1,0 +1,10 @@
+.page-content {
+    line-height: 1.5;
+}
+
+.container {
+    width: 100%;
+    max-width: $width-container;
+    padding: 0 $width-gap;
+    margin: auto;
+}

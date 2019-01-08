@@ -1,0 +1,11 @@
+.social {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li + li {
+        margin-left: $width-gap/2;
+    }
+}

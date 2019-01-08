@@ -1,0 +1,64 @@
+.page-footer {
+    padding: $width-gap * 2 0;
+}
+
+.footer-logo {
+    display: inline-block;
+    margin-right: $width-gap;
+
+    // Sample logo styles, replace with image in production
+    font-size: 3rem;
+    font-weight: bold;
+    padding: $width-gap/2 0;
+    text-decoration: none;
+}
+
+.page-footer__message,
+.page-footer__legal {
+    font-size: 0.875rem;
+}
+
+.page-footer__top {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    .footer-logo {
+        margin-right: $width-gap;
+    }
+
+    .page-footer__social {
+        margin-left: auto;
+    }
+}
+
+.page-footer__bottom {
+    display: flex;
+    flex-flow: row wrap;
+    font-size: 0.875rem;
+    justify-content: space-between;
+    margin-top: $width-gap * 2;
+
+    .page-footer__message {
+        margin-bottom: $width-gap;
+    }
+
+    .page-footer__links {
+        width: 100%;
+        flex: 1;
+        margin-bottom: $width-gap;
+        margin-right: $width-gap;
+        min-width: $width-gap * 10;
+
+        .footer-link {
+            display: inline-block;
+            margin-right: $width-gap/2;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

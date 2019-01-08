@@ -1,0 +1,113 @@
+.richtext-block {
+    width: 100%;
+    max-width: $width-text-padded;
+    padding: 0 $width-gap;
+    margin: auto;
+
+    ul,
+    ol {
+        margin: $width-gap/2 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            position: relative;
+            padding-left: $width-gap * 1.5;
+        }
+
+        ol,
+        ul {
+            margin: 0;
+        }
+    }
+
+    ul {
+        li::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0.625em;
+            left: 1rem;
+            width: 0.375rem;
+            height: 0.375rem;
+            border-radius: 50%;
+            background: currentColor;
+        }
+    }
+
+    ol {
+        list-style: none;
+        counter-reset: ol-counter;
+    }
+
+    ol li {
+        counter-increment: ol-counter;
+    }
+
+    ol li::before {
+        content: counter(ol-counter) '.';
+        font-size: inherit;
+        position: absolute;
+        right: calc(100% - 1.75rem);
+    }
+
+    blockquote {
+        margin: $width-gap * 2 0 $width-gap * 2 $width-gap * 1.25;
+        padding-left: $width-gap * 0.75;
+        border-left: $width-gap/3 solid $color-primary;
+        font-style: italic;
+        font-size: 1.25rem;
+        font-weight: 300;
+    }
+}
+
+.richtext-image {
+    width: calc(100% + #{$width-gap * 2});
+    margin: $width-gap 0 $width-gap #{-$width-gap};
+
+    img {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    @include desktop {
+        width: $width-text-padded;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        &.right {
+            float: right;
+            margin: $width-gap #{-$width-gap} $width-gap $width-gap;
+        }
+
+        &.left {
+            float: left;
+            margin: $width-gap $width-gap $width-gap #{-$width-gap};
+        }
+
+        &.full-width {
+            width: $width-text-padded;
+            margin: $width-gap 0 $width-gap #{-$width-gap};
+        }
+
+        &.right,
+        &.left {
+            max-width: calc(50% + #{$width-gap});
+
+            + * {
+                margin-top: 40px;
+            }
+
+            &:first-child {
+                margin-top: 0;
+
+                + * {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+}

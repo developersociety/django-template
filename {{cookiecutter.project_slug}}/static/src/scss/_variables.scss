@@ -1,0 +1,74 @@
+// Base sizes
+$base-font-size: 1rem !default;
+$base-line-height: 1.5 !default;
+$base-font: 'Open Sans';
+
+// Responsive
+$mobile-breakpoint: 768px;
+$desktop-breakpoint: 769px;
+
+// Colors
+$color-text: #000000 !default;
+$color-background: #1a191b !default;
+$color-footer: #1a191b !default;
+
+$color-primary: #323134 !default;
+$color-secondary: #bcbcbc !default;
+$color-tertiary: #bcbcbc !default;
+
+$color-white: #ffffff !default;
+$color-black: #000000 !default;
+
+$color-line: #dfdfdf !default;
+
+// Size
+$width-gap: 1.5rem;
+$width-container: 60rem !default;
+$width-text: 42rem !default;
+$width-text-padded: 45rem !default;
+$width-text-wide: 57rem !default;
+
+// Icon
+$icon-width: 1.5em;
+$icon-height: $icon-width;
+
+// Typography
+// font size, line height, margin top, margin bottom
+$headline-scale: (
+    h1: (
+        3.375rem,
+        1.2,
+        1.5em,
+        1rem
+    ),
+    h2: (
+        2.25rem,
+        1.2,
+        1em,
+        1rem
+    ),
+    h3: (
+        1.5rem,
+        1.5,
+        1.33em,
+        1rem
+    ),
+    h4: (
+        1.25rem,
+        1.1,
+        1.2em,
+        1rem
+    ),
+    h5: (
+        1.1rem,
+        1.1,
+        1.125em,
+        1rem
+    ),
+    h6: (
+        1rem,
+        1,
+        1.5em,
+        1rem
+    )
+) !default;

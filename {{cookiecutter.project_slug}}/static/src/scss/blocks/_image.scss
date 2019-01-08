@@ -1,0 +1,24 @@
+.image-block {
+    .image-block__caption {
+        width: 100%;
+        max-width: $width-text * 0.75;
+        margin: $width-gap/4 auto;
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    &.align-block-center {
+        max-width: $width-text-padded;
+        margin: auto;
+    }
+
+    @include desktop {
+        &.align-block-center {
+            width: 100%;
+            max-width: calc(#{$width-text + $width-gap * 2});
+        }
+    }
+}

@@ -1,0 +1,27 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        th,
+        th {
+            background: $color-primary;
+            color: $color-white;
+        }
+    }
+
+    td,
+    th {
+        padding: $width-gap/2 $width-gap;
+        min-width: $width-gap * 7.5;
+    }
+
+    th {
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    tr:nth-of-type(even) {
+        background: $color-line;
+    }
+}

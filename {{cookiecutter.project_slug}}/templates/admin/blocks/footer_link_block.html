@@ -1,0 +1,22 @@
+<div class="{{ classname }}">
+  <header class="block-header">
+    <div class="left">
+      <h1>{{ block_definition.label }}</h1>
+    </div>
+  </header>
+
+  {% if help_text %}
+    <div class="sequence-member__help help"><span class="icon-help-inverse" aria-hidden="true"></span>{{ help_text }}</div>
+  {% endif %}
+
+  <ul class="fields url-picker">
+    {% for child in children.values %}
+      <li{% if child.block.required %} class="required"{% endif %} data-field="{{ child.block.name }}" {% if child.block.name != 'link_to' %}style="display: none"{% endif %}>
+        {% if child.block.label %}
+          <label{% if child.id_for_label %} for="{{ child.id_for_label }}"{% endif %}>{{ child.block.label }}:</label>
+        {% endif %}
+        {{ child.render_form }}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

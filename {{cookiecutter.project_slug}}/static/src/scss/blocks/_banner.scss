@@ -1,0 +1,43 @@
+.banner-block {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    min-height: $width-gap * 10;
+    max-height: $width-gap * 25;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .banner-block__image,
+    .banner-block__overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 0;
+    }
+
+    .banner-block__overlay {
+        background: $color-black;
+    }
+
+    .banner-block__subheadline {
+        margin-top: 0;
+    }
+
+    .banner-block__content {
+        position: relative;
+        color: $color-white;
+        padding: 20vmin $width-gap 22.5vmin;
+        width: 100%;
+        max-width: $width-container;
+        margin: 0 auto;
+
+        .button {
+            margin-top: $width-gap/2;
+            font-size: 1.25rem;
+        }
+    }
+}
