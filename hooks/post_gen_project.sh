@@ -6,9 +6,6 @@ WAGTAIL="{{ cookiecutter.wagtail }}"
 if [ "$WAGTAIL" == "y" ]; then
     # Wagtail requested - use the wagtail base HTML file with includes and extra tags
     mv templates/base_wagtail.html templates/base.html
-    mv templates/includes/footer_wagtail.html templates/includes/footer.html
-    mv templates/includes/header_wagtail.html templates/includes/header.html
-    mv templates/includes/social_wagtail.html templates/includes/social.html
 else
     # No wagtail - remove any wagtail related files
     rm -f apps/core/wagtail_hooks.py
