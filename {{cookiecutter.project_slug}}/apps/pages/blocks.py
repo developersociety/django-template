@@ -37,7 +37,7 @@ class CustomURLValue(StructValue):
     def get_url(self):
         link_to = self.get('link_to')
 
-        if link_to == 'page' or link_to == 'file':
+        if link_to == 'page' or link_to == 'file_url':
             return self.get(link_to).url
         elif link_to == 'custom_url':
             return self.get(link_to)
@@ -48,7 +48,7 @@ class CustomURLBlock(StructBlock):
     link_to = ChoiceBlock(
         choices=[
             ('page', 'Page'),
-            ('file', 'File'),
+            ('file_url', 'File'),
             ('custom_url', 'Custom URL'),
         ],
         required=False,
@@ -76,7 +76,7 @@ class CustomURLBlock(StructBlock):
 
         url_default_values = {
             'page': None,
-            'file': None,
+            'file_url': None,
             'custom_url': '',
         }
         url_type = clean_values.get('link_to')
