@@ -1,0 +1,25 @@
+{% load wagtailimages_tags %}
+
+
+<div class="block image-grid-block image-count-{{ self.images|length }}" aria-hidden="true">
+  {% for img in self.images %}
+    {% image img.image width-1200 as grid_image %}
+    {% spaceless %}
+      <div class="image-grid__cell" data-image="{{ grid_image.url }}">
+        <div class="image-grid__image" style="background: url({{ grid_image.url }}) center center/cover no-repeat">
+        {{ img.caption }}
+        </div>
+      </div>
+    {% endspaceless %}
+  {% endfor %}
+
+  <div class="image-grid__lightbox" data-loaded="true">
+    <a href="JavaScript:void(0);" class="image-grid__lightbox-close">
+      close
+      <svg class="icon">
+        <use xlink:href="#close"></use>
+      </svg>
+    </a>
+    <div class="image-grid__lightbox-append"></div>
+  </div>
+</div>

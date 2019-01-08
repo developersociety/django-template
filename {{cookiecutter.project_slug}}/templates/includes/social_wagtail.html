@@ -1,0 +1,45 @@
+{% load wagtailsettings_tags %}
+
+{% with social_settings=settings.settings.SocialMediaSettings %}
+  <ul class="social">
+    {% if social_settings.facebook %}
+      <li>
+        <a href="{{ social_settings.facebook }}" class="facebook">
+          <svg class="icon">
+            <use xlink:href="#facebook" />
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+
+    {% if social_settings.twitter %}
+      <li>
+        <a href="{{ social_settings.twitter }}" class="twitter">
+          <svg class="icon">
+            <use xlink:href="#twitter" />
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+
+    {% if social_settings.instagram %}
+      <li>
+        <a href="{{ social_settings.instagram }}" class="instagram">
+          <svg class="icon">
+            <use xlink:href="#instagram" />
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+
+    {% if social_settings.youtube %}
+      <li>
+        <a href="{{ social_settings.youtube }}" class="youtube">
+          <svg class="icon">
+            <use xlink:href="#youtube" />
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+{% endwith %}

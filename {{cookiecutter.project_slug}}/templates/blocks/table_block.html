@@ -1,0 +1,80 @@
+<div class="block table-block">
+  <table class="table">
+    {% if self.table.first_row_is_table_header %}
+      <thead>
+        <tr>
+          {% for column in self.table.data.0 %}
+            <th>
+              {% if column.strip %}
+                {% if html_renderer %}
+                  {{ column.strip|safe|linebreaksbr }}
+                {% else %}
+                  {{ column.strip|linebreaksbr }}
+                {% endif %}
+              {% endif %}
+            </th>
+          {% endfor %}
+        </tr>
+      </thead>
+    {% endif %}
+    <tbody>
+    {% if self.table.first_row_is_table_header %}
+      {% for row in self.table.data|slice:"1:" %}
+        <tr>
+          {% for column in row %}
+            {% if self.table.first_col_is_header and forloop.first %}
+              <th>
+                {% if column.strip %}
+                  {% if html_renderer %}
+                    {{ column.strip|safe|linebreaksbr }}
+                  {% else %}
+                    {{ column.strip|linebreaksbr }}
+                  {% endif %}
+                {% endif %}
+              </th>
+             {% else %}
+              <td>
+                {% if column.strip %}
+                  {% if html_renderer %}
+                    {{ column.strip|safe|linebreaksbr }}
+                  {% else %}
+                    {{ column.strip|linebreaksbr }}
+                  {% endif %}
+                {% endif %}
+              </td>
+            {% endif %}
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    {% else %}
+      {% for row in self.table.data %}
+        <tr>
+          {% for column in row %}
+            {% if self.table.first_col_is_header and forloop.first %}
+              <th>
+                {% if column.strip %}
+                  {% if html_renderer %}
+                    {{ column.strip|safe|linebreaksbr }}
+                  {% else %}
+                    {{ column.strip|linebreaksbr }}
+                  {% endif %}
+                {% endif %}
+              </th>
+             {% else %}
+              <td>
+                {% if column.strip %}
+                  {% if html_renderer %}
+                    {{ column.strip|safe|linebreaksbr }}
+                  {% else %}
+                    {{ column.strip|linebreaksbr }}
+                  {% endif %}
+                {% endif %}
+              </td>
+            {% endif %}
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+</div>

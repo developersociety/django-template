@@ -1,0 +1,8 @@
+{% load navigation_tags wagtailcore_tags %}
+
+
+<ul class="dropdown-menu" role="menu">
+  {% for nav_item in navigation %}
+    <li><a href="{% pageurl nav_item %}" role="menuitem">{{ child.title }}</a></li>
+  {% endfor %}
+</ul>

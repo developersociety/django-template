@@ -1,0 +1,5 @@
+{% if self.get_url %}
+  <a href="{{ self.get_url }}" {% if self.new_window %}target="_blank"{% endif %} class="footer-link">
+    {{ self.link_text }}
+  </a>
+{% endif %}

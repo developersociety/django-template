@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="page-footer__top">
+    <a href="/" class="footer-logo" aria-label="Link to home page">
+      Logo
+    </a>
+    <div class="page-footer__social">
+      {% include 'includes/social.html' %}
+    </div>
+  </div>
+  <div class="page-footer__bottom">
+    <div class="page-footer__links">
+      <a href="#" class="footer-link">Footer link 1</a>
+      <a href="#" class="footer-link">Footer link 2</a>
+    </div>
+    <div class="page-footer__meta">
+      <div class="page-footer__message">
+        <p>Enter a footer message</p>
+      </div>
+      <div class="page-footer__legal">
+        &copy; {% now 'Y' %}. Website by <a href="https://www.dev.ngo/">The Developer Society</a>
+      </div>
+    </div>
+  </div>
+</div>

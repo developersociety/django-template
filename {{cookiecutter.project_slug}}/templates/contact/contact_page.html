@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+
+{% block body_class %}contact{% endblock %}
+
+{% block main %}
+  <div class="page-content">
+    {% if page.intro %}
+      <div class="contact-page__intro">
+        {% for page_block in page.intro %}
+          {% include_block page_block %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="contact-page__main">
+      {% if page.content %}
+        <div class="contact-page__content">
+          {% for page_block in page.content %}
+            {% include_block page_block %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="contact-page__form">
+        <form action="{% pageurl page %}" method="POST">
+          {{ form.as_p }}
+          {% csrf_token %}
+          <div class="button-row">
+            <input type="submit" class="button">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock main %}

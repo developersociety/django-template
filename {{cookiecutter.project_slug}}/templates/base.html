@@ -2,69 +2,33 @@
 
 {% load staticfiles %}
 
+
 <html lang="en">
   <head>
-    <title>{% block title %}{{ request.site.name }}{% endblock %}</title>
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <title>
+      {% block title %}{{ request.site.site_name }}{% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'dist/css/styles.css' %}" rel="stylesheet">
 
     {% if BROWSERSYNC_URL %}
-      <script src="{{ BROWSERSYNC_URL }}" async></script>
+      <script async src="{{ BROWSERSYNC_URL }}"></script>
     {% endif %}
   </head>
   <body>
     {% include 'includes/sprite.html' %}
 
-    {% if DEMO_SITE %}
-      <div class="demo-announcement">
-        <div class="container">This site is in development. Any changes made here will not be transferred to the production build.</div>
-      </div>
-    {% endif %}
-
     <header class="page-header">
-      {% include 'includes/nav.html' %}
+      {% include 'includes/header.html' %}
     </header>
 
     <main>
-      <div class="container">
-        <div class="page-column__wrapper row">
-          <div class="page-column__main column-7">
-            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing.</h1>
-            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident dicta vero, soluta tempora beatae recusandae unde. Ab.</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis ad laboriosam fugit reprehenderit, maiores, laudantium accusamus fuga consectetur impedit perspiciatis sapiente illum iste facere, qui. Saepe praesentium, necessitatibus autem. Recusandae iure veniam nostrum similique a ullam, animi, atque doloribus nihil. Rerum perspiciatis, atque. Perspiciatis, doloremque.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere ea, voluptate ratione suscipit! Neque perspiciatis architecto magnam, veritatis assumenda natus quae quisquam cum enim, modi aperiam recusandae pariatur!</p>
-          </div>
-          <div class="page-column__sidebar column-5">
-            <h3>Lorem ipsum dolor sit amet.</h3>
-            <hr>
-            <div class="nav__list">
-              <ul>
-                <li><a href="#">link</a></li>
-                <li><a href="#">link</a></li>
-                <li><a href="#">link</a></li>
-                <li><a href="#">link</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% block main %}{% endblock %}
     </main>
 
-    <footer class="page-footer inverted">
-      <div class="container">
-        <div class="row">
-          <div class="page-footer__legal column-8">
-            <div class="footer__brand">
-              <a href="/" class="page__logo"></a>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ullam quae minima?</p>
-            <p class="footer__copyright">&copy; {% now 'Y' %}. Website by <a href="https://www.dev.ngo/">The Developer Society</a></p>
-          </div>
-
-          <div class="page-footer__social column-4">
-            {% include 'includes/social.html' %}
-          </div>
-        </div>
-      </div>
+    <footer class="page-footer">
+      {% include 'includes/footer.html' %}
     </footer>
+    <script src="{% static 'dist/js/main.js' %}"></script>
   </body>
 </html>

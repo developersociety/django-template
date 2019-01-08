@@ -1,0 +1,43 @@
+{% load navigation_tags %}
+
+{% get_site_root as site_root %}
+<input type="checkbox" id="nav_toggle" class="sr__input">
+
+<nav class="nav-container container">
+  <div class="nav-brand">
+    <a href="/" class="nav-logo" aria-label="link to home page">
+      LOGO
+    </a>
+  </div>
+
+  <div class="nav-primary__holder">
+    <ul class="nav-primary" role="menubar" aria-label="Navigation">
+      <li class="{% if self.url == site_root.url %}active{% endif %}">
+        <a href="/" aria-role="menuitem">Home</a>
+      </li>
+      {% navigation parent=site_root calling_page=self %}
+    </ul>
+  </div>
+
+  <label for="nav_toggle" class="nav-toggle" tabindex="-1">
+    <span class="nav-open" role="button" aria-label="show menu" aria-haspopup="true" aria-expanded="false" aria-controls="mobile_navigation" onclick="document.getElementById('mobile_menu').focus()">
+      <svg class="icon">
+        <use xlink:href="#menu" />
+      </svg>
+    </span>
+    <span class="nav-close" role="button" aria-label="close menu" aria-haspopup="true" aria-expanded="true" aria-controls="mobile_navigation"  onclick="document.getElementById('mobile_menu').blur()">
+      <svg class="icon">
+        <use xlink:href="#close" />
+      </svg>
+    </span>
+  </label>
+</nav>
+
+<div class="nav-mobile__holder" id="mobile_navigation">
+  <ul class="nav-mobile" role="menubar" aria-label="Navigation" id="mobile_menu" tabindex="-1">
+    <li class="{% if self.url == site_root.url %}active{% endif %}">
+      <a href="/" aria-role="menuitem">Home</a>
+    </li>
+    {% navigation parent=site_root calling_page=self %}
+  </ul>
+</div>

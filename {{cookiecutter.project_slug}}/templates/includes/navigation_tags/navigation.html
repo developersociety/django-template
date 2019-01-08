@@ -1,0 +1,13 @@
+{% load navigation_tags wagtailcore_tags %}
+
+
+{% for item in nav_items %}
+  <li class="{% if item.active %} active{% endif %}{% if item.show_dropdown %} has-submenu{% endif %}">
+    {% if item.show_dropdown %}
+      <a href="{% pageurl item %}" class="allow-toggle" role="menuitem">{{ item.title }}</a>
+      {% navigation_items parent=item %}
+    {% else %}
+      <a href="{% pageurl item %}" role="menuitem">{{ item.title }}</a>
+    {% endif %}
+  </li>
+{% endfor %}

@@ -13,21 +13,21 @@ class Command(StaticfilesRunserverCommand):
         super().add_arguments(parser)
 
         parser.add_argument(
-            '--nogulp',
+            '--nowebpack',
             action='store_false',
-            dest='use_gulp',
+            dest='use_webpack',
             default=True,
             help='Tells Django to NOT start gulp.'
         )
 
     def run(self, **options):
-        if options.get('use_gulp'):
-            self.set_gulp_environment_variables()
-            self.start_gulp(**options)
+        if options.get('use_webpack'):
+            self.set_webpack_environment_variables()
+            self.start_webpack(**options)
 
         super().run(**options)
 
-    def set_gulp_environment_variables(self):
+    def set_webpack_environment_variables(self):
         # Only set environment variables on the outer process
         outer_process = 'RUN_MAIN' not in os.environ
 
@@ -38,7 +38,7 @@ class Command(StaticfilesRunserverCommand):
             # Now move Django to another port
             os.environ['BROWSERSYNC_PORT'] = str(int(self.port) + 1)
 
-    def start_gulp(self, **options):
+    def start_webpack(self, **options):
         inner_process = 'RUN_MAIN' in os.environ
         use_reloader = options.get('use_reloader')
 
@@ -46,28 +46,28 @@ class Command(StaticfilesRunserverCommand):
         if inner_process and use_reloader:
             return
 
-        gulp_args = []
+        webpack_args = []
 
         # Only be noisy if verbosity >= 1
         if options.get('verbosity') < 1:
-            gulp_args.append('--silent')
+            webpack_args.append('--display=errors-only')
 
-        if gulp_args:
-            gulp_args = ['--'] + gulp_args
+        if webpack_args:
+            webpack_args = ['--'] + webpack_args
 
-        self.stdout.write('>>> Starting gulp')
-        self.gulp_process = subprocess.Popen(
-            ['npm', 'start'] + gulp_args,
+        self.stdout.write('>>> Starting webpack')
+        self.webpack = subprocess.Popen(
+            ['npm', 'start'] + webpack_args,
             shell=False,
             stdin=subprocess.PIPE,
             stdout=self.stdout,
             stderr=self.stderr,
         )
-        self.stdout.write('>>> gulp process on pid {}'.format(self.gulp_process.pid))
+        self.stdout.write('>>> gulp process on pid {}'.format(self.webpack.pid))
 
-        def kill_gulp_process():
+        def kill_webpack():
             self.stdout.write('>>> Closing gulp process')
-            self.gulp_process.terminate()
-            self.gulp_process.wait()
+            self.webpack.terminate()
+            self.webpack.wait()
 
-        atexit.register(kill_gulp_process)
+        atexit.register(kill_webpack)

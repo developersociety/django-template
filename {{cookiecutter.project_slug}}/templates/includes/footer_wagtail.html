@@ -1,0 +1,34 @@
+{% load wagtailcore_tags %}
+{% load wagtailsettings_tags %}
+
+
+{% get_settings %}
+<div class="container">
+  <div class="page-footer__top">
+    <a href="/" class="footer-logo" aria-label="Link to home page">
+      Logo
+    </a>
+    <div class="page-footer__social">
+      {% include 'includes/social.html' %}
+    </div>
+  </div>
+  <div class="page-footer__bottom">
+    {% if settings.settings.FooterLinks.links %}
+      <div class="page-footer__links">
+        {% for block in settings.settings.FooterLinks.links %}
+          {% include_block block %}
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div class="page-footer__meta">
+      {% if settings.settings.FooterText.body %}
+        <div class="page-footer__message">
+          {{ settings.settings.FooterText.body|richtext }}
+        </div>
+      {% endif %}
+      <div class="page-footer__legal">
+        &copy; {% now 'Y' %}. Website by <a href="https://www.dev.ngo/">The Developer Society</a>
+      </div>
+    </div>
+  </div>
+</div>

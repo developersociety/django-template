@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+
+{% block body_class %}contact{% endblock %}
+
+{% block main %}
+  <div class="page-content">
+    {% if page.intro %}
+      <div class="contact-page__intro">
+        {% for page_block in page.intro %}
+          {% include_block page_block %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="contact-page__main">
+      <div class="block richtext-block">
+        {{ page.thank_you_text|richtext }}
+      </div>
+    </div>
+  </div>
+{% endblock main %}

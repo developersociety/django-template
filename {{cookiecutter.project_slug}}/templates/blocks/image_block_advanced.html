@@ -1,7 +1,7 @@
 {% load wagtailimages_tags %}
 
 
-<div class="block image-block">
+<div class="block image-block align-block-{{ self.alignment }}">
   <figure>
     {% if self.link.get_url %}
       <a href="{{ self.link.get_url }}" {% if self.link.new_window %}target="_blank"{% endif %}>
@@ -10,7 +10,7 @@
     {% image self.image width-1200 %}
 
     {% if self.caption %}
-      <figcaption>
+      <figcaption class="image-block__caption">
         {{ self.caption }}
       </figcaption>
     {% endif %}

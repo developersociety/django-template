@@ -1,0 +1,9 @@
+<div class="block file-download-block {% if not self.button_only %}file-download-panel{% endif %}">
+  {% if not self.button_only %}
+    <div class="file-download-block__content">
+      <h3>{{ self.file.title }}</h3>
+      {{ self.description|linebreaks }}
+    </div>
+  {% endif %}
+  <a href="{{ self.file.url }}" class="button download" download>Download</a>
+</div>

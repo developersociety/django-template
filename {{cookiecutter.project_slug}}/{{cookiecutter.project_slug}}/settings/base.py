@@ -70,6 +70,7 @@ THIRD_PARTY_APPS = [
     'wagtail.contrib.routable_page',
     'wagtail.contrib.search_promotions',
     'wagtail.contrib.settings',
+    'wagtail.contrib.table_block',
     'wagtail.core',
     'wagtail.documents',
     'wagtail.embeds',
@@ -83,7 +84,8 @@ THIRD_PARTY_APPS = [
 ]
 {% if cookiecutter.wagtail == 'y' %}
 PROJECT_APPS = [
-    'pages',
+    'pages.apps.PagesConfig',
+    'contact.apps.ContactConfig',
     'settings.apps.SettingsConfig',
 ]
 {%- else %}

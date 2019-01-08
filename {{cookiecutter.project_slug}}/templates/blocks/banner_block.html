@@ -1,0 +1,24 @@
+{% load wagtailimages_tags %}
+
+
+{% image self.image width-1200 as banner_image %}
+
+<div class="block banner-block">
+  <div class="banner-block__image" style="background: url({{ banner_image.url }}) center center/cover no-repeat"></div>
+  {% if self.overlay %}
+    <div class="banner-block__overlay" style="opacity: {{ self.overlay_opacity }}"></div>
+  {% endif %}
+
+  <div class="banner-block__content">
+    <h1 class="banner-block__headline">{{ self.headline }}</h1>
+    {% if self.sub_headline %}
+      <p>{{ self.sub_headline }}</p>
+    {% endif %}
+
+    {% if self.link.get_url %}
+      <a href="{{ self.link.get_url }}" {% if self.link.new_window %}target="_blank"{% endif %} class="button">
+        {{ self.link.link_text }}
+      </a>
+    {% endif %}
+  </div>
+</div>
