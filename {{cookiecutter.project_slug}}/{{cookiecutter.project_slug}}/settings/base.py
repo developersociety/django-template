@@ -57,6 +57,8 @@ DEFAULT_APPS = [
 
 THIRD_PARTY_APPS = [
 {%- if cookiecutter.wagtail == 'y' %}
+    'django_otp',
+    'django_otp.plugins.otp_totp',
     'modelcluster',
 {%- endif %}
     'raven.contrib.django.apps.RavenConfig',
@@ -79,6 +81,7 @@ THIRD_PARTY_APPS = [
     'wagtail.sites',
     'wagtail.snippets',
     'wagtail.users',
+    'wagtail_2fa',
     'wagtailfontawesome',
 {%- endif %}
 ]
@@ -103,6 +106,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 {%- if cookiecutter.wagtail == 'y' %}
+    'wagtail_2fa.middleware.VerifyUserMiddleware',
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 {%- else %}

@@ -134,7 +134,11 @@ django-collectstatic:
 	./manage.py collectstatic --verbosity 0 --noinput
 
 django-check-validate-templates:
+{%- if cookiecutter.twofactor == 'n' %}
 	./manage.py validate_templates --verbosity 0
+{%- else %}
+	./manage.py validate_templates --verbosity 0 --ignore-app django_otp
+{%- endif %}
 
 django-dev-createsuperuser: DJANGO_DEV_USERNAME ?= _dev@dev.ngo
 django-dev-createsuperuser: DJANGO_DEV_PASSWORD ?= password
