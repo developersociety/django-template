@@ -134,7 +134,7 @@ django-collectstatic:
 	./manage.py collectstatic --verbosity 0 --noinput
 
 django-check-validate-templates:
-{%- if cookiecutter.twofactor == 'n' %}
+{%- if cookiecutter.wagtail == 'n' %}
 	./manage.py validate_templates --verbosity 0
 {%- else %}
 	./manage.py validate_templates --verbosity 0 --ignore-app django_otp
