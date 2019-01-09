@@ -18,6 +18,11 @@ urllib3==1.24.1
 certifi==2018.10.15
 {%- if cookiecutter.wagtail == 'y' %}
 
+# Wagtail 2fa
+django-otp==0.5.1
+qrcode==6.0
+wagtail-2fa==1.0.0
+
 # Wagtail (core wagtail)
 wagtail==2.3
 beautifulsoup4==4.6.0

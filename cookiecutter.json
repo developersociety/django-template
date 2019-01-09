@@ -4,6 +4,7 @@
     "django_version": ["1.11"],
     "geodjango": "n",
     "wagtail": "n",
+    "twofactor": "n",
     "_copy_without_render": [
         "static",
         "templates/*.html"
