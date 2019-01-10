@@ -58,6 +58,7 @@ if os.environ.get('ELASTIC_APM_SERVER_URL'):
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 {%- if cookiecutter.twofactor == 'y' %}
+
 # Two factor Auth
 WAGTAIL_2FA_REQUIRED = True
 {%- endif %}
