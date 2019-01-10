@@ -88,7 +88,6 @@ THIRD_PARTY_APPS = [
 {% if cookiecutter.wagtail == 'y' %}
 PROJECT_APPS = [
     'pages',
-    'contact.apps.ContactConfig',
     'images.apps.ImagesConfig',
     'settings.apps.SettingsConfig',
 ]
