@@ -88,7 +88,8 @@ THIRD_PARTY_APPS = [
 {% if cookiecutter.wagtail == 'y' %}
 PROJECT_APPS = [
     'pages',
-    'contact',
+    'contact.apps.ContactConfig',
+    'images.apps.ImagesConfig',
     'settings.apps.SettingsConfig',
 ]
 {%- else %}
@@ -295,6 +296,7 @@ CSRF_COOKIE_HTTPONLY = True
 {%- if cookiecutter.wagtail == 'y' %}
 
 # Wagtail
+WAGTAILIMAGES_IMAGE_MODEL = 'images.CustomImage'
 WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 WAGTAILSEARCH_BACKENDS = {
