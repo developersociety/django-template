@@ -18,3 +18,9 @@ static/css
 
 # Database
 *.dump
+
+{%- if cookiecutter.multilingual == 'y' %}
+
+# Translations
+/locale
+{%- endif %}

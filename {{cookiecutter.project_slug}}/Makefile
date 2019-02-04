@@ -7,7 +7,17 @@ SHELL=/bin/bash
 # ---------------------------------
 #
 # Add any targets specific to the current project in here.
+{%- if cookiecutter.multilingual == 'y'  %}
+translations: ## Create/compile dummy translations
+	rm -rf locale/en
+	mkdir -p locale/en/LC_MESSAGES
+	./manage.py makemessages --verbosity=0
 
+	podebug --rewrite=unicode locale/en/LC_MESSAGES/django.po
+	sed -i -e 's/.Plural-Forms:.*//' locale/en/LC_MESSAGES/django.po
+	find locale -name '*-e' -delete
+	cd locale && ../manage.py compilemessages --verbosity=0
+{%- endif %}
 
 
 # -------------------------------
