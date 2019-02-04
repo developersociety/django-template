@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 
 {% load staticfiles %}
-
+{%- if cookiecutter.multilingual == 'y' %}
+{% load i18n %}
+<html lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %} >
+{%- else %}
 <html lang="en">
+{%- endif %}
   <head>
     <title>{% block title %}{{ request.site.name }}{% endblock %}</title>
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
