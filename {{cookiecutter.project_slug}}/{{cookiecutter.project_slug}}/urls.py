@@ -1,6 +1,9 @@
 from django.apps import apps
 from django.conf import settings
 from django.conf.urls import include, url
+{%- if cookiecutter.multilingual == 'y' %}
+from django.conf.urls.i18n import i18n_patterns
+{%- endif %}
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -19,8 +22,11 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 admin.site.site_title = '{{ cookiecutter.project_name }}'
 admin.site.site_header = '{{ cookiecutter.project_name }}'
-
+{%- if cookiecutter.multilingual == 'y' %}
+urlpatterns = i18n_patterns(
+{%- else %}
 urlpatterns = [
+{%- endif %}
 {%- if cookiecutter.wagtail == 'y' %}
     url(r'^django-admin/', admin.site.urls),
     url(r'^admin/', include(wagtailadmin_urls)),
@@ -33,7 +39,11 @@ urlpatterns = [
         r'^robots\.txt$',
         TemplateView.as_view(template_name='robots.txt', content_type='text/plain'),
     ),
+{%- if cookiecutter.multilingual == 'y' %}
+)
+{%- else %}
 ]
+{%- endif %}
 
 # Make it easier to see a 404 page under debug
 if settings.DEBUG:
