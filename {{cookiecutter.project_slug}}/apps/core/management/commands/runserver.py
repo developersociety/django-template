@@ -58,8 +58,8 @@ class Command(RunserverCommand):
             ['npm', 'start'] + gulp_args,
             shell=False,
             stdin=subprocess.PIPE,
-            stdout=self.stdout,
-            stderr=self.stderr,
+            stdout=self.stdout._out,
+            stderr=self.stderr._out,
         )
         self.stdout.write('>>> gulp process on pid {}'.format(self.gulp_process.pid))
 

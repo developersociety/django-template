@@ -1,11 +1,12 @@
-Django==1.11.20
-pytz==2018.9
+Django==2.2
+pytz==2019.1
 pylibmc==1.6.0
 psycopg2==2.7.3.2
 Pillow==5.4.1
 olefile==0.46
 dj-database-url==0.5.0
 raven==6.10.0
+sqlparse==0.3.0
 
 # Storage
 django-storages==1.7.1
@@ -13,18 +14,18 @@ boto==2.49.0
 blanc-contentfiles==0.2.4
 
 # APM
-elastic-apm==4.1.0
+elastic-apm==4.2.2
 urllib3==1.24.1
-certifi==2018.11.29
+certifi==2019.3.9
 {%- if cookiecutter.wagtail == 'y' %}
 
 # Wagtail (core wagtail)
-wagtail==2.3
+wagtail==2.5rc1
 beautifulsoup4==4.6.0
-django-modelcluster==4.3
-django-taggit==0.23.0
+django-modelcluster==4.4
+django-taggit==0.24.0
 django-treebeard==4.3
-djangorestframework==3.9.1
+djangorestframework==3.9.2
 draftjs-exporter==2.1.5
 html5lib==1.0.1
 Unidecode==1.0.23
@@ -33,7 +34,7 @@ Willow==1.1
 
 # Requests (wagtail)
 requests==2.21.0
-idna==2.7
+idna==2.8
 chardet==3.0.4
 
 # Wagtail extras
