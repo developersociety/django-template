@@ -2,6 +2,7 @@
 set -e
 
 WAGTAIL="{{ cookiecutter.wagtail }}"
+MULTILINGUAL="{{ cookiecutter.multilingual }}"
 
 if [ "$WAGTAIL" == "y" ]; then
     # Wagtail requested - use the wagtail base HTML file with extra tags
@@ -14,4 +15,11 @@ else
     rm -rf templates/pages
     rm -rf templates/wagtail
     rm -f templates/base_wagtail.html
+fi
+
+if [ "$MULTILINGUAL" == "y" ]; then
+# create locale directory
+mkdir -p locale/en
+else
+    rm -rf apps/core/tests
 fi
