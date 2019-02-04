@@ -13,6 +13,8 @@ import sys
 
 import dj_database_url
 
+from django.utils.translation import ugettext_lazy as _
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
@@ -100,6 +102,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+{%- if cookiecutter.multilingual == 'y' %}
+    'django.middleware.locale.LocaleMiddleware',
+{%- endif %}
 {%- if cookiecutter.wagtail == 'y' %}
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
@@ -137,15 +142,30 @@ else:
 # Internationalization
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/i18n/
 
-LANGUAGE_CODE = 'en-gb'
-
 TIME_ZONE = 'Europe/London'
 
+{%- if cookiecutter.multilingual == 'y'  %}
+LANGUAGE_CODE = 'en'
+
+USE_I18N = True
+{%- else %}
+LANGUAGE_CODE = 'en-gb'
+
 USE_I18N = False
+{%- endif %}
 
 USE_L10N = True
 
 USE_TZ = True
+
+{%- if cookiecutter.multilingual == 'y' %}
+LANGUAGES = [
+    ('en', _('English'))
+]
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
+{%- endif %}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/howto/static-files/
