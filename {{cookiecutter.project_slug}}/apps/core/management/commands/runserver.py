@@ -2,12 +2,10 @@ import atexit
 import os
 import subprocess
 
-from django.contrib.staticfiles.management.commands.runserver import (
-    Command as StaticfilesRunserverCommand
-)
+from django.core.management.commands.runserver import Command as RunserverCommand
 
 
-class Command(StaticfilesRunserverCommand):
+class Command(RunserverCommand):
 
     def add_arguments(self, parser):
         super().add_arguments(parser)
