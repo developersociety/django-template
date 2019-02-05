@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+{% load wagtailuserbar %}
+
+{% load i18n %}
+
+<html lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %} >
+  <head>
+    <title>
+      {% block title %}{{ request.site.site_name }}{% endblock %}
+    </title>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+    {% if BROWSERSYNC_URL %}
+      <script src="{{ BROWSERSYNC_URL }}" async></script>
+    {% endif %}
+
+    {{ settings.settings.HeaderHTML.html|safe }}
+  </head>
+  <body>
+    {% wagtailuserbar %}
+    {% include 'includes/sprite.html' %}
+
+    <header class="page-header">
+      {% include 'includes/nav.html' %}
+    </header>
+
+    <main>
+      {% block main %}{% endblock %}
+    </main>
+
+    <footer class="page-footer inverted">
+      <div class="container">
+        <div class="row">
+          <div class="page-footer__legal column-8">
+            <div class="footer__brand">
+              <a href="/" class="page__logo"></a>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ullam quae minima?</p>
+            <p class="footer__copyright">
+              &copy; {% now 'Y' %}. Website by <a href="https://www.dev.ngo/">The Developer Society</a>
+            </p>
+          </div>
+
+          <div class="page-footer__social column-4">
+            {% include 'includes/social.html' %}
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    {{ settings.settings.FooterHTML.html|safe }}
+  </body>
+</html>

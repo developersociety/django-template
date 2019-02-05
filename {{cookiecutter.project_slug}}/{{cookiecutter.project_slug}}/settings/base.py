@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings
 import os
 import sys
 {%- if cookiecutter.multilingual == 'y' %}
+
 from django.utils.translation import ugettext_lazy as _
 {%- endif %}
 
@@ -97,6 +98,9 @@ INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
+{%- if cookiecutter.multilingual == 'y' %}
+    'django.middleware.locale.LocaleMiddleware',
+{%- endif %}
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -164,9 +168,12 @@ LANGUAGES = [
     ('en', _('English')),
     ('uni', _('Unicode Test')),
 ]
+
+{%- if cookiecutter.wagtail != 'y' %}
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
+{%- endif %}
 {%- endif %}
 
 # Static files (CSS, JavaScript, Images)
