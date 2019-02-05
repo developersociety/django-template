@@ -2,8 +2,7 @@
 from django.db import models
 
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-{%- else %}
-from wagtail.admin.edit_handlers import StreamFieldPanel
+{%- else %}from wagtail.admin.edit_handlers import StreamFieldPanel
 {%- endif %}
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
@@ -41,6 +40,8 @@ class HomePage(Page):
 
 
 {%- else %}
+
+
 class HomePage(Page):
     content = StreamField(BaseStreamBlock(), blank=True)
 
