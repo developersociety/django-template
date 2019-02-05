@@ -160,7 +160,8 @@ USE_TZ = True
 
 {%- if cookiecutter.multilingual == 'y' %}
 LANGUAGES = [
-    ('en', _('English'))
+    ('en', _('English')),
+    ('uni', _('Unicode Test')),
 ]
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
