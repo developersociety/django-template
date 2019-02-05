@@ -17,6 +17,10 @@ from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
+{%- if cookiecutter.multilingual == 'y' %}
+from pages.views import LanguageRedirectView
+{%- endif %}
+
 # from search import views as search_views
 {%- endif %}
 
@@ -41,6 +45,13 @@ urlpatterns = [
     ),
 {%- if cookiecutter.multilingual == 'y' %}
 )
+
+{%- if cookiecutter.wagtail == 'u' %}
+urlpatterns += [
+    url(r'^$', LanguageRedirectView.as_view(), name='language-redirect'),
+]
+{%- endif %}
+
 {%- else %}
 ]
 {%- endif %}

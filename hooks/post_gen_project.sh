@@ -33,6 +33,9 @@ elif [ "$WAGTAIL" == "y" ] && [ "$MULTILINGUAL" == "n" ]; then
     rm -rf templates/404_multilingual.html
     rm -rf templates/500_multilingual.html
 
+    # remove the lanuage redirect
+    rm -rf apps/pages/views.py
+
 elif [ "$WAGTAIL" == "n" ] && [ "$MULTILINGUAL" == "y" ]; then
     # Standard django project with multilingual features (no wagtail)
 
