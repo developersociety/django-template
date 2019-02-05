@@ -18,8 +18,18 @@ else
 fi
 
 if [ "$MULTILINGUAL" == "y" ]; then
-# create locale directory
-mkdir -p locale/en
+    
+    # create locale directory
+    mkdir -p locale/en
+
+    # use the multilingual templates
+    mv templates/base_multilingual.html templates/base.html
+    mv templates/404_multilingual.html templates/404.html
+    mv templates/500_multilingual.html templates/500.html
+
 else
     rm -rf apps/core/tests
+    rm -rf templates/base_multilingual.html
+    rm -rf templates/404_multilingual.html
+    rm -rf templates/500_multilingual.html
 fi
