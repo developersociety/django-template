@@ -27,6 +27,7 @@ from pages.views import LanguageRedirectView
 admin.site.site_title = '{{ cookiecutter.project_name }}'
 admin.site.site_header = '{{ cookiecutter.project_name }}'
 {%- if cookiecutter.multilingual == 'y' %}
+
 urlpatterns = i18n_patterns(
 {%- else %}
 urlpatterns = [
@@ -46,7 +47,7 @@ urlpatterns = [
 {%- if cookiecutter.multilingual == 'y' %}
 )
 
-{%- if cookiecutter.wagtail == 'u' %}
+{%- if cookiecutter.wagtail == 'y' %}
 urlpatterns += [
     url(r'^$', LanguageRedirectView.as_view(), name='language-redirect'),
 ]
