@@ -12,7 +12,6 @@ if [ "$WAGTAIL" == "y" ] && [ "$MULTILINGUAL" == "y" ]; then
 
     # use the multilingual 500/404 templates
     mv templates/404_multilingual.html templates/404.html
-    mv templates/500_multilingual.html templates/500.html
 
     # remove unused base templates
     rm -rf templates/base_multilingual.html
@@ -31,7 +30,6 @@ elif [ "$WAGTAIL" == "y" ] && [ "$MULTILINGUAL" == "n" ]; then
     rm -rf apps/core/tests
     rm -rf templates/base_multilingual.html
     rm -rf templates/404_multilingual.html
-    rm -rf templates/500_multilingual.html
 
     # remove the lanuage redirect
     rm -rf apps/pages/views.py
@@ -39,13 +37,13 @@ elif [ "$WAGTAIL" == "y" ] && [ "$MULTILINGUAL" == "n" ]; then
 elif [ "$WAGTAIL" == "n" ] && [ "$MULTILINGUAL" == "y" ]; then
     # Standard django project with multilingual features (no wagtail)
 
-    # create local directory
+    # create locale directory
     mkdir -p locale/en
+    mkdir -p locale/uni
 
     # use the multilingual templates
     mv templates/base_multilingual.html templates/base.html
     mv templates/404_multilingual.html templates/404.html
-    mv templates/500_multilingual.html templates/500.html
 
     # remove any wagtail related files
     rm -rf apps/pages
@@ -54,6 +52,10 @@ elif [ "$WAGTAIL" == "n" ] && [ "$MULTILINGUAL" == "y" ]; then
     rm -rf templates/pages
     rm -rf templates/wagtail
     rm -f templates/base_wagtail.html
+    rm -f templates/base_wagtail_multilingual.html
+
+    # make initial translations
+    make translations
 
 else
     # Neither wagtail or multilingual project
@@ -62,7 +64,6 @@ else
     rm -rf apps/core/tests
     rm -rf templates/base_multilingual.html
     rm -rf templates/404_multilingual.html
-    rm -rf templates/500_multilingual.html
 
     # remove any wagtail related files
     rm -rf apps/pages
