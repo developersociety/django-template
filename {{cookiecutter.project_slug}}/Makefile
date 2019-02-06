@@ -17,7 +17,7 @@ translations: ## Create/compile dummy translations
 	sed -i -e 's/.Plural-Forms:.*//' locale/en/LC_MESSAGES/django.po
 	sed -i -e 's/.Plural-Forms:.*//' locale/uni/LC_MESSAGES/django.po
 	find locale -name '*-e' -delete
-	cd locale && ../manage.py compilemessages --verbosity=0
+	./manage.py compilemessages --verbosity=0
 {%- endif %}
 
 
