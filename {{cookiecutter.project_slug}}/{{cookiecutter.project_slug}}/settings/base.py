@@ -164,12 +164,14 @@ USE_L10N = True
 USE_TZ = True
 
 {%- if cookiecutter.multilingual == 'y' %}
+
 LANGUAGES = [
     ('en', _('English')),
     ('uni', _('Unicode Test')),
 ]
 
 {%- if cookiecutter.wagtail != 'y' %}
+
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
