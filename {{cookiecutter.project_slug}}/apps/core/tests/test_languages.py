@@ -15,4 +15,4 @@ class LanguageRedirectTest(TestCase):
     def test_dummy_translations(self):
         response = self.client.get('/admin', HTTP_ACCEPT_LANGUAGE='uni')
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/cy/', fetch_redirect_response=False)
+        self.assertRedirects(response, '/uni/admin/', fetch_redirect_response=False)
