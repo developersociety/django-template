@@ -1,6 +1,7 @@
 from django.apps import apps
 from django.conf import settings
 from django.conf.urls import include, url
+
 {%- if cookiecutter.multilingual == 'y' %}
 from django.conf.urls.i18n import i18n_patterns
 {%- endif %}
@@ -18,43 +19,67 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 {%- if cookiecutter.multilingual == 'y' %}
+
 from pages.views import LanguageRedirectView
 {%- endif %}
-
-# from search import views as search_views
 {%- endif %}
 
 admin.site.site_title = '{{ cookiecutter.project_name }}'
 admin.site.site_header = '{{ cookiecutter.project_name }}'
-{%- if cookiecutter.multilingual == 'y' %}
 
-urlpatterns = i18n_patterns(
-{%- else %}
 urlpatterns = [
-{%- endif %}
-{%- if cookiecutter.wagtail == 'y' %}
-    url(r'^django-admin/', admin.site.urls),
-    url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
-    url(r'^sitemap\.xml$', sitemap, name='sitemap'),
-{%- else %}
-    url(r'^admin/', admin.site.urls),
-{%- endif %}
     url(
         r'^robots\.txt$',
         TemplateView.as_view(template_name='robots.txt', content_type='text/plain'),
     ),
-{%- if cookiecutter.multilingual == 'y' %}
-)
+]
 
-{%- if cookiecutter.wagtail == 'y' %}
+{%- if cookiecutter.multilingual == 'y' and cookiecutter.wagtail == 'y' %}
+# Multilingual wagtail site
+
+urlpatterns = i18n_patterns()
+
 urlpatterns += [
     url(r'^$', LanguageRedirectView.as_view(), name='language-redirect'),
+    url(r'^django-admin/', admin.site.urls),
+    url(r'^admin/', include(wagtailadmin_urls)),
+    url(r'^documents/', include(wagtaildocs_urls)),
+    url(r'^sitemap\.xml$', sitemap, name='sitemap'),
 ]
-{%- endif %}
 
-{%- else %}
+# Wagtail catch-all
+urlpatterns += [
+    url(r'', include(wagtail_urls)),
 ]
+
+{%- elif cookiecutter.multilingual == 'n' and cookiecutter.wagtail == 'y' %}
+# Standard wagtail site
+
+urlpatterns += [
+    url(r'^django-admin/', admin.site.urls),
+    url(r'^admin/', include(wagtailadmin_urls)),
+    url(r'^documents/', include(wagtaildocs_urls)),
+    url(r'^sitemap\.xml$', sitemap, name='sitemap'),
+]
+
+# Wagtail catch-all
+urlpatterns += [
+    url(r'', include(wagtail_urls)),
+]
+
+{%- elif cookiecutter.multilingual == 'y' and cookiecutter.wagtail == 'n' %}
+# multilingual django site
+
+urlpatterns += i18n_patterns(
+    url(r'^admin/', admin.site.urls),
+)
+{%- else %}
+# Standard django site
+
+urlpatterns += [
+    url(r'^admin/', admin.site.urls),
+]
+
 {%- endif %}
 
 # Make it easier to see a 404 page under debug

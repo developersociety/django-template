@@ -10,9 +10,6 @@ if [ "$WAGTAIL" == "y" ] && [ "$MULTILINGUAL" == "y" ]; then
     # use multilingual wagtail base
     mv templates/base_wagtail_multilingual.html templates/base.html
 
-    # use the multilingual 500/404 templates
-    mv templates/404_multilingual.html templates/404.html
-
     # remove unused base templates
     rm -rf templates/base_multilingual.html
     rm -rf templates/base_wagtail.html
@@ -43,7 +40,6 @@ elif [ "$WAGTAIL" == "n" ] && [ "$MULTILINGUAL" == "y" ]; then
 
     # use the multilingual templates
     mv templates/base_multilingual.html templates/base.html
-    mv templates/404_multilingual.html templates/404.html
 
     # remove any wagtail related files
     rm -rf apps/pages
