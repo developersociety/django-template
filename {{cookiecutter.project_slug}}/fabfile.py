@@ -111,7 +111,11 @@ def update():
 
         # Install python/node packages
         run('pip install --quiet --requirement requirements/production.txt')
-        run('npm install --no-progress')
+        run(
+            'cmp --silent package-lock.json node_modules/package-lock.json || '
+            'npm ci --no-progress && '
+            'cp -a package-lock.json node_modules/package-lock.json'
+        )
 
         # Clean up any potential cruft
         run('find -name "__pycache__" -prune -exec rm -rf {} \;')
