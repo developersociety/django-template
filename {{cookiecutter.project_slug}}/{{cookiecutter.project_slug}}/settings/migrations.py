@@ -4,4 +4,4 @@ from .base import *  # noqa
 # we set this to an empty dict to stop makemigrations connecting to a database which doesn't exist
 DATABASES = {}
 
-SECRET_KEY = '{{ cookiecutter.project_slug }}'
+SECRET_KEY = "{{ cookiecutter.project_slug }}"

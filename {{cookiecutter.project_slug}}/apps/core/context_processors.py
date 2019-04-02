@@ -4,7 +4,7 @@ import time
 
 from django.conf import settings
 
-BROWSERSYNC_URL = 'http://{host}:{port}/browser-sync/browser-sync-client.js?t={time}'
+BROWSERSYNC_URL = "http://{host}:{port}/browser-sync/browser-sync-client.js?t={time}"
 
 
 @functools.lru_cache()
@@ -19,7 +19,7 @@ def browsersync_url(host):
 
     Returns None if `BROWSERSYNC_PORT` isn't set (disabled).
     """
-    port = os.environ.get('BROWSERSYNC_PORT')
+    port = os.environ.get("BROWSERSYNC_PORT")
 
     if port is None:
         return None
@@ -34,17 +34,13 @@ def browsersync(request):
     Add `BROWSERSYNC_URL` to the global template context.
     """
     host = request.get_host()
-    if ':' in host:
-        host, port = host.split(':')
+    if ":" in host:
+        host, port = host.split(":")
 
     url = browsersync_url(host=host)
 
-    return {
-        'BROWSERSYNC_URL': url,
-    }
+    return {"BROWSERSYNC_URL": url}
 
 
 def demo(request):
-    return {
-        'DEMO_SITE': settings.DEMO_SITE,
-    }
+    return {"DEMO_SITE": settings.DEMO_SITE}
