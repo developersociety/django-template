@@ -7,3 +7,26 @@
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
 }
+
+:focus {
+    outline: none;
+}
+
+body.user-tabbing {
+    a,
+    button,
+    .button,
+    select,
+    input {
+        &:focus {
+            box-shadow: 0 0 0.1rem 0.1rem $color-primary;
+        }
+    }
+
+    #nav_toggle:focus ~ .mobile-header {
+        .nav-open .icon,
+        .nav-close .icon {
+            fill: $color-primary;
+        }
+    }
+}
