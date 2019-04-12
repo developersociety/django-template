@@ -14,5 +14,6 @@
     @media all and (min-width: 768px) {
         flex-flow: row nowrap;
         align-items: center;
+        justify-content: space-between;
     }
 }

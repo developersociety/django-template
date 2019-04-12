@@ -1,8 +1,8 @@
 .page__logo {
     display: inline-block;
-    width: $width-logo;
+    width: 12.5rem;
     height: 0;
     vertical-align: top;
-    padding-bottom: $height-logo-ratio;
+    padding-bottom: 56%;
     background: url(../img/logo.png) left center/contain no-repeat;
 }

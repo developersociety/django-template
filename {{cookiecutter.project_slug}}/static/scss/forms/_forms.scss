@@ -7,7 +7,7 @@
         width: 100%;
         padding: $width-gap / 2;
         border: $width-line solid $color-line;
-        border-radius: $width-radius;
+        border-radius: 0.125rem;
         background: #fff;
         vertical-align: top;
         font-size: inherit;
@@ -21,7 +21,7 @@
         display: inline-block;
         border: none;
         padding: $width-gap / 2;
-        text-decoration: $style-button;
+        text-decoration: none;
         background: $color-primary;
         color: #fff;
 

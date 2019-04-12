@@ -20,7 +20,7 @@
     {% wagtailuserbar %}
     {% include 'includes/sprite.html' %}
 
-    <header class="page-header">
+    <header class="header">
       {% include 'includes/nav.html' %}
     </header>
 
@@ -28,10 +28,10 @@
       {% block main %}{% endblock %}
     </main>
 
-    <footer class="page-footer inverted">
+    <footer class="footer inverted">
       <div class="container">
         <div class="row">
-          <div class="page-footer__legal column-8">
+          <div class="footer__legal column-8">
             <div class="footer__brand">
               <a href="/" class="page__logo"></a>
             </div>
@@ -41,7 +41,7 @@
             </p>
           </div>
 
-          <div class="page-footer__social column-4">
+          <div class="footer__social column-4">
             {% include 'includes/social.html' %}
           </div>
         </div>

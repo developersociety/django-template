@@ -1,4 +1,4 @@
-.page-footer {
+.footer {
     background: $color-footer;
     box-shadow: 0px 100vh 0px 100vh $color-footer;
     padding: $width-gap 0;
@@ -15,11 +15,11 @@
     }
 }
 
-.page-footer__legal {
+.footer__legal {
     font-size: 0.875rem;
 }
 
-.page-footer__social {
+.footer__social {
     @media all and (min-width: 768px) {
         display: flex;
     }
