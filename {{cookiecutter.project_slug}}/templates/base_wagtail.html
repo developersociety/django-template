@@ -8,7 +8,7 @@
     <title>
       {% block title %}{{ request.site.site_name }}{% endblock %}
     </title>
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'dist/css/styles.css' %}" rel="stylesheet">
 
     {% if BROWSERSYNC_URL %}
       <script src="{{ BROWSERSYNC_URL }}" async></script>
@@ -49,5 +49,6 @@
     </footer>
 
     {{ settings.settings.FooterHTML.html|safe }}
+    <script src="{% static 'dist/js/main.js' %}"></script>
   </body>
 </html>
