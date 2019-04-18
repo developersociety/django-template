@@ -2,10 +2,10 @@
 function handleFirstTab(e) {
     if (e.keyCode === 9) {
         // the "I am a keyboard user" key
-        document.body.classList.add('user-tabbing');
-        window.removeEventListener('keydown', handleFirstTab);
+        document.body.classList.add("user-tabbing");
+        window.removeEventListener("keydown", handleFirstTab);
     }
 }
 
 // Listen for scroll on mobile devices to show/hide menu
-window.addEventListener('keydown', handleFirstTab);
+window.addEventListener("keydown", handleFirstTab);
