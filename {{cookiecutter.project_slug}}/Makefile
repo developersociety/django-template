@@ -162,20 +162,20 @@ npm-install:
 	npm install
 
 npm-run-production:
-	npm run production --silent
+	npm run production
 
 
 # JSHint
 jshint-lint:
-	npm run jshint --silent -- --exclude="static/vendor/" static/
+	npm run jshint -- --exclude="static/vendor/" static/
 
 
 # Prettier
 prettier-lint:
-	npm run prettier --silent -- --list-different "static/{js,scss}/**" gulpfile.js
+	npm run prettier -- --list-different "static/{js,scss}/**" gulpfile.js
 
 prettier-format:
-	npm run prettier --silent -- --write "static/{js,scss}/**" gulpfile.js
+	npm run prettier -- --write "static/{js,scss}/**" gulpfile.js
 
 
 # YAPF
