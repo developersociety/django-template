@@ -26,7 +26,7 @@ clean: ## Remove unneeded files generated from the various build tasks.
 clean: coverage-clean
 
 reset: ## Reset your local environment. Useful after switching branches, etc.
-reset: venv-check venv-wipe install-local fab-get-data django-migrate django-user-passwords django-dev-createsuperuser
+reset: venv-check venv-wipe install-local fab-get-data django-migrate django-user-passwords django-dev-createsuperuser{%- if cookiecutter.wagtail %} django-rebuild-index{%- endif %}
 
 clear: ## Like reset but without the wiping of the installs.
 clear: fab-get-data django-migrate django-user-passwords django-dev-createsuperuser
@@ -153,6 +153,12 @@ django-user-passwords:
 
 django-migrate:
 	./manage.py migrate
+
+{%- if cookiecutter.wagtail %}
+
+django-rebuild-index:
+	./manage.py update_index
+{%- endif %}
 
 
 # NPM
