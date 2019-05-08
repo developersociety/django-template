@@ -20,7 +20,7 @@ certifi==2019.3.9
 {%- if cookiecutter.wagtail == 'y' %}
 
 # Wagtail (core wagtail)
-wagtail==2.5
+wagtail==2.5.1
 beautifulsoup4==4.6.0
 django-modelcluster==4.4
 django-taggit==0.24.0
