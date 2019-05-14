@@ -1,14 +1,95 @@
 .demo-announcement {
     padding: 0.75rem 0;
-    background: #000;
-    color: #fff;
+    background: $color-primary;
+    color: $color-white;
     text-align: center;
 }
 
-.header {
-    padding: $width-gap 0;
+.header .container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 1.5rem 0;
 }
 
-.header__buttons {
+.nav--desktop {
+    display: none;
+
+    @media all and (min-width: 768px) {
+        display: block;
+        width: 100%;
+
+        ul {
+            @extend %unstyled-list;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+        }
+
+        li + li {
+            margin-left: 1.5rem;
+        }
+    }
+}
+
+.nav--mobile {
+    padding: 1.5rem 0;
+    display: none;
+
+    ul {
+        @extend %unstyled-list;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+
+    li + li {
+        margin: 1.5rem 0 0 0;
+    }
+
+    @media all and (min-width: 768px) {
+        display: none;
+    }
+}
+
+.nav__toggle {
     margin-left: auto;
+    cursor: pointer;
+
+    .nav__toggle__open {
+        display: inline-flex;
+        flex-flow: row nowrap;
+        align-items: center;
+    }
+
+    .icon {
+        margin-left: 0.25em;
+    }
+
+    .nav__toggle__close {
+        display: none;
+    }
+
+    @media all and (min-width: 768px) {
+        display: none;
+    }
+}
+
+@media all and (max-width: 768px) {
+    #nav__toggle:checked {
+        ~ .header__container .nav__toggle {
+            .nav__toggle__open {
+                display: none;
+            }
+            .nav__toggle__close {
+                display: inline-flex;
+            }
+        }
+
+        ~ .nav--mobile {
+            display: block;
+        }
+    }
 }

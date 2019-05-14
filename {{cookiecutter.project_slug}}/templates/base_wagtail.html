@@ -16,6 +16,7 @@
 
     {{ settings.settings.HeaderHTML.html|safe }}
   </head>
+
   <body>
     {% wagtailuserbar %}
     {% include 'includes/sprite.html' %}
@@ -29,23 +30,7 @@
     </main>
 
     <footer class="footer inverted">
-      <div class="container">
-        <div class="row">
-          <div class="footer__legal">
-            <div class="footer__brand">
-              <a href="/" class="page__logo"></a>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ullam quae minima?</p>
-            <p class="footer__copyright">
-              &copy; {% now 'Y' %}. Website by <a href="https://www.dev.ngo/">The Developer Society</a>
-            </p>
-          </div>
-
-          <div class="footer__social">
-            {% include 'includes/social.html' %}
-          </div>
-        </div>
-      </div>
+      {% includce 'includes/footer.html' %}
     </footer>
 
     {{ settings.settings.FooterHTML.html|safe }}

@@ -11,6 +11,7 @@
       <script src="{{ BROWSERSYNC_URL }}" async></script>
     {% endif %}
   </head>
+
   <body>
     {% include 'includes/sprite.html' %}
 
@@ -24,47 +25,12 @@
       {% include 'includes/nav.html' %}
     </header>
 
-    <main>
-      <div class="container">
-        <div class="column__wrapper row">
-          <div class="column__main">
-            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing.</h1>
-            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident dicta vero, soluta tempora beatae recusandae unde. Ab.</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis ad laboriosam fugit reprehenderit, maiores, laudantium accusamus fuga consectetur impedit perspiciatis sapiente illum iste facere, qui. Saepe praesentium, necessitatibus autem. Recusandae iure veniam nostrum similique a ullam, animi, atque doloribus nihil. Rerum perspiciatis, atque. Perspiciatis, doloremque.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere ea, voluptate ratione suscipit! Neque perspiciatis architecto magnam, veritatis assumenda natus quae quisquam cum enim, modi aperiam recusandae pariatur!</p>
-          </div>
-          <div class="column__sidebar">
-            <h3>Lorem ipsum dolor sit amet.</h3>
-            <hr>
-            <div class="nav__list">
-              <ul>
-                <li><a href="#">link</a></li>
-                <li><a href="#">link</a></li>
-                <li><a href="#">link</a></li>
-                <li><a href="#">link</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+    <main class="main">
+      {% block main %}{% endblock %}
     </main>
 
     <footer class="footer inverted">
-      <div class="container">
-        <div class="row">
-          <div class="footer__legal">
-            <div class="footer__brand">
-              <a href="/" class="page__logo"></a>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ullam quae minima?</p>
-            <p class="footer__copyright">&copy; {% now 'Y' %}. Website by <a href="https://www.dev.ngo/">The Developer Society</a></p>
-          </div>
-
-          <div class="footer__social">
-            {% include 'includes/social.html' %}
-          </div>
-        </div>
-      </div>
+      {% includce 'includes/footer.html' %}
     </footer>
   </body>
 </html>

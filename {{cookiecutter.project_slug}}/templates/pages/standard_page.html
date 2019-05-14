@@ -1,27 +1,10 @@
 {% extends 'pages/base.html' %}
 {% load wagtailcore_tags %}
 
-
 {% block main %}
   <div class="container">
-    <div class="column__wrapper row">
-      <div class="column__main">
-        {% for block in page.content %}
-          {% include_block block %}
-        {% endfor %}
-      </div>
-      <div class="column__sidebar">
-        <h3>Lorem ipsum dolor sit amet.</h3>
-        <hr>
-        <div class="nav__list">
-          <ul>
-            <li><a href="#">link</a></li>
-            <li><a href="#">link</a></li>
-            <li><a href="#">link</a></li>
-            <li><a href="#">link</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    {% for block in page.content %}
+      {% include_block block %}
+    {% endfor %}
   </div>
 {% endblock main %}
