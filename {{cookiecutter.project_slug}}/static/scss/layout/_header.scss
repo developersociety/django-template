@@ -14,23 +14,23 @@
 
 .nav--desktop {
     display: none;
+    width: 100%;
+
+    ul {
+        @extend %unstyled-list;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+    }
+
+    li + li {
+        margin-left: 1.5rem;
+    }
 
     @media all and (min-width: 768px) {
         display: block;
-        width: 100%;
-
-        ul {
-            @extend %unstyled-list;
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: flex-end;
-            align-items: center;
-            width: 100%;
-        }
-
-        li + li {
-            margin-left: 1.5rem;
-        }
     }
 }
 
