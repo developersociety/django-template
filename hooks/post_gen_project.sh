@@ -8,6 +8,7 @@ if [ "$WAGTAIL" == "y" ]; then
     mv templates/base_wagtail.html templates/base.html
 else
     # No wagtail - remove any wagtail related files
+    rm -f apps/core/monkeypatch.py
     rm -rf apps/pages
     rm -rf apps/settings
     rm -rf templates/blocks

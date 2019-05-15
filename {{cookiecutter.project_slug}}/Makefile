@@ -26,19 +26,19 @@ clean: ## Remove unneeded files generated from the various build tasks.
 clean: coverage-clean
 
 reset: ## Reset your local environment. Useful after switching branches, etc.
-reset: venv-check venv-wipe install-local fab-get-data django-migrate django-user-passwords django-dev-createsuperuser
+reset: venv-check venv-wipe install-local fab-get-data django-migrate django-user-passwords django-dev-createsuperuser{%- if cookiecutter.wagtail %} django-rebuild-index{%- endif %}
 
 clear: ## Like reset but without the wiping of the installs.
-clear: fab-get-data django-migrate django-user-passwords django-dev-createsuperuser
+clear: fab-get-data django-migrate django-user-passwords django-dev-createsuperuser{%- if cookiecutter.wagtail %} django-rebuild-index{%- endif %}
 
 check: ## Check for any obvious errors in the project's setup.
 check: pipdeptree-check npm-check django-check
 
 format: ## Run this project's code formatters.
-format: yapf-format isort-format prettier-format
+format: black-format isort-format prettier-format
 
 lint: ## Lint the project.
-lint: npm-install yapf-lint isort-lint flake8-lint jshint-lint prettier-lint
+lint: npm-install black-lint isort-lint flake8-lint jshint-lint prettier-lint
 
 test: ## Run unit and integration tests.
 test: django-test
@@ -154,6 +154,12 @@ django-user-passwords:
 django-migrate:
 	./manage.py migrate
 
+{%- if cookiecutter.wagtail %}
+
+django-rebuild-index:
+	./manage.py update_index
+{%- endif %}
+
 
 # NPM
 npm-check: npm-install npm-run-production
@@ -178,13 +184,12 @@ prettier-format:
 	npm run prettier --silent -- --write "static/{js,scss}/**" gulpfile.js
 
 
-# YAPF
-yapf-lint:
-	yapf_lint_output="`yapf -r -p -d --exclude="*/migrations/*.py" --style .style.yapf {{ cookiecutter.project_slug }} apps`" && \
-	if [[ $$yapf_lint_output ]]; then echo -e "$$yapf_lint_output"; exit 1; fi
+# Black
+black-lint:
+	black --line-length 99 --exclude '/migrations/' --check {{ cookiecutter.project_slug }} apps
 
-yapf-format:
-	yapf -r -i -p --exclude="*/migrations/*.py" --style .style.yapf {{ cookiecutter.project_slug }} apps
+black-format:
+	black --line-length 99 --exclude '/migrations/' {{ cookiecutter.project_slug }} apps
 
 
 #pipdeptree
