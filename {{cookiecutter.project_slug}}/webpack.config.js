@@ -11,7 +11,7 @@ const browsersync_port = parseInt(process.env.BROWSERSYNC_PORT || django_port + 
 const browsersyncui_port = browsersync_port + 1;
 const config = {
     entry: {
-        main: ['./static/src/js/main.js'],
+        base: ['./static/src/js/base.js'],
         styles: ['./static/src/scss/styles.scss']
     },
     output: {
