@@ -30,6 +30,7 @@ urlpatterns = [
     path("sitemap.xml", sitemap, name="sitemap"),
 {%- else %}
     path("admin/", admin.site.urls),
+    path("", TemplateView.as_view(template_name="homepage.html")),
 {%- endif %}
     path(
         "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
