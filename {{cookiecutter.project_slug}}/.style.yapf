@@ -1,0 +1,13 @@
+[style]
+based_on_style = pep8
+blank_line_before_nested_class_or_def = true
+coalesce_brackets = true
+column_limit = 99
+dedent_closing_brackets = true
+each_dict_entry_on_separate_line = false
+indent_dictionary_value = true
+space_between_ending_comma_and_closing_bracket = false
+split_arguments_when_comma_terminated = true
+split_before_dict_set_generator = false
+split_before_first_argument = true
+split_before_named_assigns = true

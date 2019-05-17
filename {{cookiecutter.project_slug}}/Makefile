@@ -183,12 +183,13 @@ prettier-format:
 	npm run prettier --silent -- --write "static/src/{js,scss}/**" "*.js"
 
 
-# Black
-black-lint:
-	black --line-length 99 --exclude '/migrations/' --check {{ cookiecutter.project_slug }} apps
+# YAPF
+yapf-lint:
+	yapf_lint_output="`yapf -r -p -d --exclude="*/migrations/*.py" --style .style.yapf {{ cookiecutter.project_slug }} apps`" && \
+	if [[ $$yapf_lint_output ]]; then echo -e "$$yapf_lint_output"; exit 1; fi
 
-black-format:
-	black --line-length 99 --exclude '/migrations/' {{ cookiecutter.project_slug }} apps
+yapf-format:
+	yapf -r -i -p --exclude="*/migrations/*.py" --style .style.yapf {{ cookiecutter.project_slug }} apps
 
 
 #pipdeptree
