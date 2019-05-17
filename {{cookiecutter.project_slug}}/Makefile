@@ -38,7 +38,7 @@ format: ## Run this project's code formatters.
 format: black-format isort-format prettier-format
 
 lint: ## Lint the project.
-lint: npm-install yapf-lint isort-lint flake8-lint eslint-lint prettier-lint
+lint: npm-install yapf-lint isort-lint eslint-lint prettier-lint
 
 test: ## Run unit and integration tests.
 test: django-test
