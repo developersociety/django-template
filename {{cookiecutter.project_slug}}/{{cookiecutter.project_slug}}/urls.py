@@ -37,6 +37,10 @@ urlpatterns = [
     ),
 ]
 
+# Allow testing of all styles locally
+if settings.DEBUG:
+    urlpatterns += [path("demo-styles/", TemplateView.as_view(template_name="demo_styles.html"))]
+
 # Make it easier to see a 404 page under debug
 if settings.DEBUG:
     from django.views.defaults import page_not_found
