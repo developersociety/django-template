@@ -185,10 +185,10 @@ prettier-format:
 
 # YAPF
 yapf-lint:
-	yapf -r -p -d --exclude="*/migrations/*.py" --yapf .style.yapf {{ cookiecutter.project_slug }} apps
+	yapf -r -p -d --exclude="*/migrations/*.py" --style .style.yapf {{ cookiecutter.project_slug }} apps
 
 yapf-format:
-	yapf -r -i -p --exclude="*/migrations/*.py" --yapf .style.yapf {{ cookiecutter.project_slug }} apps
+	yapf -r -i -p --exclude="*/migrations/*.py" --style .style.yapf {{ cookiecutter.project_slug }} apps
 
 
 #pipdeptree
