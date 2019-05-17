@@ -3,6 +3,7 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const WebpackNotifierPlugin = require('webpack-notifier');
 
 const django_ip = process.env.DJANGO_IP || '127.0.0.1';
 const django_port = parseInt(process.env.DJANGO_PORT || 8000);
@@ -58,7 +59,9 @@ module.exports = [
                 {
                     reload: false
                 }
-            )
+            ),
+
+            new WebpackNotifierPlugin()
         ],
 
         module: {
@@ -76,7 +79,7 @@ module.exports = [
                     }
                 },
                 {
-                    test: /\.(png|jpg|svg)$/,
+                    test: /\.(png|jpg|woff|woff2|eot|ttf|svg|otf)$/,
                     loader: 'url-loader',
                     exclude: /node_modules/
                 },
@@ -163,7 +166,7 @@ module.exports = [
                     }
                 },
                 {
-                    test: /\.(png|jpg|svg)$/,
+                    test: /\.(png|jpg|woff|woff2|eot|ttf|svg|otf)$/,
                     loader: 'url-loader',
                     exclude: /node_modules/
                 },
