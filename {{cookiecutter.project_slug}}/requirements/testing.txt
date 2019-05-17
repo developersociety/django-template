@@ -5,7 +5,7 @@ coverage==4.5.3
 django-extensions==2.1.6
 flake8==3.7.7
 isort==4.3.18
-yapf=0.27.0
+yapf==0.27.0
 
 pipdeptree==0.13.2
 unittest-xml-reporting==2.5.1
