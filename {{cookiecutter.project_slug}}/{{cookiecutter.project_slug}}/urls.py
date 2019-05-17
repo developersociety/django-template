@@ -19,39 +19,39 @@ from wagtail.documents import urls as wagtaildocs_urls
 # from search import views as search_views
 {%- endif %}
 
-admin.site.site_title = '{{ cookiecutter.project_name }}'
-admin.site.site_header = '{{ cookiecutter.project_name }}'
+admin.site.site_title = "{{ cookiecutter.project_name }}"
+admin.site.site_header = "{{ cookiecutter.project_name }}"
 
 urlpatterns = [
 {%- if cookiecutter.wagtail == 'y' %}
-    path('django-admin/', admin.site.urls),
-    path('admin/', include(wagtailadmin_urls)),
-    path('documents/', include(wagtaildocs_urls)),
-    path('sitemap.xml', sitemap, name='sitemap'),
+    path("django-admin/", admin.site.urls),
+    path("admin/", include(wagtailadmin_urls)),
+    path("documents/", include(wagtaildocs_urls)),
+    path("sitemap.xml", sitemap, name="sitemap"),
 {%- else %}
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("", TemplateView.as_view(template_name="homepage.html")),
 {%- endif %}
     path(
-        'robots.txt',
-        TemplateView.as_view(template_name='robots.txt', content_type='text/plain'),
+        "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
     ),
 ]
+
+# Allow testing of all styles locally
+if settings.DEBUG:
+    urlpatterns += [path("demo-styles/", TemplateView.as_view(template_name="demo_styles.html"))]
 
 # Make it easier to see a 404 page under debug
 if settings.DEBUG:
     from django.views.defaults import page_not_found
 
-    urlpatterns += [
-        path('404/', page_not_found, {'exception': None}),
-    ]
+    urlpatterns += [path("404/", page_not_found, {"exception": None})]
 
 # Only enable debug toolbar if it's an installed app
-if apps.is_installed('debug_toolbar'):
+if apps.is_installed("debug_toolbar"):
     import debug_toolbar
 
-    urlpatterns += [
-        path('__debug__/', include(debug_toolbar.urls)),
-    ]
+    urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
 
 # Serving static/media under debug
 urlpatterns += static(settings.STATIC_URL, never_cache(staticfiles_serve))
@@ -59,19 +59,15 @@ urlpatterns += static(settings.MEDIA_URL, never_cache(serve), document_root=sett
 {%- if cookiecutter.wagtail == 'y' %}
 
 # Wagtail catch-all
-urlpatterns += [
-    path('', include(wagtail_urls)),
-]
+urlpatterns += [path("", include(wagtail_urls))]
 
 {%- endif %}
 
 
-def handler500(request, template_name='500.html'):
+def handler500(request, template_name="500.html"):
     """ 500 handler with request context. """
     try:
         template = loader.get_template(template_name)
     except TemplateDoesNotExist:
-        return HttpResponseServerError('<h1>Server Error (500)</h1>', content_type='text/html')
-    return HttpResponseServerError(template.render({
-        'request': request,
-    }))
+        return HttpResponseServerError("<h1>Server Error (500)</h1>", content_type="text/html")
+    return HttpResponseServerError(template.render({"request": request}))
