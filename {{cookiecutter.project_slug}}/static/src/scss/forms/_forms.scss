@@ -1,5 +1,5 @@
 .page__wrapper form {
-    input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+    input:not([type='checkbox']):not([type='radio']):not([type='submit']),
     textarea,
     select,
     button {
@@ -15,7 +15,7 @@
         -webkit-font-smoothing: antialiased;
     }
 
-    input[type="submit"],
+    input[type='submit'],
     button {
         appearance: none;
         display: inline-block;

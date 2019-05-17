@@ -1,14 +1,14 @@
 @import 'node_modules/normalize-scss/sass/normalize/import-now';
 
-@import "variables";
-@import "typography";
-@import "accessibility";
+@import 'variables';
+@import 'typography';
+@import 'accessibility';
 
-@import "mixins/mixins";
+@import 'mixins/mixins';
 
-@import "layout/layout";
-@import "elements/elements";
-@import "forms/forms";
+@import 'layout/layout';
+@import 'elements/elements';
+@import 'forms/forms';
 
 * {
     box-sizing: border-box;
