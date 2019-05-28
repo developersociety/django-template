@@ -5,12 +5,12 @@ from wagtail.admin.edit_handlers import FieldPanel, HelpPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 
-@register_setting(icon='code')
+@register_setting(icon="code")
 class HeaderHTML(BaseSetting):
-    html = models.TextField('HTML', blank=True)
+    html = models.TextField("HTML", blank=True)
 
     panels = [
-        FieldPanel('html', widget=forms.Textarea(attrs={'rows': 10})),
+        FieldPanel("html", widget=forms.Textarea(attrs={"rows": 10})),
         HelpPanel(
             """
             Raw HTML added at the end of the HTML head on every page. Useful for Analytics
@@ -20,15 +20,15 @@ class HeaderHTML(BaseSetting):
     ]
 
     class Meta:
-        verbose_name = 'HTML - Header'
+        verbose_name = "HTML - Header"
 
 
-@register_setting(icon='code')
+@register_setting(icon="code")
 class FooterHTML(BaseSetting):
-    html = models.TextField('HTML', blank=True)
+    html = models.TextField("HTML", blank=True)
 
     panels = [
-        FieldPanel('html', widget=forms.Textarea(attrs={'rows': 10})),
+        FieldPanel("html", widget=forms.Textarea(attrs={"rows": 10})),
         HelpPanel(
             """
             Raw HTML added at the end of the HTML body on every page. Useful for additional
@@ -38,4 +38,4 @@ class FooterHTML(BaseSetting):
     ]
 
     class Meta:
-        verbose_name = 'HTML - Footer'
+        verbose_name = "HTML - Footer"
