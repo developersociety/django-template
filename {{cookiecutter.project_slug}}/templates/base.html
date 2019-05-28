@@ -32,5 +32,11 @@
     <footer class="footer inverted">
       {% include 'includes/footer.html' %}
     </footer>
+
+    <script src="{% static 'js/base.js' %}"></script>
+
+    {% block scripts %}
+    {% endblock scripts %}
+
   </body>
 </html>
