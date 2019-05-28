@@ -30,11 +30,16 @@ urlpatterns = [
     path("sitemap.xml", sitemap, name="sitemap"),
 {%- else %}
     path("admin/", admin.site.urls),
+    path("", TemplateView.as_view(template_name="homepage.html")),
 {%- endif %}
     path(
         "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
     ),
 ]
+
+# Allow testing of all styles locally
+if settings.DEBUG:
+    urlpatterns += [path("demo-styles/", TemplateView.as_view(template_name="demo_styles.html"))]
 
 # Make it easier to see a 404 page under debug
 if settings.DEBUG:
