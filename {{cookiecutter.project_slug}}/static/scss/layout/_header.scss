@@ -9,7 +9,7 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    padding: 1.5rem 0;
+    padding: 1.5rem;
 }
 
 .nav--desktop {
@@ -64,12 +64,12 @@
         align-items: center;
     }
 
-    .icon {
-        margin-left: 0.25em;
-    }
-
     .nav__toggle__close {
         display: none;
+    }
+
+    .icon {
+        margin-left: 0.25em;
     }
 
     @media all and (min-width: 768px) {
