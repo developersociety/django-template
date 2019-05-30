@@ -67,7 +67,7 @@ ifndef VIRTUAL_ENV
 endif
 
 venv-wipe: venv-check
-	if ! pip list --format=freeze | grep -v "^appdirs=\|^distribute=\|^packaging=\|^pip=\|^pyparsing=\|^setuptools=\|^six=\|^wheel=" | xargs pip uninstall -y; then \
+	if ! pip list --format=freeze | grep -v "^pip=\|^setuptools=\|^wheel=" | xargs pip uninstall -y; then \
 	    echo "Nothing to remove"; \
 	fi
 
@@ -167,7 +167,7 @@ django-rebuild-index:
 npm-check: npm-install npm-run-production
 
 npm-install:
-	npm install
+	cmp --silent package-lock.json node_modules/.package-lock.json || npm ci && cp -a package-lock.json node_modules/.package-lock.json
 
 npm-run-production:
 	npm run production --silent
