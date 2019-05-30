@@ -1,6 +1,8 @@
 SHELL=/bin/bash
 .DEFAULT_GOAL := help
-
+PROJECT_SLUG={{ cookiecutter.project_slug }}
+IS_WAGTAIL="{{ cookiecutter.wagtail }}"
+IS_GEODJANGO="{{ cookiecutter.geodjango }}"
 
 # ---------------------------------
 # Project specific targets
@@ -94,15 +96,15 @@ fab-deploy:
 
 # ISort
 isort-lint:
-	isort --recursive --check-only --diff {{ cookiecutter.project_slug }} apps
+	isort --recursive --check-only --diff ${PROJECT_SLUG} apps
 
 isort-format:
-	isort --recursive {{ cookiecutter.project_slug }} apps
+	isort --recursive ${PROJECT_SLUG} apps
 
 
 # Flake8
 flake8-lint:
-	flake8 {{ cookiecutter.project_slug }} apps
+	flake8 ${PROJECT_SLUG} apps
 
 
 # Coverage
@@ -128,7 +130,7 @@ django-test: django-collectstatic
 	coverage run --include="apps/*" ./manage.py test --noinput . apps
 
 django-check-missing-migrations:
-	./manage.py makemigrations --settings={{ cookiecutter.project_slug }}.settings.migrations --check --dry-run
+	./manage.py makemigrations --settings=${PROJECT_SLUG}.settings.migrations --check --dry-run
 
 django-collectstatic:
 	./manage.py collectstatic --verbosity 0 --noinput
@@ -186,10 +188,10 @@ prettier-format:
 
 # Black
 black-lint:
-	black --line-length 99 --exclude '/migrations/' --check {{ cookiecutter.project_slug }} apps
+	black --line-length 99 --exclude '/migrations/' --check ${PROJECT_SLUG} apps
 
 black-format:
-	black --line-length 99 --exclude '/migrations/' {{ cookiecutter.project_slug }} apps
+	black --line-length 99 --exclude '/migrations/' ${PROJECT_SLUG} apps
 
 
 #pipdeptree

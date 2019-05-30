@@ -242,3 +242,21 @@ def get_media(directory=''):
             media_bucket=env.media_bucket, media=env.media, directory=directory
         )
     )
+
+
+@task
+@runs_once
+@roles('web')
+def get_env():
+    """ Get the current environment variables."""
+    run('set')
+    
+
+@task
+@runs_once
+@roles('web')
+def ssh(index='1'):
+    """ SSH to the remote server, pass ssh:2 to go to the second defined. """
+    index = int(index) - 1
+    server = env.roledefs['web'][index]
+    local('ssh {}'.format(server))
