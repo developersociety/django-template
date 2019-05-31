@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 .DEFAULT_GOAL := help
-PROJECT_SLUG={{ cookiecutter.project_slug }}
+PROJECT_SLUG="{{ cookiecutter.project_slug }}"
 IS_WAGTAIL="{{ cookiecutter.wagtail }}"
 IS_GEODJANGO="{{ cookiecutter.geodjango }}"
 

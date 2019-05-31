@@ -248,8 +248,9 @@ def get_media(directory=''):
 @runs_once
 @roles('web')
 def get_env():
-    """ Get the current environment variables."""
-    run('set')
+    """ Get the current environment variables, ready for local export."""
+    env.output_prefix = False
+    run('export | sed -e "s/declare -x/export/g"')
     
 
 @task
