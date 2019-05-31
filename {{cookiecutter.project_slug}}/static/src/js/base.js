@@ -1,5 +1,4 @@
 const main = document.querySelector('.main');
-console.log('main', main)
 
 // Stretch main to fill height of screen minus header and footer
 if (main) {
