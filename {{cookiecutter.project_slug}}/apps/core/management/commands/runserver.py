@@ -53,7 +53,7 @@ class Command(RunserverCommand):
             webpack_args = ["--"] + webpack_args
 
         self.stdout.write(">>> Starting webpack")
-        self.webpack = subprocess.Popen(
+        self.webpack_process = subprocess.Popen(
             ["npm", "start"] + webpack_args,
             shell=False,
             stdin=subprocess.PIPE,
