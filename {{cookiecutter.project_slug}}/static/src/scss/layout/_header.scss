@@ -17,7 +17,7 @@
     width: 100%;
 
     ul {
-        @extend %unstyled-list;
+        @include unstyled-list;
         display: flex;
         flex-flow: row wrap;
         justify-content: flex-end;
@@ -39,7 +39,7 @@
     display: none;
 
     ul {
-        @extend %unstyled-list;
+        @include unstyled-list;
         display: flex;
         flex-flow: column nowrap;
         align-items: center;

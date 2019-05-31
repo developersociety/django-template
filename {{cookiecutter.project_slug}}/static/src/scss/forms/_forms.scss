@@ -26,7 +26,7 @@ form {
     }
 
     .errorlist {
-        @extend %unstyled-list;
+        @include unstyled-list;
 
         margin-bottom: 1.5rem;
         color: $color-primary;
