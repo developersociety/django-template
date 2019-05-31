@@ -1,21 +1,46 @@
+button,
+input[type='submit'] {
+    appearance: none !important;
+    font-family: $base-font !important;
+    border: none !important;
+    cursor: pointer;
+    background: inherit;
+}
+
 .button,
 .btn {
     display: inline-block;
-    padding: $width-gap / 2;
-    text-decoration: $style-button;
+    padding: 0 1rem;
+    line-height: 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
     background: $color-primary;
-    color: #ffffff;
+    color: $color-white;
 
-    &:hover {
+    &:hover,
+    &:focus {
         background: lighten($color-primary, 2.5%);
     }
 
     &.secondary {
         background: $color-secondary;
-        color: #ffffff;
+        color: $color-white;
 
-        &:hover {
+        &:hover,
+        &:focus {
             background: lighten($color-secondary, 2.5%);
+        }
+    }
+
+    &.outline {
+        background: none;
+        border: 0.125rem solid $color-primary;
+        line-height: 1.75rem;
+
+        &:hover,
+        &:focus {
+            background: lighten($color-primary, 2.5%);
         }
     }
 }
