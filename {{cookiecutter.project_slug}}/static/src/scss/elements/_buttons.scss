@@ -4,7 +4,7 @@
     padding: $width-gap / 2;
     text-decoration: $style-button;
     background: $color-primary;
-    color: #fff;
+    color: #ffffff;
 
     &:hover {
         background: lighten($color-primary, 2.5%);
@@ -12,7 +12,7 @@
 
     &.secondary {
         background: $color-secondary;
-        color: #fff;
+        color: #ffffff;
 
         &:hover {
             background: lighten($color-secondary, 2.5%);

@@ -1,5 +1,5 @@
 .page__wrapper form {
-    input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+    input:not([type='checkbox']):not([type='radio']):not([type='submit']),
     textarea,
     select,
     button {
@@ -8,14 +8,14 @@
         padding: $width-gap / 2;
         border: $width-line solid $color-line;
         border-radius: $width-radius;
-        background: #fff;
+        background: #ffffff;
         vertical-align: top;
         font-size: inherit;
         font-family: inherit;
         -webkit-font-smoothing: antialiased;
     }
 
-    input[type="submit"],
+    input[type='submit'],
     button {
         appearance: none;
         display: inline-block;
@@ -23,7 +23,7 @@
         padding: $width-gap / 2;
         text-decoration: $style-button;
         background: $color-primary;
-        color: #fff;
+        color: #ffffff;
 
         &:hover {
             background: lighten($color-primary, 2.5%);
@@ -36,7 +36,7 @@
         vertical-align: top;
         padding: $width-gap / 3;
         background: $color-primary;
-        color: #fff;
+        color: #ffffff;
         font-size: 0.875rem;
     }
 
