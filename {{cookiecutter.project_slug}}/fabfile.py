@@ -254,8 +254,6 @@ def get_env():
     
 
 @task
-@runs_once
-@roles('web')
 def ssh(index='1'):
     """ SSH to the remote server, pass ssh:2 to go to the second defined. """
     index = int(index) - 1
