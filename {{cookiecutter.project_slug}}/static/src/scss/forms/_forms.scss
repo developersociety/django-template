@@ -1,5 +1,5 @@
-.wrapper form {
-    input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+form {
+    input:not([type='checkbox']):not([type='radio']):not([type='submit']),
     textarea,
     select,
     button {

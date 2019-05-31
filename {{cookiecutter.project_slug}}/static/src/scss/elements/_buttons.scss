@@ -1,5 +1,5 @@
 button,
-input[type="submit"] {
+input[type='submit'] {
     appearance: none !important;
     font-family: $base-font !important;
     border: none !important;
@@ -16,7 +16,7 @@ input[type="submit"] {
     font-weight: 600;
     text-align: center;
     background: $color-primary;
-    color: $color-black;
+    color: $color-white;
 
     &:hover,
     &:focus {

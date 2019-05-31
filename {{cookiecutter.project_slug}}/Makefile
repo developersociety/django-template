@@ -38,7 +38,7 @@ format: ## Run this project's code formatters.
 format: black-format isort-format prettier-format
 
 lint: ## Lint the project.
-lint: npm-install black-lint isort-lint flake8-lint jshint-lint prettier-lint
+lint: npm-install black-lint isort-lint flake8-lint eslint-lint prettier-lint
 
 test: ## Run unit and integration tests.
 test: django-test
@@ -171,17 +171,16 @@ npm-run-production:
 	npm run production --silent
 
 
-# JSHint
-jshint-lint:
-	npm run jshint --silent -- --exclude="static/vendor/" static/
-
+# ESLint
+eslint-lint:
+	npm run eslint -- static/src/js
 
 # Prettier
 prettier-lint:
-	npm run prettier --silent -- --list-different "static/{js,scss}/**" gulpfile.js
+	npm run prettier --silent -- --list-different "static/src/{js,scss}/**" "*.js"
 
 prettier-format:
-	npm run prettier --silent -- --write "static/{js,scss}/**" gulpfile.js
+	npm run prettier --silent -- --write "static/src/{js,scss}/**" "*.js"
 
 
 # Black

@@ -4,8 +4,10 @@
 
 <html lang="en">
   <head>
-    <title>{% block title %}{{ request.site.name }}{% endblock %}</title>
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <title>
+      {% block title %}{{ request.site.name }}{% endblock %}
+    </title>
+    <link href="{% static 'dist/css/styles.css' %}" rel="stylesheet">
 
     {% if BROWSERSYNC_URL %}
       <script src="{{ BROWSERSYNC_URL }}" async></script>
@@ -33,10 +35,9 @@
       {% include 'includes/footer.html' %}
     </footer>
 
-    <script src="{% static 'js/base.js' %}"></script>
+    <script src="{% static 'dist/js/base.js' %}"></script>
 
-    {% block scripts %}
-    {% endblock scripts %}
-
+    {% block extra_scripts %}
+    {% endblock extra_scripts %}
   </body>
 </html>

@@ -28,7 +28,7 @@ INSTALLED_APPS += ["django_extensions", "wagtail.contrib.styleguide"]
 INSTALLED_APPS += ["django_extensions"]
 {%- endif %}
 
-# Gulp runserver
+# Webpack runserver
 TEMPLATES[0]["OPTIONS"]["context_processors"].append("core.context_processors.browsersync")
 
 # Use vanilla StaticFilesStorage to allow tests to run outside of tox easily
