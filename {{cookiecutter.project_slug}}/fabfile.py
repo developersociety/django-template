@@ -242,3 +242,20 @@ def get_media(directory=''):
             media_bucket=env.media_bucket, media=env.media, directory=directory
         )
     )
+
+
+@task
+@runs_once
+@roles('web')
+def get_env():
+    """ Get the current environment variables, ready for local export."""
+    env.output_prefix = False
+    run('export | sed -e "s/declare -x/export/g"')
+    
+
+@task
+def ssh(index='1'):
+    """ SSH to the remote server, pass ssh:2 to go to the second defined. """
+    index = int(index) - 1
+    server = env.roledefs['web'][index]
+    local('ssh {}'.format(server))
