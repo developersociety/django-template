@@ -15,6 +15,10 @@
         margin-left: 1.5rem;
     }
 
+    a {
+        padding: 0.25rem 0.5rem;
+    }
+
     @media all and (min-width: 768px) {
         display: block;
     }
@@ -33,6 +37,10 @@
 
     li + li {
         margin: 1.5rem 0 0 0;
+    }
+
+    a {
+        padding: 0.25rem 0.5rem;
     }
 
     @media all and (min-width: 768px) {
