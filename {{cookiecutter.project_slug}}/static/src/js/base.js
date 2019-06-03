@@ -7,4 +7,3 @@ if (main) {
     const total_height = header_height + footer_height;
     main.style.minHeight = `${window.innerHeight - total_height}px`;
 }
-
