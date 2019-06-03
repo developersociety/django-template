@@ -1,5 +1,4 @@
 from django import forms
-from django.conf import settings
 from django.db import models
 
 from wagtail.admin.edit_handlers import FieldPanel, HelpPanel
@@ -47,7 +46,10 @@ class FooterHTML(BaseSetting):
 class SocialAccounts(BaseSetting):
     facebook_url = models.URLField(
         blank=True,
-        help_text='The URL of your organisation\'s Facebook page. E.g. "https://www.facebook.com/organisation_name_or_id"',
+        help_text="""
+        The URL of your organisation\'s Facebook page. E.g.
+        "https://www.facebook.com/organisation_name_or_id"'
+        """,
     )
     twitter_handle = models.URLField(
         blank=True, help_text='Organisation\'s main Twitter handle. E.g. "@orgname"'
@@ -62,8 +64,8 @@ class ShareMeta(BaseSetting):
         blank=True,
         max_length=150,
         help_text="""
-        Default message shown when a page from this site is shared on social media. This message can be
-        changed per page, under the \'promote\' tab.
+        Default message shown when a page from this site is shared on social media. This message
+        can be changed per page, under the \'promote\' tab.
         """,
     )
     default_share_image = models.ForeignKey(
