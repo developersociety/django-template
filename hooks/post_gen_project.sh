@@ -6,6 +6,7 @@ WAGTAIL="{{ cookiecutter.wagtail }}"
 if [ "$WAGTAIL" == "y" ]; then
     # Wagtail requested - use the wagtail base HTML file with extra tags
     mv templates/base_wagtail.html templates/base.html
+    mv templates/includes/wagtail_meta.html templates/includes/meta.html
     # And remove non-wagtail templates
     rm -f templates/homepage.html
 else
