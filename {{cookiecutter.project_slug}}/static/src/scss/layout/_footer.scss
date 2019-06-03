@@ -1,0 +1,25 @@
+.footer .container {
+    padding: 1.5rem;
+}
+
+.footer__legal {
+    font-size: 0.875rem;
+}
+
+.footer__social {
+    .social {
+        margin: 1.5rem 0 0 0;
+    }
+
+    @media all and (min-width: 768px) {
+        display: flex;
+
+        .social {
+            margin: 0 0 0 auto;
+        }
+    }
+}
+
+.footer__copyright {
+    opacity: 0.25;
+}

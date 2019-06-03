@@ -8,7 +8,7 @@
     <title>
       {% block title %}{{ request.site.site_name }}{% endblock %}
     </title>
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'dist/css/styles.css' %}" rel="stylesheet">
 
     {% if BROWSERSYNC_URL %}
       <script src="{{ BROWSERSYNC_URL }}" async></script>
@@ -16,38 +16,34 @@
 
     {{ settings.settings.HeaderHTML.html|safe }}
   </head>
+
   <body>
     {% wagtailuserbar %}
     {% include 'includes/sprite.html' %}
 
-    <header class="page-header">
-      {% include 'includes/nav.html' %}
+    {% if DEMO_SITE %}
+      <div class="demo-announcement">
+        <div class="container">This site is in development. Any changes made here will not be transferred to the production build.</div>
+      </div>
+    {% endif %}
+
+    <header class="header">
+      {% include 'includes/header.html' %}
     </header>
 
-    <main>
+    <main class="main">
       {% block main %}{% endblock %}
     </main>
 
-    <footer class="page-footer inverted">
-      <div class="container">
-        <div class="row">
-          <div class="page-footer__legal column-8">
-            <div class="footer__brand">
-              <a href="/" class="page__logo"></a>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ullam quae minima?</p>
-            <p class="footer__copyright">
-              &copy; {% now 'Y' %}. Website by <a href="https://www.dev.ngo/">The Developer Society</a>
-            </p>
-          </div>
-
-          <div class="page-footer__social column-4">
-            {% include 'includes/social.html' %}
-          </div>
-        </div>
-      </div>
+    <footer class="footer inverted">
+      {% include 'includes/footer.html' %}
     </footer>
 
     {{ settings.settings.FooterHTML.html|safe }}
+
+    <script src="{% static 'dist/js/base.js' %}"></script>
+
+    {% block extra_scripts %}
+    {% endblock extra_scripts %}
   </body>
 </html>
