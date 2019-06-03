@@ -9,24 +9,18 @@
 }
 
 :focus {
-    outline: none;
+    outline: 0.1875rem solid $color-primary;
+
+    // Used on elements with border-radius
+    &.focus--box-shadow {
+        outline: none;
+        box-shadow: 0 0 0 -0.1875rem $color-primary;
+    }
 }
 
-body.user-tabbing {
-    a,
-    button,
-    .button,
-    select,
-    input {
-        &:focus {
-            box-shadow: 0 0 0.1rem 0.1rem $color-primary;
-        }
-    }
-
-    #nav_toggle:focus ~ .mobile-header {
-        .nav-open .icon,
-        .nav-close .icon {
-            fill: $color-primary;
-        }
+#nav_toggle:focus ~ .mobile-header {
+    .nav-open .icon,
+    .nav-close .icon {
+        fill: $color-primary;
     }
 }
