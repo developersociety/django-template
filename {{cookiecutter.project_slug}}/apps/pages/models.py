@@ -17,8 +17,7 @@ class StandardPage(Page):
         blank=True,
         max_length=150,
         help_text="""
-        Default message shown when a page from this site is shared on social media. This message can be
-        changed per page, under the \'promote\' tab.
+        Description/preview shown when this page is shared on social media.
         """,
     )
     share_image = models.ForeignKey(
@@ -28,8 +27,7 @@ class StandardPage(Page):
         on_delete=models.PROTECT,
         related_name="+",
         help_text="""
-        Default image shown when a page from this site is shared on social media. This image can be
-        changed per page, under the \'promote\' tab.
+        Image shown when this page is shared on social media.
         """,
     )
 
@@ -52,8 +50,7 @@ class HomePage(Page):
         blank=True,
         max_length=150,
         help_text="""
-        Default message shown when a page from this site is shared on social media. This message can be
-        changed per page, under the \'promote\' tab.
+        Description/preview shown when this page is shared on social media.
         """,
     )
     share_image = models.ForeignKey(
@@ -63,8 +60,7 @@ class HomePage(Page):
         on_delete=models.PROTECT,
         related_name="+",
         help_text="""
-        Default image shown when a page from this site is shared on social media. This image can be
-        changed per page, under the \'promote\' tab.
+        Image shown when this page is shared on social media.
         """,
     )
     # Promote panels
