@@ -1,7 +1,5 @@
-@mixin unstyled-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+@mixin hidden {
+    display: none;
 }
 
 @mixin visually-hidden {
@@ -12,24 +10,13 @@
     clip: rect(1px, 1px, 1px, 1px);
 }
 
-.unstyled-list {
-    @include unstyled-list;
+@mixin background-image {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
-.visually-hidden {
-    @include visually-hidden;
-}
-
-.hidden {
-    display: none;
-}
-
-.inverted {
-    background: $color-primary;
-    color: $color-white;
-}
-
-.row {
+@mixin row {
     display: flex;
     flex-flow: column nowrap;
 
@@ -38,4 +25,39 @@
         align-items: center;
         justify-content: space-between;
     }
+}
+
+@mixin inverted {
+    background: $color-primary;
+    color: $color-white;
+}
+
+@mixin unstyled-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    @include hidden;
+}
+
+.visually-hidden {
+    @include visually-hidden;
+}
+
+.background-image {
+    @include background-image;
+}
+
+.row {
+    @include row;
+}
+
+.inverted {
+    @include inverted;
+}
+
+.unstyled-list {
+    @include unstyled-list;
 }

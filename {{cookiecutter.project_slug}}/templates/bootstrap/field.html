@@ -1,0 +1,48 @@
+{% load crispy_forms_field %}
+
+{% if field.is_hidden %}
+  {{ field }}
+{% else %}
+  <{% if tag %}{{ tag }}{% else %}div{% endif %} id="div_{{ field.auto_id }}" class="control-group{% if wrapper_class %} {{ wrapper_class }}{% endif %}{% if form_show_errors%}{% if field.errors %} error{% endif %}{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}{% if field|is_checkbox %} checkbox-control-group{% endif %}{% if field|is_radioselect %} radio-control-group{% endif %}">
+    {% if field.label and not field|is_checkbox and form_show_labels %}
+      <label for="{{ field.id_for_label }}" class="control-label {% if field.field.required %}requiredField{% endif %}">
+        {{ field.label|safe }}{% if field.field.required %}<span class="asteriskField">*</span>{% endif %}
+      </label>
+    {% endif %}
+    {% if field|is_checkboxselectmultiple %}
+      {% include 'bootstrap/layout/checkboxselectmultiple.html' %}
+    {% endif %}
+
+    {% if field|is_radioselect %}
+      <div class="controls"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
+        {% include 'bootstrap/layout/field_errors_block.html' %}
+
+        {% for choice in field.field.choices %}
+          <div class="radio-choice">
+            <input type="radio"{% if choice.0|stringformat:"s" == field.value|default_if_none:""|stringformat:"s" %} checked="checked"{% endif %} name="{{ field.html_name }}" id="id_{{ field.id_for_label }}_{{ forloop.counter }}" value="{{ choice.0|unlocalize }}" {{ field.field.widget.attrs|flatatt }}>
+            <label for="id_{{ field.id_for_label }}_{{ forloop.counter }}" class="radio{% if inline_class %} {{ inline_class }}{% endif %}">{{ choice.1|unlocalize }}</label>
+          </div>
+        {% endfor %}
+
+        {% include 'bootstrap/layout/help_text.html' %}
+      </div>
+    {% endif %}
+
+    {% if not field|is_checkboxselectmultiple and not field|is_radioselect %}
+      <div class="controls">
+        {% if field|is_checkbox and form_show_labels %}
+          <div class="checkbox-choice">
+            {% crispy_field field %}
+            <label for="{{ field.id_for_label }}" class="checkbox {% if field.field.required %}requiredField{% endif %}">
+              {{ field.label|safe }}{% if field.field.required %}<span class="asteriskField">*</span>{% endif %}
+            </label>
+          </div>
+          {% include 'bootstrap/layout/help_text_and_errors.html' %}
+        {% else %}
+          {% crispy_field field %}
+          {% include 'bootstrap/layout/help_text_and_errors.html' %}
+        {% endif %}
+      </div>
+    {% endif %}
+  </{% if tag %}{{ tag }}{% else %}div{% endif %}>
+{% endif %}
