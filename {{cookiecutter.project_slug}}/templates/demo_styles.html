@@ -206,170 +206,130 @@
 					<fieldset id="forms__input">
 						<legend>Input fields</legend>
 
-						<div class="control-group">
-							<label for="input__text">Text Input</label>
-							<div class="controls">
-                <input id="input__text" type="text" placeholder="Text Input">
+						<div class="field">
+							<label  class="field-label required-field" for="input__text">Text Input<span class="asterisk-span">*</span></label>
+              <input id="input__text" type="text" placeholder="Text Input">
               </div>
-            </div>
-						<div class="control-group">
-							<label for="input__password">Password</label>
-							<div class="controls">
-                <input id="input__password" type="password" placeholder="Type your Password">
+						<div class="field">
+							<label  class="field-label required-field" for="input__password">Password<span class="asterisk-span">*</span></label>
+              <input id="input__password" type="password" placeholder="Type your Password">
 							</div>
+						<div class="field">
+							<label  class="field-label required-field" for="input__webaddress">URL<span class="asterisk-span">*</span></label>
+              <input id="input__webaddress" type="url" placeholder="http://yoursite.com">
+							</div>
+						<div class="field">
+							<label  class="field-label required-field" for="input__emailaddress">Email Address<span class="asterisk-span">*</span></label>
+              <input id="input__emailaddress" type="email" placeholder="name@email.com">
 						</div>
-						<div class="control-group">
-							<label for="input__webaddress">URL</label>
-							<div class="controls">
-                <input id="input__webaddress" type="url" placeholder="http://yoursite.com">
-							</div>
+						<div class="field">
+							<label  class="field-label" for="input__phone">Phone Number</label>
+              <input id="input__phone" type="tel" placeholder="(999) 999-9999">
 						</div>
-						<div class="control-group">
-							<label for="input__emailaddress">Email Address</label>
-							<div class="controls">
-                <input id="input__emailaddress" type="email" placeholder="name@email.com">
-							</div>
+						<div class="field">
+							<label  class="field-label" for="input__search">Search</label>
+              <input id="input__search" type="search" placeholder="Enter Search Term">
 						</div>
-						<div class="control-group">
-							<label for="input__phone">Phone Number</label>
-							<div class="controls">
-                <input id="input__phone" type="tel" placeholder="(999) 999-9999">
-							</div>
+						<div class="field">
+							<label  class="field-label" for="input__text2">Number Input</label>
+              <input id="input__text2" type="number" placeholder="Enter a Number">
 						</div>
-						<div class="control-group">
-							<label for="input__search">Search</label>
-							<div class="controls">
-                <input id="input__search" type="search" placeholder="Enter Search Term">
-							</div>
+						<div class="field">
+							<label  class="field-label" for="input__text3" class="error">Error</label>
+              <input id="input__text3" class="is-error" type="text" placeholder="Text Input">
 						</div>
-						<div class="control-group">
-							<label for="input__text2">Number Input</label>
-							<div class="controls">
-                <input id="input__text2" type="number" placeholder="Enter a Number">
-							</div>
-						</div>
-						<div class="control-group">
-							<label for="input__text3" class="error">Error</label>
-							<div class="controls">
-                <input id="input__text3" class="is-error" type="text" placeholder="Text Input">
-							</div>
-						</div>
-						<div class="control-group">
-							<label for="input__text4" class="valid">Valid</label>
-							<div class="controls">
-                <input id="input__text4" class="is-valid" type="text" placeholder="Text Input">
-							</div>
+						<div class="field">
+							<label  class="field-label" for="input__text4" class="valid">Valid</label>
+              <input id="input__text4" class="is-valid" type="text" placeholder="Text Input">
 						</div>
 					</fieldset>
 					<fieldset id="forms__select">
 						<legend>Select menus</legend>
-						<div class="control-group">
-              <label for="select">Select</label>
-              <div class="controls">
-                <select id="select">
-                  <optgroup label="Option Group">
-                    <option>Option One</option>
-                    <option>Option Two</option>
-                    <option>Option Three</option>
-                  </optgroup>
-                </select>
-              </div>
+						<div class="field">
+              <label  class="field-label" for="select">Select</label>
+              <select id="select">
+                <optgroup label="Option Group">
+                  <option>Option One</option>
+                  <option>Option Two</option>
+                  <option>Option Three</option>
+                </optgroup>
+              </select>
 						</div>
 					</fieldset>
 					<fieldset id="forms__checkbox">
 						<legend>Checkboxes</legend>
-            <div class="checkbox-control-group">
-              <div class="controls">
-                <div class="checkbox-choice">
-                  <input type="checkbox" name="checkbox-input" class="checkboxinput" id="checkbox_1">
-                  <label for="checkbox_1">Option 1</label>
-                </div>
-                <div class="checkbox-choice">
-                  <input type="checkbox" name="checkbox-input" class="checkboxinput" id="checkbox_2">
-                  <label for="checkbox_2">Option 2</label>
-                </div>
-                <div class="checkbox-choice">
-                  <input type="checkbox" name="checkbox-input" class="checkboxinput" id="checkbox_3">
-                  <label for="checkbox_3">Option 3</label>
-                </div>
+            <div class="field field--checkbox">
+              <div class="checkbox">
+                <input type="checkbox" name="checkbox-input" class="checkboxinput" id="checkbox_1">
+                <label  class="field-label" for="checkbox_1">Option 1</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="checkbox-input" class="checkboxinput" id="checkbox_2">
+                <label  class="field-label" for="checkbox_2">Option 2</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="checkbox-input" class="checkboxinput" id="checkbox_3">
+                <label  class="field-label" for="checkbox_3">Option 3</label>
               </div>
             </div>
 					</fieldset>
 					<fieldset id="forms__radio">
 						<legend>Radio buttons</legend>
-						<div class="radio-control-group">
-              <div class="controls">
-                <div class="radio-choice">
-                  <input type="radio" name="radio-input" class="radioinput" id="radio_1">
-                  <label for="radio_1">Option 1</label>
-                </div>
-                <div class="radio-choice">
-                  <input type="radio" name="radio-input" class="radioinput" id="radio_2">
-                  <label for="radio_2">Option 2</label>
-                </div>
-                <div class="radio-choice">
-                  <input type="radio" name="radio-input" class="radioinput" id="radio_3">
-                  <label for="radio_3">Option 3</label>
-                </div>
+						<div class="field field--radio">
+              <div class="radio">
+                <input type="radio" name="radio-input" class="radioinput" id="radio_1">
+                <label  class="field-label" for="radio_1">Option 1</label>
+              </div>
+              <div class="radio">
+                <input type="radio" name="radio-input" class="radioinput" id="radio_2">
+                <label  class="field-label" for="radio_2">Option 2</label>
+              </div>
+              <div class="radio">
+                <input type="radio" name="radio-input" class="radioinput" id="radio_3">
+                <label  class="field-label" for="radio_3">Option 3</label>
               </div>
             </div>
 					</fieldset>
 					<fieldset id="forms__textareas">
 						<legend>Textareas</legend>
-						<div class="control-group">
-							<label for="textarea">Textarea</label>
+						<div class="field">
+							<label  class="field-label" for="textarea">Textarea</label>
 							<textarea id="textarea" rows="8" cols="48" placeholder="Enter your message here"></textarea>
 						</div>
 					</fieldset>
 					<fieldset id="forms__html5">
 						<legend>HTML5 inputs</legend>
-						<div class="control-group">
-							<label for="ic">Color input</label>
-							<div class="controls">
-                <input type="color" id="ic" value="#000000">
-							</div>
+						<div class="field">
+							<label  class="field-label" for="ic">Color input</label>
+              <input type="color" id="ic" value="#000000">
 						</div>
-						<div class="control-group">
-							<label for="in">Number input</label>
-							<div class="controls">
-                <input type="number" id="in" min="0" max="10" value="5">
-							</div>
+						<div class="field">
+							<label  class="field-label" for="in">Number input</label>
+              <input type="number" id="in" min="0" max="10" value="5">
 						</div>
-						<div class="control-group">
-							<label for="ir">Range input</label>
-							<div class="controls">
-                <input type="range" id="ir" value="10">
-							</div>
+						<div class="field">
+							<label  class="field-label" for="ir">Range input</label>
+              <input type="range" id="ir" value="10">
 						</div>
-						<div class="control-group">
-							<label for="idd">Date input</label>
-							<div class="controls">
-                <input type="date" id="idd" value="1970-01-01">
-							</div>
+						<div class="field">
+							<label  class="field-label" for="idd">Date input</label>
+              <input type="date" id="idd" value="1970-01-01">
 						</div>
-						<div class="control-group">
-							<label for="idm">Month input</label>
-							<div class="controls">
-                <input type="month" id="idm" value="1970-01">
-							</div>
+						<div class="field">
+							<label  class="field-label" for="idm">Month input</label>
+              <input type="month" id="idm" value="1970-01">
 						</div>
-						<div class="control-group">
-							<label for="idw">Week input</label>
-							<div class="controls">
-                <input type="week" id="idw" value="1970-W01">
-							</div>
+						<div class="field">
+							<label  class="field-label" for="idw">Week input</label>
+              <input type="week" id="idw" value="1970-W01">
 						</div>
-						<div class="control-group">
-							<label for="idt">Datetime input</label>
-							<div class="controls">
-                <input type="datetime" id="idt" value="1970-01-01T00:00:00Z">
-							</div>
+						<div class="field">
+							<label  class="field-label" for="idt">Datetime input</label>
+              <input type="datetime" id="idt" value="1970-01-01T00:00:00Z">
 						</div>
-						<div class="control-group">
-							<label for="idtl">Datetime-local input</label>
-							<div class="controls">
-                <input type="datetime-local" id="idtl" value="1970-01-01T00:00">
-							</div>
+						<div class="field">
+							<label  class="field-label" for="idtl">Datetime-local input</label>
+              <input type="datetime-local" id="idtl" value="1970-01-01T00:00">
 						</div>
 					</fieldset>
 					<fieldset id="forms__action">
