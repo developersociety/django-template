@@ -81,7 +81,7 @@ THIRD_PARTY_APPS = [
 ]
 {%- else %}
 
-THIRD_PARTY_APPS = ["crispy_forms", "raven.contrib.django.apps.RavenConfig",]
+THIRD_PARTY_APPS = ["crispy_forms", "raven.contrib.django.apps.RavenConfig"]
 {%- endif %}
 {%- if cookiecutter.wagtail == 'y' %}
 
