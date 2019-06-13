@@ -4,8 +4,8 @@ $base-line-height: 1.5 !default;
 $base-font: 'Open Sans';
 
 // Colors
-$color-primary: #323134 !default;
-$color-secondary: #bcbcbc !default;
+$color-primary: #00e0ba !default;
+$color-secondary: #c5c5c5 !default;
 
 $color-black: #000000 !default;
 $color-white: #ffffff !default;
@@ -14,3 +14,9 @@ $color-grey-light: #d3d3d3 !default;
 
 // Size
 $width-container: 60rem !default;
+
+// Responsive breakpoints
+$breakpoint-mobile-small: 460px;
+$breakpoint-mobile: 640px;
+$breakpoint-desktop: 960px;
+$breakpoint-desktop-large: 1280px;

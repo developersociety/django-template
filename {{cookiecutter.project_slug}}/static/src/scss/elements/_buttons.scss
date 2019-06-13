@@ -20,7 +20,7 @@ input[type='submit'] {
 
     &:hover,
     &:focus {
-        background: lighten($color-primary, 2.5%);
+        background: darken($color-primary, 2.5%);
     }
 
     &.secondary {
@@ -29,7 +29,7 @@ input[type='submit'] {
 
         &:hover,
         &:focus {
-            background: lighten($color-secondary, 2.5%);
+            background: darken($color-secondary, 2.5%);
         }
     }
 
@@ -40,7 +40,7 @@ input[type='submit'] {
 
         &:hover,
         &:focus {
-            background: lighten($color-primary, 2.5%);
+            background: $color-primary;
         }
     }
 }

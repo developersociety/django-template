@@ -1,6 +1,6 @@
 const main = document.querySelector('.main');
 
-// Stretch main to fill height of screen minus header and footer
+// Stretch main height to fill the screen
 if (main) {
     const footer_height = document.querySelector('.footer').offsetHeight;
     const header_height = document.querySelector('.header').offsetHeight;

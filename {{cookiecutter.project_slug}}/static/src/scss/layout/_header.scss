@@ -9,5 +9,9 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    padding: 1.5rem;
+    padding: 1rem 1.5rem;
+
+    @include mobile {
+        padding: 1.5rem;
+    }
 }
