@@ -8,6 +8,17 @@
     }
 }
 
+.radio,
+.checkbox {
+    input:focus {
+        outline: none !important;
+
+        + label::after {
+            border-color: $color-primary !important;
+        }
+    }
+}
+
 #nav-toggle:focus ~ .header__container .nav-toggle {
     .nav-toggle__open .icon,
     .nav-toggle__close .icon {

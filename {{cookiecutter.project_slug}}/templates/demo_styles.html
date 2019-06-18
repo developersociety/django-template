@@ -1,1 +1,351 @@
 {% extends 'base.html' %}
+
+{% block title %}
+  Demo Styles - {{ block.super }}
+{% endblock title %}
+
+{% block main %}
+  <div class="container">
+    <main role="main">
+      <section id="buttons">
+        <header><h2>Buttons</h2><hr></header>
+        <article id="text__headings">
+          <p><a href="#!" class="button">.button</a></p>
+          <p><a href="#!" class="button button--outline">.button--outline</a></p>
+          <p><a href="#!" class="button button--secondary">.button--secondary</a></p>
+        </article>
+      </section>
+      <section id="text">
+        <header><h2>Text</h2><hr></header>
+        <article id="text__headings">
+          <header>
+            <h3>Headings</h3>
+          </header>
+          <div>
+            <h1>Heading 1</h1>
+            <h2>Heading 2</h2>
+            <h3>Heading 3</h3>
+            <h4>Heading 4</h4>
+            <h5>Heading 5</h5>
+          </div>
+        </article>
+        <article id="text__paragraphs">
+          <header><h3>Paragraphs</h3></header>
+          <div>
+            <p>A paragraph (from the Greek paragraphos, “to write beside” or “written beside”) is a self-contained unit of a discourse in writing dealing with a particular point or idea. A paragraph consists of one or more sentences. Though not required by the syntax of any language, paragraphs are usually an expected part of formal writing, used to organize longer prose.</p>
+          </div>
+        </article>
+        <article id="text__blockquotes">
+          <header><h3>Blockquotes</h3></header>
+          <div>
+            <blockquote>
+              <p>A block quotation (also known as a long quotation or extract) is a quotation in a written document, that is set off from the main text as a paragraph, or block of text.</p>
+              <p>It is typically distinguished visually using indentation and a different typeface or smaller size quotation. It may or may not include a citation, usually placed at the bottom.</p>
+              <cite><a href="#!">Said no one, ever.</a></cite>
+            </blockquote>
+          </div>
+        </article>
+        <article id="text__inline">
+          <header><h3>Inline elements</h3></header>
+          <div>
+            <p><a href="#!">This is a text link</a>.</p>
+            <p><strong>Strong is used to indicate strong importance.</strong></p>
+            <p><em>This text has added emphasis.</em></p>
+            <p>The <b>b element</b> is stylistically different text from normal text, without any special importance.</p>
+            <p>The <i>i element</i> is text that is offset from the normal text.</p>
+            <p>The <u>u element</u> is text with an unarticulated, though explicitly rendered, non-textual annotation.</p>
+            <p><del>This text is deleted</del> and <ins>This text is inserted</ins>.</p>
+            <p><s>This text has a strikethrough</s>.</p>
+            <p>Superscript<sup>®</sup>.</p>
+            <p>Subscript for things like H<sub>2</sub>O.</p>
+            <p><small>This small text is small for for fine print, etc.</small></p>
+            <p>Abbreviation: <abbr title="HyperText Markup Language">HTML</abbr></p>
+            <p><q cite="https://developer.mozilla.org/en-US/docs/HTML/Element/q">This text is a short inline quotation.</q></p>
+            <p><cite>This is a citation.</cite></p>
+            <p>The <dfn>dfn element</dfn> indicates a definition.</p>
+            <p>The <mark>mark element</mark> indicates a highlight.</p>
+            <p>The <var>variable element</var>, such as <var>x</var> = <var>y</var>.</p>
+            <p>The time element: <time datetime="2013-04-06T12:32+00:00">2 weeks ago</time></p>
+          </div>
+        </article>
+        <article id="text__lists">
+          <header><h3>Lists</h3></header>
+          <div>
+            <h4>Definition list</h4>
+            <dl>
+              <dt>Definition List Title</dt>
+              <dd>This is a definition list division.</dd>
+            </dl>
+            <h4>Ordered List</h4>
+            <ol>
+              <li>List Item 1</li>
+              <li>List Item 2</li>
+              <li>List Item 3</li>
+            </ol>
+            <h4>Unordered List</h4>
+            <ul>
+              <li>List Item 1</li>
+              <li>List Item 2</li>
+              <li>List Item 3</li>
+            </ul>
+          </div>
+        </article>
+        <article id="text__hr">
+          <header><h3>Horizontal rules</h3></header>
+          <div>
+            <hr>
+          </div>
+        </article>
+        <article id="text__tables">
+          <header><h3>Tabular data</h3></header>
+          <table>
+            <caption>Table Caption</caption>
+            <thead>
+              <tr>
+                <th>Table Heading 1</th>
+                <th>Table Heading 2</th>
+                <th>Table Heading 3</th>
+                <th>Table Heading 4</th>
+                <th>Table Heading 5</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Table Footer 1</th>
+                <th>Table Footer 2</th>
+                <th>Table Footer 3</th>
+                <th>Table Footer 4</th>
+                <th>Table Footer 5</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr>
+                <td>Table Cell 1</td>
+                <td>Table Cell 2</td>
+                <td>Table Cell 3</td>
+                <td>Table Cell 4</td>
+                <td>Table Cell 5</td>
+              </tr>
+              <tr>
+                <td>Table Cell 1</td>
+                <td>Table Cell 2</td>
+                <td>Table Cell 3</td>
+                <td>Table Cell 4</td>
+                <td>Table Cell 5</td>
+              </tr>
+              <tr>
+                <td>Table Cell 1</td>
+                <td>Table Cell 2</td>
+                <td>Table Cell 3</td>
+                <td>Table Cell 4</td>
+                <td>Table Cell 5</td>
+              </tr>
+
+              <tr>
+                <td>Table Cell 1</td>
+                <td>Table Cell 2</td>
+                <td>Table Cell 3</td>
+                <td>Table Cell 4</td>
+                <td>Table Cell 5</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </section>
+
+      <section id="embedded">
+        <header><h2>Embedded content</h2><hr></header>
+        <article id="embedded__images">
+          <header><h3>Images</h3></header>
+          <div>
+            <h4>Loose <code>&lt;img&gt;</code> element</h4>
+            <p><img src="http://placekitten.com/480/480" alt="Image alt text"></p>
+            <h4>Wrapped in a <code>&lt;figure&gt;</code> element, no <code>&lt;figcaption&gt;</code></h4>
+            <figure><img src="http://placekitten.com/420/420" alt="Image alt text"></figure>
+            <h4>Wrapped in a <code>&lt;figure&gt;</code> element, with a <code>&lt;figcaption&gt;</code></h4>
+            <figure>
+              <img src="http://placekitten.com/420/420" alt="Image alt text">
+              <figcaption>Here is a caption for this image.</figcaption>
+            </figure>
+            <p>Use <code>&lt;.background-image&gt;</code> class for easier positioning of images
+          </div>
+        </article>
+        <article id="embedded__audio">
+          <header><h3>Audio</h3></header>
+          <div><audio controls="">audio</audio></div>
+        </article>
+        <article id="embedded__video">
+          <header><h3>Video</h3></header>
+          <div><video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" controls="">video</video></div>
+        </article>
+        <article id="embedded__iframe">
+          <header><h3>IFrame</h3></header>
+          <div><iframe src="https://en.wikipedia.org/wiki/Main_Page"></iframe></div>
+        </article>
+         <article id="embedded__iframe_container">
+          <header><h3>Video iframe using <code>&lt;.video__container&gt;</code></h3></header>
+          <div class="video__container"><iframe src="https://www.youtube.com/embed/Lkx3Deq8WSA"></iframe></div>
+        </article>
+        <article id="embedded__meter">
+          <header><h3>Meter</h3></header>
+          <div><meter value="2" min="0" max="10">2 out of 10</meter></div>
+        </article>
+        <article id="embedded__progress">
+          <header><h3>Progress</h3></header>
+          <div><progress>progress</progress></div>
+        </article>
+        <article id="embedded__svg">
+          <header><h3>Inline SVG</h3></header>
+          <div><svg width="100px" height="100px"><circle cx="100" cy="100" r="100" fill="#1fa3ec"></circle></svg></div>
+        </article>
+      </section>
+      <section id="forms">
+        <header><h2>Form elements</h2><hr></header>
+        <form>
+          <fieldset id="forms__input">
+            <legend>Input fields</legend>
+
+            <div class="field">
+              <label  class="field-label required-field" for="input__text">Text Input<span class="asterisk-span">*</span></label>
+              <input id="input__text" type="text" placeholder="Text Input">
+              </div>
+            <div class="field">
+              <label  class="field-label required-field" for="input__password">Password<span class="asterisk-span">*</span></label>
+              <input id="input__password" type="password" placeholder="Type your Password">
+              </div>
+            <div class="field">
+              <label  class="field-label required-field" for="input__webaddress">URL<span class="asterisk-span">*</span></label>
+              <input id="input__webaddress" type="url" placeholder="http://yoursite.com">
+              </div>
+            <div class="field">
+              <label  class="field-label required-field" for="input__emailaddress">Email Address<span class="asterisk-span">*</span></label>
+              <input id="input__emailaddress" type="email" placeholder="name@email.com">
+            </div>
+            <div class="field">
+              <label  class="field-label" for="input__phone">Phone Number</label>
+              <input id="input__phone" type="tel" placeholder="(999) 999-9999">
+            </div>
+            <div class="field">
+              <label  class="field-label" for="input__search">Search</label>
+              <input id="input__search" type="search" placeholder="Enter Search Term">
+            </div>
+            <div class="field">
+              <label  class="field-label" for="input__text2">Number Input</label>
+              <input id="input__text2" type="number" placeholder="Enter a Number">
+            </div>
+            <div class="field">
+              <label  class="field-label" for="input__text3" class="error">Error</label>
+              <input id="input__text3" class="is-error" type="text" placeholder="Text Input">
+            </div>
+            <div class="field">
+              <label  class="field-label" for="input__text4" class="valid">Valid</label>
+              <input id="input__text4" class="is-valid" type="text" placeholder="Text Input">
+            </div>
+          </fieldset>
+          <fieldset id="forms__select">
+            <legend>Select menus</legend>
+            <div class="field">
+              <label  class="field-label" for="select">Select</label>
+              <select id="select">
+                <optgroup label="Option Group">
+                  <option>Option One</option>
+                  <option>Option Two</option>
+                  <option>Option Three</option>
+                </optgroup>
+              </select>
+            </div>
+          </fieldset>
+          <fieldset id="forms__checkbox">
+            <legend>Checkboxes</legend>
+            <div class="field field--checkbox">
+              <div class="checkbox">
+                <input type="checkbox" name="checkbox-input" class="checkboxinput" id="checkbox_1">
+                <label  class="field-label" for="checkbox_1">Option 1</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="checkbox-input" class="checkboxinput" id="checkbox_2">
+                <label  class="field-label" for="checkbox_2">Option 2</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="checkbox-input" class="checkboxinput" id="checkbox_3">
+                <label  class="field-label" for="checkbox_3">Option 3</label>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset id="forms__radio">
+            <legend>Radio buttons</legend>
+            <div class="field field--radio">
+              <div class="radio">
+                <input type="radio" name="radio-input" class="radioinput" id="radio_1">
+                <label  class="field-label" for="radio_1">Option 1</label>
+              </div>
+              <div class="radio">
+                <input type="radio" name="radio-input" class="radioinput" id="radio_2">
+                <label  class="field-label" for="radio_2">Option 2</label>
+              </div>
+              <div class="radio">
+                <input type="radio" name="radio-input" class="radioinput" id="radio_3">
+                <label  class="field-label" for="radio_3">Option 3</label>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset id="forms__textareas">
+            <legend>Textareas</legend>
+            <div class="field">
+              <label  class="field-label" for="textarea">Textarea</label>
+              <textarea id="textarea" rows="8" cols="48" placeholder="Enter your message here"></textarea>
+            </div>
+          </fieldset>
+          <fieldset id="forms__html5">
+            <legend>HTML5 inputs</legend>
+            <div class="field">
+              <label  class="field-label" for="ic">Color input</label>
+              <input type="color" id="ic" value="#000000">
+            </div>
+            <div class="field">
+              <label  class="field-label" for="in">Number input</label>
+              <input type="number" id="in" min="0" max="10" value="5">
+            </div>
+            <div class="field">
+              <label  class="field-label" for="ir">Range input</label>
+              <input type="range" id="ir" value="10">
+            </div>
+            <div class="field">
+              <label  class="field-label" for="idd">Date input</label>
+              <input type="date" id="idd" value="1970-01-01">
+            </div>
+            <div class="field">
+              <label  class="field-label" for="idm">Month input</label>
+              <input type="month" id="idm" value="1970-01">
+            </div>
+            <div class="field">
+              <label  class="field-label" for="idw">Week input</label>
+              <input type="week" id="idw" value="1970-W01">
+            </div>
+            <div class="field">
+              <label  class="field-label" for="idt">Datetime input</label>
+              <input type="datetime" id="idt" value="1970-01-01T00:00:00Z">
+            </div>
+            <div class="field">
+              <label  class="field-label" for="idtl">Datetime-local input</label>
+              <input type="datetime-local" id="idtl" value="1970-01-01T00:00">
+            </div>
+          </fieldset>
+          <fieldset id="forms__action">
+            <legend>Action buttons</legend>
+            <p>
+              <input type="submit" value="<input type=submit>">
+              <input type="button" value="<input type=button>">
+              <input type="reset" value="<input type=reset>">
+              <input type="submit" value="<input disabled>" disabled>
+            </p>
+            <p>
+              <button type="submit">&lt;button type=submit&gt;</button>
+              <button type="button">&lt;button type=button&gt;</button>
+            </p>
+          </fieldset>
+        </form>
+      </section>
+    </main>
+  </div>
+{% endblock main %}

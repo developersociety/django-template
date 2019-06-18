@@ -7,14 +7,14 @@ input[type='submit'] {
     background: inherit;
 }
 
-.button,
-.btn {
+.button {
     display: inline-block;
     padding: 0 1rem;
     line-height: 2rem;
     font-size: 1rem;
     font-weight: 600;
     text-align: center;
+    text-decoration: none;
     background: $color-primary;
     color: $color-white;
 
@@ -23,7 +23,7 @@ input[type='submit'] {
         background: darken($color-primary, 2.5%);
     }
 
-    &.secondary {
+    &.button--secondary {
         background: $color-secondary;
         color: $color-white;
 
@@ -33,14 +33,16 @@ input[type='submit'] {
         }
     }
 
-    &.outline {
+    &.button--outline {
         background: none;
         border: 0.125rem solid $color-primary;
         line-height: 1.75rem;
+        color: $color-black !important;
 
         &:hover,
         &:focus {
             background: $color-primary;
+            color: $color-white;
         }
     }
 }
