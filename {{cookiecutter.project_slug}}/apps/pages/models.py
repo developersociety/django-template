@@ -7,6 +7,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 
 from .blocks import BaseStreamBlock
 
+
 class BasePage(Page):
     share_description = models.TextField(
         blank=True,
@@ -45,5 +46,3 @@ class HomePage(BasePage):
     content = StreamField(BaseStreamBlock(), blank=True)
 
     content_panels = Page.content_panels + [StreamFieldPanel("content")]
-
-
