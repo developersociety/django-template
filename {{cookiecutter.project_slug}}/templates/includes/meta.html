@@ -1,0 +1,23 @@
+{% load staticfiles %}
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="description" content="" />
+
+<meta itemprop="name" content="{{ request.site.name }}">
+<meta itemprop="image" content="{% static 'img/logo.png' %}">
+<meta itemprop="description" content="">
+
+<meta property="og:title" content="{{ request.site.name }}" />
+<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:image" content="{% static 'img/logo.png' %}" />
+<meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}" />
+<meta property="og:site_name" content="{{ request.site.name }}" />
+
+<meta name="twitter:title" content="{{ request.site.name }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="">
+<meta name="twitter:site" content="">
+<meta name="twitter:creator" content="">
+<meta name="twitter:image:src" content="{% static 'img/logo.png' %}">
