@@ -1,14 +1,14 @@
 {% load staticfiles wagtailimages_tags %}
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta itemprop="name" content="{{ request.site.name }}">
+<meta itemprop="name" content="{{ request.site.site_name }}">
 
-<meta property="og:title" content="{{ request.site.name }}" />
+<meta property="og:title" content="{{ page.title }} - {{ request.site.site_name }}" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}" />
-<meta property="og:site_name" content="{{ request.site.name }}" />
+<meta property="og:site_name" content="{{ request.site.site_name }}" />
 
-<meta name="twitter:title" content="{{ request.site.name }}">
+<meta name="twitter:title" content="{{ page.title }} - {{ request.site.site_name }}">
 <meta name="twitter:card" content="summary_large_image">
 
 {% if settings.settings.SocialAccounts.twitter_handle %}

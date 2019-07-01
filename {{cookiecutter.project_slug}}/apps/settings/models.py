@@ -51,8 +51,8 @@ class SocialAccounts(BaseSetting):
         "https://www.facebook.com/organisation_name_or_id"
         """,
     )
-    twitter_handle = models.TextField(
-        blank=True, help_text='Organisation\'s main Twitter handle. E.g. "@orgname"'
+    twitter_handle = models.CharField(
+        blank=True, max_length=16, help_text='Organisation\'s main Twitter handle. E.g. "@orgname"'
     )
 
     panels = [FieldPanel("facebook_url"), FieldPanel("twitter_handle")]
