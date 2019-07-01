@@ -242,7 +242,8 @@ LOGGING = {
 SITE_ID = 1
 
 # Cloud storage
-CONTENTFILES_PREFIX = "{{ cookiecutter.project_slug }}"
+CONTENTFILES_PREFIX = os.environ.get("CONTENTFILES_PREFIX", "{{ cookiecutter.project_slug }}")
+CONTENTFILES_HOSTNAME = os.environ.get("CONTENTFILES_HOSTNAME")
 CONTENTFILES_SSL = True
 
 # Improved cookie security
