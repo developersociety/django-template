@@ -57,6 +57,7 @@ DEFAULT_APPS = [
 {%- if cookiecutter.wagtail == 'y' %}
 
 THIRD_PARTY_APPS = [
+    "crispy_forms",
     "modelcluster",
     "raven.contrib.django.apps.RavenConfig",
     "rest_framework",
@@ -80,7 +81,7 @@ THIRD_PARTY_APPS = [
 ]
 {%- else %}
 
-THIRD_PARTY_APPS = ["raven.contrib.django.apps.RavenConfig"]
+THIRD_PARTY_APPS = ["crispy_forms", "raven.contrib.django.apps.RavenConfig"]
 {%- endif %}
 {%- if cookiecutter.wagtail == 'y' %}
 
@@ -250,6 +251,7 @@ CSRF_COOKIE_HTTPONLY = True
 
 # Wagtail
 WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
+BASE_URL = os.environ.get("WAGTAIL_BASE_URL", "")
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 WAGTAILSEARCH_BACKENDS = {
     "default": {

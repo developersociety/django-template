@@ -1,9 +1,27 @@
-.sr__text,
-.sr__input,
-.sr__label {
-    position: absolute;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
+:focus {
+    outline: 0.1875rem solid $color-secondary;
+
+    // Used on elements with border-radius
+    &.focus--box-shadow {
+        outline: none;
+        box-shadow: 0 0 0 -0.1875rem $color-secondary;
+    }
+}
+
+.radio,
+.checkbox {
+    input:focus {
+        outline: none !important;
+
+        + label::after {
+            border-color: $color-primary !important;
+        }
+    }
+}
+
+#nav-toggle:focus ~ .header__container .nav-toggle {
+    .nav-toggle__open .icon,
+    .nav-toggle__close .icon {
+        fill: $color-secondary;
+    }
 }
