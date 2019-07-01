@@ -10,8 +10,11 @@
 
 <meta name="twitter:title" content="{{ request.site.name }}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="">
-<meta name="twitter:creator" content="">
+
+{% if settings.settings.SocialAccounts.twitter_handle %}
+  <meta name="twitter:site" content="{{ settings.settings.SocialAccounts.twitter_handle }}">
+  <meta name="twitter:creator" content="{{ settings.settings.SocialAccounts.twitter_handle }}">
+{% endif %}
 
 {% if page.share_description %}
   <meta name="description" content="{{ page.share_description }}" />

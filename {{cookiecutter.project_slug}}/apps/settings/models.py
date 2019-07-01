@@ -51,7 +51,7 @@ class SocialAccounts(BaseSetting):
         "https://www.facebook.com/organisation_name_or_id"
         """,
     )
-    twitter_handle = models.URLField(
+    twitter_handle = models.TextField(
         blank=True, help_text='Organisation\'s main Twitter handle. E.g. "@orgname"'
     )
 

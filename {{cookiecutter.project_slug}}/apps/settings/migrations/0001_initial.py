@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('facebook_url', models.URLField(blank=True, help_text='\n        The URL of your organisation\'s Facebook page. E.g.\n        "https://www.facebook.com/organisation_name_or_id"\n        ')),
-                ('twitter_handle', models.URLField(blank=True, help_text='Organisation\'s main Twitter handle. E.g. "@orgname"')),
+                ('twitter_handle', models.TextField(blank=True, help_text='Organisation\'s main Twitter handle. E.g. "@orgname"')),
                 ('site', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.Site')),
             ],
             options={
