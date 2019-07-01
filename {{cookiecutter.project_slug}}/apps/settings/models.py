@@ -48,7 +48,7 @@ class SocialAccounts(BaseSetting):
         blank=True,
         help_text="""
         The URL of your organisation\'s Facebook page. E.g.
-        "https://www.facebook.com/organisation_name_or_id"'
+        "https://www.facebook.com/organisation_name_or_id"
         """,
     )
     twitter_handle = models.URLField(
