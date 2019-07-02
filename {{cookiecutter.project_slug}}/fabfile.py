@@ -171,6 +171,9 @@ def sentry_release():
             project=env.repo, version=version
         ))
         run('sentry-cli releases set-commits --auto {version}'.format(version=version))
+        run('sentry-cli releases deploys {version} new --env $SENTRY_ENVIRONMENT'.format(
+            version=version
+        ))
 
 
 @task
@@ -251,7 +254,7 @@ def get_env():
     """ Get the current environment variables, ready for local export."""
     env.output_prefix = False
     run('export | sed -e "s/declare -x/export/g"')
-    
+
 
 @task
 def ssh(index='1'):
