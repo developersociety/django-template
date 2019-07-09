@@ -232,6 +232,7 @@ LOGGING = {
         "django.db.backends": {"handlers": ["console"], "level": "ERROR", "propagate": False},
         "django.server": {"handlers": ["django.server"], "level": "INFO", "propagate": False},
         "elasticapm.errors": {"handlers": ["console"], "level": "ERROR", "propagate": False},
+        "elasticapm.transport": {"handlers": ["console"], "level": "ERROR", "propagate": False},
         "py.warnings": {"handlers": ["console"]},
         "raven": {"handlers": ["console"], "level": "DEBUG", "propagate": False},
         "sentry.errors": {"handlers": ["console"], "level": "DEBUG", "propagate": False},
