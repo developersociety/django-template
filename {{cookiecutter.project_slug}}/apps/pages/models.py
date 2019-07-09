@@ -35,6 +35,9 @@ class BasePage(Page):
         )
     ]
 
+    class Meta(Page.Meta):
+        abstract = True
+
 
 class StandardPage(BasePage):
     content = StreamField(BaseStreamBlock(), blank=True)
