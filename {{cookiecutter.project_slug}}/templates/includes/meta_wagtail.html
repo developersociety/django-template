@@ -31,12 +31,12 @@
 {% if page.share_image %}
   {% image page.share_image fill-1200x630 as share_image %}
   <meta property="og:image" content="{{ share_image.url }}" />
-  <meta name="twitter:image" content="{{ request.build_absolute_uri }}{{ share_image.url }}">
+  <meta name="twitter:image" content="{{ share_image.url }}">
   <meta itemprop="image" content="{{ share_image.url }}">
 {% elif page.image %}
   {% image page.image fill-1200x630 as page_image %}
   <meta property="og:image" content="{{ page_image.url }}" />
-  <meta name="twitter:image" content="{{ request.build_absolute_uri }}{{ page_image.url }}">
+  <meta name="twitter:image" content="{{ page_image.url }}">
   <meta itemprop="image" content="{{ page_image.url }}">
 {% else %}
   {% image settings.settings.ShareMeta.default_share_image fill-1200x630 as default_share_image %}
