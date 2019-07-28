@@ -171,6 +171,9 @@ def sentry_release():
             project=env.repo, version=version
         ))
         run('sentry-cli releases set-commits --auto {version}'.format(version=version))
+        run('sentry-cli releases deploys {version} new --env $SENTRY_ENVIRONMENT'.format(
+            version=version
+        ))
 
 
 @task
