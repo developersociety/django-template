@@ -159,7 +159,7 @@ django-migrate:
 npm-check: npm-install npm-run-production
 
 npm-install:
-	npm install
+	cmp --silent package-lock.json node_modules/.package-lock.json || npm ci && cp -a package-lock.json node_modules/.package-lock.json
 
 npm-run-production:
 	npm run production --silent
