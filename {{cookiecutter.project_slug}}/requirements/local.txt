@@ -4,4 +4,3 @@ django-debug-toolbar==1.11
 awscli==1.16.106
 ipdb==0.11
 tox==3.7.0
-spectrum-python==0.9.8
