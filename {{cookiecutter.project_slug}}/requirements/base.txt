@@ -1,5 +1,5 @@
-Django==1.11.20
-pytz==2018.9
+Django==1.11.22
+pytz==2019.1
 pylibmc==1.6.0
 psycopg2==2.7.3.2
 Pillow==5.4.1
@@ -13,9 +13,9 @@ boto==2.49.0
 blanc-contentfiles==0.2.4
 
 # APM
-elastic-apm==4.1.0
-urllib3==1.24.1
-certifi==2018.11.29
+elastic-apm==4.2.2
+urllib3==1.25.3
+certifi==2019.6.16
 {%- if cookiecutter.wagtail == 'y' %}
 
 # Wagtail (core wagtail)
@@ -32,8 +32,8 @@ webencodings==0.5.1
 Willow==1.1
 
 # Requests (wagtail)
-requests==2.21.0
-idna==2.7
+requests==2.22.0
+idna==2.8
 chardet==3.0.4
 
 # Wagtail extras
