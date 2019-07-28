@@ -4,5 +4,4 @@ awscli==1.16.150
 django-debug-toolbar==1.11
 ipdb==0.12
 pywatchman==1.4.1
-spectrum-python==0.9.8
 tox==3.9.0
