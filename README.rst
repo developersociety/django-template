@@ -2,8 +2,6 @@
 The Developer Society Django Template
 =====================================
 
-It only supports Python 3.
-
 Installation
 ------------
 
