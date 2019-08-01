@@ -261,6 +261,11 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
+        'elasticapm.transport': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
         'py.warnings': {
             'handlers': ['console'],
         },
@@ -281,7 +286,8 @@ LOGGING = {
 SITE_ID = 1
 
 # Cloud storage
-CONTENTFILES_PREFIX = '{{ cookiecutter.project_slug }}'
+CONTENTFILES_PREFIX = os.environ.get('CONTENTFILES_PREFIX', '{{ cookiecutter.project_slug }}')
+CONTENTFILES_HOSTNAME = os.environ.get('CONTENTFILES_HOSTNAME')
 CONTENTFILES_SSL = True
 
 # Improved cookie security
@@ -290,6 +296,7 @@ CSRF_COOKIE_HTTPONLY = True
 
 # Wagtail
 WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
+BASE_URL = os.environ.get('WAGTAIL_BASE_URL', '')
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 WAGTAILSEARCH_BACKENDS = {
     'default': {

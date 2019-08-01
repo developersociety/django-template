@@ -26,10 +26,10 @@ clean: ## Remove unneeded files generated from the various build tasks.
 clean: coverage-clean
 
 reset: ## Reset your local environment. Useful after switching branches, etc.
-reset: venv-check venv-wipe install-local fab-get-data django-migrate django-user-passwords django-dev-createsuperuser
+reset: venv-check venv-wipe install-local fab-get-data django-migrate django-user-passwords django-dev-createsuperuser{%- if cookiecutter.wagtail == 'y' %} django-rebuild-index{%- endif %}
 
 clear: ## Like reset but without the wiping of the installs.
-clear: fab-get-data django-migrate django-user-passwords django-dev-createsuperuser
+clear: fab-get-data django-migrate django-user-passwords django-dev-createsuperuser{%- if cookiecutter.wagtail == 'y' %} django-rebuild-index{%- endif %}
 
 check: ## Check for any obvious errors in the project's setup.
 check: pipdeptree-check npm-check django-check
@@ -65,8 +65,8 @@ ifndef VIRTUAL_ENV
 endif
 
 venv-wipe: venv-check
-	if ! pip list --format=freeze | grep -v "^appdirs=\|^distribute=\|^packaging=\|^pip=\|^pyparsing=\|^setuptools=\|^six=\|^wheel=" | xargs pip uninstall -y; then \
-	    echo "Nothing to remove"; \
+	if ! pip list --format=freeze | grep -v "^pip=\|^setuptools=\|^wheel=" | xargs pip uninstall -y; then \
+		echo "Nothing to remove"; \
 	fi
 
 
@@ -154,12 +154,18 @@ django-user-passwords:
 django-migrate:
 	./manage.py migrate
 
+{%- if cookiecutter.wagtail == 'y' %}
+
+django-rebuild-index:
+	./manage.py update_index
+{%- endif %}
+
 
 # NPM
 npm-check: npm-install npm-run-production
 
 npm-install:
-	npm install
+	cmp --silent package-lock.json node_modules/.package-lock.json || npm ci && cp -a package-lock.json node_modules/.package-lock.json
 
 npm-run-production:
 	npm run production --silent

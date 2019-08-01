@@ -112,9 +112,9 @@ def update():
         # Install python/node packages
         run('pip install --quiet --requirement requirements/production.txt')
         run(
-            'cmp --silent package-lock.json node_modules/package-lock.json || '
+            'cmp --silent package-lock.json node_modules/.package-lock.json || '
             'npm ci --no-progress && '
-            'cp -a package-lock.json node_modules/package-lock.json'
+            'cp -a package-lock.json node_modules/.package-lock.json'
         )
 
         # Clean up any potential cruft
@@ -171,6 +171,9 @@ def sentry_release():
             project=env.repo, version=version
         ))
         run('sentry-cli releases set-commits --auto {version}'.format(version=version))
+        run('sentry-cli releases deploys {version} new --env $SENTRY_ENVIRONMENT'.format(
+            version=version
+        ))
 
 
 @task
