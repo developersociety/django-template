@@ -1,0 +1,6 @@
+<a href="{{ self.get_url }}"
+  {% if self.style %}class="{{ self.style }}"{% endif %}
+  {% if self.file %} download {% endif %}
+  {% if self.new_window %}target="blank"{% endif %}>
+    {{ self.button_text }}
+</a>

@@ -1,0 +1,15 @@
+@import 'image';
+@import 'richtext';
+@import 'two_column';
+
+.block {
+    margin: $block-margin auto;
+
+    :first-child {
+        margin-top: 0;
+    }
+
+    :last-child {
+        margin-bottom: 0;
+    }
+}

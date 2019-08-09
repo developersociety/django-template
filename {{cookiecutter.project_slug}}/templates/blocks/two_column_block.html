@@ -1,0 +1,19 @@
+{% load wagtailcore_tags %}
+
+<div class="block two-column-block two-column-block--{{ self.alignment }}{% if self.background_colour != 'none' %} background-container background-{{ self.background_colour }}{% endif %}">
+  {% if self.full_width_intro %}
+    {{ self.full_width_intro|richtext }}
+  {% endif %}
+  <div class="two-column-block__columns">
+    <div class="two-column-block__left">
+      {% for block in self.left_column %}
+        {% include_block block %}
+      {% endfor %}
+    </div>
+    <div class="two-column-block__right">
+      {% for block in self.right_column %}
+        {% include_block block %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

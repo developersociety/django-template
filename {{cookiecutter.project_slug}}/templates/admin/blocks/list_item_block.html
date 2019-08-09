@@ -1,0 +1,18 @@
+<div class="{{ classname }} list-block-child">
+  <header class="block-header">
+    <div class="left">
+      <h1>{{ block_definition.label }}</h1>
+    </div>
+  </header>
+  {% if help_text %}
+    <div class="sequence-member__help help"><span class="icon-help-inverse" aria-hidden="true"></span>{{ help_text }}</div>
+  {% endif %}
+
+  <ul class="fields">
+    {% for child in children.values %}
+      <li{% if child.block.required %} class="required"{% endif %}>
+        {{ child.render_form }}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

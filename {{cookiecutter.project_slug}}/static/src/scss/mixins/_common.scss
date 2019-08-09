@@ -61,3 +61,15 @@
 .unstyled-list {
     @include unstyled-list;
 }
+
+.background-primary {
+    background: $color-primary;
+}
+
+.background-secondary {
+    background: $color-secondary;
+}
+
+.background-grey {
+    background: $color-grey-light;
+}

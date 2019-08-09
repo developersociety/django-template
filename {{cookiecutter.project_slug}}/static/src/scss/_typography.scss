@@ -1,5 +1,6 @@
 body {
     font-family: $base-font, sans-serif;
+    line-height: $base-line-height;
 }
 
 h1,
@@ -62,8 +63,12 @@ a {
     text-decoration: none;
 }
 
-p a {
-    text-decoration: underline;
+p {
+    margin: 1.25rem 0;
+
+    a {
+        text-decoration: underline;
+    }
 }
 
 hr {

@@ -8,3 +8,21 @@
 main > .container:first-of-type {
     margin-top: 1.5rem;
 }
+
+.background-container {
+    margin: $block-margin -400rem !important;
+    padding: $block-margin 400rem;
+
+    + .background-container {
+        margin: -$block-margin -400rem $block-margin !important;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    @include desktop {
+        padding: 6rem 400rem;
+        margin: 6rem -400rem !important;
+    }
+}

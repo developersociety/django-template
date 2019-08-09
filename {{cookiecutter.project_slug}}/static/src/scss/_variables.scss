@@ -14,9 +14,10 @@ $color-grey-light: #d3d3d3 !default;
 
 // Size
 $width-container: 60rem !default;
+$block-margin: 4rem !default;
 
 // Responsive breakpoints
-$breakpoint-mobile-small: 460px;
-$breakpoint-mobile: 640px;
-$breakpoint-desktop: 960px;
-$breakpoint-desktop-large: 1280px;
+$breakpoint-mobile-small: 460px !default;
+$breakpoint-mobile: 640px !default;
+$breakpoint-desktop: 960px !default;
+$breakpoint-desktop-large: 1280px !default;

@@ -1,11 +1,21 @@
 {% load wagtailimages_tags %}
 
-<figure>
-  {% image self.image fill-600x600 %}
-
-  {% if self.caption %}
-    <figcaption>
-      {{ self.caption }}
-    </figcaption>
+<div class="block image-block">
+  {% if self.link %}
+    <a href="{{ self.link.get_url }}" aria-label="Link to related page for image">
   {% endif %}
-</figure>
+
+  <figure>
+    {% image self.image width-1200 %}
+
+    {% if self.caption %}
+      <figcaption class="image-block__caption">
+        {{ self.caption }}
+      </figcaption>
+    {% endif %}
+  </figure>
+
+  {% if self.link %}
+    </a>
+  {% endif %}
+</div>

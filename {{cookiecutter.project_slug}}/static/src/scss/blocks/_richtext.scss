@@ -1,0 +1,127 @@
+.richtext-block {
+    width: 100%;
+    margin: auto;
+
+    ul,
+    ol {
+        margin: 1.5rem 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        ol,
+        ul {
+            margin: 0;
+        }
+    }
+
+    ul {
+        li::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0.575em;
+            left: 1rem;
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            background: $color-secondary;
+        }
+    }
+
+    ol {
+        list-style: none;
+        counter-reset: ol-counter;
+    }
+
+    ol li {
+        counter-increment: ol-counter;
+    }
+
+    ol li::before {
+        content: counter(ol-counter) '.';
+        font-size: inherit;
+        position: absolute;
+        right: calc(100% - 1.75rem);
+        color: $color-primary;
+        font-weight: 600;
+    }
+
+    p {
+        a {
+            text-decoration: underline;
+        }
+    }
+
+    + .button {
+        margin-top: -1.5rem;
+    }
+
+    .text-left {
+        text-align: left;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+}
+
+.richtext-image {
+    object-fit: cover;
+    object-position: center;
+    max-height: 56vw;
+    margin: 1.5rem auto;
+    width: 100%;
+
+    &.full-width {
+        display: block;
+        max-width: 50rem;
+        max-height: 18rem;
+    }
+
+    @include mobile {
+        margin: 1.5rem auto 2.5rem;
+
+        &.full-width {
+            display: block;
+            max-height: 28rem;
+        }
+
+        &.left,
+        &.right {
+            width: 45%;
+            max-height: 16rem;
+
+            &:first-of-type {
+                margin-top: 0;
+            }
+        }
+
+        &.left {
+            float: left;
+            margin-right: 5%;
+        }
+
+        &.right {
+            float: right;
+            margin-left: 5%;
+        }
+
+        &:first-child {
+            margin: 0 0 2.5rem;
+        }
+    }
+}
+
+blockquote {
+    font-style: italic;
+}
