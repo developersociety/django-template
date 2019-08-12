@@ -24,5 +24,9 @@ main > .container:first-of-type {
     @include desktop {
         padding: 6rem 400rem;
         margin: 6rem -400rem !important;
+
+        + .background-container {
+            margin: -6rem -400rem 6rem !important;
+        }
     }
 }

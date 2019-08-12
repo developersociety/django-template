@@ -79,18 +79,17 @@
     object-fit: cover;
     object-position: center;
     max-height: 56vw;
-    margin: 1.5rem auto;
+    margin: 0 auto 1.5rem;
     width: 100%;
 
     &.full-width {
         display: block;
         max-width: 50rem;
         max-height: 18rem;
+        margin: 2rem auto;
     }
 
     @include mobile {
-        margin: 1.5rem auto 2.5rem;
-
         &.full-width {
             display: block;
             max-height: 28rem;
@@ -100,10 +99,6 @@
         &.right {
             width: 45%;
             max-height: 16rem;
-
-            &:first-of-type {
-                margin-top: 0;
-            }
         }
 
         &.left {
@@ -114,10 +109,6 @@
         &.right {
             float: right;
             margin-left: 5%;
-        }
-
-        &:first-child {
-            margin: 0 0 2.5rem;
         }
     }
 }

@@ -7,6 +7,7 @@ if [ "$WAGTAIL" == "y" ]; then
     # Wagtail requested - use wagtail files and remove static fallbacks
     mv templates/base_wagtail.html templates/base.html
     mv templates/includes/meta_wagtail.html templates/includes/meta.html
+    mv templates/demo_styles_wagtail.html templates/demo_styles.html
     mv ./wagtail_webpack.config.js ./webpack.config.js
     mv static/src/scss/blocks/_blocks_wagtail.scss static/src/scss/blocks/_blocks.scss
     rm -f templates/homepage.html
@@ -22,6 +23,7 @@ else
     rm -rf templates/wagtail
     rm -f templates/base_wagtail.html
     rm -f templates/includes/meta_wagtail.html
+    rm -f templates/demo_styles_wagtail.html
     rm -r static/src/js/admin.js
     rm -r ./wagtail_webpack.config.js
     rm -r static/src/scss/blocks/_blocks_wagtail.scss

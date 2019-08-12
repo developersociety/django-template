@@ -1,10 +1,19 @@
 .two-column-block {
+
+    >.rich-text {
+        margin-bottom: 2.5rem;
+    }
+
     .richtext-image:nth-child(2) {
         margin-top: -0.5rem !important;
     }
 
     .two-column-block__left {
         margin-bottom: 2rem;
+    }
+
+    .block {
+        margin: 2rem auto;
     }
 
     @include desktop {
