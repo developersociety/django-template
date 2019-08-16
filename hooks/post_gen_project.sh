@@ -71,9 +71,6 @@ elif [ "$WAGTAIL" == "n" ] && [ "$MULTILINGUAL" == "y" ]; then
     rm -f templates/404_multilingual.html
     rm -f templates/500_multilingual.html
 
-    # make initial translations
-    make translations
-
 else
     # remove multilingual files
     rm -rf apps/core/tests
