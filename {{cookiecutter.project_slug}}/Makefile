@@ -9,7 +9,17 @@ IS_GEODJANGO="{{ cookiecutter.geodjango }}"
 # ---------------------------------
 #
 # Add any targets specific to the current project in here.
+{%- if cookiecutter.multilingual == 'y'  %}
+translations: ## Create/compile dummy translations
+	rm -rf locale/{en,uni}
+	mkdir -p locale/{en,uni}/LC_MESSAGES
+	./manage.py makemessages --verbosity=0
 
+	podebug --rewrite=unicode locale/{en,uni}/LC_MESSAGES/django.po
+	sed -i -e 's/.Plural-Forms:.*//' locale/{en,uni}/LC_MESSAGES/django.po
+	find locale -name '*-e' -delete
+	./manage.py compilemessages --verbosity=0
+{%- endif %}
 
 
 # -------------------------------

@@ -46,3 +46,10 @@ wagtailfontawesome==1.1.4
 # Wagtail search
 elasticsearch==6.3.0
 {%- endif %}
+
+
+{%- if cookiecutter.multilingual == 'y' %}
+# Translations
+translate-toolkit==2.3.1
+diff-match-patch==20121119
+{%- endif %}
