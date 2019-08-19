@@ -73,7 +73,7 @@ if settings.DEBUG:
 
     urlpatterns += [path("404/", page_not_found, {"exception": None})]
 
-# Only enable debug toolbar if it"s an installed app
+# Only enable debug toolbar if it's an installed app
 if apps.is_installed("debug_toolbar"):
     import debug_toolbar
 

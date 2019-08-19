@@ -250,6 +250,7 @@ LOGGING = {
         },
     },
     "loggers": {
+        "django": {"handlers": ["console"], "level": "INFO"},
         "django.db.backends": {"handlers": ["console"], "level": "ERROR", "propagate": False},
         "django.server": {"handlers": ["django.server"], "level": "INFO", "propagate": False},
         "elasticapm.errors": {"handlers": ["console"], "level": "ERROR", "propagate": False},
