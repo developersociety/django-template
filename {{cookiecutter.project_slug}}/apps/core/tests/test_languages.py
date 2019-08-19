@@ -10,8 +10,3 @@ class LanguageRedirectTest(TestCase):
         response = self.client.get("/admin/")
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, "/en/admin/", fetch_redirect_response=False)
-
-    def test_dummy_translations(self):
-        response = self.client.get("/admin/", HTTP_ACCEPT_LANGUAGE="uni")
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, "/uni/admin/", fetch_redirect_response=False)
