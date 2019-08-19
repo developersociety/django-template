@@ -64,9 +64,7 @@ urlpatterns = [path("admin/", admin.site.urls)]
 {%- endif %}
 
 urlpatterns += [
-    path(
-        "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
-    ),
+    path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain"))
 ]
 
 # Allow testing of all styles locally
