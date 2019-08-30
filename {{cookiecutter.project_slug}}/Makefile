@@ -24,8 +24,8 @@ IS_GEODJANGO="{{ cookiecutter.geodjango }}"
 help: ## This help dialog.
 help: help-display
 
-clean: ## Remove unneeded files generated from the various build tasks.
-clean: coverage-clean
+nuke: ## Full wipe of the local environment, uncommitted files, and database.
+nuke: venv-check venv-wipe git-full-clean database-drop
 
 reset: ## Reset your local environment. Useful after switching branches, etc.
 reset: venv-check venv-wipe install-local fab-get-data django-migrate django-user-passwords django-dev-createsuperuser{%- if cookiecutter.wagtail == 'y' %} django-rebuild-index{%- endif %}
