@@ -105,7 +105,6 @@ class LinkBlock(BaseBlock):
                 # Valid custom_url by checking for 404 error
                 if url_type == "custom_url" and not settings.DEBUG:
                     custom_url = clean_values.get("custom_url")
-                    print("CUSTOM URL", custom_url)
                     try:
                         resolve(custom_url)
                     except Resolver404:
