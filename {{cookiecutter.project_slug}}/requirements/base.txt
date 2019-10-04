@@ -9,7 +9,7 @@ raven==6.10.0
 sqlparse==0.3.0
 
 # Masked database backups
-django-maskpostgresdata==0.1.8
+django-maskpostgresdata==0.1.9
 
 # Storage
 django-storages==1.7.1
