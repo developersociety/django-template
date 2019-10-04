@@ -1,6 +1,8 @@
 import os
+from pathlib import Path
 
-import raven
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 from .base import *  # noqa
 
@@ -41,7 +43,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Add more raven data to help diagnose bugs
-RAVEN_CONFIG = {"release": raven.fetch_git_sha(BASE_DIR)}
+try:
+    SENTRY_RELEASE = (Path(BASE_DIR) / Path(".sentry-release")).read_text()
+except FileNotFoundError:
+    SENTRY_RELEASE = None
+
+sentry_sdk.init(release=SENTRY_RELEASE, integrations=[DjangoIntegration()])
 
 # Elastic APM
 if os.environ.get("ELASTIC_APM_SERVER_URL"):

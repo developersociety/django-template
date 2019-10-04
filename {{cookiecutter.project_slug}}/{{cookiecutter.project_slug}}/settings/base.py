@@ -60,7 +60,6 @@ THIRD_PARTY_APPS = [
     "crispy_forms",
     "maskpostgresdata",
     "modelcluster",
-    "raven.contrib.django.apps.RavenConfig",
     "rest_framework",
     "taggit",
     "wagtail.admin",
@@ -82,7 +81,7 @@ THIRD_PARTY_APPS = [
 ]
 {%- else %}
 
-THIRD_PARTY_APPS = ["crispy_forms", "maskpostgresdata", "raven.contrib.django.apps.RavenConfig"]
+THIRD_PARTY_APPS = ["crispy_forms", "maskpostgresdata"]
 {%- endif %}
 {%- if cookiecutter.wagtail == 'y' %}
 
@@ -199,7 +198,7 @@ TEMPLATES = [
 
 LOGGING = {
     "version": 1,
-    "disable_existing_loggers": True,
+    "disable_existing_loggers": False,
     "filters": {
         "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
         "require_debug_true": {"()": "django.utils.log.RequireDebugTrue"},
@@ -207,10 +206,10 @@ LOGGING = {
     "formatters": {
         "django.server": {
             "()": "django.utils.log.ServerFormatter",
-            "format": "[%(server_time)s] %(message)s",
+            "format": "[{server_time}] {message}",
+            "style": "{",
         }
     },
-    "root": {"level": "WARNING", "handlers": ["sentry"]},
     "handlers": {
         "console": {
             "level": "INFO",
@@ -223,20 +222,13 @@ LOGGING = {
             "class": "logging.StreamHandler",
         },
         "null": {"class": "logging.NullHandler"},
-        "sentry": {
-            "level": "ERROR",
-            "class": "raven.contrib.django.raven_compat.handlers.SentryHandler",
-        },
     },
     "loggers": {
         "django": {"handlers": ["console"], "level": "INFO"},
-        "django.db.backends": {"handlers": ["console"], "level": "ERROR", "propagate": False},
         "django.server": {"handlers": ["django.server"], "level": "INFO", "propagate": False},
         "elasticapm.errors": {"handlers": ["console"], "level": "ERROR", "propagate": False},
         "elasticapm.transport": {"handlers": ["console"], "level": "ERROR", "propagate": False},
         "py.warnings": {"handlers": ["console"]},
-        "raven": {"handlers": ["console"], "level": "DEBUG", "propagate": False},
-        "sentry.errors": {"handlers": ["console"], "level": "DEBUG", "propagate": False},
     },
 }
 

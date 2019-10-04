@@ -108,6 +108,9 @@ def update():
     with cd(env.home):
         run('git pull')
 
+        # Save the current git commit for Sentry release tracking
+        run('git rev-parse HEAD > .sentry-release')
+
         # Install python/node packages
         run('pip install --quiet --requirement requirements/production.txt')
         run(
