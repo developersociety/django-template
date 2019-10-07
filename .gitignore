@@ -1,1 +1,7 @@
 .tox
+
+{%- if cookiecutter.multilingual == 'y' %}
+
+# Translations
+/locale
+{%- endif %}
