@@ -141,6 +141,16 @@ def static():
         # Collect static files
         run('python manage.py collectstatic --verbosity=0 --noinput')
 
+{%- if cookiecutter.multilingual == 'y' %}
+@task
+@roles('web')
+@parallel
+def translations():
+    """ Update translation files. """
+    with cd(env.home):
+        run('make translations')
+{%- endif %}
+
 
 @task(name='reload')
 @roles('web')
@@ -189,6 +199,9 @@ def deploy(force_reload=None):
     execute(update)
     execute(migrate)
     execute(static)
+    {%- if cookiecutter.multilingual == 'y' %}
+    execute(translations)
+    {%- endif %}
     execute(reload_uwsgi, force_reload=force_reload)
     execute(cron)
     execute(sentry_release)
