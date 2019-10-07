@@ -88,9 +88,6 @@ urlpatterns += static(settings.STATIC_URL, never_cache(staticfiles_serve))
 urlpatterns += static(settings.MEDIA_URL, never_cache(serve), document_root=settings.MEDIA_ROOT)
 {%- if cookiecutter.wagtail == "y" %}
 
-# Wagtail catch-all
-urlpatterns += [path("", include(wagtail_urls))]
-
 {%- endif %}
 
 
