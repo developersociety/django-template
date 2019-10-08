@@ -226,8 +226,6 @@ LOGGING = {
     "loggers": {
         "django": {"handlers": ["console"], "level": "INFO"},
         "django.server": {"handlers": ["django.server"], "level": "INFO", "propagate": False},
-        "elasticapm.errors": {"handlers": ["console"], "level": "ERROR", "propagate": False},
-        "elasticapm.transport": {"handlers": ["console"], "level": "ERROR", "propagate": False},
         "py.warnings": {"handlers": ["console"]},
     },
 }

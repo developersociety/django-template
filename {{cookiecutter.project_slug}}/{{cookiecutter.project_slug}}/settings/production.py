@@ -3,6 +3,7 @@ from pathlib import Path
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import ignore_logger
 
 from .base import *  # noqa
 
@@ -49,6 +50,9 @@ except FileNotFoundError:
     SENTRY_RELEASE = None
 
 sentry_sdk.init(release=SENTRY_RELEASE, integrations=[DjangoIntegration()])
+
+for logger in ["elasticapm.errors", "elasticapm.transport.http"]:
+    ignore_logger(logger)
 
 # Elastic APM
 if os.environ.get("ELASTIC_APM_SERVER_URL"):
