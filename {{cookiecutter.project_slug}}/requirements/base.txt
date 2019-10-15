@@ -17,7 +17,7 @@ blanc-contentfiles==0.2.4
 
 # Reporting (Errors, APM)
 elastic-apm==4.2.2
-sentry-sdk==0.12.2
+sentry-sdk==0.12.3
 urllib3==1.25.3
 certifi==2019.6.16
 
