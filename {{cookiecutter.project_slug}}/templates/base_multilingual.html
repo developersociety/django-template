@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+{% load i18n %}
+
+<html lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %} >
+  <head>
+    <title>
+      {% block title %}{{ request.site.name }}{% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'dist/css/styles.css' %}">
+    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}" />
+
+    {% include 'includes/meta.html' %}
+
+    {% if BROWSERSYNC_URL %}
+      <script src="{{ BROWSERSYNC_URL }}" async></script>
+    {% endif %}
+  </head>
+
+  <body>
+    {% include 'includes/sprite.html' %}
+
+    {% if DEMO_SITE %}
+      <div class="demo-announcement">
+        <div class="container">{% trans 'This site is in development. Any changes made here will not be transferred to the production build.' %}</div>
+      </div>
+    {% endif %}
+
+    <header class="header">
+      {% include 'includes/header.html' %}
+    </header>
+
+    <main class="main">
+      {% block main %}{% endblock %}
+    </main>
+
+    <footer class="footer inverted">
+      {% include 'includes/footer.html' %}
+    </footer>
+
+    <script src="{% static 'dist/js/base.js' %}"></script>
+
+    {% block extra_scripts %}
+    {% endblock extra_scripts %}
+  </body>
+</html>
