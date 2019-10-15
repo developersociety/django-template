@@ -51,7 +51,7 @@ except FileNotFoundError:
 
 sentry_sdk.init(release=SENTRY_RELEASE, integrations=[DjangoIntegration()])
 
-for logger in ["elasticapm.errors", "elasticapm.transport.http"]:
+for logger in ["elasticapm.errors", "elasticapm.transport", "elasticapm.transport.http"]:
     ignore_logger(logger)
 
 # Elastic APM
