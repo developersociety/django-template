@@ -1,5 +1,5 @@
 """
-WSGI config for {{ cookiecutter.project_slug }} project.
+WSGI config - Django {{ cookiecutter.django_version }}.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

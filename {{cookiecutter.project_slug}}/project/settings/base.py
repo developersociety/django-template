@@ -1,5 +1,5 @@
 """
-Django settings for {{ cookiecutter.project_slug }} project.
+Django settings - Django {{ cookiecutter.django_version }}.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/settings/
@@ -117,9 +117,9 @@ MIDDLEWARE = [
 {%- endif %}
 ]
 
-ROOT_URLCONF = "{{ cookiecutter.project_slug }}.urls"
+ROOT_URLCONF = "project.urls"
 
-WSGI_APPLICATION = "{{ cookiecutter.project_slug }}.wsgi.application"
+WSGI_APPLICATION = "project.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#databases

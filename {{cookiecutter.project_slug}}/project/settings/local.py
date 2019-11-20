@@ -34,7 +34,7 @@ TEMPLATES[0]["OPTIONS"]["context_processors"].append("core.context_processors.br
 # Use vanilla StaticFilesStorage to allow tests to run outside of tox easily
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
-SECRET_KEY = "{{ cookiecutter.project_slug }}"
+SECRET_KEY = "secret"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 

@@ -12,7 +12,7 @@ DATABASES = {"default": dj_database_url.config(default="postgres:///test_{{ cook
 {%- endif %}
 DATABASES["default"]["TEST"] = {"NAME": DATABASES["default"]["NAME"]}
 
-SECRET_KEY = "{{ cookiecutter.project_slug }}"
+SECRET_KEY = "secret"
 
 STATIC_ROOT = os.environ["STATIC_ROOT"]
 
