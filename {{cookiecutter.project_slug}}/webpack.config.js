@@ -174,7 +174,9 @@ module.exports = [
                 syntax: 'scss',
                 failOnError: false,
                 quiet: false
-            })
+            }),
+
+            new VueLoaderPlugin(),
         ],
 
         module: {
@@ -188,6 +190,10 @@ module.exports = [
                             presets: ['@babel/preset-env']
                         }
                     }
+                },
+                {
+                    test: /\.vue$/,
+                    use: 'vue-loader'
                 },
                 {
                     test: /\.(png|jpg|woff|woff2|eot|ttf|svg|otf)$/,
