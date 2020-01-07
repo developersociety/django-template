@@ -77,8 +77,7 @@ module.exports = [
                     use: {
                         loader: 'eslint-loader',
                         options: {
-                            configFile: path.resolve('.eslintrc.js'),
-                            fix: true
+                            configFile: path.resolve('.eslintrc.js')
                         }
                     }
                 },
