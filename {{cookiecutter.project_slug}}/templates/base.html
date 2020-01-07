@@ -31,13 +31,16 @@
     </header>
 
     <main class="main">
-      {% block main %}{% endblock %}
+      {% block main %}
+        <div id="app"></div>
+      {% endblock %}
     </main>
 
     <footer class="footer inverted">
       {% include 'includes/footer.html' %}
     </footer>
 
+    <script src="{% static 'dist/js/app.js' %}"></script>
     <script src="{% static 'dist/js/base.js' %}"></script>
 
     {% block extra_scripts %}
