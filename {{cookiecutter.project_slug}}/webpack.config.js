@@ -1,6 +1,6 @@
 /* eslint-disable radix */
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
@@ -33,8 +33,9 @@ module.exports = [
         output: config.output,
         plugins: [
             // Set css name
-            new ExtractTextPlugin({
-                filename: 'css/[name].css'
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].css',
+                chunkFilename: 'css/[id].css'
             }),
 
             // Stylelint plugin
@@ -55,6 +56,7 @@ module.exports = [
                     injectCss: true,
                     logLevel: 'silent',
                     files: ['./static/dist/css/*.css', './static/dist/js/*.js'],
+                    ignore: ['./static/dist/js/styles.js'],
                     ui: {
                         port: browsersyncui_port
                     }
@@ -103,23 +105,21 @@ module.exports = [
                 {
                     test: /\.scss$/,
                     exclude: /node_modules/,
-                    use: ExtractTextPlugin.extract({
-                        fallback: 'style-loader',
-                        use: [
-                            {
-                                loader: 'css-loader',
-                                options: { sourceMap: true }
-                            },
-                            {
-                                loader: 'postcss-loader',
-                                options: { sourceMap: true }
-                            },
-                            {
-                                loader: 'sass-loader',
-                                options: { sourceMap: true }
-                            }
-                        ]
-                    })
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: 'css-loader',
+                            options: { sourceMap: true }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: { sourceMap: true }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: { sourceMap: true }
+                        }
+                    ]
                 },
                 {
                     test: /\.css$/,
@@ -164,7 +164,7 @@ module.exports = [
 
         plugins: [
             // Specify the resulting CSS filename
-            new ExtractTextPlugin({
+            new MiniCssExtractPlugin({
                 filename: 'css/[name].css'
             }),
 
@@ -204,10 +204,12 @@ module.exports = [
                 },
                 {
                     test: /\.scss$/,
-                    use: ExtractTextPlugin.extract({
-                        fallback: 'style-loader',
-                        use: ['css-loader', 'postcss-loader', 'sass-loader']
-                    })
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        'postcss-loader',
+                        'sass-loader'
+                    ]
                 }
             ]
         }
