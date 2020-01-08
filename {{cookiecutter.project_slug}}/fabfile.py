@@ -138,6 +138,9 @@ def migrate():
 def static():
     """ Update static files. """
     with cd(env.home):
+        # Clean dist folder
+        run('rm -rf static/dist')
+
         # Generate CSS
         run('npm run production --silent')
 

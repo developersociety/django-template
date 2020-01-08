@@ -5,6 +5,9 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 
+// Clean up tools
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 // Vue
 const { VueLoaderPlugin } = require('vue-loader');
 
@@ -32,6 +35,9 @@ module.exports = [
         entry: config.entry,
         output: config.output,
         plugins: [
+            // Dist clean
+            new CleanWebpackPlugin(),
+
             // Set css name
             new MiniCssExtractPlugin({
                 filename: 'css/[name].css',
