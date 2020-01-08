@@ -4,8 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 
-// Clean up tools
+// Webpack clean dist
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // Vue
@@ -37,6 +38,16 @@ module.exports = [
         plugins: [
             // Dist clean
             new CleanWebpackPlugin(),
+
+            // SVG sprite
+            new SVGSpritemapPlugin('./static/src/sprite/*.svg', {
+                output: {
+                    filename: '../../templates/includes/sprite.html'
+                },
+                sprite: {
+                    prefix: false
+                }
+            }),
 
             // Set css name
             new MiniCssExtractPlugin({
