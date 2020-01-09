@@ -40,7 +40,7 @@ module.exports = [
             new CleanWebpackPlugin(),
 
             // SVG sprite
-            new SVGSpritemapPlugin('./static/src/sprite/*.svg', {
+            new SVGSpritemapPlugin('./static/sprite/svg/*.svg', {
                 output: {
                     filename: '../../templates/includes/sprite.html'
                 },
@@ -107,8 +107,8 @@ module.exports = [
                             loader: 'url-loader',
                             options: {
                                 limit: 1024,
-                                outputPath: "img"
-                            },
+                                outputPath: 'img'
+                            }
                         }
                     ],
                     exclude: /node_modules/
@@ -229,8 +229,8 @@ module.exports = [
                             loader: 'url-loader',
                             options: {
                                 limit: 1024,
-                                outputPath: "img"
-                            },
+                                outputPath: 'img'
+                            }
                         }
                     ],
                     exclude: /node_modules/
