@@ -102,7 +102,15 @@ module.exports = [
                 },
                 {
                     test: /\.(png|jpg|woff|woff2|eot|ttf|svg|otf)$/,
-                    loader: 'url-loader',
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                limit: 1024,
+                                outputPath: "img"
+                            },
+                        }
+                    ],
                     exclude: /node_modules/
                 },
                 {
@@ -216,7 +224,15 @@ module.exports = [
                 },
                 {
                     test: /\.(png|jpg|woff|woff2|eot|ttf|svg|otf)$/,
-                    loader: 'url-loader',
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                limit: 1024,
+                                outputPath: "img"
+                            },
+                        }
+                    ],
                     exclude: /node_modules/
                 },
                 {
