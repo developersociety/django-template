@@ -21,7 +21,7 @@ form {
     select {
         padding-right: 2.25rem;
         appearance: none !important;
-        background: url(../../sprite/svg/chevron_down.svg) calc(100% - 0.625rem) 0.75rem / 1.25rem
+        background: url(../../sprite/chevron_down.svg) calc(100% - 0.625rem) 0.75rem / 1.25rem
             no-repeat;
 
         &::-ms-expand {
