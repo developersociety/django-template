@@ -107,8 +107,8 @@ module.exports = [
                             loader: 'url-loader',
                             options: {
                                 limit: 1024,
-                                outputPath: 'img',
-                                publicPath: '../img'
+                                outputPath: 'assets',
+                                publicPath: '../assets'
                             }
                         }
                     ],
@@ -230,8 +230,8 @@ module.exports = [
                             loader: 'url-loader',
                             options: {
                                 limit: 1024,
-                                outputPath: 'img',
-                                publicPath: '../img'
+                                outputPath: 'assets',
+                                publicPath: '../assets'
                             }
                         }
                     ],
