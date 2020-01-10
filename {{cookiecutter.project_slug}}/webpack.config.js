@@ -108,7 +108,7 @@ module.exports = [
                             options: {
                                 limit: 1024,
                                 outputPath: 'img',
-                                publicPath: '../img',
+                                publicPath: '../img'
                             }
                         }
                     ],
@@ -231,7 +231,7 @@ module.exports = [
                             options: {
                                 limit: 1024,
                                 outputPath: 'img',
-                                publicPath: '../img',
+                                publicPath: '../img'
                             }
                         }
                     ],
