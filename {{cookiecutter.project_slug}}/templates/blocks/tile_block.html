@@ -1,0 +1,5 @@
+{% load wagtailimages_tags %}
+
+{% image self.image width-800 as tile_image %}
+
+{% include 'includes/tile.html' with image_url=tile_image.url title=self.title summary=self.summary url=self.link.get_url link_text=self.link_text %}

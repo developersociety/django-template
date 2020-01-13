@@ -1,0 +1,20 @@
+{% load i18n wagtailcore_tags %}
+
+
+<div class="block download-block">
+  <h3 class="h5">{{ self.title }}</h3>
+  <div class="download-block__content">
+    <div class="download-block__details">
+      <p class="download-block__meta">{{ self.file.file_extension|upper }} {{ self.file.file_size|filesizeformat }}</p>
+      {{ self.summary|richtext }}
+    </div>
+  </div>
+  <div class="download-block__link button-row align-right">
+    <a href="{{ self.file.url }}" class="button button--with-icon" download>
+      <span class="button--with-icon__text">{% trans 'Download' %}</span>
+      <svg class="icon">
+        <use xlink:href="#download" />
+      </svg>
+    </a>
+  </div>
+</div>

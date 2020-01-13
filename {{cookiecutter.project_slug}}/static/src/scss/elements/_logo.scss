@@ -10,7 +10,7 @@
         width: 6.75rem;
         padding-bottom: 4rem;
 
-        @include mobile {
+        @include mobile-large {
             width: 12.5rem;
             padding-bottom: 6.5rem;
         }

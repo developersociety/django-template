@@ -1,0 +1,13 @@
+.button-block {
+    display: flex;
+
+    &.align-left {
+        justify-content: flex-start;
+    }
+    &.align-center {
+        justify-content: center;
+    }
+    &.align-right {
+        justify-content: flex-end;
+    }
+}

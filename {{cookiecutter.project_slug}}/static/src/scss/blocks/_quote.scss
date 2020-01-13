@@ -1,0 +1,43 @@
+.quote-block {
+    position: relative;
+    margin: 6rem 1rem 3rem 2rem;
+    font-size: 1.75rem;
+    line-height: 2.1rem;
+    max-width: $width-block;
+
+    .quote-block__citation {
+        font-size: 1.125rem;
+        font-weight: 600;
+        text-transform: none;
+        margin-top: 1rem;
+        line-height: 1.5;
+
+        small {
+            display: block;
+            font-size: 0.875rem;
+            line-height: 0.875rem;
+            font-weight: 500;
+        }
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: -3rem;
+        float: left;
+        width: 3.25rem;
+        height: 3.25rem;
+
+        @include desktop {
+            left: -5.25rem;
+            top: -0.625rem;
+        }
+    }
+
+    @include desktop {
+        margin: 6rem 5.5rem 5rem 8.5rem;
+        font-size: 2rem;
+        line-height: 2.6rem;
+    }
+}

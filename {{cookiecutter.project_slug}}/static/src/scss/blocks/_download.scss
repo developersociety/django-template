@@ -1,0 +1,31 @@
+$border-radius: 0.375rem !default;
+
+.download-block {
+    padding: 1rem 2.125rem;
+    border-radius: $border-radius;
+    box-shadow: 2px 2px 4px 0 rgba($color-black, 0.1), 0 0 4px 0 rgba($color-black, 0.05);
+}
+
+.download-block__content {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-end;
+
+    .icon-button__text {
+        font-size: 1.5rem;
+    }
+}
+
+.download-block__details {
+    flex: 1 1 25rem;
+}
+
+.download-block__link {
+    margin: auto 0 1rem 0;
+}
+
+.download-block__meta {
+    font-size: 1.125rem;
+    margin-top: 0;
+    color: rgba($color-black, 0.4);
+}

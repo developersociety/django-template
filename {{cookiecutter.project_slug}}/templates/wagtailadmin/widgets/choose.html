@@ -1,0 +1,19 @@
+{% load i18n %}
+{% trans "Choose" as choose_str %}
+{% include "wagtailadmin/shared/header.html" with title=choose_str subtitle=model_opts.verbose_name icon=model_icon %}
+
+<div class="nice-padding">
+  <form class="model-search search-bar" action="{% url 'models_choose' model_opts.app_label model_opts.model_name %}" method="GET" novalidate>
+    {% if is_searchable %}
+      <ul class="fields">
+        {% for field in search_form %}
+          {% include "wagtailadmin/shared/field_as_li.html" with field=field %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </form>
+
+  <div id="search-results" class="listing models">
+    {% include "wagtailadmin/widgets/model_chooser_results.html" with choosing=1 %}
+  </div>
+</div>
