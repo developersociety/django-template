@@ -3,19 +3,17 @@ import os
 from django.apps import apps
 from django.contrib.admin.utils import unquote
 from django.core.paginator import Paginator
+from django.http import HttpResponseServerError
 from django.shortcuts import get_object_or_404, render
+from django.template import TemplateDoesNotExist, loader
 from django.urls import reverse
+from django.views.decorators.csrf import requires_csrf_token
 
+from sentry_sdk import last_event_id
 from wagtail.admin.forms.search import SearchForm
 from wagtail.admin.modal_workflow import render_modal_workflow
 from wagtail.search.backends import get_search_backend
 from wagtail.search.index import class_is_indexed
-
-from django.http import HttpResponseServerError
-from django.template import TemplateDoesNotExist, loader
-from django.views.decorators.csrf import requires_csrf_token
-
-from sentry_sdk import last_event_id
 
 ERROR_500_TEMPLATE_NAME = "500.html"
 
