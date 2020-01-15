@@ -267,7 +267,7 @@ CSRF_COOKIE_HTTPONLY = True
 # Wagtail
 WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
 BASE_URL = os.environ.get("WAGTAIL_BASE_URL", "")
-WAGTAILIMAGES_IMAGE_MODEL = 'images.CustomImage'
+WAGTAILIMAGES_IMAGE_MODEL = "images.CustomImage"
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 WAGTAILSEARCH_BACKENDS = {
     "default": {
