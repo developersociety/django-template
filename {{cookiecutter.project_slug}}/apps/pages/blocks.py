@@ -119,18 +119,7 @@ class RichTextEditorBlock(BaseBlock):
 
 class ColumnRichTextEditorBlock(BaseBlock):
     content = RichTextBlock(
-        features=[
-            "h2",
-            "h3",
-            "h4",
-            "bold",
-            "italic",
-            "ol",
-            "ul",
-            "hr",
-            "link",
-            "document-link",
-        ]
+        features=["h2", "h3", "h4", "bold", "italic", "ol", "ul", "hr", "link", "document-link"]
     )
 
     class Meta:
@@ -164,15 +153,12 @@ class TileBlock(BaseBlock):
 
 
 class TileGridBlock(StructBlock):
-    links = StreamBlock(
-        [('link', TileBlock(label='Link', icon='link'))],
-        min_num=1,
-    )
+    links = StreamBlock([("link", TileBlock(label="Link", icon="link"))], min_num=1)
 
     class Meta:
-        icon = 'fa-th-large'
-        form_template = 'admin/blocks/column_block.html'
-        template = 'blocks/tiles_grid_block.html'
+        icon = "fa-th-large"
+        form_template = "admin/blocks/column_block.html"
+        template = "blocks/tiles_grid_block.html"
 
 
 class ButtonBlock(BaseBlock):
@@ -214,8 +200,8 @@ class QuoteBlock(BaseBlock):
     role = CharBlock(required=False)
 
     class Meta:
-        icon = 'fa-quote-left'
-        template = 'blocks/quote_block.html'
+        icon = "fa-quote-left"
+        template = "blocks/quote_block.html"
 
 
 class ColumnStreamBlock(StreamBlock):
