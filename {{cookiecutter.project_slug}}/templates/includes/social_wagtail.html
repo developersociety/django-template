@@ -1,0 +1,27 @@
+{% load i18n wagtailsettings_tags %}
+
+{% with social_settings=settings.settings.SocialAccounts %}
+  <ul class="social-links unstyled-list">
+
+
+    {% if social_settings.facebook %}
+      <li>
+        <a href="{{ social_settings.facebook }}" class="facebook {% if buttons %}social-links__link{% endif %}" aria-label="{% trans 'Link to our Facebook account' %}" target="_blank">
+          <svg class="icon">
+            <use xlink:href="#facebook"></use>
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+
+    {% if social_settings.twitter %}
+      <li>
+        <a href="{{ social_settings.twitter }}" class="twitter {% if buttons %}social-links__link{% endif %}" aria-label="{% trans 'Link to our Twitter account' %}" target="_blank">
+          <svg class="icon">
+            <use xlink:href="#twitter"></use>
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+{% endwith %}

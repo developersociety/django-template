@@ -1,0 +1,11 @@
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+
+    .button--disabled {
+        color: $color-grey;
+        user-select: none;
+        pointer-events: none;
+    }
+}

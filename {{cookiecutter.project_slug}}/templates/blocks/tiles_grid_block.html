@@ -1,0 +1,7 @@
+{% load wagtailcore_tags %}
+
+<div class="block tile-grid-block tile-grid">
+  {% for link in self.links %}
+    {% include_block link %}
+  {% endfor %}
+</div>

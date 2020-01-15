@@ -1,6 +1,8 @@
 .nav--desktop {
     display: none;
     width: 100%;
+    user-select: none;
+    font-weight: 400;
 
     ul {
         @include unstyled-list;
@@ -27,6 +29,7 @@
 .nav--mobile {
     padding: 1.5rem 0;
     display: none;
+    user-select: none;
 
     ul {
         @include unstyled-list;

@@ -1,0 +1,14 @@
+<a
+  href="{{ link.get_url }}"
+  {% if class %}class="{{ class }}"{% endif %}
+  {% if link.file %} download {% endif %}
+  {% if link.new_window %}target="blank"{% endif %}
+>
+  {% if link.link_text %}
+    {{ link.link_text }}
+  {% elif link.specific.title %}
+    {{ link.specific.title }}
+  {% else %}
+    {{ text }}
+  {% endif %}
+</a>

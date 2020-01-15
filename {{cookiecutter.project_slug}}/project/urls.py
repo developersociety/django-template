@@ -37,9 +37,6 @@ urlpatterns = [
     path("sitemap.xml", sitemap, name="sitemap"),
 ]
 
-# Wagtail catch-all
-urlpatterns += i18n_patterns(path(r"", include(wagtail_urls)))
-
 {%- elif cookiecutter.multilingual == "n" and cookiecutter.wagtail == "y" %}
 
 # Standard Wagtail site
@@ -50,9 +47,6 @@ urlpatterns = [
     path("documents/", include(wagtaildocs_urls)),
     path("sitemap.xml", sitemap, name="sitemap"),
 ]
-
-# Wagtail catch-all
-urlpatterns += [path("", include(wagtail_urls))]
 
 {%- elif cookiecutter.multilingual == "y" and cookiecutter.wagtail == "n" %}
 
@@ -87,6 +81,18 @@ if apps.is_installed("debug_toolbar"):
     import debug_toolbar
 
     urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
+
+{%- if cookiecutter.wagtail == "y" and cookiecutter.multilingual == "n" %}
+
+# Wagtail catch-all
+urlpatterns += [path(r"", include(wagtail_urls))]
+
+{%- elif cookiecutter.wagtail == "y" and cookiecutter.multilingual == "y" %}
+
+# Wagtail catch-all
+urlpatterns += i18n_patterns(path(r"", include(wagtail_urls)))
+
+{%- endif %}
 
 # Serving static/media under debug
 urlpatterns += static(settings.STATIC_URL, never_cache(staticfiles_serve))

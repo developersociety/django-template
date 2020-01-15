@@ -11,6 +11,7 @@ if [ "$WAGTAIL" == "y" ] && [ "$MULTILINGUAL" == "y" ]; then
     mv templates/base_wagtail_multilingual.html templates/base.html
     mv templates/404_multilingual.html templates/404.html
     mv templates/500_multilingual.html templates/500.html
+    mv templates/includes/social_wagtail.html templates/includes/social.html
 
     # remove unused base templates
     rm -f templates/base_multilingual.html
@@ -28,6 +29,7 @@ elif [ "$WAGTAIL" == "y" ] && [ "$MULTILINGUAL" == "n" ]; then
     # Wagtail requested - use the wagtail base HTML file with extra tags
     mv templates/base_wagtail.html templates/base.html
     mv templates/includes/meta_wagtail.html templates/includes/meta.html
+    mv templates/includes/social_wagtail.html templates/includes/social.html
 
     # And remove non-wagtail templates
     rm -f templates/homepage.html
@@ -58,8 +60,12 @@ elif [ "$WAGTAIL" == "n" ] && [ "$MULTILINGUAL" == "y" ]; then
     # remove any wagtail related files
     # No wagtail - remove any wagtail related files
     rm -f apps/core/monkeypatch.py
+    rm -f static/src/js/admin.js
+    rm -f static/src/scss/admin.scss
+    rm -rf apps/images
     rm -rf apps/pages
     rm -rf apps/settings
+    rm -rf templates/admin
     rm -rf templates/blocks
     rm -rf templates/pages
     rm -rf templates/wagtail
@@ -68,6 +74,7 @@ elif [ "$WAGTAIL" == "n" ] && [ "$MULTILINGUAL" == "y" ]; then
     rm -f templates/base_wagtail_multilingual.html
     rm -f templates/base_wagtail.html
     rm -f templates/includes/meta_wagtail.html
+    rm -f templates/includes/social_wagtail.html
     rm -f templates/404_multilingual.html
     rm -f templates/500_multilingual.html
 
@@ -77,17 +84,22 @@ else
     rm -f templates/base_multilingual.html
     rm -f templates/base_wagtail_multilingual.html
     rm -f templates/base_wagtail.html
-    rm -f templates/includes/meta_wagtail.html
     rm -f templates/404_multilingual.html
     rm -f templates/500_multilingual.html
 
 
     # No wagtail - remove any wagtail related files
     rm -f apps/core/monkeypatch.py
+    rm -f static/src/js/admin.js
+    rm -f static/src/scss/admin.scss
+    rm -rf apps/images
     rm -rf apps/pages
     rm -rf apps/settings
+    rm -rf templates/admin
     rm -rf templates/blocks
     rm -rf templates/pages
     rm -rf templates/wagtail
+    rm -f templates/includes/meta_wagtail.html
+    rm -f templates/includes/social_wagtail.html
 
 fi

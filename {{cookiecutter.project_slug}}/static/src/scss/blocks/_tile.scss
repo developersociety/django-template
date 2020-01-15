@@ -1,0 +1,94 @@
+.tile-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1.5rem;
+    padding-bottom: 0.5rem;
+    max-width: $width-container;
+
+    @include tablet {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include desktop {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.tile {
+    display: block;
+    position: relative;
+    background: $color-white;
+    box-shadow: 2px 2px 4px 0 rgba($color-black, 0.1), 0 0 4px 0 rgba($color-black, 0.05);
+    overflow: hidden;
+    border-radius: $border-radius;
+    opacity: 0;
+    animation: fade-in 0.7s ease forwards;
+
+    .tile__image--as-background {
+        height: 15.25rem;
+    }
+
+    .tile__image--fallback {
+        height: 15.25rem;
+        background: $color-primary;
+        position: relative;
+        overflow: hidden;
+
+        svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    .tile__image--as-image-tag {
+        @include visually-hidden;
+    }
+
+    .tile__content {
+        display: flex;
+        flex-flow: column nowrap;
+        padding: 1.5rem;
+        background-color: $color-white;
+        border-radius: 0 0 $border-radius $border-radius;
+    }
+
+    .tile__title {
+        margin-top: 0;
+        margin-bottom: 1.125rem;
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.3;
+
+        @include mobile-large {
+            font-size: 1.625rem;
+        }
+    }
+
+    .tile__link {
+        margin-top: 3rem;
+    }
+
+    .tile__link-text {
+        margin-top: 0.4rem;
+        margin-right: 1rem;
+        font-weight: bold;
+    }
+}
+
+.tile-grid__empty {
+    text-align: center;
+    grid-column: span 3;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

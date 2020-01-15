@@ -20,8 +20,11 @@ const browsersyncui_port = browsersync_port + 1;
 const config = {
     entry: {
         base: ['./static/src/js/base.js'],
-        app: ['./static/src/js/app.js'],
-        styles: ['./static/src/scss/styles.scss']
+{%- if cookiecutter.wagtail == 'y' %}
+        admin: ['./static/src/scss/admin.scss', './static/src/js/admin.js'],
+{%- endif %}
+        styles: ['./static/src/scss/styles.scss'],
+        app: ['./static/src/js/app.js']
     },
     output: {
         path: path.resolve('./static/dist/'),
@@ -37,7 +40,9 @@ module.exports = [
         output: config.output,
         plugins: [
             // Dist clean
-            new CleanWebpackPlugin(),
+            new CleanWebpackPlugin({
+                cleanStaleWebpackAssets: false
+            }),
 
             // SVG sprite
             new SVGSpritemapPlugin('./static/sprite/svg/*.svg', {

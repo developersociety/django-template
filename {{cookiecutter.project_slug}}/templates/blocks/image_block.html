@@ -1,11 +1,13 @@
 {% load wagtailimages_tags %}
 
-<figure>
-  {% image self.image fill-600x600 %}
+<div class="block image-block align-{{ self.align }}">
+  <figure>
+    {% image self.image max-1300x900 %}
 
-  {% if self.caption %}
-    <figcaption>
-      {{ self.caption }}
-    </figcaption>
-  {% endif %}
-</figure>
+    {% if self.caption %}
+      <figcaption>
+        {{ self.caption }}
+      </figcaption>
+    {% endif %}
+  </figure>
+</div>

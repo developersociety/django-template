@@ -1,0 +1,9 @@
+<blockquote class="block quote-block">
+  {{ self.quote }}
+  <div class="quote-block__citation">
+    {{ self.citation }}
+    {% if self.role %}
+      <small>{{ self.role }}</small>
+    {% endif %}
+  </div>
+</blockquote>

@@ -1,1 +1,21 @@
-// All wagtail blocks and reused components/sections added as partials here
+// Set overrideable max_width margin on block
+.block__container {
+    padding-top: 5rem;
+
+    > *:first-child {
+        margin-top: 0;
+    }
+}
+
+.block {
+    max-width: $width-blocks;
+    margin: $spacing-blocks auto;
+}
+
+@import 'button';
+@import 'download';
+@import 'image';
+@import 'tile';
+@import 'two_column';
+@import 'richtext';
+@import 'quote';

@@ -1,0 +1,18 @@
+.button-block {
+    display: flex;
+
+    &.align-left {
+        justify-content: flex-start;
+    }
+    &.align-center {
+        justify-content: center;
+    }
+    &.align-right {
+        justify-content: flex-end;
+    }
+
+    // If a button is not the first block the block + block margin will be too large
+    &:nth-child(n + 2) {
+        margin-top: -3.5rem;
+    }
+}

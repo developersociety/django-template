@@ -1,10 +1,20 @@
 @import 'radio_checkbox';
 
 form {
-    input:not([type='checkbox']):not([type='radio']):not([type='submit']),
+    input[type='text'],
+    input[type='email'],
+    input[type='search'],
+    input[type='number'],
+    input[type='password'],
+    input[type='tel'],
+    input[type='url'],
+    input[type='date'],
+    input[type='week'],
+    input[type='month'],
+    input[type='datetime'],
+    input[type='datetime-local'],
     textarea,
-    select,
-    button {
+    select {
         appearance: none;
         width: 100%;
         margin: 0.75rem 0 0;
@@ -16,6 +26,20 @@ form {
         font-family: inherit;
         line-height: 1.25rem;
         -webkit-font-smoothing: antialiased;
+    }
+
+    input[type='submit'],
+    input[type='button'],
+    input[type='reset'],
+    button {
+        appearance: none;
+        border: none;
+        font-size: inherit;
+        font-family: inherit;
+        cursor: pointer;
+
+        // Use button styles instead of setting anything here
+        @extend .button;
     }
 
     select {
@@ -56,7 +80,6 @@ form {
     .help-inline,
     .help-block {
         display: block;
-        vertical-align: top;
         padding: 0.75rem;
         background: $color-primary;
         color: $color-white;

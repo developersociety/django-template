@@ -18,18 +18,11 @@
 
 @mixin row {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row wrap;
 
     @media all and (min-width: 768px) {
-        flex-flow: row wrap;
-        align-items: center;
-        justify-content: space-between;
+        flex-flow: row nowrap;
     }
-}
-
-@mixin inverted {
-    background: $color-primary;
-    color: $color-white;
 }
 
 @mixin unstyled-list {
@@ -52,10 +45,6 @@
 
 .row {
     @include row;
-}
-
-.inverted {
-    @include inverted;
 }
 
 .unstyled-list {

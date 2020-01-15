@@ -1,0 +1,26 @@
+<article class="tile">
+  {% if image_url %}
+    <div class="tile__image--as-background" style="background: url({{ image_url }}) center center/cover no-repeat">
+      <img class="tile__image--as-image-tag" src="{{ image_url }}" alt="{{ image_alt_text }}">
+    </div>
+  {% endif %}
+
+  <div class="tile__content">
+    {% if title %}
+      <h3 class="h5 tile__title">{{ title }}</h3>
+    {% endif %}
+
+    <div class="tile__summary">
+      {{ summary }}
+    </div>
+
+    <div class="tile__link button-row align-right">
+      <a href="{{ url }}" class="button button--with-icon" download>
+        <span class="button--with-icon__text">{{ link_text }}</span>
+        <svg class="icon">
+          <use xlink:href="#arrow_right" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>

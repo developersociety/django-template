@@ -1,0 +1,49 @@
+.quote-block {
+    position: relative;
+    margin-top: 7rem;
+    padding: 0 0 0 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+
+    .quote-block__citation {
+        font-size: 0.875rem;
+        text-transform: none;
+        margin-top: 1rem;
+        line-height: 1.5;
+
+        small {
+            display: block;
+            font-size: 0.75rem;
+            opacity: 0.5;
+        }
+    }
+
+    &::before {
+        content: '\201C';
+        position: absolute;
+        left: 0rem;
+        top: -3rem;
+        font-size: 3rem;
+    }
+
+    @include tablet {
+        padding: 0 0 0 5rem;
+        font-size: 1.25rem;
+
+        &::before {
+            left: 2rem;
+            top: -4rem;
+            font-size: 4rem;
+        }
+    }
+
+    @include desktop {
+        padding: 0 0 0 6rem;
+        font-size: 1.75rem;
+
+        &::before {
+            top: -5rem;
+            font-size: 5rem;
+        }
+    }
+}

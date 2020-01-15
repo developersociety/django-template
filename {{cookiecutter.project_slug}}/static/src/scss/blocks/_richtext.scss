@@ -1,0 +1,56 @@
+.richtext-block {
+    overflow: hidden;
+}
+
+.richtext-image {
+    margin: 1.5rem auto;
+    width: 100%;
+
+    &.full-width {
+        display: block;
+        max-width: $width-blocks;
+    }
+
+    @include tablet {
+        margin: 1.5rem auto 2.5rem;
+
+        width: auto;
+        max-width: 100%;
+
+        &.left,
+        &.right {
+            width: 45%;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        &.left {
+            float: left;
+            margin: 1.5rem 3rem 1.5rem 0;
+        }
+
+        &.right {
+            float: right;
+            margin: 1.5rem 0 1.5rem 3rem;
+        }
+
+        &:first-child {
+            margin: 0 0 2.5rem;
+        }
+    }
+}
+
+.rich-text {
+    ol,
+    ul {
+        li + li {
+            padding-top: 0.5em;
+        }
+    }
+
+    blockquote {
+        margin: 2rem 1rem 2rem 2rem;
+    }
+}

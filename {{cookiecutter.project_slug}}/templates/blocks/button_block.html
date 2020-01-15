@@ -1,0 +1,10 @@
+<div class="block button-block align-{{ self.align }}">
+  <a
+  href="{{ self.link.get_url }}"
+  class="button"
+  {% if self.link.file %} download {% endif %}
+  {% if self.link.new_window %}target="blank"{% endif %}
+  >
+    {{ self.link_text }}
+  </a>
+</div>

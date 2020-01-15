@@ -1,6 +1,7 @@
 @import 'node_modules/normalize-scss/sass/normalize/import-now';
 
 @import 'variables';
+@import 'colors';
 @import 'typography';
 @import 'accessibility';
 
@@ -9,6 +10,7 @@
 @import 'layout/layout';
 @import 'elements/elements';
 @import 'forms/forms';
+@import 'blocks/blocks';
 
 * {
     box-sizing: border-box;

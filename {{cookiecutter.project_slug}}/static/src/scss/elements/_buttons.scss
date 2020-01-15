@@ -7,6 +7,20 @@ input[type='submit'] {
     background: inherit;
 }
 
+.button-row {
+    display: flex;
+
+    &.align-left {
+        justify-content: flex-start;
+    }
+    &.align-center {
+        justify-content: center;
+    }
+    &.align-right {
+        justify-content: flex-end;
+    }
+}
+
 .button {
     display: inline-block;
     padding: 0 1rem;
@@ -43,6 +57,15 @@ input[type='submit'] {
         &:focus {
             background: $color-primary;
             color: $color-white;
+        }
+    }
+
+    &.button--with-icon {
+        display: inline-flex;
+        align-items: center;
+
+        .icon {
+            margin-left: 0.5rem;
         }
     }
 }
