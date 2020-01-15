@@ -1,0 +1,32 @@
+{% load i18n %}
+
+{% if items %}
+  {% if is_searching %}
+    <h2>
+    {% blocktrans count counter=items.paginator.count %}
+      There is {{ counter }} match
+    {% plural %}
+      There are {{ counter }} matches
+    {% endblocktrans %}
+    </h2>
+  {% endif %}
+
+  {% include 'wagtailadmin/widgets/model_chooser_list.html' with choosing=1 %}
+
+  {% if create_link %}
+    <p>
+      {% blocktrans with model_name=model_opts.verbose_name %}Not seeing the {{ model_name }} you want? <a href="{{ create_link }}" target="_blank" rel="noopener noreferrer">Add one here</a>{% endblocktrans %}
+    </p>
+  {% endif %}
+
+  {% include 'wagtailadmin/shared/ajax_pagination_nav.html' with items=items %}
+
+{% else %}
+  {% if is_searching %}
+     <p>{% blocktrans with model_type_name=model_opts.verbose_name query=query_string %}Sorry, no {{ model_type_name }} match "<em>{{ query }}</em>"{% endblocktrans %}</p>
+  {% elif create_link %}
+    <p class="no-results-message">
+      {% blocktrans with model_type_name_plural=model_opts.verbose_name_plural %}No {{ model_type_name_plural }} have been created. Why not <a href="{{ create_link }}" target="_blank" rel="noopener noreferrer">add one</a>?{% endblocktrans %}
+    </p>
+  {% endif %}
+{% endif %}

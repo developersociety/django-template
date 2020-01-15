@@ -8,6 +8,7 @@ if [ "$WAGTAIL" == "y" ] && [ "$MULTILINGUAL" == "y" ]; then
     # Wagtail requested with multilingual features
 
     # use multilingual wagtail base
+    mv apps/core/views_wagtail.py apps/core/views.py
     mv templates/base_wagtail_multilingual.html templates/base.html
     mv templates/404_multilingual.html templates/404.html
     mv templates/500_multilingual.html templates/500.html
@@ -24,7 +25,8 @@ if [ "$WAGTAIL" == "y" ] && [ "$MULTILINGUAL" == "y" ]; then
     rm -rf apps/core/tests
 
 elif [ "$WAGTAIL" == "y" ] && [ "$MULTILINGUAL" == "n" ]; then
-    # Wagtail requested with no multilingual features
+    # Wagtail requested
+    mv apps/core/views_wagtail.py apps/core/views.py
 
     # Wagtail requested - use the wagtail base HTML file with extra tags
     mv templates/base_wagtail.html templates/base.html
@@ -60,6 +62,10 @@ elif [ "$WAGTAIL" == "n" ] && [ "$MULTILINGUAL" == "y" ]; then
     # remove any wagtail related files
     # No wagtail - remove any wagtail related files
     rm -f apps/core/monkeypatch.py
+    rm -f apps/core/views_wagtail.py
+    rm -f apps/core/widgets.py
+    rm -f apps/core/wagtail_hooks.py
+    rm -f apps/core/urls.py
     rm -f static/src/js/admin.js
     rm -f static/src/scss/admin.scss
     rm -rf apps/images
@@ -69,6 +75,7 @@ elif [ "$WAGTAIL" == "n" ] && [ "$MULTILINGUAL" == "y" ]; then
     rm -rf templates/blocks
     rm -rf templates/pages
     rm -rf templates/wagtail
+    rm -rf templates/wagtailadmin
     rm -f templates/base_wagtail.html
     rm -f templates/base_multilingual.html
     rm -f templates/base_wagtail_multilingual.html
@@ -90,6 +97,10 @@ else
 
     # No wagtail - remove any wagtail related files
     rm -f apps/core/monkeypatch.py
+    rm -f apps/core/views_wagtail.py
+    rm -f apps/core/widgets.py
+    rm -f apps/core/wagtail_hooks.py
+    rm -f apps/core/urls.py
     rm -f static/src/js/admin.js
     rm -f static/src/scss/admin.scss
     rm -rf apps/images
@@ -99,6 +110,7 @@ else
     rm -rf templates/blocks
     rm -rf templates/pages
     rm -rf templates/wagtail
+    rm -rf templates/wagtailadmin
     rm -f templates/includes/meta_wagtail.html
     rm -f templates/includes/social_wagtail.html
 

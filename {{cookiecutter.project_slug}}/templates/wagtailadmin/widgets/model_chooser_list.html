@@ -1,0 +1,22 @@
+{% load i18n wagtailadmin_tags %}
+<table class="listing">
+  <col />
+  <col />
+  <col width="16%" />
+  <thead>
+    <tr class="table-headers">
+      <th>{% trans "Title" %}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+      <tr id="model-row-{{ item.pk }}">
+        <td class="title">
+          {% if choosing %}
+            <h2><a class="model-choice" href="{% url 'models_chosen' model_opts.app_label model_opts.model_name item.pk|admin_urlquote %}">{{ item }}</a></h2>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
