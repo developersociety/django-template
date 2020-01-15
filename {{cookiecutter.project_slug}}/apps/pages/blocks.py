@@ -1,6 +1,4 @@
-from django.apps import apps
 from django.forms.utils import ErrorList
-from django.utils.functional import cached_property
 
 from wagtail.core.blocks import (
     BooleanBlock,
@@ -16,7 +14,6 @@ from wagtail.core.blocks import (
     TextBlock,
     URLBlock,
 )
-from wagtail.core.blocks.field_block import ChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 
