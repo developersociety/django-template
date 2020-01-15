@@ -20,28 +20,6 @@ from wagtail.core.blocks.field_block import ChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 
-from core.widgets import ModelChooser
-
-
-class ModelChooserBlock(ChooserBlock):
-    def __init__(self, model_string=None, **kwargs):
-        self.model_string = model_string
-        super().__init__(**kwargs)
-
-    @cached_property
-    def target_model(self):
-        target_app, target_model = self.model_string.split(".")
-        model = apps.get_model(target_app, target_model)
-
-        return model
-
-    @cached_property
-    def widget(self):
-        return ModelChooser(target_model=self.target_model)
-
-    class Meta:
-        icon = "snippet"
-
 
 class URLValue(StructValue):
     """
