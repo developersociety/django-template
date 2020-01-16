@@ -25,6 +25,7 @@ document.body.onchange = (event) => {
 
 window.onload = () => {
     const active_url_selectors = [...document.querySelectorAll('.url-picker')];
+
     // Show link options if a link has been chosen
     active_url_selectors.forEach((feature_set) => {
         const link_to_type = feature_set.querySelector('select[name*="link_to"').value;
