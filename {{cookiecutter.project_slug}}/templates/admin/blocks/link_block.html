@@ -1,4 +1,4 @@
-<div class="{{ classname }}">
+<div class="{{ classname }} url-picker">
   {% if help_text %}
     <span>
       <div class="help">
@@ -6,16 +6,14 @@
         {{ help_text }}
       </div>
     </span>
-    {% endif %}
+  {% endif %}
 
-  <div class="fields url-picker">
-    {% for child in children.values %}
-      <div{% if child.block.required %} class="required"{% endif %} data-field="{{ child.block.name }}" {% if child.block.name in 'page,custom_url,file' %}style="display: none"{% endif %}>
-        {% if child.block.label %}
-          <label class="field__label" {% if child.id_for_label %}for="{{ child.id_for_label }}"{% endif %}>{{ child.block.label }}:</label>
-        {% endif %}
-        {{ child.render_form }}
-      </div>
-    {% endfor %}
-  </div>
+  {% for child in children.values %}
+    <div class="field {% if child.block.required %}required{% endif %}" data-field="{{ child.block.name }}" {% if child.block.name in 'page,custom_url,file' %}style="display: none"{% endif %}>
+      {% if child.block.label %}
+        <label class="field__label" {% if child.id_for_label %}for="{{ child.id_for_label }}"{% endif %}>{{ child.block.label }}:</label>
+      {% endif %}
+      {{ child.render_form }}
+    </div>
+  {% endfor %}
 </div>

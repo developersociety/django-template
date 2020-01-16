@@ -6,9 +6,9 @@ document.body.onchange = (event) => {
         const parent = target.closest('.url-picker');
         const fields = [
             ...parent.querySelectorAll(`
-                li[data-field=page],
-                li[data-field=custom_url],
-                li[data-field=file]
+                div[data-field=page],
+                div[data-field=custom_url],
+                div[data-field=file]
             `)
         ];
 
@@ -30,7 +30,7 @@ window.onload = () => {
         const link_to_type = feature_set.querySelector('select[name*="link_to"').value;
 
         if (link_to_type !== '') {
-            const field = feature_set.querySelector(`li[data-field="${link_to_type}"]`);
+            const field = feature_set.querySelector(`div[data-field="${link_to_type}"]`);
 
             field.style.display = 'block';
         }
