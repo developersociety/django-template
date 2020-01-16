@@ -21,8 +21,7 @@ const config = {
     entry: {
         base: ['./static/src/js/base.js'],
         app: ['./static/src/js/app.js'],
-        styles: ['./static/src/scss/styles.scss'],
-        app: ['./static/src/js/app.js']
+        styles: ['./static/src/scss/styles.scss']
     },
     output: {
         path: path.resolve('./static/dist/'),
