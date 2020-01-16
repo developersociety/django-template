@@ -6,11 +6,6 @@ from wagtail.admin.rich_text.converters.html_to_contentstate import BlockElement
 from wagtail.core import hooks
 
 
-@hooks.register("insert_global_admin_css")
-def global_admin_css():
-    return format_html('<link rel="stylesheet" href="{}">', static("dist/css/admin.css"))
-
-
 @hooks.register("insert_global_admin_js")
 def global_admin_js():
     return format_html('<script src="{}"></script>', static("dist/js/admin.js"))

@@ -35,14 +35,8 @@ class URLValue(StructValue):
         return None
 
 
-class BaseBlock(StructBlock):
-    class Meta:
-        form_classname = "full-width"
-        form_template = "admin/blocks/base_block.html"
-
-
 # Link block for use in other blocks
-class LinkBlock(BaseBlock):
+class LinkBlock(StructBlock):
     link_to = ChoiceBlock(
         choices=[("page", "Page"), ("file", "File"), ("custom_url", "Custom URL")], required=False
     )
@@ -92,7 +86,7 @@ class LinkBlock(BaseBlock):
         return clean_values
 
 
-class RichTextEditorBlock(BaseBlock):
+class RichTextEditorBlock(StructBlock):
     content = RichTextBlock(
         features=[
             "h2",
@@ -117,7 +111,7 @@ class RichTextEditorBlock(BaseBlock):
         template = "blocks/richtext_block.html"
 
 
-class ColumnRichTextEditorBlock(BaseBlock):
+class ColumnRichTextEditorBlock(StructBlock):
     content = RichTextBlock(
         features=["h2", "h3", "h4", "bold", "italic", "ol", "ul", "hr", "link", "document-link"]
     )
@@ -127,7 +121,7 @@ class ColumnRichTextEditorBlock(BaseBlock):
         template = "blocks/richtext_block.html"
 
 
-class ImageBlock(BaseBlock):
+class ImageBlock(StructBlock):
     image = ImageChooserBlock(required=True)
     link = LinkBlock(required=False)
 
@@ -136,7 +130,7 @@ class ImageBlock(BaseBlock):
         template = "blocks/image_block.html"
 
 
-class TileBlock(BaseBlock):
+class TileBlock(StructBlock):
     link = LinkBlock()
     title = CharBlock()
     image = ImageChooserBlock()
@@ -155,11 +149,10 @@ class TileGridBlock(StructBlock):
 
     class Meta:
         icon = "fa-th-large"
-        form_template = "admin/blocks/column_block.html"
         template = "blocks/tiles_grid_block.html"
 
 
-class ButtonBlock(BaseBlock):
+class ButtonBlock(StructBlock):
     link = LinkBlock()
     link_text = CharBlock()
     align = ChoiceBlock(
@@ -173,7 +166,7 @@ class ButtonBlock(BaseBlock):
         template = "blocks/button_block.html"
 
 
-class DownloadBlock(BaseBlock):
+class DownloadBlock(StructBlock):
     file = DocumentChooserBlock()
     title = CharBlock()
     summary = RichTextBlock(features=["bold", "italic"], required=False)
@@ -183,7 +176,7 @@ class DownloadBlock(BaseBlock):
         template = "blocks/download_block.html"
 
 
-class HTMLBlock(BaseBlock):
+class HTMLBlock(StructBlock):
     code = RawHTMLBlock(label="html")
 
     class Meta:
@@ -192,7 +185,7 @@ class HTMLBlock(BaseBlock):
         template = "blocks/html_block.html"
 
 
-class QuoteBlock(BaseBlock):
+class QuoteBlock(StructBlock):
     quote = TextBlock()
     citation = CharBlock()
     role = CharBlock(required=False)
@@ -226,7 +219,6 @@ class TwoColumnBlock(StructBlock):
     class Meta:
         icon = "fa-columns"
         template = "blocks/two_column_block.html"
-        form_template = "admin/blocks/column_block.html"
 
 
 class BaseStreamBlock(StreamBlock):

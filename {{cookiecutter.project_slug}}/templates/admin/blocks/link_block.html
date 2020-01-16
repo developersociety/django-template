@@ -8,14 +8,14 @@
     </span>
     {% endif %}
 
-  <ul class="fields url-picker">
+  <div class="fields url-picker">
     {% for child in children.values %}
-      <li{% if child.block.required %} class="required"{% endif %} data-field="{{ child.block.name }}" {% if child.block.name in 'page,custom_url,file' %}style="display: none"{% endif %}>
+      <div{% if child.block.required %} class="required"{% endif %} data-field="{{ child.block.name }}" {% if child.block.name in 'page,custom_url,file' %}style="display: none"{% endif %}>
         {% if child.block.label %}
-          <label{% if child.id_for_label %} for="{{ child.id_for_label }}"{% endif %}>{{ child.block.label }}:</label>
+          <label class="field__label" {% if child.id_for_label %}for="{{ child.id_for_label }}"{% endif %}>{{ child.block.label }}:</label>
         {% endif %}
         {{ child.render_form }}
-      </li>
+      </div>
     {% endfor %}
-  </ul>
+  </div>
 </div>

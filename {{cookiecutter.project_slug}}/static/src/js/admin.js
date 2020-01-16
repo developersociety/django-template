@@ -1,15 +1,3 @@
-document.body.onclick = (event) => {
-    const target = event.target;
-
-    if (target.classList.contains('collapse-expand-block')) {
-        const header = target.closest('.admin-block-header');
-        const fields = header.nextElementSibling;
-
-        // Toggle show of features
-        fields.classList.toggle('collapsed');
-    }
-};
-
 document.body.onchange = (event) => {
     const target = event.target;
 

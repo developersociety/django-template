@@ -21,7 +21,7 @@ const config = {
     entry: {
         base: ['./static/src/js/base.js'],
 {%- if cookiecutter.wagtail == 'y' %}
-        admin: ['./static/src/scss/admin.scss', './static/src/js/admin.js'],
+        admin: ['./static/src/js/admin.js'],
 {%- endif %}
         styles: ['./static/src/scss/styles.scss'],
         app: ['./static/src/js/app.js']
