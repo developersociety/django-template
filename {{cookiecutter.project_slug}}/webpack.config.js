@@ -20,8 +20,14 @@ const browsersyncui_port = browsersync_port + 1;
 const config = {
     entry: {
         base: ['./static/src/js/base.js'],
+<<<<<<< Updated upstream
         app: ['./static/src/js/app.js'],
         styles: ['./static/src/scss/styles.scss']
+=======
+        admin: ['./static/src/scss/admin.scss', './static/src/js/admin.js'],
+        styles: ['./static/src/scss/styles.scss'],
+        app: ['./static/src/js/app.js']
+>>>>>>> Stashed changes
     },
     output: {
         path: path.resolve('./static/dist/'),
@@ -120,7 +126,15 @@ module.exports = [
                     use: {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['@babel/preset-env']
+                            presets: [
+                                [
+                                    '@babel/preset-env',
+                                    {
+                                        useBuiltIns: 'usage',
+                                        corejs: 3
+                                    }
+                                ]
+                            ]
                         }
                     }
                 },
@@ -215,7 +229,15 @@ module.exports = [
                     use: {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['@babel/preset-env']
+                            presets: [
+                                [
+                                    '@babel/preset-env',
+                                    {
+                                        useBuiltIns: 'usage',
+                                        corejs: 3
+                                    }
+                                ]
+                            ]
                         }
                     }
                 },

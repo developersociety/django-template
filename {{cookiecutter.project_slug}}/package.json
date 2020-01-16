@@ -1,6 +1,7 @@
 {
     "browserslist": "> 0.25%, not dead",
     "dependencies": {
+        "core-js": "^3.6.4",
         "save-dev": "0.0.1-security",
         "sleepy": "0.0.9-d",
         "stylelint-selector-bem-pattern": "^2.1.0",
