@@ -43,7 +43,9 @@ module.exports = [
         output: config.output,
         plugins: [
             // Dist clean
-            new CleanWebpackPlugin(),
+            new CleanWebpackPlugin({
+                cleanStaleWebpackAssets: false
+            }),
 
             // SVG sprite
             new SVGSpritemapPlugin('./static/sprite/svg/*.svg', {
