@@ -2,11 +2,19 @@
 
 <div class="block image-block align-{{ self.align }}">
   <figure>
-    {% image self.image max-1300x900 %}
+    <div class="image-block__image">
+      {% image self.image max-1300x900 %}
 
-    {% if self.caption %}
+      {% if self.image.credit %}
+        <div class="image-block__credit">
+          <p>{{ self.image.credit }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if self.image.caption %}
       <figcaption>
-        {{ self.caption }}
+        {{ self.image.caption }}
       </figcaption>
     {% endif %}
   </figure>

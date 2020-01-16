@@ -2,4 +2,23 @@
     figure {
         margin: 0;
     }
+
+    .image-block__image {
+        position: relative;
+    }
+
+    .image-block__credit {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: rgba($color-black, 0.25);
+        padding: 0.5rem 0.5rem;
+        line-height: 1;
+        font-size: 0.75rem;
+        color: rgba($color-white, 0.7);
+
+        p {
+            margin: 0;
+        }
+    }
 }
