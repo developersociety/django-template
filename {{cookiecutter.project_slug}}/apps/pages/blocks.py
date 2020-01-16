@@ -129,8 +129,6 @@ class ColumnRichTextEditorBlock(BaseBlock):
 
 class ImageBlock(BaseBlock):
     image = ImageChooserBlock(required=True)
-    description = CharBlock(required=False, help_text="Used as ALT text")
-    caption = CharBlock(required=False, help_text="Shown below the image")
     link = LinkBlock(required=False)
 
     class Meta:
