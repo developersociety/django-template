@@ -1,13 +1,13 @@
 <a
-  href="{{ link.get_url }}"
+  href="{{ self.get_url }}"
   {% if class %}class="{{ class }}"{% endif %}
-  {% if link.file %} download {% endif %}
-  {% if link.new_window %}target="blank"{% endif %}
+  {% if self.file %} download {% endif %}
+  {% if self.new_window %}target="blank"{% endif %}
 >
-  {% if link.link_text %}
-    {{ link.link_text }}
-  {% elif link.specific.title %}
-    {{ link.specific.title }}
+  {% if self.link_text %}
+    {{ self.link_text }}
+  {% elif self.specific.title %}
+    {{ self.specific.title }}
   {% else %}
     {{ text }}
   {% endif %}
