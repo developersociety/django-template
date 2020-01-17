@@ -45,7 +45,7 @@ module.exports = [
             }),
 
             // SVG sprite
-            new SVGSpritemapPlugin('./static/sprite/svg/*.svg', {
+            new SVGSpritemapPlugin('./static/src/sprite/*.svg', {
                 output: {
                     filename: '../../templates/includes/sprite.html'
                 },

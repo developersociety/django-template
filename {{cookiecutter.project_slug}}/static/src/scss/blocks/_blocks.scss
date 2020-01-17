@@ -8,8 +8,12 @@
 }
 
 .block {
+    margin: 2rem auto;
     max-width: $width-block;
-    margin: $spacing-block auto;
+
+    @include tablet {
+        margin: $spacing-block auto;
+    }
 }
 
 @import 'button';
