@@ -115,7 +115,14 @@ def update():
         run('pip install --quiet --requirement requirements/production.txt')
 
         # Install nvm using .nvmrc version
-        run('nvm install -s')
+        run('nvm install')
+
+        # Check for changes in nvm version and copy to node_modules for future checks
+        run(
+            'cmp --silent .nvmrc node_modules/.nvmrc || '
+            'rm node_modules/.package-lock.json'
+            'cp -a .nvmrc node_modules/.nvmrc'
+        )
 
         # Install node packages
         run(
