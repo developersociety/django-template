@@ -1,17 +1,26 @@
 /* eslint-disable radix */
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
+
+// Webpack clean dist
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+// Vue
+const { VueLoaderPlugin } = require('vue-loader');
 
 const django_ip = process.env.DJANGO_IP || '127.0.0.1';
 const django_port = parseInt(process.env.DJANGO_PORT || 8000);
 const browsersync_port = parseInt(process.env.BROWSERSYNC_PORT || django_port + 1);
 const browsersyncui_port = browsersync_port + 1;
+
 const config = {
     entry: {
         base: ['./static/src/js/base.js'],
+        app: ['./static/src/js/app.js'],
         styles: ['./static/src/scss/styles.scss']
     },
     output: {
@@ -20,8 +29,6 @@ const config = {
     }
 };
 
-require('es6-promise').polyfill();
-
 module.exports = [
     // Development webpack config
     {
@@ -29,9 +36,25 @@ module.exports = [
         entry: config.entry,
         output: config.output,
         plugins: [
+            // Dist clean
+            new CleanWebpackPlugin({
+                cleanStaleWebpackAssets: false
+            }),
+
+            // SVG sprite
+            new SVGSpritemapPlugin('./static/sprite/svg/*.svg', {
+                output: {
+                    filename: '../../templates/includes/sprite.html'
+                },
+                sprite: {
+                    prefix: false
+                }
+            }),
+
             // Set css name
-            new ExtractTextPlugin({
-                filename: 'css/[name].css'
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].css',
+                chunkFilename: 'css/[id].css'
             }),
 
             // Stylelint plugin
@@ -52,6 +75,7 @@ module.exports = [
                     injectCss: true,
                     logLevel: 'silent',
                     files: ['./static/dist/css/*.css', './static/dist/js/*.js'],
+                    ignore: ['./static/dist/js/styles.js'],
                     ui: {
                         port: browsersyncui_port
                     }
@@ -61,6 +85,7 @@ module.exports = [
                 }
             ),
 
+            new VueLoaderPlugin(),
             new WebpackNotifierPlugin()
         ],
 
@@ -73,14 +98,22 @@ module.exports = [
                     use: {
                         loader: 'eslint-loader',
                         options: {
-                            configFile: path.resolve('.eslintrc.js'),
-                            fix: true
+                            configFile: path.resolve('.eslintrc.js')
                         }
                     }
                 },
                 {
                     test: /\.(png|jpg|woff|woff2|eot|ttf|svg|otf)$/,
-                    loader: 'url-loader',
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                limit: 1024,
+                                outputPath: 'assets',
+                                publicPath: '../assets'
+                            }
+                        }
+                    ],
                     exclude: /node_modules/
                 },
                 {
@@ -89,22 +122,51 @@ module.exports = [
                     use: {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['babel-preset-env']
+                            presets: [
+                                [
+                                    '@babel/preset-env',
+                                    {
+                                        useBuiltIns: 'usage',
+                                        corejs: 3
+                                    }
+                                ]
+                            ]
                         }
                     }
                 },
                 {
+                    test: /\.vue$/,
+                    use: 'vue-loader'
+                },
+                {
                     test: /\.scss$/,
                     exclude: /node_modules/,
-                    use: ExtractTextPlugin.extract({
-                        fallback: 'style-loader',
-                        use: ['css-loader', 'postcss-loader', 'sass-loader']
-                    })
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: 'css-loader',
+                            options: { sourceMap: true }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: { sourceMap: true }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: { sourceMap: true }
+                        }
+                    ]
                 },
                 {
                     test: /\.css$/,
                     exclude: /node_modules/,
-                    loader: 'style-loader!css-loader!'
+                    use: [
+                        'style-loader',
+                        {
+                            loader: 'css-loader',
+                            options: { sourceMap: true }
+                        }
+                    ]
                 }
             ]
         },
@@ -138,7 +200,7 @@ module.exports = [
 
         plugins: [
             // Specify the resulting CSS filename
-            new ExtractTextPlugin({
+            new MiniCssExtractPlugin({
                 filename: 'css/[name].css'
             }),
 
@@ -150,7 +212,9 @@ module.exports = [
                 syntax: 'scss',
                 failOnError: false,
                 quiet: false
-            })
+            }),
+
+            new VueLoaderPlugin()
         ],
 
         module: {
@@ -161,21 +225,44 @@ module.exports = [
                     use: {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['babel-preset-env']
+                            presets: [
+                                [
+                                    '@babel/preset-env',
+                                    {
+                                        useBuiltIns: 'usage',
+                                        corejs: 3
+                                    }
+                                ]
+                            ]
                         }
                     }
                 },
                 {
+                    test: /\.vue$/,
+                    use: 'vue-loader'
+                },
+                {
                     test: /\.(png|jpg|woff|woff2|eot|ttf|svg|otf)$/,
-                    loader: 'url-loader',
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                limit: 1024,
+                                outputPath: 'assets',
+                                publicPath: '../assets'
+                            }
+                        }
+                    ],
                     exclude: /node_modules/
                 },
                 {
                     test: /\.scss$/,
-                    use: ExtractTextPlugin.extract({
-                        fallback: 'style-loader',
-                        use: ['css-loader', 'postcss-loader', 'sass-loader']
-                    })
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        'postcss-loader',
+                        'sass-loader'
+                    ]
                 }
             ]
         }

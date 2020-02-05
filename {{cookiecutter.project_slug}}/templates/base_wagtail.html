@@ -22,7 +22,10 @@
 
   <body>
     {% wagtailuserbar %}
-    {% include 'includes/sprite.html' %}
+
+    <div id="sprite" style="position: absolute; width: 0; height: 0; overflow: hidden;">
+      {% include 'includes/sprite.html' %}
+    </div>
 
     {% if DEMO_SITE %}
       <div class="demo-announcement">
