@@ -113,6 +113,18 @@ def update():
 
         # Install python/node packages
         run('pip install --quiet --requirement requirements/production.txt')
+
+        # Install nvm using .nvmrc version
+        run('nvm install --no-progress')
+
+        # Check for changes in nvm version and copy to node_modules for future checks
+        run(
+            'cmp --silent .nvmrc node_modules/.nvmrc || '
+            'rm node_modules/.package-lock.json'
+            'cp -a .nvmrc node_modules/.nvmrc'
+        )
+
+        # Install node packages
         run(
             'cmp --silent package-lock.json node_modules/.package-lock.json || '
             'npm ci --no-progress && '
@@ -138,6 +150,9 @@ def migrate():
 def static():
     """ Update static files. """
     with cd(env.home):
+        # Clean dist folder
+        run('rm -rf static/dist')
+
         # Generate CSS
         run('npm run production --silent')
 
