@@ -115,13 +115,20 @@ def update():
         run('pip install --quiet --requirement requirements/production.txt')
 
         # Install nvm using .nvmrc version
-        run('nvm install -s')
+        run('nvm install --no-progress')
+
+        # Check for changes in nvm version and copy to node_modules for future checks
+        run(
+            'cmp --silent .nvmrc node_modules/.nvmrc || '
+            'rm node_modules/.package-lock.json'
+        )
 
         # Install node packages
         run(
             'cmp --silent package-lock.json node_modules/.package-lock.json || '
             'npm ci --no-progress && '
-            'cp -a package-lock.json node_modules/.package-lock.json'
+            'cp -a package-lock.json node_modules/.package-lock.json && '
+            'cp -a .nvmrc node_modules/.nvmrc'
         )
 
         # Clean up any potential cruft
