@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 
 {% load staticfiles %}
+{% load wagtailuserbar %}
 
-<html lang="en">
+{% load i18n %}
+
+<html lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %} >
   <head>
     <title>
-      {% block title %}{{ request.site.name }}{% endblock %}
+      {% block title %}{{ request.site.site_name }}{% endblock %}
     </title>
-    <link rel="stylesheet" href="{% static 'dist/css/styles.css' %}">
+    <link href="{% static 'dist/css/styles.css' %}" rel="stylesheet">
     <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}" />
 
     {% include 'includes/meta.html' %}
@@ -15,16 +18,20 @@
     {% if BROWSERSYNC_URL %}
       <script src="{{ BROWSERSYNC_URL }}" async></script>
     {% endif %}
+
+    {{ settings.settings.HeaderHTML.html|safe }}
   </head>
 
   <body>
+    {% wagtailuserbar %}
+
     <div id="sprite" style="position: absolute; width: 0; height: 0; overflow: hidden;">
       {% include 'includes/sprite.html' %}
     </div>
 
     {% if DEMO_SITE %}
       <div class="demo-announcement">
-        <div class="container">This site is in development. Any changes made here will not be transferred to the production build.</div>
+        <div class="container">{% trans 'This site is in development. Any changes made here will not be transferred to the production build.' %}</div>
       </div>
     {% endif %}
 
@@ -33,16 +40,15 @@
     </header>
 
     <main class="main">
-      {% block main %}
-        <div id="app"></div>
-      {% endblock %}
+      {% block main %}{% endblock %}
     </main>
 
     <footer class="footer inverted">
       {% include 'includes/footer.html' %}
     </footer>
 
-    <script src="{% static 'dist/js/app.js' %}"></script>
+    {{ settings.settings.FooterHTML.html|safe }}
+
     <script src="{% static 'dist/js/base.js' %}"></script>
 
     {% block extra_scripts %}

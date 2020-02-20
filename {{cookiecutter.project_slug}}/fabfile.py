@@ -18,12 +18,12 @@ env.roledefs = {
 }
 
 env.home = env.get('home', '/var/www/{{ cookiecutter.project_slug }}')
+env.virtualenv = env.get('virtualenv', '/var/envs/{{ cookiecutter.project_slug }}')
 env.appname = env.get('appname', '{{ cookiecutter.project_slug }}')
 env.repo = env.get('repo', '{{ cookiecutter.project_slug }}')
 env.media = env.get('media', '{{ cookiecutter.project_slug }}')
 env.media_bucket = env.get('media_bucket', 'contentfiles-media-eu-west-1')
 env.database = env.get('database', '{{ cookiecutter.project_slug }}_django')
-env.database_ssh = env.get('database_ssh', 'golestandt.devsoc.org')
 
 CRONTAB = """
 MAILTO=""
@@ -40,7 +40,6 @@ GIT_REMOTE = 'git@github.com:developersociety/{env.repo}.git'
 def demo():
     env.roledefs['web'] = env.roledefs['demo']
     env.roledefs['cron'] = env.roledefs['demo']
-    env.database_ssh = 'trogdor.devsoc.org'
     env.media_bucket = 'contentfiles-demo-media-eu-west-1'
 
 
@@ -109,8 +108,23 @@ def update():
     with cd(env.home):
         run('git pull')
 
+        # Save the current git commit for Sentry release tracking
+        run('git rev-parse HEAD > .sentry-release')
+
         # Install python/node packages
         run('pip install --quiet --requirement requirements/production.txt')
+
+        # Install nvm using .nvmrc version
+        run('nvm install --no-progress')
+
+        # Check for changes in nvm version and copy to node_modules for future checks
+        run(
+            'cmp --silent .nvmrc node_modules/.nvmrc || '
+            'rm node_modules/.package-lock.json'
+            'cp -a .nvmrc node_modules/.nvmrc'
+        )
+
+        # Install node packages
         run(
             'cmp --silent package-lock.json node_modules/.package-lock.json || '
             'npm ci --no-progress && '
@@ -136,11 +150,24 @@ def migrate():
 def static():
     """ Update static files. """
     with cd(env.home):
+        # Clean dist folder
+        run('rm -rf static/dist')
+
         # Generate CSS
         run('npm run production --silent')
 
         # Collect static files
         run('python manage.py collectstatic --verbosity=0 --noinput')
+
+{%- if cookiecutter.multilingual == 'y' %}
+@task
+@roles('web')
+@parallel
+def translations():
+    """ Update translation files. """
+    with cd(env.home):
+        run('make translations')
+{%- endif %}
 
 
 @task(name='reload')
@@ -171,6 +198,9 @@ def sentry_release():
             project=env.repo, version=version
         ))
         run('sentry-cli releases set-commits --auto {version}'.format(version=version))
+        run('sentry-cli releases deploys {version} new --env $SENTRY_ENVIRONMENT'.format(
+            version=version
+        ))
 
 
 @task
@@ -187,6 +217,9 @@ def deploy(force_reload=None):
     execute(update)
     execute(migrate)
     execute(static)
+    {%- if cookiecutter.multilingual == 'y' %}
+    execute(translations)
+    {%- endif %}
     execute(reload_uwsgi, force_reload=force_reload)
     execute(cron)
     execute(sentry_release)
@@ -207,9 +240,18 @@ def get_backup(hostname=None, replace_hostname='127.0.0.1', replace_port=8000):
     local('createdb {}'.format(env.database))
 
     # Connect to the server and dump database.
-    commands = ['ssh -C {} sudo -u postgres pg_dump --no-owner {}'.format(
-        env.database_ssh, env.database
-    )]
+    backup_ssh = random.choice(env.roledefs['web'])
+    commands = [
+        """
+        ssh -C {} '(
+            source $HOME/.bash_env \
+            && source {}/bin/activate \
+            && {}/manage.py dump_masked_data
+        )'
+        """.format(
+            backup_ssh, env.virtualenv, env.home,
+        ).strip()
+    ]
 
     if hostname:
         if replace_port:
@@ -251,7 +293,7 @@ def get_env():
     """ Get the current environment variables, ready for local export."""
     env.output_prefix = False
     run('export | sed -e "s/declare -x/export/g"')
-    
+
 
 @task
 def ssh(index='1'):

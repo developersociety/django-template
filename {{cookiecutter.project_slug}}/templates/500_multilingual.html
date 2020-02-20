@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+
+{% load i18n %}
+
+<html lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %} >
   <head>
-    <title>Server error!</title>
+    <title>{% trans 'Server error!' %}</title>
     <style type="text/css">
       body { color: #000000; background-color: #ffffff; }
       p { margin-left: 3em; }
@@ -9,11 +12,11 @@
     </style>
   </head>
   <body>
-    <h1>Server error!</h1>
+    <h1>{% trans 'Server error!' %}</h1>
 
-    <p>The server encountered an internal error and was unable to complete your request.</p>
+    <p>{% trans 'The server encountered an internal error and was unable to complete your request.' %}</p>
 
-    <h2>Error 500</h2>
+    <h2>{% trans 'Error 500' %}</h2>
 
     <p>
       <span class="server-info">

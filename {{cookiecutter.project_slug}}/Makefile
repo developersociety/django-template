@@ -1,15 +1,23 @@
 SHELL=/bin/bash
 .DEFAULT_GOAL := help
 PROJECT_SLUG="{{ cookiecutter.project_slug }}"
-IS_WAGTAIL="{{ cookiecutter.wagtail }}"
-IS_GEODJANGO="{{ cookiecutter.geodjango }}"
 
 # ---------------------------------
 # Project specific targets
 # ---------------------------------
 #
 # Add any targets specific to the current project in here.
+{%- if cookiecutter.multilingual == 'y'  %}
+translations: ## Create/compile dummy translations
+	rm -rf locale/{en,uni}
+	mkdir -p locale/{en,uni}/LC_MESSAGES
+	./manage.py makemessages --verbosity=0
 
+	podebug --rewrite=unicode locale/{en,uni}/LC_MESSAGES/django.po
+	sed -i -e 's/.Plural-Forms:.*//' locale/{en,uni}/LC_MESSAGES/django.po
+	find locale -name '*-e' -delete
+	./manage.py compilemessages --verbosity=0
+{%- endif %}
 
 
 # -------------------------------
@@ -24,8 +32,8 @@ IS_GEODJANGO="{{ cookiecutter.geodjango }}"
 help: ## This help dialog.
 help: help-display
 
-clean: ## Remove unneeded files generated from the various build tasks.
-clean: coverage-clean
+nuke: ## Full wipe of the local environment, uncommitted files, and database.
+nuke: venv-check venv-wipe git-full-clean database-drop
 
 reset: ## Reset your local environment. Useful after switching branches, etc.
 reset: venv-check venv-wipe install-local fab-get-data django-migrate django-user-passwords django-dev-createsuperuser{%- if cookiecutter.wagtail == 'y' %} django-rebuild-index{%- endif %}
@@ -96,15 +104,15 @@ fab-deploy:
 
 # ISort
 isort-lint:
-	isort --recursive --check-only --diff ${PROJECT_SLUG} apps
+	isort --recursive --check-only --diff apps project
 
 isort-format:
-	isort --recursive ${PROJECT_SLUG} apps
+	isort --recursive apps project
 
 
 # Flake8
 flake8-lint:
-	flake8 ${PROJECT_SLUG} apps
+	flake8 apps project
 
 
 # Coverage
@@ -130,7 +138,7 @@ django-test: django-collectstatic
 	coverage run --include="apps/*" ./manage.py test --noinput . apps
 
 django-check-missing-migrations:
-	./manage.py makemigrations --settings=${PROJECT_SLUG}.settings.migrations --check --dry-run
+	./manage.py makemigrations --settings=project.settings.migrations --check --dry-run
 
 django-collectstatic:
 	./manage.py collectstatic --verbosity 0 --noinput
@@ -187,10 +195,10 @@ prettier-format:
 
 # Black
 black-lint:
-	black --line-length 99 --exclude '/migrations/' --check ${PROJECT_SLUG} apps
+	black --line-length 99 --exclude '/migrations/' --check apps project
 
 black-format:
-	black --line-length 99 --exclude '/migrations/' ${PROJECT_SLUG} apps
+	black --line-length 99 --exclude '/migrations/' apps project
 
 
 #pipdeptree
@@ -200,4 +208,4 @@ pipdeptree-check:
 
 # Help
 help-display:
-	@awk '/^[[:alnum:]-]*: ##/ { split($$0, x, "##"); printf "%20s%s\n", x[1], x[2]; }' $(MAKEFILE_LIST)
+	@awk '/^[\-[:alnum:]]*: ##/ { split($$0, x, "##"); printf "%20s%s\n", x[1], x[2]; }' $(MAKEFILE_LIST)

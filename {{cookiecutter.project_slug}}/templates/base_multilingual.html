@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 
 {% load staticfiles %}
+{% load i18n %}
 
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %} >
   <head>
     <title>
       {% block title %}{{ request.site.name }}{% endblock %}
@@ -24,7 +25,7 @@
 
     {% if DEMO_SITE %}
       <div class="demo-announcement">
-        <div class="container">This site is in development. Any changes made here will not be transferred to the production build.</div>
+        <div class="container">{% trans 'This site is in development. Any changes made here will not be transferred to the production build.' %}</div>
       </div>
     {% endif %}
 
@@ -33,16 +34,13 @@
     </header>
 
     <main class="main">
-      {% block main %}
-        <div id="app"></div>
-      {% endblock %}
+      {% block main %}{% endblock %}
     </main>
 
     <footer class="footer inverted">
       {% include 'includes/footer.html' %}
     </footer>
 
-    <script src="{% static 'dist/js/app.js' %}"></script>
     <script src="{% static 'dist/js/base.js' %}"></script>
 
     {% block extra_scripts %}

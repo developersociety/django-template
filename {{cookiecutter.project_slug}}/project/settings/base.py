@@ -1,5 +1,5 @@
 """
-Django settings for {{ cookiecutter.project_slug }} project.
+Django settings - Django {{ cookiecutter.django_version }}.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/settings/
@@ -10,6 +10,11 @@ https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings
 
 import os
 import sys
+
+{%- if cookiecutter.multilingual == 'y' %}
+
+from django.utils.translation import ugettext_lazy as _
+{%- endif %}
 
 import dj_database_url
 
@@ -58,8 +63,8 @@ DEFAULT_APPS = [
 
 THIRD_PARTY_APPS = [
     "crispy_forms",
+    "maskpostgresdata",
     "modelcluster",
-    "raven.contrib.django.apps.RavenConfig",
     "rest_framework",
     "taggit",
     "wagtail.admin",
@@ -81,7 +86,7 @@ THIRD_PARTY_APPS = [
 ]
 {%- else %}
 
-THIRD_PARTY_APPS = ["crispy_forms", "raven.contrib.django.apps.RavenConfig"]
+THIRD_PARTY_APPS = ["crispy_forms", "maskpostgresdata"]
 {%- endif %}
 {%- if cookiecutter.wagtail == 'y' %}
 
@@ -101,6 +106,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+{%- if cookiecutter.multilingual == 'y' %}
+    "django.middleware.locale.LocaleMiddleware",
+{%- endif %}
 {%- if cookiecutter.wagtail == 'y' %}
     "wagtail.core.middleware.SiteMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
@@ -109,9 +117,9 @@ MIDDLEWARE = [
 {%- endif %}
 ]
 
-ROOT_URLCONF = "{{ cookiecutter.project_slug }}.urls"
+ROOT_URLCONF = "project.urls"
 
-WSGI_APPLICATION = "{{ cookiecutter.project_slug }}.wsgi.application"
+WSGI_APPLICATION = "project.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#databases
@@ -138,11 +146,25 @@ LANGUAGE_CODE = "en-gb"
 
 TIME_ZONE = "Europe/London"
 
+{%- if cookiecutter.multilingual == 'y' %}
+
+USE_I18N = True
+{%- else %}
+
 USE_I18N = False
+{%- endif %}
 
 USE_L10N = True
 
 USE_TZ = True
+
+{%- if cookiecutter.multilingual == 'y' %}
+
+# Allowed languages
+LANGUAGES = [("en", _("English")), ("uni", _("Unicode Test"))]
+
+LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
+{%- endif %}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/howto/static-files/
@@ -198,7 +220,7 @@ TEMPLATES = [
 
 LOGGING = {
     "version": 1,
-    "disable_existing_loggers": True,
+    "disable_existing_loggers": False,
     "filters": {
         "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
         "require_debug_true": {"()": "django.utils.log.RequireDebugTrue"},
@@ -206,10 +228,10 @@ LOGGING = {
     "formatters": {
         "django.server": {
             "()": "django.utils.log.ServerFormatter",
-            "format": "[%(server_time)s] %(message)s",
+            "format": "[{server_time}] {message}",
+            "style": "{",
         }
     },
-    "root": {"level": "WARNING", "handlers": ["sentry"]},
     "handlers": {
         "console": {
             "level": "INFO",
@@ -222,19 +244,11 @@ LOGGING = {
             "class": "logging.StreamHandler",
         },
         "null": {"class": "logging.NullHandler"},
-        "sentry": {
-            "level": "ERROR",
-            "class": "raven.contrib.django.raven_compat.handlers.SentryHandler",
-        },
     },
     "loggers": {
         "django": {"handlers": ["console"], "level": "INFO"},
-        "django.db.backends": {"handlers": ["console"], "level": "ERROR", "propagate": False},
         "django.server": {"handlers": ["django.server"], "level": "INFO", "propagate": False},
-        "elasticapm.errors": {"handlers": ["console"], "level": "ERROR", "propagate": False},
         "py.warnings": {"handlers": ["console"]},
-        "raven": {"handlers": ["console"], "level": "DEBUG", "propagate": False},
-        "sentry.errors": {"handlers": ["console"], "level": "DEBUG", "propagate": False},
     },
 }
 
@@ -242,7 +256,8 @@ LOGGING = {
 SITE_ID = 1
 
 # Cloud storage
-CONTENTFILES_PREFIX = "{{ cookiecutter.project_slug }}"
+CONTENTFILES_PREFIX = os.environ.get("CONTENTFILES_PREFIX", "{{ cookiecutter.project_slug }}")
+CONTENTFILES_HOSTNAME = os.environ.get("CONTENTFILES_HOSTNAME")
 CONTENTFILES_SSL = True
 
 # Improved cookie security
