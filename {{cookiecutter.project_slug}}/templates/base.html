@@ -18,7 +18,9 @@
   </head>
 
   <body>
-    {% include 'includes/sprite.html' %}
+    <div id="sprite" style="position: absolute; width: 0; height: 0; overflow: hidden;">
+      {% include 'includes/sprite.html' %}
+    </div>
 
     {% if DEMO_SITE %}
       <div class="demo-announcement">
@@ -31,13 +33,16 @@
     </header>
 
     <main class="main">
-      {% block main %}{% endblock %}
+      {% block main %}
+        <div id="app"></div>
+      {% endblock %}
     </main>
 
     <footer class="footer inverted">
       {% include 'includes/footer.html' %}
     </footer>
 
+    <script src="{% static 'dist/js/app.js' %}"></script>
     <script src="{% static 'dist/js/base.js' %}"></script>
 
     {% block extra_scripts %}
