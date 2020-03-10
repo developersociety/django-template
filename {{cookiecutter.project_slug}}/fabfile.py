@@ -117,10 +117,13 @@ def update():
         # Install nvm using .nvmrc version
         run('nvm install --no-progress')
 
+        # Initially create node_modules directory so copying .nvmrc and .package-lock.json work.
+        run('test -d node_modules || mkdir node_modules')
+
         # Check for changes in nvm version and copy to node_modules for future checks
         run(
             'cmp --silent .nvmrc node_modules/.nvmrc || '
-            'rm node_modules/.package-lock.json && '
+            'rm -f node_modules/.package-lock.json && '
             'cp -a .nvmrc node_modules/.nvmrc'
         )
 
