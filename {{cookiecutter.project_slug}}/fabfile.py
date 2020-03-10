@@ -120,7 +120,7 @@ def update():
         # Check for changes in nvm version and copy to node_modules for future checks
         run(
             'cmp --silent .nvmrc node_modules/.nvmrc || '
-            'rm node_modules/.package-lock.json'
+            'rm node_modules/.package-lock.json && '
             'cp -a .nvmrc node_modules/.nvmrc'
         )
 
