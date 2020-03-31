@@ -1,7 +1,7 @@
 module.exports = {
     extends: ['airbnb-base', 'plugin:prettier/recommended'],
     rules: {
-        indent: ['error', 4],
+        indent: ['error', 4, {SwitchCase: 1}],
         camelcase: [0],
         'one-var': [0],
         'no-new': [0],
