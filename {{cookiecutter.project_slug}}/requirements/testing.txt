@@ -1,10 +1,10 @@
 -r base.txt
 
 black==19.10b0
-coverage==5.0.2
-django-extensions==2.2.5
+coverage==5.0.4
+django-extensions==2.2.9
 flake8==3.7.9
 isort==4.3.21
 pipdeptree==0.13.2
 factory-boy==2.12.0
-unittest-xml-reporting==2.5.2
+unittest-xml-reporting==3.0.2
