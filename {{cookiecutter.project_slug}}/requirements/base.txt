@@ -13,7 +13,7 @@ django-maskpostgresdata==0.1.11
 # Storage
 django-storages==1.8
 boto==2.49.0
-blanc-contentfiles==0.2.4
+blanc-contentfiles==0.2.5
 
 # Reporting (Errors, APM)
 elastic-apm==5.5.2
