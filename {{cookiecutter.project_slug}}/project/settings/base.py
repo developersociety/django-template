@@ -275,6 +275,9 @@ WAGTAILSEARCH_BACKENDS = {
         "INDEX": os.environ.get("SEARCH_INDEX", "{{ cookiecutter.project_slug }}"),
     }
 }
+
+# Django limits POST fields to 1,000 by default, however for Wagtail admin pages this is too low
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 {%- endif %}
 {%- if cookiecutter.geodjango == 'y' %}
 
