@@ -52,9 +52,9 @@ PASSWORD_HASHERS = [
 ]
 {%- if cookiecutter.wagtail == 'y' %}
 
-# Wagtail search - use Postgres unless DISABLE_ELASTICSEARCH is enabled with environment vars
-# eg. DISABLE_ELASTICSEARCH=1 ./manage.py runserver
-if os.environ.get("DISABLE_ELASTICSEARCH", "false").lower() not in ["0", "false", "no"]:
+# Wagtail search - use Postgres unless ENABLE_ELASTICSEARCH is enabled with environment vars
+# eg. ENABLE_ELASTICSEARCH=1 ./manage.py runserver
+if not os.environ.get("ENABLE_ELASTICSEARCH"):
     INSTALLED_APPS += ["wagtail.contrib.postgres_search"]
 
     WAGTAILSEARCH_BACKENDS = {"default": {"BACKEND": "wagtail.contrib.postgres_search.backend"}}
