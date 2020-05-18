@@ -58,6 +58,7 @@ elif [ "$WAGTAIL" == "n" ] && [ "$MULTILINGUAL" == "y" ]; then
     # remove any wagtail related files
     # No wagtail - remove any wagtail related files
     rm -f apps/core/monkeypatch.py
+    rm -f apps/core/edit_handlers.py
     rm -rf apps/pages
     rm -rf apps/settings
     rm -rf templates/blocks
@@ -84,6 +85,7 @@ else
 
     # No wagtail - remove any wagtail related files
     rm -f apps/core/monkeypatch.py
+    rm -f apps/core/edit_handlers.py
     rm -rf apps/pages
     rm -rf apps/settings
     rm -rf templates/blocks
