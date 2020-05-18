@@ -49,10 +49,15 @@ wagtailfontawesome==1.2.1
 
 # Wagtail search
 elasticsearch==6.4.0
+
+# Wagtail 2FA
+django-otp==0.9.1
+qrcode==6.1
+wagtail-2fa==1.4.2
 {%- endif %}
 
-
 {%- if cookiecutter.multilingual == 'y' %}
+
 # Translations
 translate-toolkit==2.3.1
 diff-match-patch==20121119

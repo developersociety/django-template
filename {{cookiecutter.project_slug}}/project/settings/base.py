@@ -63,10 +63,13 @@ DEFAULT_APPS = [
 
 THIRD_PARTY_APPS = [
     "crispy_forms",
+    "django_otp",
+    "django_otp.plugins.otp_totp",
     "maskpostgresdata",
     "modelcluster",
     "rest_framework",
     "taggit",
+    "wagtail_2fa",
     "wagtail.admin",
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",
@@ -103,6 +106,9 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+{%- if cookiecutter.wagtail == 'y' %}
+    "wagtail_2fa.middleware.VerifyUserMiddleware",
+{%- endif %}
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
