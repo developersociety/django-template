@@ -4,7 +4,9 @@ from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 {%- endif %}
 from django.conf.urls.static import static
+{%- if cookiecutter.wagtail != "y" %}
 from django.contrib import admin
+{%- endif %}
 from django.contrib.staticfiles.views import serve as staticfiles_serve
 from django.urls import include, path
 from django.views.decorators.cache import never_cache
@@ -21,8 +23,12 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from core.views import server_error
 
+{%- if cookiecutter.wagtail != "y" %}
+
 admin.site.site_title = "{{ cookiecutter.project_name }}"
 admin.site.site_header = "{{ cookiecutter.project_name }}"
+
+{%- endif %}
 
 handler500 = server_error
 
@@ -31,7 +37,6 @@ handler500 = server_error
 # Multilingual Wagtail site
 
 urlpatterns = [
-    path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("sitemap.xml", sitemap, name="sitemap"),
@@ -45,7 +50,6 @@ urlpatterns += i18n_patterns(path(r"", include(wagtail_urls)))
 # Standard Wagtail site
 
 urlpatterns = [
-    path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("sitemap.xml", sitemap, name="sitemap"),
