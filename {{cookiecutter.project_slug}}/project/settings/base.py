@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings
 
 import os
 import sys
+from datetime import timedelta
 
 {%- if cookiecutter.multilingual == 'y' %}
 
@@ -64,6 +65,7 @@ DEFAULT_APPS = [
 {%- if cookiecutter.wagtail == 'y' %}
 
 THIRD_PARTY_APPS = [
+    "axes",
     "crispy_forms",
     "django_otp",
     "django_otp.plugins.otp_totp",
@@ -91,7 +93,7 @@ THIRD_PARTY_APPS = [
 ]
 {%- else %}
 
-THIRD_PARTY_APPS = ["crispy_forms", "maskpostgresdata"]
+THIRD_PARTY_APPS = ["axes", "crispy_forms", "maskpostgresdata"]
 {%- endif %}
 {%- if cookiecutter.wagtail == 'y' %}
 
@@ -123,6 +125,7 @@ MIDDLEWARE = [
 {%- else %}
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
 {%- endif %}
+    "axes.middleware.AxesMiddleware",
 ]
 
 ROOT_URLCONF = "project.urls"
@@ -270,6 +273,18 @@ CONTENTFILES_S3_ENDPOINT = os.environ.get("CONTENTFILES_S3_ENDPOINT")
 
 # Improved cookie security
 CSRF_COOKIE_HTTPONLY = True
+
+# Improved login security with axes
+# - Only lock attempts by username (prevent mass attempts on single accounts)
+# - 10 failures in 15 attempts results in blocking
+AUTHENTICATION_BACKENDS = [
+    "axes.backends.AxesBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
+AXES_ONLY_USER_FAILURES = True
+AXES_FAILURE_LIMIT = 10
+AXES_COOLOFF_TIME = timedelta(minutes=15)
+AXES_ENABLE_ADMIN = False
 {%- if cookiecutter.wagtail == 'y' %}
 
 # Wagtail

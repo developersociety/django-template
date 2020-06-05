@@ -26,6 +26,9 @@ TEST_OUTPUT_DIR = "reports"
 
 # Always run tests with the fastest password hasher
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.CryptPasswordHasher"]
+
+# Disable axes during testing
+AXES_ENABLED = False
 {%- if cookiecutter.wagtail == 'y' %}
 
 # Avoid wagtail search updates during testing
