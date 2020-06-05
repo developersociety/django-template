@@ -21,6 +21,11 @@ sentry-sdk==0.14.3
 urllib3==1.25.8
 certifi==2019.11.28
 
+# Axes
+django-axes==5.3.2
+django-appconf==1.0.4
+django-ipware==2.1.0
+
 # Form styling
 django-crispy-forms==1.9.0
 {%- if cookiecutter.wagtail == 'y' %}

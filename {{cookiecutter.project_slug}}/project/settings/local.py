@@ -50,6 +50,9 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.CryptPasswordHasher",
     "django.contrib.auth.hashers.PBKDF2PasswordHasher",
 ]
+
+# Disable axes for local usage
+AXES_ENABLED = False
 {%- if cookiecutter.wagtail == 'y' %}
 
 # Wagtail search - use Postgres unless ENABLE_ELASTICSEARCH is enabled with environment vars
