@@ -11,14 +11,20 @@ sqlparse==0.3.1
 django-maskpostgresdata==0.1.11
 
 # Storage
-django-storages==1.8
-boto==2.49.0
-blanc-contentfiles==0.2.6
+devsoc-contentfiles==0.3
+django-storages==1.9.1
+boto3==1.14.0
+botocore==1.17.0
+docutils==0.15.2
+jmespath==0.10.0
+python-dateutil==2.8.1
+s3transfer==0.3.3
+six==1.15.0
+urllib3==1.25.9
 
 # Reporting (Errors, APM)
 elastic-apm==5.5.2
 sentry-sdk==0.14.3
-urllib3==1.25.8
 certifi==2019.11.28
 
 # Axes
@@ -39,7 +45,6 @@ django-treebeard==4.3.1
 djangorestframework==3.11.0
 draftjs-exporter==2.1.7
 html5lib==1.0.1
-six==1.14.0
 Unidecode==1.1.1
 webencodings==0.5.1
 Willow==1.3
