@@ -1,0 +1,62 @@
+name: CI
+on: pull_request
+jobs:
+  test:
+    name: Test -- ${{ matrix.testenv }}
+    runs-on: ubuntu-20.04
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        testenv:
+          - django
+          - django-multilingual
+          - geodjango
+          - wagtail
+          - wagtail-multilingual
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Get Node.js version
+        id: nvmrc
+        run: echo "::set-output name=version::$(cat .nvmrc)"
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ steps.nvmrc.outputs.version }}
+      - name: Install Ubuntu packages
+        run: |
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            libgdal26 \
+            libmemcached-dev
+      - name: Python pip cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-${{ matrix.testenv }}-pip-${{ hashFiles('**/requirements') }}
+      - name: Node.js npm cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: Run tests
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: password
+          TOX_TESTENV_PASSENV: "TOX_TESTENV_PASSENV PG*"
+        run: |
+          pip install tox
+          tox -e ${{ matrix.testenv }}
+    services:
+      postgres:
+        image: postgres:12-alpine
+        env:
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
