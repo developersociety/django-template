@@ -29,6 +29,9 @@ CRONTAB = """
 MAILTO=""
 
 {daily}         /usr/local/bin/django-cron python manage.py clearsessions
+{%- if cookiecutter.wagtail == 'y' %}
+{publish_schedule}  /usr/local/bin/django-cron python manage.py publish_scheduled_pages
+{%- endif %}
 """
 
 # Avoid tweaking these
@@ -73,6 +76,9 @@ def cron(remove=None):
 
     cron = CRONTAB.format(
         daily=every_x(hour=random.randint(0, 23)),
+{%- if cookiecutter.wagtail == 'y' %}
+        publish_schedule=every_x(minutes=5),
+{%- endif %}
     )
 
     run("echo '{}' | crontab -".format(cron))
