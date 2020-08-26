@@ -45,9 +45,7 @@ sys.path.append(PROJECT_APPS_ROOT)
 DEFAULT_APPS = [
     # These apps should come first to load correctly.
     "core.apps.CoreConfig",
-{%- if cookiecutter.wagtail != 'y' %}
     "django.contrib.admin.apps.AdminConfig",
-{%- endif %}
     "django.contrib.auth.apps.AuthConfig",
     "django.contrib.contenttypes.apps.ContentTypesConfig",
     "django.contrib.sessions.apps.SessionsConfig",
