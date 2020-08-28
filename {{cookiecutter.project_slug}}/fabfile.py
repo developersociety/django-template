@@ -166,13 +166,15 @@ def static():
         run('python manage.py collectstatic --verbosity=0 --noinput')
 
 {%- if cookiecutter.multilingual == 'y' %}
+
+
 @task
 @roles('web')
 @parallel
 def translations():
     """ Update translation files. """
-    with cd(env.home):
-        run('make translations')
+    with cd(env.home), cd('locale'):
+        run('python ../manage.py compilemessages --verbosity=0')
 {%- endif %}
 
 
