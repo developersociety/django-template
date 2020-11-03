@@ -14,7 +14,7 @@ from datetime import timedelta
 
 {%- if cookiecutter.multilingual == 'y' %}
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 {%- endif %}
 
 import dj_database_url
