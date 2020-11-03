@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 
-{% load staticfiles %}
+{% load i18n %}
+{% load static %}
+{% load wagtailcore_tags %}
 {% load wagtailuserbar %}
 
-{% load i18n %}
+{% wagtail_site as site %}
 
 <html lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %} >
   <head>
     <title>
-      {% block title %}{{ request.site.site_name }}{% endblock %}
+      {% block title %}{{ site.site_name }}{% endblock %}
     </title>
     <link href="{% static 'dist/css/styles.css' %}" rel="stylesheet">
     <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}" />

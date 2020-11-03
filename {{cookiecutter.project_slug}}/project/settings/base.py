@@ -118,7 +118,6 @@ MIDDLEWARE = [
     "django.middleware.locale.LocaleMiddleware",
 {%- endif %}
 {%- if cookiecutter.wagtail == 'y' %}
-    "wagtail.core.middleware.SiteMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 {%- else %}
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
