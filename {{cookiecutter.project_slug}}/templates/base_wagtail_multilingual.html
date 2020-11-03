@@ -13,7 +13,7 @@
       {% block title %}{{ site.site_name }}{% endblock %}
     </title>
     <link href="{% static 'dist/css/styles.css' %}" rel="stylesheet">
-    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}" />
+    <link rel="canonical" href="{{ request.build_absolute_uri }}" />
 
     {% include 'includes/meta.html' %}
 
