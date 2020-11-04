@@ -104,10 +104,10 @@ fab-deploy:
 
 # ISort
 isort-lint:
-	isort --recursive --check-only --diff apps project
+	isort --check-only --diff apps project
 
 isort-format:
-	isort --recursive apps project
+	isort apps project
 
 
 # Flake8
