@@ -31,8 +31,7 @@ jobs:
       - name: Install Ubuntu packages
         run: |
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            libgdal26 \
-            libmemcached-dev
+            libgdal26
       - name: Python pip cache
         uses: actions/cache@v2
         with:

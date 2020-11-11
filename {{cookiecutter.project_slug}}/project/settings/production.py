@@ -60,8 +60,9 @@ if os.environ.get("ELASTIC_APM_SERVER_URL"):
 
     MIDDLEWARE = ["elasticapm.contrib.django.middleware.TracingMiddleware"] + MIDDLEWARE
 
-# Cache backed sessions for optimum performance
-SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
+# Cache sessions for optimum performance
+if os.environ.get("REDIS_SERVERS"):
+    SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 {%- if cookiecutter.wagtail == 'y' %}
 
 # For convenience, 2FA is optional - this is False by default for most sites

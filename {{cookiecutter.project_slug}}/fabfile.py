@@ -28,7 +28,6 @@ env.database = env.get('database', '{{ cookiecutter.project_slug }}_django')
 CRONTAB = """
 MAILTO=""
 
-{daily}         /usr/local/bin/django-cron python manage.py clearsessions
 {%- if cookiecutter.wagtail == 'y' %}
 {publish_schedule}  /usr/local/bin/django-cron python manage.py publish_scheduled_pages
 {%- endif %}
