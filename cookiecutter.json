@@ -6,6 +6,7 @@
     "geodjango": "n",
     "wagtail": "n",
     "_copy_without_render": [
+        ".github/workflows/*.yml",
         "static",
         "templates/*.html"
     ]

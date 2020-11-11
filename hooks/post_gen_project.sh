@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 set -e
 
+GEODJANGO="{{ cookiecutter.geodjango }}"
 WAGTAIL="{{ cookiecutter.wagtail }}"
 MULTILINGUAL="{{ cookiecutter.multilingual }}"
+
+if [ "$GEODJANGO" == "y" ]; then
+    mv .github/workflows/ci_geodjango.yml .github/workflows/ci.yml
+    rm .github/workflows/ci_standard.yml
+else
+    mv .github/workflows/ci_standard.yml .github/workflows/ci.yml
+    rm .github/workflows/ci_geodjango.yml
+fi
 
 if [ "$WAGTAIL" == "y" ] && [ "$MULTILINGUAL" == "y" ]; then
     # Wagtail requested with multilingual features
