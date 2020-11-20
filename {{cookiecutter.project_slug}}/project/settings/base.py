@@ -12,6 +12,8 @@ import os
 import sys
 from datetime import timedelta
 
+from django.db.models.fields import BLANK_CHOICE_DASH
+
 {%- if cookiecutter.multilingual == 'y' %}
 
 from django.utils.translation import gettext_lazy as _
@@ -222,6 +224,9 @@ TEMPLATES = [
         },
     }
 ]
+
+# Replace default value in select fields with empty spaces for a more modern look
+BLANK_CHOICE_DASH[0]=(""," ")
 
 # Logging
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/logging/#configuring-logging
