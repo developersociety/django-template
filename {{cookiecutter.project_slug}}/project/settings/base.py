@@ -13,9 +13,7 @@ import sys
 from datetime import timedelta
 
 from django.db.models.fields import BLANK_CHOICE_DASH
-
 {%- if cookiecutter.multilingual == 'y' %}
-
 from django.utils.translation import gettext_lazy as _
 {%- endif %}
 
