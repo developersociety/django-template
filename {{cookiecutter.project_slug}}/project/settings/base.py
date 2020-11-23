@@ -226,7 +226,7 @@ TEMPLATES = [
 ]
 
 # Replace default value in select fields with empty spaces for a more modern look
-BLANK_CHOICE_DASH[0]=(""," ")
+BLANK_CHOICE_DASH[0] = ("", " ")
 
 # Logging
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/logging/#configuring-logging
