@@ -86,7 +86,7 @@ def cron(remove=None):
 @task
 @roles('web')
 @parallel
-def clone_repo(branch='master'):
+def clone_repo(branch='main'):
     """
     Initial site setup.
 
