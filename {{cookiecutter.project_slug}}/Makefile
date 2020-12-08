@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 .DEFAULT_GOAL := help
-PROJECT_SLUG="{{ cookiecutter.project_slug }}"
+PROJECT_SLUG={{ cookiecutter.project_slug }}
 
 # ---------------------------------
 # Project specific targets
@@ -78,6 +78,14 @@ venv-wipe: venv-check
 	if ! pip list --format=freeze | grep -v "^pip=\|^setuptools=\|^wheel=" | xargs pip uninstall -y; then \
 	    echo "Nothing to remove"; \
 	fi
+
+
+# Destructive cleaning
+git-full-clean:
+	git clean -ffdx
+
+database-drop:
+	dropdb --if-exists ${PROJECT_SLUG}_django
 
 
 # Installs
