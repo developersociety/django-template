@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+
+{% load i18n %}
+
+<html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
   <head>
-    <title>Object not found!</title>
+    <title>{% trans 'Object not found!' %}</title>
     <style type="text/css">
       body { color: #000000; background-color: #ffffff; }
       p { margin-left: 3em; }
@@ -9,18 +12,18 @@
     </style>
   </head>
   <body>
-    <h1>Object not found!</h1>
+    <h1>{% trans 'Object not found!' %}</h1>
 
-    <p>The requested URL was not found on this server.<p>
+    <p>{% trans 'The requested URL was not found on this server.' %}</p>
 
-    <p>If you entered the URL manually please check your spelling and try again.</p>
+    <p>{% trans 'If you entered the URL manually please check your spelling and try again.' %}</p>
 
-    <h2>Error 404</h2>
+    <h2>{% trans 'Error 404' %}</h2>
 
     <p>
       <span class="server-info">
         {{ request.get_host }}<br />
-        {% now "r" %}
+        {% now 'r' %}
       </span>
     </p>
   </body>

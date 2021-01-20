@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 
+{% load i18n %}
 {% load static %}
 {% load wagtailcore_tags %}
 {% load wagtailuserbar %}
 
 {% wagtail_site as site %}
 
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
   <head>
     <title>
       {% block title %}{{ site.site_name }}{% endblock %}
@@ -32,7 +33,7 @@
 
     {% if DEMO_SITE %}
       <div class="demo-announcement">
-        <div class="container">This site is in development. Any changes made here will not be transferred to the production build.</div>
+        <div class="container">{% trans 'This site is in development. Any changes made here will not be transferred to the production build.' %}</div>
       </div>
     {% endif %}
 
