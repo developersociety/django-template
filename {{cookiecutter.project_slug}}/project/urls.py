@@ -35,24 +35,30 @@ handler500 = server_error
 {%- if cookiecutter.multilingual == "y" and cookiecutter.wagtail == "y" %}
 
 # Multilingual Wagtail site
-
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
+)
+
+urlpatterns += [
     path("sitemap.xml", sitemap, name="sitemap"),
+    path(
+        "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
+    ),
 ]
 
-# Wagtail catch-all
-urlpatterns += i18n_patterns(path(r"", include(wagtail_urls)))
+urlpatterns += i18n_patterns(path("", include(wagtail_urls)))
 
 {%- elif cookiecutter.multilingual == "n" and cookiecutter.wagtail == "y" %}
 
 # Standard Wagtail site
-
 urlpatterns = [
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("sitemap.xml", sitemap, name="sitemap"),
+    path(
+        "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
+    ),
 ]
 
 # Wagtail catch-all
@@ -61,20 +67,25 @@ urlpatterns += [path("", include(wagtail_urls))]
 {%- elif cookiecutter.multilingual == "y" and cookiecutter.wagtail == "n" %}
 
 # Multilingual Django site
+urlpatterns = [
+    path(
+        "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
+    ),
+]
 
 urlpatterns = i18n_patterns(path("admin/", admin.site.urls))
 
 {%- else %}
 
 # Standard Django site
-
-urlpatterns = [path("admin/", admin.site.urls)]
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path(
+        "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
+    ),
+]
 
 {%- endif %}
-
-urlpatterns += [
-    path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain"))
-]
 
 # Allow testing of all styles locally
 if settings.DEBUG:
