@@ -1,4 +1,3 @@
-{% load static %}
 {% load wagtailimages_tags %}
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -22,7 +21,7 @@
   <meta name="twitter:description" content="{{ page.share_description }}">
   <meta itemprop="description" content="{{ page.share_description }}">
   <meta property="og:description" content="{{ page.share_description }}" />
-{% else %}
+{% elif settings.settings.ShareMeta.default_share_description %}
   <meta name="description" content="{{ settings.settings.ShareMeta.default_share_description }}" />
   <meta name="twitter:description" content="{{ settings.settings.ShareMeta.default_share_description }}">
   <meta itemprop="description" content="{{ settings.settings.ShareMeta.default_share_description }}">
@@ -39,7 +38,7 @@
   <meta property="og:image" content="{{ page_image.url }}" />
   <meta name="twitter:image" content="{{ page_image.url }}">
   <meta itemprop="image" content="{{ page_image.url }}">
-{% else %}
+{% elif settings.settings.ShareMeta.default_share_image %}
   {% image settings.settings.ShareMeta.default_share_image fill-1200x630 as default_share_image %}
   <meta property="og:image" content="{{ default_share_image.url }}" />
   <meta name="twitter:image" content="{{ default_share_image.url }}">
