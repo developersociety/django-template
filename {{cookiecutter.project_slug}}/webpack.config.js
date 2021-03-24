@@ -42,9 +42,9 @@ module.exports = [
             }),
 
             // SVG sprite
-            new SVGSpritemapPlugin('./static/sprite/svg/*.svg', {
+            new SVGSpritemapPlugin('./static/src/sprite/svg/*.svg', {
                 output: {
-                    filename: '../../templates/includes/sprite.html'
+                    filename: './svg/sprite.svg'
                 },
                 sprite: {
                     prefix: false
@@ -199,6 +199,16 @@ module.exports = [
         output: config.output,
 
         plugins: [
+            // SVG sprite
+            new SVGSpritemapPlugin('./static/src/sprite/svg/*.svg', {
+                output: {
+                    filename: './svg/sprite.svg'
+                },
+                sprite: {
+                    prefix: false
+                }
+            }),
+
             // Specify the resulting CSS filename
             new MiniCssExtractPlugin({
                 filename: 'css/[name].css'
