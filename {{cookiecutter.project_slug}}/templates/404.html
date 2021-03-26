@@ -1,30 +1,13 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
 {% load i18n %}
 
-<html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-  <head>
-    <title>{% trans 'Object not found!' %}</title>
-    <style type="text/css">
-      body { color: #000000; background-color: #ffffff; }
-      p { margin-left: 3em; }
-      .server-info { font-size: smaller; font-style: italic; }
-    </style>
-  </head>
-  <body>
-    <h1>{% trans 'Object not found!' %}</h1>
+{% block main %}
+  <div class="container">
+    <h1>{% trans '404 - page not found' %}</h1>
 
-    <p>{% trans 'The requested URL was not found on this server.' %}</p>
+    <p>{% trans 'We encountered an error locating the page you are looking for.' %}</p>
 
     <p>{% trans 'If you entered the URL manually please check your spelling and try again.' %}</p>
-
-    <h2>{% trans 'Error 404' %}</h2>
-
-    <p>
-      <span class="server-info">
-        {{ request.get_host }}<br />
-        {% now 'r' %}
-      </span>
-    </p>
-  </body>
-</html>
+  </div>
+{% endblock main %}
