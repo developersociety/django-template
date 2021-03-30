@@ -61,9 +61,6 @@ urlpatterns = [
     ),
 ]
 
-# Wagtail catch-all
-urlpatterns += [path("", include(wagtail_urls))]
-
 {%- elif cookiecutter.multilingual == "y" and cookiecutter.wagtail == "n" %}
 
 # Multilingual Django site
@@ -106,3 +103,6 @@ if apps.is_installed("debug_toolbar"):
 # Serving static/media under debug
 urlpatterns += static(settings.STATIC_URL, never_cache(staticfiles_serve))
 urlpatterns += static(settings.MEDIA_URL, never_cache(serve), document_root=settings.MEDIA_ROOT)
+
+# Wagtail catch-all
+urlpatterns += [path("", include(wagtail_urls))]
