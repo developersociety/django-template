@@ -14,15 +14,11 @@
   <label for="nav-toggle" class="nav-toggle">
     <div class="nav-toggle__open">
       <div class="visually-hidden">Open Menu</div>
-      <svg class="icon">
-        <use xlink:href="#burger" />
-      </svg>
+      {% include 'includes/icon.html' with icon='burger' %}
     </div>
     <div class="nav-toggle__close">
       <div class="visually-hidden">Close menu</div>
-      <svg class="icon">
-        <use xlink:href="#close" />
-      </svg>
+      {% include 'includes/icon.html' with icon='close' %}
     </div>
   </label>
 </div>
