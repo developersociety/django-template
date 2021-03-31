@@ -1,0 +1,5 @@
+{% load static %}
+
+<svg class="{{ iconclass|default:'icon' }}">
+  <use xlink:href="{% static 'dist/svg/sprite.svg' %}#{{ icon }}" />
+</svg>

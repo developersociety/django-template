@@ -128,7 +128,7 @@ def update():
             'rm -f node_modules/.package-lock.json'
         )
         run(
-            'cmp --silent package-lock.json node_modules/.nvmrc || '
+            'cmp --silent package-lock.json node_modules/.package-lock.json || '
             'rm -f node_modules/.package-lock.json'
         )
 
