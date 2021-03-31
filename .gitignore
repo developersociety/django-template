@@ -5,3 +5,6 @@
 # Translations
 /locale
 {%- endif %}
+
+# DS Store files
+*.DS_Store
