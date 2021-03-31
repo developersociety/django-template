@@ -42,7 +42,7 @@ module.exports = [
             }),
 
             // SVG sprite
-            new SVGSpritemapPlugin('./static/src/sprite/svg/*.svg', {
+            new SVGSpritemapPlugin('./static/src/sprite/*.svg', {
                 output: {
                     filename: './svg/sprite.svg'
                 },
@@ -200,7 +200,7 @@ module.exports = [
 
         plugins: [
             // SVG sprite
-            new SVGSpritemapPlugin('./static/src/sprite/svg/*.svg', {
+            new SVGSpritemapPlugin('./static/src/sprite/*.svg', {
                 output: {
                     filename: './svg/sprite.svg'
                 },
