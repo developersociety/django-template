@@ -3,7 +3,7 @@ on: pull_request
 jobs:
   test:
     name: Test -- tox
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -11,7 +11,7 @@ jobs:
       - name: Install Ubuntu packages
         run: |
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            libgdal1i
+            libgdal26
       - name: Setup Python
         uses: actions/setup-python@v2
         with:

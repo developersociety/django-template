@@ -21,3 +21,6 @@ static/dist
 
 # Sentry
 .sentry-release
+
+# DS Store files
+*.DS_Store
