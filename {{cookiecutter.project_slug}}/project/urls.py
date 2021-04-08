@@ -47,8 +47,6 @@ urlpatterns += [
     ),
 ]
 
-urlpatterns += i18n_patterns(path("", include(wagtail_urls)))
-
 {%- elif cookiecutter.multilingual == "n" and cookiecutter.wagtail == "y" %}
 
 # Standard Wagtail site
@@ -60,9 +58,6 @@ urlpatterns = [
         "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
     ),
 ]
-
-# Wagtail catch-all
-urlpatterns += [path("", include(wagtail_urls))]
 
 {%- elif cookiecutter.multilingual == "y" and cookiecutter.wagtail == "n" %}
 
@@ -106,3 +101,12 @@ if apps.is_installed("debug_toolbar"):
 # Serving static/media under debug
 urlpatterns += static(settings.STATIC_URL, never_cache(staticfiles_serve))
 urlpatterns += static(settings.MEDIA_URL, never_cache(serve), document_root=settings.MEDIA_ROOT)
+{%- if cookiecutter.wagtail == "y" and cookiecutter.multilingual == "y" %}
+
+# Wagtail catch-all
+urlpatterns += i18n_patterns(path("", include(wagtail_urls)))
+{%- elif cookiecutter.wagtail == "y" and cookiecutter.multilingual == "n" %}
+
+# Wagtail catch-all
+urlpatterns += [path("", include(wagtail_urls))]
+{%- endif %}
