@@ -38,7 +38,7 @@ django-crispy-forms==1.11.1
 {%- if cookiecutter.wagtail == 'y' %}
 
 # Wagtail (core wagtail)
-wagtail==2.11.6
+wagtail==2.11.7
 anyascii==0.1.7
 beautifulsoup4==4.8.2
 django-filter==2.4.0
