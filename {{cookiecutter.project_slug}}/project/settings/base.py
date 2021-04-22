@@ -300,6 +300,10 @@ WAGTAILSEARCH_BACKENDS = {
     }
 }
 
+# Ask wagtail to put some wrapper divs w/ classes around media
+# embeds which make doing CSS selectors for responsiveness easier.
+WAGTAILEMBEDS_RESPONSIVE_HTML = True
+
 # Django limits POST fields to 1,000 by default, however for Wagtail admin pages this is too low
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 {%- endif %}
