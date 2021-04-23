@@ -203,10 +203,10 @@ prettier-format:
 
 # Black
 black-lint:
-	black --line-length 99 --exclude '/migrations/' --check apps project
+	black --check apps project
 
 black-format:
-	black --line-length 99 --exclude '/migrations/' apps project
+	black apps project
 
 
 #pipdeptree
