@@ -27,4 +27,4 @@ Create a site using this template:
 
 .. code-block:: console
 
-    $ cookiecutter gh:developersociety/django-template
+    $ cookiecutter --checkout django-2.2 gh:developersociety/django-template
