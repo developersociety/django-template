@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings
 import os
 import sys
 from datetime import timedelta
+from pathlib import Path
 
 from django.db.models.fields import BLANK_CHOICE_DASH
 {%- if cookiecutter.multilingual == 'y' %}
@@ -19,8 +20,8 @@ from django.utils.translation import gettext_lazy as _
 
 import dj_database_url
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+# Build paths inside the project like this: BASE_DIR / "subdir".
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Production / development switches
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/howto/deployment/checklist/
@@ -39,8 +40,8 @@ SERVER_EMAIL = "{{ cookiecutter.project_slug }}@devsoc.org"
 DEFAULT_FROM_EMAIL = "{{ cookiecutter.project_slug }}@devsoc.org"
 EMAIL_SUBJECT_PREFIX = "[{{ cookiecutter.project_slug }}] "
 
-PROJECT_APPS_ROOT = os.path.join(BASE_DIR, "apps")
-sys.path.append(PROJECT_APPS_ROOT)
+PROJECT_APPS_ROOT = BASE_DIR / "apps"
+sys.path.append(PROJECT_APPS_ROOT.as_posix())
 
 DEFAULT_APPS = [
     # These apps should come first to load correctly.
@@ -171,7 +172,7 @@ USE_TZ = True
 # Allowed languages
 LANGUAGES = [("en", _("English")), ("uni", _("Unicode Test"))]
 
-LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
+LOCALE_PATHS = [BASE_DIR / "locale"]
 {%- endif %}
 
 # Static files (CSS, JavaScript, Images)
@@ -179,22 +180,27 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
 STATIC_URL = os.environ.get("STATIC_URL", "/static/")
 
-STATIC_ROOT = os.path.join(BASE_DIR, "htdocs/static")
+STATIC_ROOT = BASE_DIR / "htdocs/static"
 
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # File uploads
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#file-uploads
 
 MEDIA_URL = os.environ.get("MEDIA_URL", "/media/")
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "htdocs/media")
+MEDIA_ROOT = BASE_DIR / "htdocs/media"
 
 DEFAULT_FILE_STORAGE = os.environ.get(
     "DEFAULT_FILE_STORAGE", "django.core.files.storage.FileSystemStorage"
 )
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 # Templates
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#templates
@@ -202,7 +208,7 @@ DEFAULT_FILE_STORAGE = os.environ.get(
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
