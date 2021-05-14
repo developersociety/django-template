@@ -298,6 +298,7 @@ AXES_ENABLE_ADMIN = False
 WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
 BASE_URL = os.environ.get("WAGTAIL_BASE_URL", "")
 WAGTAIL_ENABLE_UPDATE_CHECK = False
+WAGTAIL_REDIRECTS_FILE_STORAGE = "cache"
 WAGTAILSEARCH_BACKENDS = {
     "default": {
         "BACKEND": "wagtail.search.backends.elasticsearch6",
