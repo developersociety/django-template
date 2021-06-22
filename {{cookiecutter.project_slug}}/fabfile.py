@@ -28,6 +28,7 @@ env.database = env.get('database', '{{ cookiecutter.project_slug }}_django')
 CRONTAB = """
 MAILTO=""
 
+{axes_reset_logs}   /usr/local/bin/django-cron python manage.py axes_reset_logs
 {%- if cookiecutter.wagtail == 'y' %}
 {publish_schedule}  /usr/local/bin/django-cron python manage.py publish_scheduled_pages
 {%- endif %}
@@ -74,7 +75,7 @@ def cron(remove=None):
             minute=minute, hour=hour, day=day, month=month, day_of_week=day_of_week)
 
     cron = CRONTAB.format(
-        daily=every_x(hour=random.randint(0, 23)),
+        axes_reset_logs=every_x(hour=random.randint(0, 23)),
 {%- if cookiecutter.wagtail == 'y' %}
         publish_schedule=every_x(minutes=5),
 {%- endif %}
