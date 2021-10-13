@@ -58,7 +58,5 @@ AXES_ENABLED = False
 # Wagtail search - use Postgres unless ENABLE_ELASTICSEARCH is enabled with environment vars
 # eg. ENABLE_ELASTICSEARCH=1 ./manage.py runserver
 if not os.environ.get("ENABLE_ELASTICSEARCH"):
-    INSTALLED_APPS += ["wagtail.contrib.postgres_search"]
-
-    WAGTAILSEARCH_BACKENDS = {"default": {"BACKEND": "wagtail.contrib.postgres_search.backend"}}
+    WAGTAILSEARCH_BACKENDS = {"default": {"BACKEND": "wagtail.search.backends.database"}}
 {%- endif %}

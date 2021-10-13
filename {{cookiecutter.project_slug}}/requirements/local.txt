@@ -1,7 +1,7 @@
 -r testing.txt
 
-awscli==1.20.12
-django-debug-toolbar==3.2.1
+awscli==1.20.62
+django-debug-toolbar==3.2.2
 ipdb==0.13.9
 pywatchman==1.4.1
-tox==3.24.1
+tox==3.24.4
