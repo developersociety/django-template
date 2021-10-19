@@ -145,8 +145,18 @@ if os.environ.get("REDIS_SERVERS"):
         "LOCATION": os.environ["REDIS_SERVERS"].split(" "),
         "KEY_PREFIX": "{}:cache".format(os.environ["REDIS_PREFIX"]),
     }
+{%- if cookiecutter.wagtail == 'y' %}
+    CACHES["renditions"] = {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": os.environ["REDIS_SERVERS"].split(" "),
+        "KEY_PREFIX": "{}:renditions".format(os.environ["REDIS_PREFIX"]),
+    }
+{%- endif %}
 else:
     CACHES["default"] = {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}
+{%- if cookiecutter.wagtail == 'y' %}
+    CACHES["renditions"] = {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}
+{%- endif %}
 
 # Internationalization
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/i18n/
