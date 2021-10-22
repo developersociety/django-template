@@ -11,7 +11,7 @@ _Anything not specific to testing just this PR would be better in the README._
 # How to test
 _Include a summary of the best way a reviewer can test your code. You don't have to be comprehensive, but give the reviewer an idea of where to start._
 
-For comprehensive guidelines on code review at DEV, see here: https://www.notion.so/developersociety/Code-Review-b6d646b1d6e54011ada8169aee543231.
+For comprehensive guidelines on code review at DEV, see here: https://www.notion.so/developersociety/Code-Review-f804361f9b6b4859bdcd69d7704168e5.
 
 # Pre-review checklist
 - [ ] PR Tags & Milestones?
