@@ -1,6 +1,6 @@
 -r testing.txt
 
-awscli==1.20.62
+awscli==1.21.7
 django-debug-toolbar==3.2.2
 ipdb==0.13.9
 pywatchman==1.4.1
