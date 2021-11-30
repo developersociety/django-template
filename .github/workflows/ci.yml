@@ -42,6 +42,15 @@ jobs:
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: Configure Postgres (for faster tests)
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: password
+        run: |
+          psql -c "ALTER SYSTEM SET fsync=off;"
+          psql -c "ALTER SYSTEM SET full_page_writes=off;"
+          psql -c "SELECT pg_reload_conf();"
       - name: Run tests
         env:
           PGHOST: localhost
