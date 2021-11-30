@@ -53,6 +53,9 @@ lint: npm-install black-lint isort-lint flake8-lint eslint-lint prettier-lint
 test: ## Run unit and integration tests.
 test: django-test
 
+test-fast: ## Run tests in parallel, without reports
+test-fast: django-test-fast
+
 test-report: ## Run and report on unit and integration tests.
 test-report: coverage-clean test coverage-report
 
@@ -144,6 +147,9 @@ django-check: django-check-missing-migrations django-check-validate-templates
 
 django-test: django-collectstatic
 	PYTHONWARNINGS=all coverage run --include="apps/*" ./manage.py test --noinput . apps
+
+django-test-fast: django-collectstatic
+    PYTHONWARNINGS=all ./manage.py test --noinput --parallel
 
 django-check-missing-migrations:
 	./manage.py makemigrations --settings=project.settings.migrations --check --dry-run
