@@ -36,8 +36,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 ADMINS = [("Developer Society", "studio@dev.ngo")]
 MANAGERS = ADMINS
 
-SERVER_EMAIL = "{{ cookiecutter.project_slug }}@devsoc.org"
-DEFAULT_FROM_EMAIL = "{{ cookiecutter.project_slug }}@devsoc.org"
+SERVER_EMAIL = os.environ.get("SERVER_EMAIL", "{{ cookiecutter.project_slug }}@devemail.org")
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "{{ cookiecutter.project_slug }}@devemail.org")
 EMAIL_SUBJECT_PREFIX = "[{{ cookiecutter.project_slug }}] "
 
 PROJECT_APPS_ROOT = BASE_DIR / "apps"
