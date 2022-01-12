@@ -20,6 +20,9 @@ from django.utils.translation import gettext_lazy as _
 
 import dj_database_url
 
+# The unique project name in slug form
+PROJECT_SLUG = "{{ cookiecutter.project_slug }}"
+
 # Build paths inside the project like this: BASE_DIR / "subdir".
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -36,9 +39,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 ADMINS = [("Developer Society", "studio@dev.ngo")]
 MANAGERS = ADMINS
 
-SERVER_EMAIL = os.environ.get("SERVER_EMAIL", "{{ cookiecutter.project_slug }}@devemail.org")
-DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "{{ cookiecutter.project_slug }}@devemail.org")
-EMAIL_SUBJECT_PREFIX = "[{{ cookiecutter.project_slug }}] "
+SERVER_EMAIL = os.environ.get("SERVER_EMAIL", f"{PROJECT_SLUG}@devemail.org")
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", f"{PROJECT_SLUG}@devemail.org")
+EMAIL_SUBJECT_PREFIX = f"[{PROJECT_SLUG}] "
 
 PROJECT_APPS_ROOT = BASE_DIR / "apps"
 sys.path.append(PROJECT_APPS_ROOT.as_posix())
@@ -283,7 +286,7 @@ LOGGING = {
 SITE_ID = 1
 
 # Cloud storage
-CONTENTFILES_PREFIX = os.environ.get("CONTENTFILES_PREFIX", "{{ cookiecutter.project_slug }}")
+CONTENTFILES_PREFIX = os.environ.get("CONTENTFILES_PREFIX", f"{PROJECT_SLUG}")
 CONTENTFILES_HOSTNAME = os.environ.get("CONTENTFILES_HOSTNAME")
 CONTENTFILES_S3_REGION = os.environ.get("CONTENTFILES_S3_REGION")
 CONTENTFILES_S3_ENDPOINT_URL = os.environ.get("CONTENTFILES_S3_ENDPOINT_URL")
@@ -313,7 +316,7 @@ WAGTAILSEARCH_BACKENDS = {
     "default": {
         "BACKEND": "wagtail.search.backends.elasticsearch6",
         "URLS": [os.environ.get("SEARCH_URL", "http://127.0.0.1:9200")],
-        "INDEX": os.environ.get("SEARCH_INDEX", "{{ cookiecutter.project_slug }}"),
+        "INDEX": os.environ.get("SEARCH_INDEX", f"{PROJECT_SLUG}"),
     }
 }
 
