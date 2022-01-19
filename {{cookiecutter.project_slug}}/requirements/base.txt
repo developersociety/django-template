@@ -2,7 +2,7 @@ Django==3.2.11
 asgiref==3.4.1
 pytz==2021.3
 psycopg2==2.9.2
-Pillow==8.4.0
+Pillow==9.0.0
 olefile==0.46
 dj-database-url==0.5.0
 sqlparse==0.4.2
@@ -39,7 +39,7 @@ django-crispy-forms==1.13.0
 {%- if cookiecutter.wagtail == 'y' %}
 
 # Wagtail (core wagtail)
-wagtail==2.15.1
+wagtail==2.15.2
 anyascii==0.3.0
 beautifulsoup4==4.9.3
 django-filter==21.1
