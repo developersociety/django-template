@@ -53,10 +53,3 @@ PASSWORD_HASHERS = [
 
 # Disable axes for local usage
 AXES_ENABLED = False
-{%- if cookiecutter.wagtail == 'y' %}
-
-# Wagtail search - use Postgres unless ENABLE_ELASTICSEARCH is enabled with environment vars
-# eg. ENABLE_ELASTICSEARCH=1 ./manage.py runserver
-if not os.environ.get("ENABLE_ELASTICSEARCH"):
-    WAGTAILSEARCH_BACKENDS = {"default": {"BACKEND": "wagtail.search.backends.database"}}
-{%- endif %}
