@@ -29,8 +29,3 @@ PASSWORD_HASHERS = ["django.contrib.auth.hashers.CryptPasswordHasher"]
 
 # Disable axes during testing
 AXES_ENABLED = False
-{%- if cookiecutter.wagtail == 'y' %}
-
-# Avoid elasticsearch during testing
-WAGTAILSEARCH_BACKENDS = {"default": {"BACKEND": "wagtail.search.backends.database"}}
-{%- endif %}
