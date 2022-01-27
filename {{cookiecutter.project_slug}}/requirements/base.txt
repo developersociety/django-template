@@ -69,9 +69,6 @@ charset-normalizer==2.0.7
 # Wagtail extras
 wagtailfontawesome==1.2.1
 
-# Wagtail search
-elasticsearch==6.8.2
-
 # Wagtail 2FA
 django-otp==1.1.1
 qrcode==7.3.1

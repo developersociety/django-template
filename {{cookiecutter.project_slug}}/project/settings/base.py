@@ -312,13 +312,7 @@ WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
 BASE_URL = os.environ.get("WAGTAIL_BASE_URL", "")
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 WAGTAIL_REDIRECTS_FILE_STORAGE = "cache"
-WAGTAILSEARCH_BACKENDS = {
-    "default": {
-        "BACKEND": "wagtail.search.backends.elasticsearch6",
-        "URLS": [os.environ.get("SEARCH_URL", "http://127.0.0.1:9200")],
-        "INDEX": os.environ.get("SEARCH_INDEX", f"{PROJECT_SLUG}"),
-    }
-}
+WAGTAILSEARCH_BACKENDS = {"default": {"BACKEND": "wagtail.search.backends.database"}}
 
 # Ask wagtail to put some wrapper divs w/ classes around media
 # embeds which make doing CSS selectors for responsiveness easier.
