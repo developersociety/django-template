@@ -37,6 +37,6 @@ class HeadingBlock(StructBlock):
 
 
 class BaseStreamBlock(StreamBlock):
-    text = RichTextBlock(icon="fa-paragraph")
+    text = RichTextBlock(icon="pilcrow")
     image = ImageBlock()
     html = RawHTMLBlock(label="HTML")

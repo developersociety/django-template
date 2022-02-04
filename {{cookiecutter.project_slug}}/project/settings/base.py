@@ -91,7 +91,7 @@ THIRD_PARTY_APPS = [
     "wagtail.sites",
     "wagtail.snippets",
     "wagtail.users",
-    "wagtailfontawesome",
+    "wagtailfontawesomesvg",
 ]
 {%- else %}
 

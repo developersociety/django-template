@@ -58,7 +58,7 @@ class SocialAccounts(BaseSetting):
     panels = [FieldPanel("facebook_url"), FieldPanel("twitter_handle")]
 
 
-@register_setting(icon="fa-share")
+@register_setting(icon="share")
 class ShareMeta(BaseSetting):
     default_share_description = models.TextField(
         blank=True,
