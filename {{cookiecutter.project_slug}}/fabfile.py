@@ -279,20 +279,22 @@ def get_backup(hostname=None, replace_hostname='127.0.0.1', replace_port=8000):
 
 
 @task
-def get_media(directory=''):
+def get_media(directory='', filetype=None):
     """
     Download remote media files. It uses credentials from ~/.aws/config.
 
     fab get_media
     fab get_media:assets
+    fab get_media:filetype=jpg
     """
+    params = '--exclude "*" --include "*.{ext}"'.format(ext=filetype) if filetype else ""
     # Sync files from our S3 bucket/directory
     local(
         'aws-vault exec devsoc-contentfiles-download -- '
         'aws s3 sync '
         's3://{media_bucket}/{media}/{directory} '
-        'htdocs/media/{directory}'.format(
-            media_bucket=env.media_bucket, media=env.media, directory=directory
+        'htdocs/media/{directory} {params}'.format(
+            media_bucket=env.media_bucket, media=env.media, directory=directory, params=params
         )
     )
 
