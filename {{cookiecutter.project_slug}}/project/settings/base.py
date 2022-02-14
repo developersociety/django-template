@@ -318,6 +318,15 @@ WAGTAILSEARCH_BACKENDS = {"default": {"BACKEND": "wagtail.search.backends.databa
 # embeds which make doing CSS selectors for responsiveness easier.
 WAGTAILEMBEDS_RESPONSIVE_HTML = True
 
+# REST Framework
+REST_FRAMEWORK = {
+    # Disable basic authentication by default and just use session authentication - as we usually
+    # don't have APIs available to authenticated users, and it impacts the demo site.
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+}
+
 # Django limits POST fields to 1,000 by default, however for Wagtail admin pages this is too low
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 {%- endif %}
