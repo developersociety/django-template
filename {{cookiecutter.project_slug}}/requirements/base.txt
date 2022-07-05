@@ -1,4 +1,4 @@
-Django==3.2.13
+Django==3.2.14
 asgiref==3.5.0
 pytz==2022.1
 psycopg2==2.9.3
