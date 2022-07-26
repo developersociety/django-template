@@ -149,7 +149,7 @@ django-test: django-collectstatic
 	PYTHONWARNINGS=all coverage run --include="apps/*" ./manage.py test --noinput . apps
 
 django-test-fast: django-collectstatic
-    PYTHONWARNINGS=all ./manage.py test --noinput --parallel
+	PYTHONWARNINGS=all ./manage.py test --noinput --parallel
 
 django-check-missing-migrations:
 	./manage.py makemigrations --settings=project.settings.migrations --check --dry-run
