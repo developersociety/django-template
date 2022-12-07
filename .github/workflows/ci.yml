@@ -58,7 +58,7 @@ jobs:
           PGPASSWORD: password
           TOX_TESTENV_PASSENV: "TOX_TESTENV_PASSENV PG*"
         run: |
-          pip install tox
+          pip install $(grep "^tox==" requirements/local.txt)
           tox -e ${{ matrix.testenv }}
     services:
       postgres:
