@@ -1,5 +1,8 @@
 name: CI
 on: pull_request
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
 jobs:
   test:
     name: Test -- ${{ matrix.testenv }}
@@ -16,32 +19,30 @@ jobs:
       fail-fast: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/checkout@v3
         with:
-          python-version: '3.10'
-      - name: Get Node.js version
-        id: nvmrc
-        run: echo "::set-output name=version::$(cat .nvmrc)"
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ steps.nvmrc.outputs.version }}
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Install Ubuntu packages
         run: |
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
             libgdal26
-      - name: Python pip cache
-        uses: actions/cache@v2
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-${{ matrix.testenv }}-pip-${{ hashFiles('**/requirements') }}
+          python-version: '3.10'
+          cache: 'pip'
+          cache-dependency-path: 'requirements/*.txt'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
       - name: Node.js npm cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: |
+            ~/.npm
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('.nvmrc', 'package.json', 'package-lock.json') }}
       - name: Configure Postgres (for faster tests)
         env:
           PGHOST: localhost

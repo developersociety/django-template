@@ -1,5 +1,8 @@
 name: CI
 on: pull_request
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
 jobs:
   test:
     name: Test -- tox
@@ -7,34 +10,39 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Install Ubuntu packages
         run: |
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
             libgdal26
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-      - name: Get Node.js version
-        id: nvmrc
-        run: echo "::set-output name=version::$(cat .nvmrc)"
+          cache: 'pip'
+          cache-dependency-path: 'requirements/*.txt'
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ steps.nvmrc.outputs.version }}
-      - name: Python pip cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements/*.txt') }}
+          node-version-file: '.nvmrc'
       - name: Node.js npm cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ~/.npm
             **/node_modules
-          key: ${{ runner.os }}-node-${{ steps.nvmrc.outputs.version }}-${{ hashFiles('package.json', 'package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('.nvmrc', 'package.json', 'package-lock.json') }}
+      - name: Configure Postgres (for faster tests)
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: password
+        run: |
+          psql -c "ALTER SYSTEM SET fsync=off;"
+          psql -c "ALTER SYSTEM SET full_page_writes=off;"
+          psql -c "SELECT pg_reload_conf();"
       - name: Run tests
         env:
           PGHOST: localhost
