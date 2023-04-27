@@ -102,7 +102,7 @@ THIRD_PARTY_APPS = ["axes", "crispy_forms", "maskpostgresdata"]
 PROJECT_APPS = ["accounts.apps.AccountsConfig", "pages", "settings.apps.SettingsConfig"]
 {%- else %}
 
-PROJECT_APPS = []
+PROJECT_APPS = ["accounts.apps.AccountsConfig"]
 {%- endif %}
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
