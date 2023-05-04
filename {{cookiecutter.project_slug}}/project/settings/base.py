@@ -99,10 +99,10 @@ THIRD_PARTY_APPS = ["axes", "crispy_forms", "maskpostgresdata"]
 {%- endif %}
 {%- if cookiecutter.wagtail == 'y' %}
 
-PROJECT_APPS = ["pages", "settings.apps.SettingsConfig"]
+PROJECT_APPS = ["accounts.apps.AccountsConfig", "pages", "settings.apps.SettingsConfig"]
 {%- else %}
 
-PROJECT_APPS = []
+PROJECT_APPS = ["accounts.apps.AccountsConfig"]
 {%- endif %}
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -338,3 +338,5 @@ GEOS_LIBRARY_PATH = os.environ.get("GEOS_LIBRARY_PATH")
 {%- endif %}
 
 DEMO_SITE = False
+
+AUTH_USER_MODEL = "accounts.User"
