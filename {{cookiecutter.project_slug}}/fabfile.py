@@ -204,11 +204,11 @@ def sentry_release():
     """ Register new release with Sentry. """
     with cd(env.home):
         version = run('sentry-cli releases propose-version')
-        run('sentry-cli releases new --project {project} {version}'.format(
+        run('sentry-cli releases new --finalize --project {project} {version}'.format(
             project=env.repo, version=version
         ))
         run('sentry-cli releases set-commits --auto {version}'.format(version=version))
-        run('sentry-cli releases deploys {version} new --env $SENTRY_ENVIRONMENT'.format(
+        run('sentry-cli releases deploys new --release {version} --env $SENTRY_ENVIRONMENT'.format(
             version=version
         ))
 
