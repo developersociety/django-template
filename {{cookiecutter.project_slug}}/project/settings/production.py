@@ -45,7 +45,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Add more raven data to help diagnose bugs
 try:
-    SENTRY_RELEASE = (Path(BASE_DIR) / Path(".sentry-release")).read_text()
+    SENTRY_RELEASE = (Path(BASE_DIR) / Path(".sentry-release")).read_text().strip()
 except FileNotFoundError:
     SENTRY_RELEASE = None
 
