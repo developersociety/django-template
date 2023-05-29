@@ -4,62 +4,21 @@ from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 {%- endif %}
 from django.conf.urls.static import static
-{%- if cookiecutter.wagtail != "y" %}
 from django.contrib import admin
-{%- endif %}
 from django.contrib.staticfiles.views import serve as staticfiles_serve
 from django.urls import include, path
 from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
 from django.views.static import serve
-{%- if cookiecutter.wagtail == "y" %}
-
-from wagtail.admin import urls as wagtailadmin_urls
-from wagtail.contrib.sitemaps.views import sitemap
-from wagtail.core import urls as wagtail_urls
-from wagtail.documents import urls as wagtaildocs_urls
-
-{%- endif %}
 
 from core.views import server_error
-
-{%- if cookiecutter.wagtail != "y" %}
 
 admin.site.site_title = "{{ cookiecutter.project_name }}"
 admin.site.site_header = "{{ cookiecutter.project_name }}"
 
-{%- endif %}
-
 handler500 = server_error
 
-{%- if cookiecutter.multilingual == "y" and cookiecutter.wagtail == "y" %}
-
-# Multilingual Wagtail site
-urlpatterns = i18n_patterns(
-    path("admin/", include(wagtailadmin_urls)),
-    path("documents/", include(wagtaildocs_urls)),
-)
-
-urlpatterns += [
-    path("sitemap.xml", sitemap, name="sitemap"),
-    path(
-        "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
-    ),
-]
-
-{%- elif cookiecutter.multilingual == "n" and cookiecutter.wagtail == "y" %}
-
-# Standard Wagtail site
-urlpatterns = [
-    path("admin/", include(wagtailadmin_urls)),
-    path("documents/", include(wagtaildocs_urls)),
-    path("sitemap.xml", sitemap, name="sitemap"),
-    path(
-        "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
-    ),
-]
-
-{%- elif cookiecutter.multilingual == "y" and cookiecutter.wagtail == "n" %}
+{%- if cookiecutter.multilingual == "y" %}
 
 # Multilingual Django site
 urlpatterns = [
@@ -101,12 +60,3 @@ if apps.is_installed("debug_toolbar"):
 # Serving static/media under debug
 urlpatterns += static(settings.STATIC_URL, never_cache(staticfiles_serve))
 urlpatterns += static(settings.MEDIA_URL, never_cache(serve), document_root=settings.MEDIA_ROOT)
-{%- if cookiecutter.wagtail == "y" and cookiecutter.multilingual == "y" %}
-
-# Wagtail catch-all
-urlpatterns += i18n_patterns(path("", include(wagtail_urls)))
-{%- elif cookiecutter.wagtail == "y" and cookiecutter.multilingual == "n" %}
-
-# Wagtail catch-all
-urlpatterns += [path("", include(wagtail_urls))]
-{%- endif %}

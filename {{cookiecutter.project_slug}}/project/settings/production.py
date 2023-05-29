@@ -63,9 +63,3 @@ if os.environ.get("ELASTIC_APM_SERVER_URL"):
 # Cache sessions for optimum performance
 if os.environ.get("REDIS_SERVERS"):
     SESSION_ENGINE = "django.contrib.sessions.backends.cache"
-{%- if cookiecutter.wagtail == 'y' %}
-
-# For convenience, 2FA is optional - this is False by default for most sites
-# If this is True, then 2FA is required for staff users (but this will not impact end users)
-WAGTAIL_2FA_REQUIRED = False
-{%- endif %}

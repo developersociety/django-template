@@ -1,7 +1,2 @@
 User-agent: *
 Allow: /
-{%- if cookiecutter.wagtail == 'y' %}
-{% raw %}
-Sitemap: {{ request.scheme }}://{{ request.get_host }}{% url 'sitemap' %}
-{%- endraw %}
-{%- endif %}

@@ -14,8 +14,6 @@ jobs:
           - django
           - django-multilingual
           - geodjango
-          - wagtail
-          - wagtail-multilingual
       fail-fast: false
     steps:
       - name: Checkout

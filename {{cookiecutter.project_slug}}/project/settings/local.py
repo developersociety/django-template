@@ -22,11 +22,7 @@ DATABASES = {
 INTERNAL_IPS = ["127.0.0.1"]
 ALLOWED_HOSTS = ["*"]
 
-{%- if cookiecutter.wagtail == 'y' %}
-INSTALLED_APPS += ["django_extensions", "wagtail.contrib.styleguide"]
-{%- else %}
 INSTALLED_APPS += ["django_extensions"]
-{%- endif %}
 
 # Webpack runserver
 TEMPLATES[0]["OPTIONS"]["context_processors"].append("core.context_processors.browsersync")

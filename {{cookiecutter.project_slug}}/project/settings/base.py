@@ -55,55 +55,14 @@ DEFAULT_APPS = [
     "django.contrib.sessions.apps.SessionsConfig",
     "django.contrib.messages.apps.MessagesConfig",
     "django.contrib.staticfiles.apps.StaticFilesConfig",
-{%- if cookiecutter.wagtail == 'y' %}
-    "django.contrib.sitemaps.apps.SiteMapsConfig",
-{%- else %}
     "django.contrib.sites.apps.SitesConfig",
-{%- endif %}
 {%- if cookiecutter.geodjango == 'y' %}
     "django.contrib.gis.apps.GISConfig",
 {%- endif %}
 ]
-{%- if cookiecutter.wagtail == 'y' %}
-
-THIRD_PARTY_APPS = [
-    "axes",
-    "crispy_forms",
-    "django_otp",
-    "django_otp.plugins.otp_totp",
-    "maskpostgresdata",
-    "modelcluster",
-    "rest_framework",
-    "taggit",
-    "wagtail_2fa",
-    "wagtail.admin",
-    "wagtail.contrib.forms",
-    "wagtail.contrib.modeladmin",
-    "wagtail.contrib.redirects",
-    "wagtail.contrib.routable_page",
-    "wagtail.contrib.search_promotions",
-    "wagtail.contrib.settings",
-    "wagtail.core",
-    "wagtail.documents",
-    "wagtail.embeds",
-    "wagtail.images",
-    "wagtail.search",
-    "wagtail.sites",
-    "wagtail.snippets",
-    "wagtail.users",
-    "wagtailfontawesomesvg",
-]
-{%- else %}
-
 THIRD_PARTY_APPS = ["axes", "crispy_forms", "maskpostgresdata"]
-{%- endif %}
-{%- if cookiecutter.wagtail == 'y' %}
-
-PROJECT_APPS = ["accounts.apps.AccountsConfig", "pages", "settings.apps.SettingsConfig"]
-{%- else %}
 
 PROJECT_APPS = ["accounts.apps.AccountsConfig"]
-{%- endif %}
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
@@ -112,20 +71,13 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-{%- if cookiecutter.wagtail == 'y' %}
-    "wagtail_2fa.middleware.VerifyUserMiddleware",
-{%- endif %}
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
 {%- if cookiecutter.multilingual == 'y' %}
     "django.middleware.locale.LocaleMiddleware",
 {%- endif %}
-{%- if cookiecutter.wagtail == 'y' %}
-    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-{%- else %}
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
-{%- endif %}
     "axes.middleware.AxesMiddleware",
 ]
 
@@ -148,18 +100,8 @@ if os.environ.get("REDIS_SERVERS"):
         "LOCATION": os.environ["REDIS_SERVERS"].split(" "),
         "KEY_PREFIX": "{}:cache".format(os.environ["REDIS_PREFIX"]),
     }
-{%- if cookiecutter.wagtail == 'y' %}
-    CACHES["renditions"] = {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.environ["REDIS_SERVERS"].split(" "),
-        "KEY_PREFIX": "{}:renditions".format(os.environ["REDIS_PREFIX"]),
-    }
-{%- endif %}
 else:
     CACHES["default"] = {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}
-{%- if cookiecutter.wagtail == 'y' %}
-    CACHES["renditions"] = {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}
-{%- endif %}
 
 # Internationalization
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/i18n/
@@ -234,9 +176,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.messages.context_processors.messages",
                 "core.context_processors.demo",
-{%- if cookiecutter.wagtail == 'y' %}
-                "wagtail.contrib.settings.context_processors.settings",
-{%- endif %}
             ]
         },
     }
@@ -305,31 +244,6 @@ AXES_ONLY_USER_FAILURES = True
 AXES_FAILURE_LIMIT = 10
 AXES_COOLOFF_TIME = timedelta(minutes=15)
 AXES_ENABLE_ADMIN = False
-{%- if cookiecutter.wagtail == 'y' %}
-
-# Wagtail
-WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
-BASE_URL = os.environ.get("WAGTAIL_BASE_URL", "")
-WAGTAIL_ENABLE_UPDATE_CHECK = False
-WAGTAIL_REDIRECTS_FILE_STORAGE = "cache"
-WAGTAILSEARCH_BACKENDS = {"default": {"BACKEND": "wagtail.search.backends.database"}}
-
-# Ask wagtail to put some wrapper divs w/ classes around media
-# embeds which make doing CSS selectors for responsiveness easier.
-WAGTAILEMBEDS_RESPONSIVE_HTML = True
-
-# REST Framework
-REST_FRAMEWORK = {
-    # Disable basic authentication by default and just use session authentication - as we usually
-    # don't have APIs available to authenticated users, and it impacts the demo site.
-    "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.SessionAuthentication",
-    ],
-}
-
-# Django limits POST fields to 1,000 by default, however for Wagtail admin pages this is too low
-DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
-{%- endif %}
 {%- if cookiecutter.geodjango == 'y' %}
 
 # GeoDjango fixes
