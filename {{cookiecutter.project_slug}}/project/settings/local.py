@@ -41,7 +41,7 @@ if not os.environ.get("DISABLE_TOOLBAR"):
 
     MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
 
-# Allow login with remote passwords, but downgrade/swap to crypt for password hashing speed
+# Allow login with remote passwords, but downgrade/swap for faster password hashing speed
 PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.MD5PasswordHasher",
     "django.contrib.auth.hashers.PBKDF2PasswordHasher",
