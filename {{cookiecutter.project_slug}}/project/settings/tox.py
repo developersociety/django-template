@@ -25,7 +25,7 @@ TEST_RUNNER = "xmlrunner.extra.djangotestrunner.XMLTestRunner"
 TEST_OUTPUT_DIR = "reports"
 
 # Always run tests with the fastest password hasher
-PASSWORD_HASHERS = ["django.contrib.auth.hashers.CryptPasswordHasher"]
+PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]
 
 # Disable axes during testing
 AXES_ENABLED = False

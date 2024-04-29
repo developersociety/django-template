@@ -43,7 +43,7 @@ if not os.environ.get("DISABLE_TOOLBAR"):
 
 # Allow login with remote passwords, but downgrade/swap to crypt for password hashing speed
 PASSWORD_HASHERS = [
-    "django.contrib.auth.hashers.CryptPasswordHasher",
+    "django.contrib.auth.hashers.MD5PasswordHasher",
     "django.contrib.auth.hashers.PBKDF2PasswordHasher",
 ]
 
