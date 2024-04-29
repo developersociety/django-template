@@ -32,9 +32,6 @@ certifi==2024.2.2
 ecs-logging==2.1.0
 wrapt==1.14.1
 
-# Cookie filtering
-django-cookiefilter==1.0
-
 # Axes
 django-axes==6.4.0
 django-ipware==4.0.2
