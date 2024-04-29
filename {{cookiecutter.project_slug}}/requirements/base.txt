@@ -1,10 +1,10 @@
 Django==5.0.4
 asgiref==3.8.1
-pytz==2024.1
 psycopg==3.1.18
 olefile==0.47
 dj-database-url==2.1.0
 sqlparse==0.5.0
+typing_extensions==4.11.0
 
 # Caching
 django-redis==5.4.0
