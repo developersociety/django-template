@@ -25,8 +25,7 @@ def browsersync_url(host):
         return None
 
     cache_time = int(time.time())
-    url = BROWSERSYNC_URL.format(host=host, port=port, time=cache_time)
-    return url
+    return BROWSERSYNC_URL.format(host=host, port=port, time=cache_time)
 
 
 def browsersync(request):
