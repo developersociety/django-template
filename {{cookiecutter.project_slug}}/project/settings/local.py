@@ -10,7 +10,7 @@ DATABASES = {
 {%- if cookiecutter.geodjango == 'y' %}
         "ENGINE": "django.contrib.gis.db.backends.postgis",
 {%- else %}
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.db.backends.postgresql",
 {%- endif %}
         "NAME": os.environ.get("DJANGO_DATABASE_NAME", "{{ cookiecutter.project_slug }}_django"),
         "USER": "",
