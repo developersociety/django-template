@@ -39,7 +39,7 @@ extend_exclude="field.html"
 "tree.html" = "H025"
 
 [tool.ruff]
-exclude = ["apps/*/migrations"]
+extend-exclude = ["apps/*/migrations"]
 line-length = 99
 
 [tool.ruff.lint]
