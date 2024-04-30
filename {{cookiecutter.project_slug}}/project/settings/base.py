@@ -133,11 +133,9 @@ LOCALE_PATHS = [BASE_DIR / "locale"]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/howto/static-files/
 
-STATIC_URL = os.environ.get("STATIC_URL", "/static/")
+STATIC_URL = os.environ.get("STATIC_URL", "static/")
 
 STATIC_ROOT = BASE_DIR / "htdocs/static"
-
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
@@ -148,9 +146,16 @@ MEDIA_URL = os.environ.get("MEDIA_URL", "/media/")
 
 MEDIA_ROOT = BASE_DIR / "htdocs/media"
 
-DEFAULT_FILE_STORAGE = os.environ.get(
-    "DEFAULT_FILE_STORAGE", "django.core.files.storage.FileSystemStorage"
-)
+STORAGES = {
+    "default": {
+        "BACKEND": os.environ.get(
+            "DEFAULT_FILE_STORAGE", "django.core.files.storage.FileSystemStorage"
+        ),
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#default-auto-field

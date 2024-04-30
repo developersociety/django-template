@@ -28,7 +28,7 @@ INSTALLED_APPS += ["django_extensions"]
 TEMPLATES[0]["OPTIONS"]["context_processors"].append("core.context_processors.browsersync")
 
 # Use vanilla StaticFilesStorage to allow tests to run outside of tox easily
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+STORAGES["staticfiles"]["BACKEND"] = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 SECRET_KEY = "secret"
 
