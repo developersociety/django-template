@@ -118,8 +118,6 @@ USE_I18N = True
 USE_I18N = False
 {%- endif %}
 
-USE_L10N = True
-
 USE_TZ = True
 
 {%- if cookiecutter.multilingual == 'y' %}
