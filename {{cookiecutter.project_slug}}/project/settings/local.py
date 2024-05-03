@@ -10,7 +10,7 @@ DATABASES = {
 {%- if cookiecutter.geodjango == 'y' %}
         "ENGINE": "django.contrib.gis.db.backends.postgis",
 {%- else %}
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.db.backends.postgresql",
 {%- endif %}
         "NAME": os.environ.get("DJANGO_DATABASE_NAME", "{{ cookiecutter.project_slug }}_django"),
         "USER": "",
@@ -28,7 +28,7 @@ INSTALLED_APPS += ["django_extensions"]
 TEMPLATES[0]["OPTIONS"]["context_processors"].append("core.context_processors.browsersync")
 
 # Use vanilla StaticFilesStorage to allow tests to run outside of tox easily
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+STORAGES["staticfiles"]["BACKEND"] = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 SECRET_KEY = "secret"
 
@@ -41,9 +41,9 @@ if not os.environ.get("DISABLE_TOOLBAR"):
 
     MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
 
-# Allow login with remote passwords, but downgrade/swap to crypt for password hashing speed
+# Allow login with remote passwords, but downgrade/swap for faster password hashing speed
 PASSWORD_HASHERS = [
-    "django.contrib.auth.hashers.CryptPasswordHasher",
+    "django.contrib.auth.hashers.MD5PasswordHasher",
     "django.contrib.auth.hashers.PBKDF2PasswordHasher",
 ]
 

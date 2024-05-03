@@ -45,10 +45,10 @@ check: ## Check for any obvious errors in the project's setup.
 check: pipdeptree-check npm-check django-check
 
 format: ## Run this project's code formatters.
-format: black-format isort-format prettier-format
+format: ruff-format black-format isort-format prettier-format djlint-format
 
 lint: ## Lint the project.
-lint: npm-install black-lint isort-lint flake8-lint eslint-lint prettier-lint
+lint: ruff-lint black-lint isort-lint flake8-lint npm-install eslint-lint prettier-lint djlint-lint djlint-check
 
 test: ## Run unit and integration tests.
 test: django-test
@@ -111,6 +111,15 @@ fab-get-media:
 
 fab-deploy:
 	fab deploy
+
+
+# Ruff
+ruff-lint:
+	ruff check .
+	ruff format --check apps project
+
+ruff-format:
+	ruff check --fix-only .
 
 
 # ISort
@@ -207,6 +216,17 @@ black-lint:
 
 black-format:
 	black apps project
+
+
+# DJ lint
+djlint-lint:
+	djlint templates --lint
+
+djlint-check:
+	djlint templates --check
+
+djlint-format:
+	djlint templates --reformat
 
 
 #pipdeptree

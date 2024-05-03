@@ -1,6 +1,6 @@
 [tool.black]
 line-length = 99
-target-version = ['py39']
+target-version = ['py312']
 exclude = '/migrations/'
 
 [tool.isort]
@@ -14,3 +14,60 @@ force_grid_wrap = 0
 line_length = 99
 multi_line_output = 3
 skip_glob = '*/migrations/*.py'
+
+[tool.djlint]
+profile = "django"
+indent = 2
+blank_line_after_tag = "load,extends"
+line_break_after_multiline_tag = true
+close_void_tags = true
+max_length = 120
+# T002 - Double quotes should be used in tags
+ignore = "T002"
+# Bootsrtap file from crispy forms - too many issues with it
+extend_exclude="field.html"
+
+[tool.djlint.per-file-ignores]
+# Disable:
+# H006 - Img tag should have height and width attributes
+# H025 - Tag seems to be an orphan.
+# H030 - Consider adding a meta description
+# H031 - Consider adding meta keywords
+"500.html" = "H030,H031"
+"base.html" = "H030,H031"
+"demo_styles.html" = "H006"
+"tree.html" = "H025"
+
+[tool.ruff]
+extend-exclude = ["apps/*/migrations"]
+line-length = 99
+
+[tool.ruff.lint]
+ignore = [
+    "F405",
+    "W605",
+    "N802", # Ignore lowercase function name rule- conflicts with assertEqual etc.
+]
+# Adds additional rules to the default "E" (pycodestyle) and "F" (pyflakes)
+extend-select = [
+    "W",       # pycodestyle Warning,                                                                    see https://docs.astral.sh/ruff/rules/#warning-w
+    "N",       # pep8-naming,                                                                            see https://docs.astral.sh/ruff/rules/#pep8-naming-n
+    "YTT",     # flake8-2020 flake8 plugin which checks for misuse of sys.version or sys.version_info,   see https://docs.astral.sh/ruff/rules/#flake8-2020-ytt
+    "BLE",     # checks for blind, catch all except and except Exception statements,                     see https://docs.astral.sh/ruff/rules/#flake8-blind-except-ble
+    "B",       # flake8-bugbear,                                                                         see https://docs.astral.sh/ruff/rules/#flake8-bugbear-b
+    "A",       # checks for variables that use Python builtin names,                                     see https://docs.astral.sh/ruff/rules/#flake8-builtins-a
+    "T100",    # Check for pdb;idbp imports and set traces,                                              see https://docs.astral.sh/ruff/rules/#flake8-debugger-t10
+    "DJ001",   # Avoid using null=True on string-based fields such as CharField and TextField,           see https://docs.astral.sh/ruff/rules/django-nullable-model-string-field/
+    "DJ003",   # Avoid passing locals() as context to a render function,                                 see https://docs.astral.sh/ruff/rules/django-locals-in-render-function/
+    "DJ012",   # Check that the order of model's inner classes, methods, and fields,                     see https://docs.astral.sh/ruff/rules/django-unordered-body-content-in-model/
+    "ISC",     # looks for style problems like implicitly concatenated string literals on the same line, see https://docs.astral.sh/ruff/rules/#flake8-implicit-str-concat-isc
+    "INP001",  # Checks for packages that are missing an __init__.py file,                               see https://docs.astral.sh/ruff/rules/#flake8-no-pep420-inp
+    "PIE",     # flake8-pie, multiple tools,                                                             see https://docs.astral.sh/ruff/rules/#flake8-pie-pie
+    "T20",     # removes print and pprint statements,                                                    see https://docs.astral.sh/ruff/rules/#flake8-print-t20
+    "RET",     # multiple rules,                                                                         see https://docs.astral.sh/ruff/rules/#flake8-return-ret
+    "SIM107",  # Checks for return statements in try-except and finally blocks,                          see https://docs.astral.sh/ruff/rules/return-in-try-except-finally/
+    "SIM114",  # Checks for if branches with identical arm bodies,                                       see https://docs.astral.sh/ruff/rules/if-with-same-arms/
+    "SIM115",  # Checks for usages of the builtin open() function without an associated context manager, see https://docs.astral.sh/ruff/rules/open-file-with-context-handler/
+    "PD",      # Pandas best practices,                                                                  see https://docs.astral.sh/ruff/rules/#pandas-vet-pd
+]
+
