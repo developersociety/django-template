@@ -6,29 +6,29 @@ concurrency:
 jobs:
   test:
     name: Test -- tox
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     timeout-minutes: 10
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Install Ubuntu packages
         run: |
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            libgdal26
+            libgdal30
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
           cache: 'pip'
           cache-dependency-path: 'requirements/*.txt'
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
       - name: Node.js npm cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.npm
@@ -54,7 +54,7 @@ jobs:
           tox
     services:
       postgres:
-        image: postgis/postgis:12-3.0
+        image: postgis/postgis:15-3.4
         env:
           POSTGRES_PASSWORD: password
         ports:
