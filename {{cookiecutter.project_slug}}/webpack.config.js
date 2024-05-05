@@ -2,6 +2,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
@@ -21,12 +22,13 @@ const config = {
     entry: {
         base: ['./static/src/js/base.js'],
         app: ['./static/src/js/app.js'],
-        styles: ['./static/src/scss/styles.scss']
+        styles: ['./static/src/scss/styles.scss'],
     },
     output: {
         path: path.resolve('./static/dist/'),
-        filename: 'js/[name].js'
-    }
+        filename: 'js/[name].js',
+        assetModuleFilename: 'assets/[hash][ext][query]',
+    },
 };
 
 module.exports = [
@@ -35,37 +37,37 @@ module.exports = [
         name: 'development',
         entry: config.entry,
         output: config.output,
+
         plugins: [
             // Dist clean
             new CleanWebpackPlugin({
-                cleanStaleWebpackAssets: false
+                cleanStaleWebpackAssets: false,
             }),
 
             // SVG sprite
             new SVGSpritemapPlugin('./static/src/sprite/*.svg', {
                 output: {
-                    filename: './svg/sprite.svg'
+                    filename: './svg/sprite.svg',
                 },
                 sprite: {
-                    prefix: false
-                }
+                    prefix: false,
+                },
             }),
 
             // Set css name
             new MiniCssExtractPlugin({
                 filename: 'css/[name].css',
-                chunkFilename: 'css/[id].css'
+                chunkFilename: 'css/[id].css',
             }),
 
             // Stylelint plugin
             new StyleLintPlugin({
-                configFile: '.stylelintrc',
-                context: '',
-                files: '/static/src/scss/**/*.scss',
-                syntax: 'scss',
+                files: 'static/src/scss',
                 failOnError: false,
-                quiet: false
             }),
+
+            // eslint plugin
+            new ESLintPlugin(),
 
             // BrowserSync
             new BrowserSyncPlugin(
@@ -73,48 +75,29 @@ module.exports = [
                     host: django_ip,
                     port: browsersync_port,
                     injectCss: true,
+                    ghostMode: false,
                     logLevel: 'silent',
                     files: ['./static/dist/css/*.css', './static/dist/js/*.js'],
                     ignore: ['./static/dist/js/styles.js'],
                     ui: {
-                        port: browsersyncui_port
-                    }
+                        port: browsersyncui_port,
+                    },
                 },
                 {
-                    reload: false
-                }
+                    reload: false,
+                },
             ),
 
             new VueLoaderPlugin(),
-            new WebpackNotifierPlugin()
+            new WebpackNotifierPlugin(),
         ],
 
         module: {
             rules: [
                 {
-                    enforce: 'pre',
-                    test: /\.js$/,
-                    exclude: /node_modules/,
-                    use: {
-                        loader: 'eslint-loader',
-                        options: {
-                            configFile: path.resolve('.eslintrc.js')
-                        }
-                    }
-                },
-                {
                     test: /\.(png|jpg|woff|woff2|eot|ttf|svg|otf)$/,
-                    use: [
-                        {
-                            loader: 'url-loader',
-                            options: {
-                                limit: 1024,
-                                outputPath: 'assets',
-                                publicPath: '../assets'
-                            }
-                        }
-                    ],
-                    exclude: /node_modules/
+                    exclude: /node_modules/,
+                    type: 'asset/resource',
                 },
                 {
                     test: /\.js$/,
@@ -127,16 +110,16 @@ module.exports = [
                                     '@babel/preset-env',
                                     {
                                         useBuiltIns: 'usage',
-                                        corejs: 3
-                                    }
-                                ]
-                            ]
-                        }
-                    }
+                                        corejs: 3,
+                                    },
+                                ],
+                            ],
+                        },
+                    },
                 },
                 {
                     test: /\.vue$/,
-                    use: 'vue-loader'
+                    use: 'vue-loader',
                 },
                 {
                     test: /\.scss$/,
@@ -145,17 +128,17 @@ module.exports = [
                         MiniCssExtractPlugin.loader,
                         {
                             loader: 'css-loader',
-                            options: { sourceMap: true }
+                            options: { sourceMap: true },
                         },
                         {
                             loader: 'postcss-loader',
-                            options: { sourceMap: true }
+                            options: { sourceMap: true },
                         },
                         {
                             loader: 'sass-loader',
-                            options: { sourceMap: true }
-                        }
-                    ]
+                            options: { sourceMap: true },
+                        },
+                    ],
                 },
                 {
                     test: /\.css$/,
@@ -164,11 +147,11 @@ module.exports = [
                         'style-loader',
                         {
                             loader: 'css-loader',
-                            options: { sourceMap: true }
-                        }
-                    ]
-                }
-            ]
+                            options: { sourceMap: true },
+                        },
+                    ],
+                },
+            ],
         },
 
         stats: {
@@ -186,11 +169,11 @@ module.exports = [
             modules: false,
             reasons: false,
             children: false,
-            publicPath: false
+            publicPath: false,
         },
 
         // Create Sourcemaps for the files
-        devtool: 'source-map'
+        devtool: 'source-map',
     },
     // Production webpack config
     {
@@ -202,16 +185,16 @@ module.exports = [
             // SVG sprite
             new SVGSpritemapPlugin('./static/src/sprite/*.svg', {
                 output: {
-                    filename: './svg/sprite.svg'
+                    filename: './svg/sprite.svg',
                 },
                 sprite: {
-                    prefix: false
-                }
+                    prefix: false,
+                },
             }),
 
             // Specify the resulting CSS filename
             new MiniCssExtractPlugin({
-                filename: 'css/[name].css'
+                filename: 'css/[name].css',
             }),
 
             // Stylelint plugin
@@ -221,10 +204,10 @@ module.exports = [
                 files: '/static/src/scss/**/*.scss',
                 syntax: 'scss',
                 failOnError: false,
-                quiet: false
+                quiet: false,
             }),
 
-            new VueLoaderPlugin()
+            new VueLoaderPlugin(),
         ],
 
         module: {
@@ -240,30 +223,21 @@ module.exports = [
                                     '@babel/preset-env',
                                     {
                                         useBuiltIns: 'usage',
-                                        corejs: 3
-                                    }
-                                ]
-                            ]
-                        }
-                    }
+                                        corejs: 3,
+                                    },
+                                ],
+                            ],
+                        },
+                    },
                 },
                 {
                     test: /\.vue$/,
-                    use: 'vue-loader'
+                    use: 'vue-loader',
                 },
                 {
                     test: /\.(png|jpg|woff|woff2|eot|ttf|svg|otf)$/,
-                    use: [
-                        {
-                            loader: 'url-loader',
-                            options: {
-                                limit: 1024,
-                                outputPath: 'assets',
-                                publicPath: '../assets'
-                            }
-                        }
-                    ],
-                    exclude: /node_modules/
+                    exclude: /node_modules/,
+                    type: 'asset/resource',
                 },
                 {
                     test: /\.scss$/,
@@ -271,10 +245,10 @@ module.exports = [
                         MiniCssExtractPlugin.loader,
                         'css-loader',
                         'postcss-loader',
-                        'sass-loader'
-                    ]
-                }
-            ]
-        }
-    }
+                        'sass-loader',
+                    ],
+                },
+            ],
+        },
+    },
 ];

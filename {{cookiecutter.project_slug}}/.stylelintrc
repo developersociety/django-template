@@ -1,13 +1,11 @@
 {
     "plugins": [
+        "stylelint-scss",
         "stylelint-selector-bem-pattern"
     ],
-    "extends": "stylelint-config-prettier",
-    "ignoreFiles": [
-        "./static/src/scss/normalize/**"
-    ],
+    "extends": "stylelint-config-prettier-scss",
+    "customSyntax": "postcss-scss",
     "rules": {
-        "indentation": 4,
         "color-hex-length": "long",
         "no-empty-source": null,
         "at-rule-no-unknown": null,

@@ -45,10 +45,10 @@ check: ## Check for any obvious errors in the project's setup.
 check: pipdeptree-check npm-check django-check
 
 format: ## Run this project's code formatters.
-format: ruff-format black-format isort-format prettier-format djlint-format
+format: ruff-format black-format isort-format prettier-format stylelint-format djlint-format
 
 lint: ## Lint the project.
-lint: ruff-lint black-lint isort-lint flake8-lint npm-install eslint-lint prettier-lint djlint-lint djlint-check
+lint: ruff-lint black-lint isort-lint flake8-lint npm-install eslint-lint prettier-lint stylelint-lint djlint-lint djlint-check
 
 test: ## Run unit and integration tests.
 test: django-test
@@ -200,7 +200,8 @@ npm-run-production:
 
 # ESLint
 eslint-lint:
-	npm run eslint -- static/src/js
+	npm run eslint --silent -- static/src/js
+
 
 # Prettier
 prettier-lint:
@@ -208,6 +209,14 @@ prettier-lint:
 
 prettier-format:
 	npm run prettier --silent -- --write "static/src/{js,scss}/**" "*.js"
+
+
+# stylelint
+stylelint-lint:
+	npm run stylelint --silent -- static/src/scss
+
+stylelint-format:
+	npm run stylelint --silent -- static/src/scss --fix
 
 
 # Black

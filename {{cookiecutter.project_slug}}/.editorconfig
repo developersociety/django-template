@@ -10,8 +10,8 @@ trim_trailing_whitespace = true
 end_of_line = lf
 charset = utf-8
 
-# Limit Python files to 99 characters
-[*.py]
+# Limit Python/Javascript files to 99 characters
+[*.{js,py}]
 max_line_length = 99
 
 # Use 2 spaces for the HTML files
