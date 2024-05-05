@@ -88,7 +88,9 @@ WSGI_APPLICATION = "project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/ref/settings/#databases
 
-DATABASES = {"default": dj_database_url.config()}
+DATABASES = {}
+if os.environ.get("DATABASE_URL"):
+    DATABASES["default"] = dj_database_url.config()
 
 # Caches
 # https://docs.djangoproject.com/en/{{ cookiecutter.django_version }}/topics/cache/
