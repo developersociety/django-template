@@ -140,10 +140,35 @@ def update():
 @task
 @runs_once
 @roles('web')
-def migrate():
+def migrate(fake=False):
     """ Migrate database changes. """
     with cd(env.home):
-        run('python manage.py migrate')
+        if fake:
+            run('python manage.py migrate --fake')
+        else:
+            run('python manage.py migrate')
+
+@task
+@runs_once
+@roles('web')
+def truncate_migrations_table():
+    """ Wipe out migrations table - used as part of reset_migrations. """
+    with cd(env.home):
+        run('echo "TRUNCATE django_migrations;" | python manage.py dbshell')
+
+
+@task
+def reset_migrations():
+    """
+    Perform a deployment which resets migrations.
+    To avoid any issues, resetting all migrations should be the only task as part of the pull
+    request and deployment. Any code changes or package updates should be done in other pull
+    requests.
+    """
+    execute(update)
+    execute(truncate_migrations_table)
+    execute(migrate, fake=True)
+    execute(deploy)
 
 
 @task
