@@ -1,14 +1,14 @@
 Django==5.0.4
 asgiref==3.8.1
 psycopg==3.1.18
+Pillow==10.3.0
 olefile==0.47
 dj-database-url==2.1.0
 sqlparse==0.5.0
-typing_extensions==4.11.0
+typing-extensions==4.11.0
 
 # Caching
 django-redis==5.4.0
-async-timeout==4.0.2
 redis==5.0.4
 
 # Masked database backups
@@ -34,7 +34,6 @@ wrapt==1.14.1
 
 # Axes
 django-axes==6.4.0
-django-ipware==4.0.2
 
 # Form styling
 django-crispy-forms==1.14.0
