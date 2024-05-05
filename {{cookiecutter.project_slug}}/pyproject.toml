@@ -70,4 +70,3 @@ extend-select = [
     "SIM115",  # Checks for usages of the builtin open() function without an associated context manager, see https://docs.astral.sh/ruff/rules/open-file-with-context-handler/
     "PD",      # Pandas best practices,                                                                  see https://docs.astral.sh/ruff/rules/#pandas-vet-pd
 ]
-
