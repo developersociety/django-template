@@ -41,6 +41,11 @@ if not os.environ.get("DISABLE_TOOLBAR"):
 
     MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
 
+    DEBUG_TOOLBAR_CONFIG = {
+        "SKIP_TEMPLATE_PREFIXES": ("django/forms/widgets/", "admin/widgets/", "bootstrap/"),
+        "RESULTS_CACHE_SIZE": 200,
+    }
+
 # Allow login with remote passwords, but downgrade/swap for faster password hashing speed
 PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.MD5PasswordHasher",
