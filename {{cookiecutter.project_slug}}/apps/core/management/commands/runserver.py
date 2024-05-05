@@ -16,11 +16,22 @@ class Command(RunserverCommand):
             default=True,
             help="Tells Django to NOT start webpack.",
         )
+        parser.add_argument(
+            "--skip-migrations",
+            dest="skip_migrations",
+            action="store_true",
+            default=False,
+            help="Tells Django to skip check_migrations.",
+        )
 
     def run(self, **options):
         if options.get("use_webpack"):
             self.set_webpack_environment_variables()
             self.start_webpack(**options)
+
+        self.skip_migrations = False
+        if options.get("skip_migrations"):
+            self.skip_migrations = True
 
         super().run(**options)
 
@@ -68,3 +79,9 @@ class Command(RunserverCommand):
             self.webpack_process.wait()
 
         atexit.register(kill_webpack_process)
+
+    def check_migrations(self, *args, **kwargs):
+        if self.skip_migrations:
+            self.stdout.write(self.style.WARNING("SKIPPING MIGRATION CHECKS!\n"))
+        else:
+            super().check_migrations(*args, **kwargs)
