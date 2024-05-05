@@ -44,9 +44,9 @@ jobs:
           PGHOST: localhost
           PGUSER: postgres
           PGPASSWORD: password
-          TOX_TESTENV_PASSENV: "PG*"
+          TOX_OVERRIDE: "testenv.pass_env=PG*"
         run: |
-          pip install $(grep "^tox==" requirements/local.txt)
+          pip install $(grep -E "^(tox|tox-uv)==" requirements/local.txt)
           tox
     services:
       postgres:
