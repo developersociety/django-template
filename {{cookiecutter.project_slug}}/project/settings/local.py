@@ -12,7 +12,7 @@ DATABASES = {
 {%- else %}
         "ENGINE": "django.db.backends.postgresql",
 {%- endif %}
-        "NAME": os.environ.get("DJANGO_DATABASE_NAME", "{{ cookiecutter.project_slug }}_django"),
+        "NAME": os.environ.get("DJANGO_DATABASE_NAME", f"{PROJECT_SLUG}_django"),
         "USER": "",
         "PASSWORD": "",
         "PORT": "",

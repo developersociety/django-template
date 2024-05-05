@@ -6,9 +6,9 @@ from .base import *  # noqa
 # another database we also set this as the 'default' as well
 
 {%- if cookiecutter.geodjango == 'y' %}
-DATABASES = {"default": dj_database_url.config(default="postgis:///test_{{ cookiecutter.project_slug }}_django")}
+DATABASES = {"default": dj_database_url.config(default=f"postgis:///test_{PROJECT_SLUG}_django")}
 {%- else %}
-DATABASES = {"default": dj_database_url.config(default="postgres:///test_{{ cookiecutter.project_slug }}_django")}
+DATABASES = {"default": dj_database_url.config(default=f"postgres:///test_{PROJECT_SLUG}_django")}
 {%- endif %}
 DATABASES["default"]["TEST"] = {"NAME": DATABASES["default"]["NAME"]}
 
