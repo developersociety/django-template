@@ -15,6 +15,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Install Ubuntu packages
         run: |
+          sudo apt-get update
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
             libgdal30
       - name: Setup Python
