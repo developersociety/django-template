@@ -10,9 +10,6 @@ const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 // Webpack clean dist
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-// Vue
-const { VueLoaderPlugin } = require('vue-loader');
-
 const django_ip = process.env.DJANGO_IP || '127.0.0.1';
 const django_port = parseInt(process.env.DJANGO_PORT || 8000);
 const browsersync_port = parseInt(process.env.BROWSERSYNC_PORT || django_port + 1);
@@ -88,7 +85,6 @@ module.exports = [
                 },
             ),
 
-            new VueLoaderPlugin(),
             new WebpackNotifierPlugin(),
         ],
 
@@ -118,10 +114,6 @@ module.exports = [
                     },
                 },
                 {
-                    test: /\.vue$/,
-                    use: 'vue-loader',
-                },
-                {
                     test: /\.scss$/,
                     exclude: /node_modules/,
                     use: [
@@ -136,7 +128,10 @@ module.exports = [
                         },
                         {
                             loader: 'sass-loader',
-                            options: { sourceMap: true },
+                            options: {
+                                sourceMap: true,
+                                implementation: require('sass-embedded'),
+                            },
                         },
                     ],
                 },
@@ -206,8 +201,6 @@ module.exports = [
                 failOnError: false,
                 quiet: false,
             }),
-
-            new VueLoaderPlugin(),
         ],
 
         module: {
@@ -231,10 +224,6 @@ module.exports = [
                     },
                 },
                 {
-                    test: /\.vue$/,
-                    use: 'vue-loader',
-                },
-                {
                     test: /\.(png|jpg|woff|woff2|eot|ttf|svg|otf)$/,
                     exclude: /node_modules/,
                     type: 'asset/resource',
@@ -245,7 +234,13 @@ module.exports = [
                         MiniCssExtractPlugin.loader,
                         'css-loader',
                         'postcss-loader',
-                        'sass-loader',
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true,
+                                implementation: require('sass-embedded'),
+                            },
+                        },
                     ],
                 },
             ],
