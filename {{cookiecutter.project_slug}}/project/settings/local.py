@@ -1,4 +1,5 @@
 import os
+import sys
 
 from .base import *  # noqa
 
@@ -21,7 +22,6 @@ DATABASES = {
 
 INTERNAL_IPS = ["127.0.0.1"]
 ALLOWED_HOSTS = ["*"]
-
 INSTALLED_APPS += ["django_extensions"]
 
 # Webpack runserver
@@ -36,7 +36,7 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Django debug toolbar - show locally unless DISABLE_TOOLBAR is enabled with environment vars
 # eg. DISABLE_TOOLBAR=1 ./manage.py runserver
-if not os.environ.get("DISABLE_TOOLBAR"):
+if not os.environ.get("DISABLE_TOOLBAR") and "test" not in sys.argv:
     INSTALLED_APPS += ["debug_toolbar"]
 
     MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
