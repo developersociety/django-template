@@ -1,7 +1,7 @@
 -r testing.txt
 
-django-debug-toolbar==4.3.0
+django-debug-toolbar==5.2.0
 ipdb==0.13.13
-pywatchman==2.0.0
-tox==4.14.2
-tox-uv==1.7.0
+pywatchman==3.0.0
+tox==4.27.0
+tox-uv==1.26.1

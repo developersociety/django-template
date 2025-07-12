@@ -1,45 +1,45 @@
-Django==5.0.11
-asgiref==3.8.1
-psycopg==3.1.18
-Pillow==10.3.0
+Django==5.2.4
+asgiref==3.9.1
+psycopg==3.2.9
+Pillow==11.3.0
 olefile==0.47
-dj-database-url==2.1.0
-sqlparse==0.5.0
-typing-extensions==4.11.0
+dj-database-url==3.0.1
+sqlparse==0.5.3
+typing-extensions==4.14.1
 
 # Caching
-django-redis==5.4.0
-redis==5.0.4
+django-redis==6.0.0
+redis==6.2.0
 
 # Masked database backups
 django-maskpostgresdata==0.2.1
 
 # Storage
-devsoc-contentfiles==0.3
-django-storages==1.14.2
-boto3==1.34.91
-botocore==1.34.91
+devsoc-contentfiles==0.5
+django-storages==1.14.6
+boto3==1.39.4
+botocore==1.39.4
 jmespath==1.0.1
 python-dateutil==2.9.0.post0
-s3transfer==0.10.1
-six==1.16.0
-urllib3==2.2.1
+s3transfer==0.13.0
+six==1.17.0
+urllib3==2.5.0
 
 # Reporting (Errors, APM)
-elastic-apm==6.22.0
-sentry-sdk==1.45.0
-certifi==2024.2.2
-ecs-logging==2.1.0
-wrapt==1.14.1
+elastic-apm==6.23.0
+sentry-sdk==2.32.0
+certifi==2025.7.9
+ecs-logging==2.2.0
+wrapt==1.17.2
 
 # Axes
-django-axes==6.4.0
+django-axes==8.0.0
 
 # Form styling
 django-crispy-forms==1.14.0
 {%- if cookiecutter.multilingual == 'y' %}
 
 # Translations
-translate-toolkit==2.3.1
-diff-match-patch==20121119
+translate-toolkit==3.15.6
+diff-match-patch==20241021
 {%- endif %}
