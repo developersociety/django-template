@@ -37,6 +37,9 @@ django-axes==8.0.0
 
 # Email interception
 django-email-bandit==2.0
+
+# Watchman health checks
+django-watchman==1.3.0
 {%- if cookiecutter.multilingual == 'y' %}
 
 # Translations

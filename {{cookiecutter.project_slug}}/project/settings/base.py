@@ -60,7 +60,11 @@ DEFAULT_APPS = [
     "django.contrib.gis.apps.GISConfig",
 {%- endif %}
 ]
-THIRD_PARTY_APPS = ["axes", "maskpostgresdata"]
+THIRD_PARTY_APPS = [
+    "axes",
+    "maskpostgresdata",
+    "watchman",
+]
 
 PROJECT_APPS = ["accounts.apps.AccountsConfig"]
 
@@ -258,6 +262,13 @@ GEOS_LIBRARY_PATH = os.environ.get("GEOS_LIBRARY_PATH")
 {%- endif %}
 
 DEMO_SITE = False
+
+# Health checks
+WATCHMAN_CHECKS = [
+    "watchman.checks.caches",
+    "watchman.checks.databases",
+]
+WATCHMAN_CACHES = ["default"]  # Avoid additional cache backend hits
 
 # Sentry frontend tracking
 SENTRY_JS_URL = os.environ.get("SENTRY_JS_URL")

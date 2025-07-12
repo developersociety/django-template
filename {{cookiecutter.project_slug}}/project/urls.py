@@ -25,6 +25,8 @@ urlpatterns = [
     path(
         "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
     ),
+    # Health checks
+    path("_health/", include("watchman.urls")),
 ]
 
 urlpatterns = i18n_patterns(path("admin/", admin.site.urls))
@@ -37,6 +39,8 @@ urlpatterns = [
     path(
         "robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")
     ),
+    # Health checks
+    path("_health/", include("watchman.urls")),
 ]
 
 {%- endif %}
