@@ -11,8 +11,6 @@ close_void_tags = true
 max_length = 120
 # T002 - Double quotes should be used in tags
 ignore = "T002"
-# Bootsrtap file from crispy forms - too many issues with it
-extend_exclude="field.html"
 
 [tool.djlint.per-file-ignores]
 # Disable:

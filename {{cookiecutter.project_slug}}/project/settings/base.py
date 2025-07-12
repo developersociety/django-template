@@ -60,7 +60,7 @@ DEFAULT_APPS = [
     "django.contrib.gis.apps.GISConfig",
 {%- endif %}
 ]
-THIRD_PARTY_APPS = ["axes", "crispy_forms", "maskpostgresdata"]
+THIRD_PARTY_APPS = ["axes", "maskpostgresdata"]
 
 PROJECT_APPS = ["accounts.apps.AccountsConfig"]
 
