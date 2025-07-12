@@ -36,16 +36,16 @@ nuke: ## Full wipe of the local environment, uncommitted files, and database.
 nuke: venv-check venv-wipe git-full-clean database-drop
 
 reset: ## Reset your local environment. Useful after switching branches, etc.
-reset: venv-check venv-wipe install-local fab-get-backup django-migrate django-user-passwords django-dev-createsuperuser
+reset: venv-check venv-wipe install-local fab-get-backup django-migrate django-user-passwords django-dev-createsuperuser django-configure-local-sites
 
 full-reset: ## Reset your local environment and download all media files.
-full-reset: venv-check venv-wipe install-local fab-get-data django-migrate django-user-passwords django-dev-createsuperuser
+full-reset: venv-check venv-wipe install-local fab-get-data django-migrate django-user-passwords django-dev-createsuperuser django-configure-local-sites
 
 clear: ## Like reset but without the wiping of the installs.
-clear: fab-get-backup django-migrate django-user-passwords django-dev-createsuperuser
+clear: fab-get-backup django-migrate django-user-passwords django-dev-createsuperuser django-configure-local-sites
 
 full-clear: ## Fresh download of remotely stored data including media files.
-full-clear: fab-get-data django-migrate django-user-passwords django-dev-createsuperuser
+full-clear: fab-get-data django-migrate django-user-passwords django-dev-createsuperuser django-configure-local-sites
 
 check: ## Check for any obvious errors in the project's setup.
 check: pipdeptree-check npm-check django-check
@@ -168,6 +168,9 @@ django-user-passwords:
 
 django-migrate:
 	./manage.py migrate
+
+django-configure-local-sites:
+	./manage.py configure_local_sites
 
 
 # NPM
