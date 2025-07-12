@@ -17,6 +17,5 @@ if [ "$MULTILINGUAL" == "y" ]; then
     mkdir -p locale
 else
     # Remove multilingual features
-    rm -f apps/pages/views.py
     rm -rf apps/core/tests
 fi
