@@ -1,19 +1,6 @@
 [tool.black]
 line-length = 99
-target-version = ['py312']
-exclude = '/migrations/'
-
-[tool.isort]
-combine_as_imports = true
-sections = ['FUTURE','STDLIB','DJANGO','THIRDPARTY','FIRSTPARTY','LOCALFOLDER']
-known_django = 'django'
-known_first_party = 'apps/'
-include_trailing_comma = true
-float_to_top = true
-force_grid_wrap = 0
-line_length = 99
-multi_line_output = 3
-skip_glob = '*/migrations/*.py'
+target-version = ["py312"]
 
 [tool.djlint]
 profile = "django"
@@ -39,33 +26,88 @@ extend_exclude="field.html"
 
 [tool.ruff]
 extend-exclude = ["apps/*/migrations"]
+src = ["apps"]
 line-length = 99
+target-version = "py312"
 
 [tool.ruff.lint]
-ignore = [
-    "F405",
-    "W605",
-    "N802", # Ignore lowercase function name rule- conflicts with assertEqual etc.
-]
-# Adds additional rules to the default "E" (pycodestyle) and "F" (pyflakes)
+exclude = ["apps/*/migrations"]
 extend-select = [
-    "W",       # pycodestyle Warning,                                                                    see https://docs.astral.sh/ruff/rules/#warning-w
-    "N",       # pep8-naming,                                                                            see https://docs.astral.sh/ruff/rules/#pep8-naming-n
-    "YTT",     # flake8-2020 flake8 plugin which checks for misuse of sys.version or sys.version_info,   see https://docs.astral.sh/ruff/rules/#flake8-2020-ytt
-    "BLE",     # checks for blind, catch all except and except Exception statements,                     see https://docs.astral.sh/ruff/rules/#flake8-blind-except-ble
-    "B",       # flake8-bugbear,                                                                         see https://docs.astral.sh/ruff/rules/#flake8-bugbear-b
-    "A",       # checks for variables that use Python builtin names,                                     see https://docs.astral.sh/ruff/rules/#flake8-builtins-a
-    "T100",    # Check for pdb;idbp imports and set traces,                                              see https://docs.astral.sh/ruff/rules/#flake8-debugger-t10
-    "DJ001",   # Avoid using null=True on string-based fields such as CharField and TextField,           see https://docs.astral.sh/ruff/rules/django-nullable-model-string-field/
-    "DJ003",   # Avoid passing locals() as context to a render function,                                 see https://docs.astral.sh/ruff/rules/django-locals-in-render-function/
-    "DJ012",   # Check that the order of model's inner classes, methods, and fields,                     see https://docs.astral.sh/ruff/rules/django-unordered-body-content-in-model/
-    "ISC",     # looks for style problems like implicitly concatenated string literals on the same line, see https://docs.astral.sh/ruff/rules/#flake8-implicit-str-concat-isc
-    "INP001",  # Checks for packages that are missing an __init__.py file,                               see https://docs.astral.sh/ruff/rules/#flake8-no-pep420-inp
-    "PIE",     # flake8-pie, multiple tools,                                                             see https://docs.astral.sh/ruff/rules/#flake8-pie-pie
-    "T20",     # removes print and pprint statements,                                                    see https://docs.astral.sh/ruff/rules/#flake8-print-t20
-    "RET",     # multiple rules,                                                                         see https://docs.astral.sh/ruff/rules/#flake8-return-ret
-    "SIM107",  # Checks for return statements in try-except and finally blocks,                          see https://docs.astral.sh/ruff/rules/return-in-try-except-finally/
-    "SIM114",  # Checks for if branches with identical arm bodies,                                       see https://docs.astral.sh/ruff/rules/if-with-same-arms/
-    "SIM115",  # Checks for usages of the builtin open() function without an associated context manager, see https://docs.astral.sh/ruff/rules/open-file-with-context-handler/
-    "PD",      # Pandas best practices,                                                                  see https://docs.astral.sh/ruff/rules/#pandas-vet-pd
+    "ERA",   # eradicate
+    "YTT",   # flake8-2020
+    "ASYNC", # flake8-async
+    "S",     # flake8-bandit
+    "BLE",   # flake8-blind-except
+    "B",     # flake8-bugbear
+    "A",     # flake8-builtins
+    "COM",   # flake8-commas
+    "C4",    # flake8-comprehensions
+    "DTZ",   # flake8-datetimez
+    "T10",   # flake8-debugger
+    "DJ",    # flake8-django
+    "EM",    # flake8-errmsg
+    "EXE",   # flake8-executable
+    "FA",    # flake8-future-annotations
+    "INT",   # flake8-gettext
+    "ISC",   # flake8-implicit-str-concat
+    "ICN",   # flake8-import-conventions
+    "LOG",   # flake8-logging
+    "G",     # flake8-logging-format
+    "INP",   # flake8-no-pep420
+    "PIE",   # flake8-pie
+    "T20",   # flake8-print
+    "PYI",   # flake8-pyi
+    "Q",     # flake8-quotes
+    "RSE",   # flake8-raise
+    "RET",   # flake8-return
+    "SLOT",  # flake8-slots
+    "SIM",   # flake8-simplify
+    "TID",   # flake8-tidy-imports
+    "TD",    # flake8-todos
+    "TCH",   # flake8-type-checking
+    "PTH",   # flake8-use-pathlib
+    "FLY",   # flynt
+    "I",     # isort
+    "NPY",   # numpy-specific rules
+    "PD",    # pandas-vet
+    "N",     # pep8-naming
+    "PERF",  # perflint
+    "E",     # pycodestyle
+    "W",     # pycodestyle
+    "F",     # pyflakes
+    "PGH",   # pygrep-hooks
+    "PLC",   # pylint
+    "PLE",   # pylint
+    "PLW",   # pylint
+    "UP",    # pyupgrade
+    "FURB",  # refurb
+    "RUF",   # ruff-specific rules
+    "TRY",   # tryceratops
+]
+ignore = [
+    "COM812", # flake8-commas: missing-trailing-comma
+    "EM101",  # flake8-errmsg: raw-string-in-exception
+    "ISC001", # flake8-implicit-str-concat: single-line-implicit-string-concatenation
+    "RUF012", # ruff-specific rules: mutable-class-default
+    "SIM105", # flake8-simplify: suppressible-exception
+    "SIM108", # flake8-simplify: if-else-block-instead-of-if-exp
+    "TD002",  # flake8-todos: missing-todo-author
+    "TRY003", # tryceratops: raise-vanilla-args
+]
+
+[tool.ruff.lint.per-file-ignores]
+"fabfile.py" = [
+    "PGH004", # pygrep-hooks: blanket-noqa
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+section-order = ["future", "standard-library", "django", "third-party", "first-party", "local-folder"]
+
+[tool.ruff.lint.isort.sections]
+"django" = ["django"]
+
+[tool.ruff.lint.pep8-naming]
+extend-ignore-names = [
+    "assert*",
 ]

@@ -1,7 +1,8 @@
+# ruff: noqa:F405
 import os
 import sys
 
-from .base import *  # noqa
+from .base import *  # noqa:F403
 
 DEBUG = True
 TEMPLATES[0]["OPTIONS"]["debug"] = True
@@ -30,7 +31,7 @@ TEMPLATES[0]["OPTIONS"]["context_processors"].append("core.context_processors.br
 # Use vanilla StaticFilesStorage to allow tests to run outside of tox easily
 STORAGES["staticfiles"]["BACKEND"] = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
-SECRET_KEY = "secret"
+SECRET_KEY = "secret"  # noqa:S105
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
@@ -39,7 +40,7 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 if not os.environ.get("DISABLE_TOOLBAR") and "test" not in sys.argv:
     INSTALLED_APPS += ["debug_toolbar"]
 
-    MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
+    MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware", *MIDDLEWARE]
 
     DEBUG_TOOLBAR_CONFIG = {
         "SKIP_TEMPLATE_PREFIXES": ("django/forms/widgets/", "admin/widgets/", "bootstrap/"),

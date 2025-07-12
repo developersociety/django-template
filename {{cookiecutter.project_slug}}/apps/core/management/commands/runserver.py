@@ -61,17 +61,17 @@ class Command(RunserverCommand):
             webpack_args.append("--display=errors-only")
 
         if webpack_args:
-            webpack_args = ["--"] + webpack_args
+            webpack_args = ["--", *webpack_args]
 
         self.stdout.write(">>> Starting webpack")
-        self.webpack_process = subprocess.Popen(
-            ["npm", "start"] + webpack_args,
+        self.webpack_process = subprocess.Popen(  # noqa:S603
+            ["npm", "start", *webpack_args],  # noqa:S607
             shell=False,
             stdin=subprocess.PIPE,
             stdout=self.stdout._out,
             stderr=self.stderr._out,
         )
-        self.stdout.write(">>> Webpack process on pid {}".format(self.webpack_process.pid))
+        self.stdout.write(f">>> Webpack process on pid {self.webpack_process.pid}")
 
         def kill_webpack_process():
             self.stdout.write(">>> Closing webpack process")

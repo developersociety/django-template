@@ -1,3 +1,4 @@
+# ruff: noqa:F405
 import os
 from pathlib import Path
 
@@ -5,7 +6,7 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import ignore_logger
 
-from .base import *  # noqa
+from .base import *  # noqa:F403
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
 
@@ -63,7 +64,7 @@ for logger in ["elasticapm.errors", "elasticapm.transport", "elasticapm.transpor
 if os.environ.get("ELASTIC_APM_SERVER_URL"):
     INSTALLED_APPS += ["elasticapm.contrib.django.apps.ElasticAPMConfig"]
 
-    MIDDLEWARE = ["elasticapm.contrib.django.middleware.TracingMiddleware"] + MIDDLEWARE
+    MIDDLEWARE = ["elasticapm.contrib.django.middleware.TracingMiddleware", *MIDDLEWARE]
 
 # Cache sessions for optimum performance
 if os.environ.get("REDIS_SERVERS"):

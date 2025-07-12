@@ -1,3 +1,4 @@
+# ruff: noqa
 import random
 
 from fabric.api import cd, env, execute, local, parallel, roles, run, runs_once, task
@@ -5,25 +6,25 @@ from fabric.contrib.files import exists
 
 # Changable settings
 env.roledefs = {
-    'web': [
-        '{{ cookiecutter.project_slug }}@scorch.devsoc.org',
-        '{{ cookiecutter.project_slug }}@smaug.devsoc.org',
+    "web": [
+        "{{ cookiecutter.project_slug }}@scorch.devsoc.org",
+        "{{ cookiecutter.project_slug }}@smaug.devsoc.org",
     ],
-    'demo': [
-        '{{ cookiecutter.project_slug }}@trogdor.devsoc.org',
+    "demo": [
+        "{{ cookiecutter.project_slug }}@trogdor.devsoc.org",
     ],
-    'cron': [
-        '{{ cookiecutter.project_slug }}@{{ ["scorch", "smaug"]|random() }}.devsoc.org',
+    "cron": [
+        "{{ cookiecutter.project_slug }}@{{ ["scorch", "smaug"]|random() }}.devsoc.org",
     ],
 }
 
-env.home = env.get('home', '/var/www/{{ cookiecutter.project_slug }}')
-env.virtualenv = env.get('virtualenv', '/var/envs/{{ cookiecutter.project_slug }}')
-env.appname = env.get('appname', '{{ cookiecutter.project_slug }}')
-env.repo = env.get('repo', '{{ cookiecutter.project_slug }}')
-env.media = env.get('media', '{{ cookiecutter.project_slug }}')
-env.media_bucket = env.get('media_bucket', 'contentfiles-media-eu-west-1')
-env.database = env.get('database', '{{ cookiecutter.project_slug }}_django')
+env.home = env.get("home", "/var/www/{{ cookiecutter.project_slug }}")
+env.virtualenv = env.get("virtualenv", "/var/envs/{{ cookiecutter.project_slug }}")
+env.appname = env.get("appname", "{{ cookiecutter.project_slug }}")
+env.repo = env.get("repo", "{{ cookiecutter.project_slug }}")
+env.media = env.get("media", "{{ cookiecutter.project_slug }}")
+env.media_bucket = env.get("media_bucket", "contentfiles-media-eu-west-1")
+env.database = env.get("database", "{{ cookiecutter.project_slug }}_django")
 
 CRONTAB = """
 MAILTO=""
@@ -33,18 +34,18 @@ MAILTO=""
 
 # Avoid tweaking these
 env.use_ssh_config = True
-GIT_REMOTE = 'git@github.com:developersociety/{env.repo}.git'
+GIT_REMOTE = "git@github.com:developersociety/{env.repo}.git"
 
 
 @task
 def demo():
-    env.roledefs['web'] = env.roledefs['demo']
-    env.roledefs['cron'] = env.roledefs['demo']
-    env.media_bucket = 'contentfiles-demo-media-eu-west-1'
+    env.roledefs["web"] = env.roledefs["demo"]
+    env.roledefs["cron"] = env.roledefs["demo"]
+    env.media_bucket = "contentfiles-demo-media-eu-west-1"
 
 
 @task
-@roles('cron')
+@roles("cron")
 def cron(remove=None):
     """
     Crontab setup.
@@ -56,20 +57,21 @@ def cron(remove=None):
     """
     # Allow quick removal if needed
     if remove:
-        run('crontab -r')
+        run("crontab -r")
         return
 
     # Deterministic based on hostname
     random.seed(env.host_string)
 
     # Several templates - can add more if needed
-    def every_x(minutes=60, hour='*', day='*', month='*', day_of_week='*'):
+    def every_x(minutes=60, hour="*", day="*", month="*", day_of_week="*"):
         # Add some randomness to minutes
         start = random.randint(0, minutes - 1)
-        minute = ','.join(str(x) for x in range(start, 60, minutes))
+        minute = ",".join(str(x) for x in range(start, 60, minutes))
 
-        return '{minute} {hour} {day} {month} {day_of_week}'.format(
-            minute=minute, hour=hour, day=day, month=month, day_of_week=day_of_week)
+        return "{minute} {hour} {day} {month} {day_of_week}".format(
+            minute=minute, hour=hour, day=day, month=month, day_of_week=day_of_week
+        )
 
     cron = CRONTAB.format(
         axes_reset_logs=every_x(hour=random.randint(0, 23)),
@@ -79,9 +81,9 @@ def cron(remove=None):
 
 
 @task
-@roles('web')
+@roles("web")
 @parallel
-def clone_repo(branch='main'):
+def clone_repo(branch="main"):
     """
     Initial site setup.
 
@@ -91,47 +93,44 @@ def clone_repo(branch='main'):
     fab clone_repo:branchname
     """
     with cd(env.home):
-        if not exists('.git'):
+        if not exists(".git"):
             git_repo = GIT_REMOTE.format(env=env)
-            run('git clone --quiet --recursive {} .'.format(git_repo))
+            run("git clone --quiet --recursive {} .".format(git_repo))
         else:
-            run('git fetch')
+            run("git fetch")
 
-        run('git checkout {}'.format(branch))
+        run("git checkout {}".format(branch))
 
 
 @task
-@roles('web')
+@roles("web")
 @parallel
 def update():
-    """ Pull latest git repository changes and install requirements. """
+    """Pull latest git repository changes and install requirements."""
     with cd(env.home):
-        run('git pull')
+        run("git pull")
 
         # Save the current git commit for Sentry release tracking
-        run('git rev-parse HEAD > .sentry-release')
+        run("git rev-parse HEAD > .sentry-release")
 
         # Install python packages
-        run('pip install --quiet --requirement requirements/production.txt')
+        run("pip install --quiet --requirement requirements/production.txt")
 
         # Install nvm using .nvmrc version
-        run('nvm install --default --no-progress')
+        run("nvm install --default --no-progress")
 
         # Check for changes in nvm or package-lock.json
+        run("cmp --silent .nvmrc node_modules/.nvmrc || rm -f node_modules/.package-lock.json")
         run(
-            'cmp --silent .nvmrc node_modules/.nvmrc || '
-            'rm -f node_modules/.package-lock.json'
-        )
-        run(
-            'cmp --silent package-lock.json node_modules/.package-lock.json || '
-            'rm -f node_modules/.package-lock.json'
+            "cmp --silent package-lock.json node_modules/.package-lock.json || "
+            "rm -f node_modules/.package-lock.json"
         )
 
         # Install node packages
-        if not exists('node_modules/.package-lock.json'):
-            run('npm ci --no-progress')
-            run('cp -a package-lock.json node_modules/.package-lock.json')
-            run('cp -a .nvmrc node_modules/.nvmrc')
+        if not exists("node_modules/.package-lock.json"):
+            run("npm ci --no-progress")
+            run("cp -a package-lock.json node_modules/.package-lock.json")
+            run("cp -a .nvmrc node_modules/.nvmrc")
 
         # Clean up any potential cruft
         run('find -name "__pycache__" -prune -exec rm -rf {} \;')
@@ -139,20 +138,21 @@ def update():
 
 @task
 @runs_once
-@roles('web')
+@roles("web")
 def migrate(fake=False):
-    """ Migrate database changes. """
+    """Migrate database changes."""
     with cd(env.home):
         if fake:
-            run('python manage.py migrate --fake')
+            run("python manage.py migrate --fake")
         else:
-            run('python manage.py migrate')
+            run("python manage.py migrate")
+
 
 @task
 @runs_once
-@roles('web')
+@roles("web")
 def truncate_migrations_table():
-    """ Wipe out migrations table - used as part of reset_migrations. """
+    """Wipe out migrations table - used as part of reset_migrations."""
     with cd(env.home):
         run('echo "TRUNCATE django_migrations;" | python manage.py dbshell')
 
@@ -172,35 +172,35 @@ def reset_migrations():
 
 
 @task
-@roles('web')
+@roles("web")
 @parallel
 def static():
-    """ Update static files. """
+    """Update static files."""
     with cd(env.home):
         # Clean dist folder
-        run('rm -rf static/dist')
+        run("rm -rf static/dist")
 
         # Generate CSS
-        run('npm run production --silent')
+        run("npm run production --silent")
 
         # Collect static files
-        run('python manage.py collectstatic --verbosity=0 --noinput')
+        run("python manage.py collectstatic --verbosity=0 --noinput")
 
 {%- if cookiecutter.multilingual == 'y' %}
 
 
 @task
-@roles('web')
+@roles("web")
 @parallel
 def translations():
-    """ Update translation files. """
-    with cd(env.home), cd('locale'):
-        run('python ../manage.py compilemessages --verbosity=0')
+    """Update translation files."""
+    with cd(env.home), cd("locale"):
+        run("python ../manage.py compilemessages --verbosity=0")
 {%- endif %}
 
 
-@task(name='reload')
-@roles('web')
+@task(name="reload")
+@roles("web")
 @parallel
 def reload_uwsgi(force_reload=None):
     """
@@ -211,25 +211,29 @@ def reload_uwsgi(force_reload=None):
     fab reload:force_reload=True
     """
     if force_reload:
-        run('uwsgi --stop /run/uwsgi/{}/uwsgi.pid'.format(env.appname))
+        run("uwsgi --stop /run/uwsgi/{}/uwsgi.pid".format(env.appname))
     else:
-        run('uwsgi --reload /run/uwsgi/{}/uwsgi.pid'.format(env.appname))
+        run("uwsgi --reload /run/uwsgi/{}/uwsgi.pid".format(env.appname))
 
 
 @task
-@roles('web')
+@roles("web")
 @runs_once
 def sentry_release():
-    """ Register new release with Sentry. """
+    """Register new release with Sentry."""
     with cd(env.home):
-        version = run('sentry-cli releases propose-version')
-        run('sentry-cli releases new --finalize --project {project} {version}'.format(
-            project=env.repo, version=version
-        ))
-        run('sentry-cli releases set-commits --auto {version}'.format(version=version))
-        run('sentry-cli releases deploys new --release {version} --env $SENTRY_ENVIRONMENT'.format(
-            version=version
-        ))
+        version = run("sentry-cli releases propose-version")
+        run(
+            "sentry-cli releases new --finalize --project {project} {version}".format(
+                project=env.repo, version=version
+            )
+        )
+        run("sentry-cli releases set-commits --auto {version}".format(version=version))
+        run(
+            "sentry-cli releases deploys new --release {version} --env $SENTRY_ENVIRONMENT".format(
+                version=version
+            )
+        )
 
 
 @task
@@ -255,7 +259,7 @@ def deploy(force_reload=None):
 
 
 @task
-def get_backup(hostname=None, replace_hostname='127.0.0.1', replace_port=8000):
+def get_backup(hostname=None, replace_hostname="127.0.0.1", replace_port=8000):
     """
     Get remote backup and restore database locally.
 
@@ -265,11 +269,11 @@ def get_backup(hostname=None, replace_hostname='127.0.0.1', replace_port=8000):
     fab get_backup:hostname=www.example.com,replace_hostname=192.1.1.1,replace_port=8000
     """
     # Recreate database
-    local('dropdb --if-exists {}'.format(env.database))
-    local('createdb {}'.format(env.database))
+    local("dropdb --if-exists {}".format(env.database))
+    local("createdb {}".format(env.database))
 
     # Connect to the server and dump database.
-    backup_ssh = random.choice(env.roledefs['web'])
+    backup_ssh = random.choice(env.roledefs["web"])
     commands = [
         """
         ssh -C {} '(
@@ -278,13 +282,15 @@ def get_backup(hostname=None, replace_hostname='127.0.0.1', replace_port=8000):
             && {}/manage.py dump_masked_data
         )'
         """.format(
-            backup_ssh, env.virtualenv, env.home,
+            backup_ssh,
+            env.virtualenv,
+            env.home,
         ).strip()
     ]
 
     if hostname:
         if replace_port:
-            replace_host = '{}:{}'.format(replace_hostname, replace_port)
+            replace_host = "{}:{}".format(replace_hostname, replace_port)
         else:
             replace_host = replace_hostname
 
@@ -292,13 +298,13 @@ def get_backup(hostname=None, replace_hostname='127.0.0.1', replace_port=8000):
         commands.append('sed -e "s|{}|{}|g"'.format(hostname, replace_host))
 
     # Restore database.
-    commands.append('psql --single-transaction {}'.format(env.database))
+    commands.append("psql --single-transaction {}".format(env.database))
 
-    local(' | '.join(commands))
+    local(" | ".join(commands))
 
 
 @task
-def get_media(directory='', filetype=None):
+def get_media(directory="", filetype=None):
     """
     Download remote media files. It uses credentials from ~/.aws/config.
 
@@ -309,10 +315,10 @@ def get_media(directory='', filetype=None):
     params = '--exclude "*" --include "*.{ext}"'.format(ext=filetype) if filetype else ""
     # Sync files from our S3 bucket/directory
     local(
-        'aws-vault exec devsoc-contentfiles-download -- '
-        'aws s3 sync '
-        's3://{media_bucket}/{media}/{directory} '
-        'htdocs/media/{directory} {params}'.format(
+        "aws-vault exec devsoc-contentfiles-download -- "
+        "aws s3 sync "
+        "s3://{media_bucket}/{media}/{directory} "
+        "htdocs/media/{directory} {params}".format(
             media_bucket=env.media_bucket, media=env.media, directory=directory, params=params
         )
     )
@@ -320,16 +326,16 @@ def get_media(directory='', filetype=None):
 
 @task
 @runs_once
-@roles('web')
+@roles("web")
 def get_env():
-    """ Get the current environment variables, ready for local export."""
+    """Get the current environment variables, ready for local export."""
     env.output_prefix = False
     run('export | sed -e "s/declare -x/export/g"')
 
 
 @task
-def ssh(index='1'):
-    """ SSH to the remote server, pass ssh:2 to go to the second defined. """
+def ssh(index="1"):
+    """SSH to the remote server, pass ssh:2 to go to the second defined."""
     index = int(index) - 1
-    server = env.roledefs['web'][index]
-    local('ssh {}'.format(server))
+    server = env.roledefs["web"][index]
+    local("ssh {}".format(server))

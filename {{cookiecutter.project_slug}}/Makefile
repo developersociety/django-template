@@ -51,10 +51,10 @@ check: ## Check for any obvious errors in the project's setup.
 check: pipdeptree-check npm-check django-check
 
 format: ## Run this project's code formatters.
-format: ruff-format black-format isort-format prettier-format stylelint-format djlint-format
+format: ruff-format prettier-format stylelint-format djlint-format
 
 lint: ## Lint the project.
-lint: ruff-lint black-lint isort-lint flake8-lint npm-install eslint-lint prettier-lint stylelint-lint djlint-lint djlint-check
+lint: ruff-lint eslint-lint prettier-lint stylelint-lint djlint-lint djlint-check
 
 test: ## Run unit and integration tests.
 test: django-test
@@ -67,8 +67,6 @@ test-report: coverage-clean test coverage-report
 
 deploy: ## Deploy this project to demo or live.
 deploy: fab-deploy
-
-
 
 # ---------------
 # Utility targets
@@ -117,28 +115,6 @@ fab-get-media:
 
 fab-deploy:
 	fab deploy
-
-
-# Ruff
-ruff-lint:
-	ruff check .
-	ruff format --check apps project
-
-ruff-format:
-	ruff check --fix-only .
-
-
-# ISort
-isort-lint:
-	isort --check-only --diff apps project
-
-isort-format:
-	isort apps project
-
-
-# Flake8
-flake8-lint:
-	flake8 apps project
 
 
 # Coverage
@@ -225,12 +201,14 @@ stylelint-format:
 	npm run stylelint --silent -- static/src/scss --fix
 
 
-# Black
-black-lint:
-	black --check apps project
+# Ruff
+ruff-lint:
+	ruff check
+	ruff format --check
 
-black-format:
-	black apps project
+ruff-format:
+	ruff check --fix-only
+	ruff format
 
 
 # DJ lint

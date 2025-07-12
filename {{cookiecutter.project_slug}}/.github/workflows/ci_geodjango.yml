@@ -50,9 +50,11 @@ jobs:
           PGHOST: localhost
           PGUSER: postgres
           PGPASSWORD: password
-          TOX_OVERRIDE: "testenv.pass_env=PG*"
+          RUFF_OUTPUT_FORMAT: github
+          TOX_OVERRIDE: "testenv.pass_env=PG*,RUFF_OUTPUT_FORMAT"
         run: |
           pip install $(grep -E "^(tox|tox-uv)==" requirements/local.txt)
+          echo "::add-matcher::.github/workflows/matchers/ruff.json"
           tox
     services:
       postgres:

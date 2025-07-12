@@ -7,7 +7,7 @@ from django.conf import settings
 BROWSERSYNC_URL = "http://{host}:{port}/browser-sync/browser-sync-client.js?t={time}"
 
 
-@functools.lru_cache()
+@functools.cache
 def browsersync_url(host):
     """
     Return the browsersync javascript URL for a given hostname, or None if disabled.
