@@ -39,7 +39,6 @@
         "prettier": "prettier",
         "stylelint": "stylelint",
         "start": "webpack --config webpack.config.js --config-name 'development' --mode development --watch",
-        "production": "webpack --config webpack.config.js --config-name 'production' --mode production",
-        "test-a11y": "node ./tests/src/pa11y.mjs"
+        "production": "webpack --config webpack.config.js --config-name 'production' --mode production"
     }
 }
