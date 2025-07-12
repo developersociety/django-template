@@ -1,47 +1,43 @@
 <!DOCTYPE html>
-
 {% load i18n %}
 {% load static %}
 
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
   <head>
     <title>
-      {% block title %}{{ request.site.name }}{% endblock %}
+      {% block title %}
+        {{ request.site.name }}
+      {% endblock title %}
     </title>
-    <link rel="stylesheet" href="{% static 'dist/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/styles.css' %}" />
     <link rel="canonical" href="{{ request.build_absolute_uri }}" />
-
     {% include 'includes/meta.html' %}
-
     {% if BROWSERSYNC_URL %}
       <script src="{{ BROWSERSYNC_URL }}" async></script>
     {% endif %}
   </head>
-
   <body>
     {% if DEMO_SITE %}
       <div class="demo-announcement">
-        <div class="container">{% translate 'This site is in development. Any changes made here will not be transferred to the production build.' %}</div>
+        <div class="container">
+          {% translate 'This site is in development. Any changes made here will not be transferred to the production build.' %}
+        </div>
       </div>
     {% endif %}
-
     <header class="header">
       {% include 'includes/header.html' %}
     </header>
-
     <main class="main">
       {% block main %}
-        <div id="app"></div>
-      {% endblock %}
+        <div id="app">
+        </div>
+      {% endblock main %}
     </main>
-
     <footer class="footer inverted">
       {% include 'includes/footer.html' %}
     </footer>
-
     <script src="{% static 'dist/js/app.js' %}"></script>
     <script src="{% static 'dist/js/base.js' %}"></script>
-
     {% block extra_scripts %}
     {% endblock extra_scripts %}
   </body>

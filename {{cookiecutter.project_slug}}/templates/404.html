@@ -4,12 +4,19 @@
 
 {% block main %}
   <div class="container">
-    <h1>{% translate '404 - page not found' %}</h1>
-
-    <p>{% translate "We couldn't find the page you are looking for." %}</p>
-
-    <p>{% translate 'If you entered the URL manually please check your spelling and try again.' %}</p>
-
-    <p><a class="button" href="/">Back to homepage</a></p>
+    <h1>
+      {% translate '404 - page not found' %}
+    </h1>
+    <p>
+      {% translate "We couldn't find the page you are looking for." %}
+    </p>
+    <p>
+      {% translate 'If you entered the URL manually please check your spelling and try again.' %}
+    </p>
+    <p>
+      {# djlint:off D018 #}
+      <a class="button" href="/">Back to homepage</a>
+      {# djlint:on D018 #}
+    </p>
   </div>
 {% endblock main %}

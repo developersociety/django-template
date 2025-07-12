@@ -29,14 +29,13 @@ extend_exclude="field.html"
 
 [tool.djlint.per-file-ignores]
 # Disable:
-# H006 - Img tag should have height and width attributes
-# H025 - Tag seems to be an orphan.
+# D018 - Internal links should use the url ... pattern.
 # H030 - Consider adding a meta description
 # H031 - Consider adding meta keywords
 "500.html" = "H030,H031"
 "base.html" = "H030,H031"
-"demo_styles.html" = "H006"
-"tree.html" = "H025"
+"includes/footer.html" = "D018"
+"includes/header.html" = "D018"
 
 [tool.ruff]
 extend-exclude = ["apps/*/migrations"]
