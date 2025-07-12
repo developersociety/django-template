@@ -35,6 +35,9 @@ wrapt==1.17.2
 # Axes
 django-axes==8.0.0
 
+# Email interception
+django-email-bandit==2.0
+
 # Form styling
 django-crispy-forms==1.14.0
 {%- if cookiecutter.multilingual == 'y' %}
