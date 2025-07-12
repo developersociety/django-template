@@ -15,6 +15,13 @@
     {% if BROWSERSYNC_URL %}
       <script src="{{ BROWSERSYNC_URL }}" async></script>
     {% endif %}
+    {% if SENTRY_JS_URL %}
+      {% if SENTRY_JS_CONFIG %}
+        {{ SENTRY_JS_CONFIG|json_script:"sentry-config" }}
+      {% endif %}
+      <script src="{% static 'dist/js/sentry_config.js' %}"></script>
+      <script src="{{ SENTRY_JS_URL }}" crossorigin="anonymous"></script>
+    {% endif %}
   </head>
   <body>
     {% if DEMO_SITE %}

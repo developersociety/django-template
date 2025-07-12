@@ -41,5 +41,23 @@ def browsersync(request):
     return {"BROWSERSYNC_URL": url}
 
 
+def sentry_config(request):
+    """
+    Add Sentry config to the global template context.
+    """
+
+    # Only for dynamic configuration - use sentry_config.js for anything static!
+    config = {}
+    if settings.SENTRY_ENVIRONMENT:
+        config["environment"] = settings.SENTRY_ENVIRONMENT
+    if settings.SENTRY_RELEASE:
+        config["release"] = settings.SENTRY_RELEASE
+
+    return {
+        "SENTRY_JS_URL": settings.SENTRY_JS_URL,
+        "SENTRY_JS_CONFIG": config,
+    }
+
+
 def demo(request):
     return {"DEMO_SITE": settings.DEMO_SITE}

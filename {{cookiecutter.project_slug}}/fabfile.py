@@ -190,7 +190,35 @@ def static():
         run("npm run production --silent")
 
         # Collect static files
-        run("python manage.py collectstatic --verbosity=0 --noinput")
+        run("python manage.py collectstatic --verbosity=0 --noinput --clear")
+
+        # Add Sentry debug IDs
+        run("sentry-cli sourcemaps inject htdocs/static/dist/js")
+
+
+@task
+@roles("web")
+@runs_once
+def static_upload():
+    """Upload static file sourcemaps to Sentry."""
+    with cd(env.home):
+        version = run("sentry-cli releases propose-version")
+        run(
+            "sentry-cli sourcemaps upload "
+            "--project {project} --release {version} "
+            "--quiet htdocs/static/dist/js".format(project=env.repo, version=version)
+        )
+
+
+@task
+@roles("web")
+@parallel
+def static_clean():
+    """Clean sourcemaps from static files."""
+    with cd(env.home):
+        # Remove source maps
+        run("find htdocs/static/dist/js -name '*.map' -delete")
+
 
 {%- if cookiecutter.multilingual == 'y' %}
 
@@ -225,12 +253,26 @@ def reload_uwsgi(force_reload=None):
 @task
 @roles("web")
 @runs_once
-def sentry_release():
+def sentry_start_release():
     """Register new release with Sentry."""
     with cd(env.home):
         version = run("sentry-cli releases propose-version")
         run(
-            "sentry-cli releases new --finalize --project {project} {version}".format(
+            "sentry-cli releases new --project {project} {version}".format(
+                project=env.repo, version=version
+            )
+        )
+
+
+@task
+@roles("web")
+@runs_once
+def sentry_finish_release():
+    """Finalise new release with Sentry."""
+    with cd(env.home):
+        version = run("sentry-cli releases propose-version")
+        run(
+            "sentry-cli releases finalize --project {project} {version}".format(
                 project=env.repo, version=version
             )
         )
@@ -254,14 +296,17 @@ def deploy(force_reload=None):
     fab deploy:force_reload=True
     """
     execute(update)
+    execute(sentry_start_release)
     execute(migrate)
     execute(static)
+    execute(static_upload)
+    execute(static_clean)
     {%- if cookiecutter.multilingual == 'y' %}
     execute(translations)
     {%- endif %}
     execute(reload_uwsgi, force_reload=force_reload)
     execute(cron)
-    execute(sentry_release)
+    execute(sentry_finish_release)
 
 
 @task

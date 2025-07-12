@@ -180,6 +180,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.messages.context_processors.messages",
                 "core.context_processors.demo",
+                "core.context_processors.sentry_config",
             ]
         },
     }
@@ -257,5 +258,10 @@ GEOS_LIBRARY_PATH = os.environ.get("GEOS_LIBRARY_PATH")
 {%- endif %}
 
 DEMO_SITE = False
+
+# Sentry frontend tracking
+SENTRY_JS_URL = os.environ.get("SENTRY_JS_URL")
+SENTRY_ENVIRONMENT = os.environ.get("SENTRY_ENVIRONMENT")
+SENTRY_RELEASE = None
 
 AUTH_USER_MODEL = "accounts.User"

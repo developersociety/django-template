@@ -19,6 +19,7 @@ const config = {
     entry: {
         base: ['./static/src/js/base.js'],
         app: ['./static/src/js/app.js'],
+        sentry_config: ['./static/src/js/sentry_config.js'],
         styles: ['./static/src/scss/styles.scss'],
     },
     output: {
@@ -245,5 +246,8 @@ module.exports = [
                 },
             ],
         },
+
+        // Create Sourcemaps for the files
+        devtool: 'source-map',
     },
 ];
