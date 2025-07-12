@@ -239,15 +239,16 @@ CSRF_COOKIE_HTTPONLY = True
 
 # Improved login security with axes
 # - Only lock attempts by username (prevent mass attempts on single accounts)
-# - 10 failures in 15 attempts results in blocking
+# - 10 failures in 5 minutes results in blocking
 AUTHENTICATION_BACKENDS = [
     "axes.backends.AxesBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
 AXES_LOCKOUT_PARAMETERS = ["username"]
 AXES_FAILURE_LIMIT = 10
-AXES_COOLOFF_TIME = timedelta(minutes=15)
+AXES_COOLOFF_TIME = timedelta(minutes=5)
 AXES_ENABLE_ADMIN = False
+AXES_SENSITIVE_PARAMETERS = []
 {%- if cookiecutter.geodjango == 'y' %}
 
 # GeoDjango fixes
