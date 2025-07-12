@@ -38,6 +38,12 @@ GIT_REMOTE = "git@github.com:developersociety/{env.repo}.git"
 
 
 @task
+def live():
+    # Intentional no-op for make commands, this is the default
+    pass
+
+
+@task
 def demo():
     env.roledefs["web"] = env.roledefs["demo"]
     env.roledefs["cron"] = env.roledefs["demo"]

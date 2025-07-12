@@ -108,13 +108,13 @@ pip-install-local: venv-check
 fab-get-data: fab-get-backup fab-get-media
 
 fab-get-backup:
-	fab get_backup
+	fab $${site:-live} get_backup
 
 fab-get-media:
-	fab get_media
+	fab $${site:-live} get_media
 
 fab-deploy:
-	fab deploy
+	fab $${site:-live} deploy
 
 
 # Coverage
