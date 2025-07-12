@@ -6,7 +6,7 @@ concurrency:
 jobs:
   test:
     name: Test -- tox
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -18,7 +18,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            libgdal30
+            libgdal34t64
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -56,7 +56,7 @@ jobs:
           tox
     services:
       postgres:
-        image: postgis/postgis:15-3.4
+        image: postgis/postgis:17-3.5-alpine
         env:
           POSTGRES_PASSWORD: password
         ports:

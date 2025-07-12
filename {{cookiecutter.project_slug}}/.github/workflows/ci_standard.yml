@@ -6,7 +6,7 @@ concurrency:
 jobs:
   test:
     name: Test -- tox
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -51,7 +51,7 @@ jobs:
           tox
     services:
       postgres:
-        image: postgres:15-alpine
+        image: postgres:17-alpine
         env:
           POSTGRES_PASSWORD: password
         ports:
