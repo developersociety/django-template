@@ -34,7 +34,7 @@ def browsersync(request):
     """
     host = request.get_host()
     if ":" in host:
-        host, port = host.split(":")
+        host, _port = host.split(":")
 
     url = browsersync_url(host=host)
 

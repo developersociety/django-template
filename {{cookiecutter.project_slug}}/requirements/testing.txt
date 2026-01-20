@@ -1,10 +1,10 @@
 -r base.txt
 
-coverage==7.9.2
+coverage==7.13.1
 django-extensions==4.1
 djlint==1.36.4
 factory-boy==3.3.3
-pipdeptree==2.27.0
-ruff==0.12.3
-tblib==3.1.0
-unittest-xml-reporting==3.2.0
+pipdeptree==2.30.0
+ruff==0.14.13
+tblib==3.2.2
+unittest-xml-reporting==4.0.0

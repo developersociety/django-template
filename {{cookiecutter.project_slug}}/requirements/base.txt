@@ -1,15 +1,15 @@
-Django==5.2.9
-asgiref==3.9.1
-psycopg==3.2.9
-Pillow==11.3.0
+Django==5.2.10
+asgiref==3.11.0
+psycopg==3.3.2
+Pillow==12.1.0
 olefile==0.47
-dj-database-url==3.0.1
-sqlparse==0.5.3
-typing-extensions==4.14.1
+dj-database-url==3.1.0
+sqlparse==0.5.5
+typing-extensions==4.15.0
 
 # Caching
 django-redis==6.0.0
-redis==6.2.0
+redis==7.1.0
 
 # Masked database backups
 django-maskpostgresdata==0.2.1
@@ -17,23 +17,23 @@ django-maskpostgresdata==0.2.1
 # Storage
 devsoc-contentfiles==0.5
 django-storages==1.14.6
-boto3==1.39.4
-botocore==1.39.4
+boto3==1.42.30
+botocore==1.42.30
 jmespath==1.0.1
 python-dateutil==2.9.0.post0
-s3transfer==0.13.0
+s3transfer==0.16.0
 six==1.17.0
-urllib3==2.5.0
+urllib3==2.6.3
 
 # Reporting (Errors, APM)
-elastic-apm==6.23.0
-sentry-sdk==2.32.0
-certifi==2025.7.9
-ecs-logging==2.2.0
-wrapt==1.17.2
+elastic-apm==6.25.0
+sentry-sdk==2.50.0
+certifi==2026.1.4
+ecs-logging==2.3.0
+wrapt==2.0.1
 
 # Axes
-django-axes==8.0.0
+django-axes==8.1.0
 
 # Email interception
 django-email-bandit==2.0
