@@ -1,6 +1,6 @@
 [tool.black]
 line-length = 99
-target-version = ["py312"]
+target-version = ["py314"]
 
 [tool.djlint]
 profile = "django"
@@ -26,7 +26,7 @@ ignore = "T002"
 extend-exclude = ["apps/*/migrations"]
 src = ["apps"]
 line-length = 99
-target-version = "py312"
+target-version = "py314"
 
 [tool.ruff.lint]
 exclude = ["apps/*/migrations"]
