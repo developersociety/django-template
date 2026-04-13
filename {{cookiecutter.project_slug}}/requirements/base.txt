@@ -1,4 +1,4 @@
-Django==5.2.12
+Django==5.2.13
 asgiref==3.11.0
 psycopg==3.3.2
 Pillow==12.1.1
