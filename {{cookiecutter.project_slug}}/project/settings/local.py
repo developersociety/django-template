@@ -25,6 +25,9 @@ INTERNAL_IPS = ["127.0.0.1"]
 ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS += ["django_extensions"]
 
+# Default URL scheme (when request context isn't available)
+URL_SCHEME = "http"
+
 # Webpack runserver
 TEMPLATES[0]["OPTIONS"]["context_processors"].append("core.context_processors.browsersync")
 

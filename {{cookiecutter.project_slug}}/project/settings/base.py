@@ -235,6 +235,9 @@ LOGGING = {
 # Sites framework
 SITE_ID = 1
 
+# Default URL scheme (when request context isn't available)
+URL_SCHEME = "https"
+
 # Cloud storage
 CONTENTFILES_PREFIX = os.environ.get("CONTENTFILES_PREFIX", f"{PROJECT_SLUG}")
 CONTENTFILES_HOSTNAME = os.environ.get("CONTENTFILES_HOSTNAME")
