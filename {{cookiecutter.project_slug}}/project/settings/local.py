@@ -33,7 +33,13 @@ STORAGES["staticfiles"]["BACKEND"] = "django.contrib.staticfiles.storage.StaticF
 
 SECRET_KEY = "secret"  # noqa:S105
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# Implement mailpit if env var is present
+# eg. MAILPIT=1 ./manage.py runserver
+if os.environ.get("MAILPIT"):
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_PORT = 1025
+else:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Django debug toolbar - show locally unless DISABLE_TOOLBAR is enabled with environment vars
 # eg. DISABLE_TOOLBAR=1 ./manage.py runserver
