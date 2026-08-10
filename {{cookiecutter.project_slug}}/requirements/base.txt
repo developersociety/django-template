@@ -1,7 +1,7 @@
 Django==5.2.17
 asgiref==3.11.0
 psycopg==3.3.2
-Pillow==12.2.0
+Pillow==12.3.0
 olefile==0.47
 dj-database-url==3.1.0
 sqlparse==0.5.5
