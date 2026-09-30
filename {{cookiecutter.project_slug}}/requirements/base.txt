@@ -4,7 +4,7 @@ psycopg==3.3.2
 Pillow==12.3.0
 olefile==0.47
 dj-database-url==3.1.0
-sqlparse==0.5.5
+sqlparse==0.6.0
 typing-extensions==4.15.0
 
 # Caching
