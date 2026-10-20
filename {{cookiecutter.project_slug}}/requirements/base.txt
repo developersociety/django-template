@@ -28,7 +28,7 @@ urllib3==2.8.0
 # Reporting (Errors, APM)
 elastic-apm==6.25.0
 sentry-sdk==2.50.0
-certifi==2026.1.4
+certifi==2026.10.18
 ecs-logging==2.3.0
 wrapt==2.0.1
 
